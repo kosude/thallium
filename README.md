@@ -1,0 +1,32 @@
+<p align=center>
+    <img align=left src="resources/render.png" height=110>
+</p>
+
+
+# Thallium Graphics Library
+
+[![GitHub](https://img.shields.io/github/license/kosude/thallium)](LICENCE)
+
+Thallium is a planned C/C++ library that will provide the ability to write cross-renderer applications with the same interface. Cross-platform
+renderers (i.e. Vulkan and OpenGL) will be prioritised, but I plan to also implement Metal, DX11, and DX12 in the far future.
+
+> **Warning**: Thallium is a very work-in-progress **personal project**, so it can change at any time, and without warning.
+> Please see the [DEV.md](DEV.md) file for information about its development.
+
+
+## Documentation
+
+Please see the Thallium documentation hosted on GH Pages at https://kosude.github.io/thallium/. Local HTML documentation can also be built by setting
+`-DTHALLIUM_BUILD_DOCS=ON`, when compiling.
+
+
+## Project logos
+
+Thallium has two project logos. The rendered one is used more often as the actual de facto icon of the project, whilst the vector one is used for
+smaller applications, like on the documentation.
+
+|                               Render                               |                                Vector                               |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| <br/><p align=center><img src="resources/render.png" width=90></p> | <br/><p align=center><img src="resources/vector.svg" width=100></p> |
+
+The colour theme used by the project (which is reflected in the vector logo) consists of neon pink (`#ff0457`) and dark purple (`#521057`).
