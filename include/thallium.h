@@ -19,7 +19,7 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/test.h"
+#include "thallium/debug.h"
 
 #ifdef __cplusplus
     }

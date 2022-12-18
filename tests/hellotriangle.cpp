@@ -8,7 +8,5 @@
 #include "thallium.h"
 
 int main() {
-    th_TestFunc();
-
     return 0;
 }

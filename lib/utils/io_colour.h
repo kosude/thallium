@@ -18,8 +18,6 @@
  * Low-level functions for setting the print colour of an output stream.
  */
 
-/// @{
-
 #pragma once
 #ifndef _THALLIUM_IO_COLOUR_H
 #define _THALLIUM_IO_COLOUR_H
@@ -27,11 +25,14 @@
     extern "C" {
 #endif // __cplusplus
 
-/// @cond DOCS_IGNORE
+// @cond DOCS_IGNORE
 
 typedef struct _IO_FILE FILE;
 
-/// @endcond DOCS_IGNORE
+// @endcond DOCS_IGNORE
+
+/// @ingroup utils_io_colour
+/// @{
 
 /**
  * @brief Enumeration containing colour options for input/output

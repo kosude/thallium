@@ -1,4 +1,7 @@
 /**
  * @defgroup utils Utilities
  * @brief Utility functions and structures
+ *
+ * @defgroup state Global state
+ * @brief Internal state properties of the Thallium library
  */

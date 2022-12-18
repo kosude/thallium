@@ -1,8 +1,10 @@
 set(SOURCES_CORE
-    "utils/io_colour.c"     "utils/io_colour.h"
-    "utils/log.c"           "utils/log.h"
+    "state/state.c"
 
-    "test.c"
+    "utils/io_colour.c"
+    "utils/log.c"
+
+    "debug.c"
 )
 
 

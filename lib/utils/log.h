@@ -18,14 +18,15 @@
  * Low-level functions for printing formatted log messages.
  */
 
-/// @{
-
 #pragma once
 #ifndef _THALLIUM_LOG_H
 #define _THALLIUM_LOG_H
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
+
+/// @ingroup utils_log
+/// @{
 
 /**
  * @brief Write a log message to stdout.

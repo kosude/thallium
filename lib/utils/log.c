@@ -7,15 +7,28 @@
 
 #include "log.h"
 
+#include "thallium/debug.h"
+
 #include "io_colour.h"
+#include "state/state.h"
 
 #include <stdio.h>
 #include <stdarg.h>
 
 /**
- * @brief Maximum length of debug messages
+ * @brief Maximum length of debug messages.
  */
 #define MAX_DBGMSG_LEN 512
+
+/**
+ * @brief Return from the parent function if the given severity is not included in the user filter.
+ */
+#define ASSERT_FILTER(sev) \
+{ \
+    if ((thallium.debugSeverityFilter & sev) != sev) { \
+        return; \
+    } \
+}
 
 /**
  * @brief Format the string and output it into a local variable called `msg`.
@@ -32,6 +45,8 @@
 }
 
 void th_Log(const char *format, ...) {
+    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
+
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
@@ -39,6 +54,8 @@ void th_Log(const char *format, ...) {
 }
 
 void th_Note(const char *format, ...) {
+    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
+
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
@@ -48,6 +65,8 @@ void th_Note(const char *format, ...) {
 }
 
 void th_Warn(const char *format, ...) {
+    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_WARNING_BIT);
+
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
@@ -57,6 +76,8 @@ void th_Warn(const char *format, ...) {
 }
 
 void th_Error(const char *format, ...) {
+    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_ERROR_BIT);
+
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
@@ -66,6 +87,8 @@ void th_Error(const char *format, ...) {
 }
 
 void th_Fatal(const char *format, ...) {
+    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_FATAL_BIT);
+
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
