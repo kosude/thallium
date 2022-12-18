@@ -42,34 +42,34 @@ void th_Note(const char *format, ...) {
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
-    th_IOColourSet(THALLIUM_IO_COLOUR_BLUE, 0xFF, stdout);
+    th_SetIOColour(THALLIUM_IO_COLOUR_BLUE, 0xFF, stdout);
     printf("(thallium!) %s\n", msg);
-    th_IOColourDefaults(stdout);
+    th_DefaultIOColour(stdout);
 }
 
 void th_Warn(const char *format, ...) {
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
-    th_IOColourSet(THALLIUM_IO_COLOUR_YELLOW, 0xFF, stdout);
+    th_SetIOColour(THALLIUM_IO_COLOUR_YELLOW, 0xFF, stdout);
     printf("(thallium!) WARN: %s\n", msg);
-    th_IOColourDefaults(stdout);
+    th_DefaultIOColour(stdout);
 }
 
 void th_Error(const char *format, ...) {
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
-    th_IOColourSet(THALLIUM_IO_COLOUR_RED, 0xFF, stderr);
+    th_SetIOColour(THALLIUM_IO_COLOUR_RED, 0xFF, stderr);
     fprintf(stderr, "(thallium!) ERROR: %s\n", msg);
-    th_IOColourDefaults(stderr);
+    th_DefaultIOColour(stderr);
 }
 
 void th_Fatal(const char *format, ...) {
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
-    th_IOColourSet(THALLIUM_IO_COLOUR_RED, THALLIUM_IO_COLOUR_YELLOW, stderr);
+    th_SetIOColour(THALLIUM_IO_COLOUR_RED, THALLIUM_IO_COLOUR_YELLOW, stderr);
     fprintf(stderr, "(thallium!) FATAL: %s\n", msg);
-    th_IOColourDefaults(stderr);
+    th_DefaultIOColour(stderr);
 }

@@ -5,6 +5,21 @@
  *   Please see the LICENCE file for more information.
  */
 
+/**
+ * @file io_colour.h
+ * @brief Low-level functions for setting the print colour of an output stream.
+ *
+ * @copyright Copyright (c) 2022
+ *
+ * @defgroup utils_io_colour IO colours
+ * @brief Setting stream input/output colours
+ * @ingroup utils
+ *
+ * Low-level functions for setting the print colour of an output stream.
+ */
+
+/// @{
+
 #pragma once
 #ifndef _THALLIUM_IO_COLOUR_H
 #define _THALLIUM_IO_COLOUR_H
@@ -12,11 +27,16 @@
     extern "C" {
 #endif // __cplusplus
 
-// forward declaration of FILE
+/// @cond DOCS_IGNORE
+
 typedef struct _IO_FILE FILE;
+
+/// @endcond DOCS_IGNORE
 
 /**
  * @brief Enumeration containing colour options for input/output
+ *
+ * This enumeration contains options for setting colour of output within a stream.
  */
 typedef enum th_IOColour_t {
     /// @brief Black IO colour
@@ -56,26 +76,32 @@ typedef enum th_IOColour_t {
 /**
  * @brief Set input/output colours
  *
- * Pass 0xFF to either colour in order to skip it
+ * This function sets input/output colours as given.
+ *
+ * Pass `0xFF` to either colour in order to skip updating it.
  *
  * @param fg Foreground colour
  * @param bg Background colour
- * @param stream The stream to set the colour in (relevant for Unix)
+ * @param stream The stream to set the colour in (relevant for Unix platforms)
  */
-const void th_IOColourSet(
+const void th_SetIOColour(
     const th_IOColour_t fg,
     const th_IOColour_t bg,
     FILE *stream
 );
 
 /**
- * @brief Reset input/output colours to default
+ * @brief Reset input/output colours to default.
  *
- * @param stream The stream to reset the colour in (relevant for Unix)
+ * This function resets input/output colours to default.
+ *
+ * @param stream The stream to reset the colour in (relevant for Unix platforms)
  */
-const void th_IOColourDefaults(
+const void th_DefaultIOColour(
     FILE *stream
 );
+
+/// @}
 
 #ifdef __cplusplus
     }

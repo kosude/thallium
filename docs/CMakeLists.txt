@@ -19,16 +19,16 @@ add_custom_target(${PROJECT_NAME}docs
 )
 
 
-# Internal API: Vulkan
+# Internal API
 
-set(INTERNAL_VULKAN_DOCS_SRC "${DOXYGEN_SRC_DIR}/internal/vulkan")
+set(INTERNAL_DOCS_SRC "${DOXYGEN_SRC_DIR}/internal")
 
-configure_file("${INTERNAL_VULKAN_DOCS_SRC}/Doxyfile.vk.conf" "${DOXYGEN_OUT_DIR}/Doxyfile.vk.conf.out" @ONLY)
+configure_file("${INTERNAL_DOCS_SRC}/Doxyfile.int.conf" "${DOXYGEN_OUT_DIR}/Doxyfile.int.conf.out" @ONLY)
 
-add_custom_target(${PROJECT_NAME}docs_vk
+add_custom_target(${PROJECT_NAME}intdocs
     ALL
-    COMMAND ${DOXYGEN_EXECUTABLE} "${DOXYGEN_OUT_DIR}/Doxyfile.vk.conf.out"
+    COMMAND ${DOXYGEN_EXECUTABLE} "${DOXYGEN_OUT_DIR}/Doxyfile.int.conf.out"
     WORKING_DIRECTORY "${DOXYGEN_OUT_DIR}"
-    COMMENT "Building Thallium API documentation: internal - Vulkan API"
+    COMMENT "Building Thallium API documentation: internal codebase"
     VERBATIM
 )

@@ -11,9 +11,9 @@ renderers (i.e. Vulkan and OpenGL) will be prioritised, but I plan to also imple
 
 # Internal documentation                    {#sct_mainpage_internaldocs}
 
-If you are interested in the internals of the Thallium library, or you want to contribute, please see the corresponding section of the **Internal
-Documentation**. There is a different page for each module:
+If you are interested in the internals of the Thallium library, or you want to contribute, please see the corresponding section of the **[Internal
+Documentation](internal/index.html)**.
 
- - <a href="vulkan/index.html">Internal Vulkan API documentation</a>
-
-Of course, you can also see the upstream repository on [GitHub](https://github.com/kosude/thallium).
+Also see:
+the upstream repository on [GitHub](https://github.com/kosude/thallium)
+and the TO-DO list on [Trello](https://trello.com/b/Fbj9GSzf/thallium-todo).
