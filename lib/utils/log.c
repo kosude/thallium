@@ -10,6 +10,7 @@
 #include "thallium/debug.h"
 
 #include "io_colour.h"
+#include "proc.h"
 #include "state/state.h"
 
 #include <stdio.h>
@@ -44,7 +45,7 @@
     va_end(varargs); \
 }
 
-void th_Log(const char *format, ...) {
+const void th_Log(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -53,7 +54,7 @@ void th_Log(const char *format, ...) {
     printf("(thallium!) %s\n", msg);
 }
 
-void th_Note(const char *format, ...) {
+const void th_Note(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -64,7 +65,7 @@ void th_Note(const char *format, ...) {
     th_DefaultIOColour(stdout);
 }
 
-void th_Warn(const char *format, ...) {
+const void th_Warn(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_WARNING_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -75,7 +76,7 @@ void th_Warn(const char *format, ...) {
     th_DefaultIOColour(stdout);
 }
 
-void th_Error(const char *format, ...) {
+const void th_Error(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_ERROR_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -86,7 +87,7 @@ void th_Error(const char *format, ...) {
     th_DefaultIOColour(stderr);
 }
 
-void th_Fatal(const char *format, ...) {
+const void th_Fatal(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_FATAL_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -95,4 +96,6 @@ void th_Fatal(const char *format, ...) {
     th_SetIOColour(THALLIUM_IO_COLOUR_RED, THALLIUM_IO_COLOUR_YELLOW, stderr);
     fprintf(stderr, "(thallium!) FATAL: %s\n", msg);
     th_DefaultIOColour(stderr);
+
+    th_KillProc();
 }

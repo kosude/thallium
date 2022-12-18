@@ -41,7 +41,7 @@
  * @param format String format
  * @param ... Variadic formatted string arguments
  */
-void th_Log(
+const void th_Log(
     const char *format,
     ...
 );
@@ -59,7 +59,7 @@ void th_Log(
  * @param format String format
  * @param ... Variadic formatted string arguments
  */
-void th_Note(
+const void th_Note(
     const char *format,
     ...
 );
@@ -77,7 +77,7 @@ void th_Note(
  * @param format String format
  * @param ... Variadic formatted string arguments
  */
-void th_Warn(
+const void th_Warn(
     const char *format,
     ...
 );
@@ -95,7 +95,7 @@ void th_Warn(
  * @param format String format
  * @param ... Variadic formatted string arguments
  */
-void th_Error(
+const void th_Error(
     const char *format,
     ...
 );
@@ -113,7 +113,7 @@ void th_Error(
  * @param format String format
  * @param ... Variadic formatted string arguments
  */
-void th_Fatal(
+const void th_Fatal(
     const char *format,
     ...
 );
