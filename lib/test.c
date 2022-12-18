@@ -9,9 +9,7 @@
 
 #include <stdio.h>
 
-void th_TestFunc(int x) {
-    printf("x = %d\n", x);
-
+void th_TestFunc() {
     th_Log("Hello world");
     th_Note("Hello world");
     th_Warn("Hello world");

@@ -11,7 +11,7 @@ Thallium is a planned C/C++ library that will provide the ability to write cross
 renderers (i.e. Vulkan and OpenGL) will be prioritised, but I plan to also implement Metal, DX11, and DX12 in the far future.
 
 > **Warning**: Thallium is a very work-in-progress **personal project**, so it can change at any time, and without warning.
-> Please see the [DEV.md](DEV.md) file for information about its development.
+> Please see the [Trello board](https://trello.com/b/Fbj9GSzf/thallium-todo) for a TO-DO list.
 
 
 ## Documentation

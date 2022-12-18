@@ -12,7 +12,7 @@
     extern "C" {
 #endif // __cplusplus
 
-void th_TestFunc(int x);
+void th_TestFunc();
 
 #ifdef __cplusplus
     }

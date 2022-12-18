@@ -80,7 +80,7 @@
     }
 #endif
 
-const void th_IOColourSet(const th_IOColour_t fg, const th_IOColour_t bg) {
+const void th_IOColourSet(const th_IOColour_t fg, const th_IOColour_t bg, FILE *stream) {
     if (fg == 0xFF && bg == 0xFF) {
         // no values given
         return;
@@ -105,7 +105,8 @@ const void th_IOColourSet(const th_IOColour_t fg, const th_IOColour_t bg) {
         static const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(handle, bg << 4 | fg);
 #   elif defined(UNIX)
-        printf("\033[%s%s%sm",
+        fprintf(stream,
+            "\033[%s%s%sm",
             (fg != 0xFF) ? _GetFGColourCode(fg) : "0",
             (bg != 0xFF) ? ";" : "",
             (bg != 0xFF) ? _GetBGColourCode(bg) : ""
@@ -116,13 +117,13 @@ const void th_IOColourSet(const th_IOColour_t fg, const th_IOColour_t bg) {
 #   endif
 }
 
-const void th_IOColourDefaults() {
+const void th_IOColourDefaults(FILE *stream) {
 #   if defined(WIN32)
         // NOTE: this is yet to be tested
         static const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(handle, 7);
 #   elif defined(UNIX)
-        printf("\033[0m");
+        fprintf(stream, "\033[0m");
 #   else
         // TODO: macOS support
         printf("/?/");

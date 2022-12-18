@@ -12,6 +12,9 @@
     extern "C" {
 #endif // __cplusplus
 
+// forward declaration of FILE
+typedef struct _IO_FILE FILE;
+
 /**
  * @brief Enumeration containing colour options for input/output
  */
@@ -57,16 +60,22 @@ typedef enum th_IOColour_t {
  *
  * @param fg Foreground colour
  * @param bg Background colour
+ * @param stream The stream to set the colour in (relevant for Unix)
  */
 const void th_IOColourSet(
     const th_IOColour_t fg,
-    const th_IOColour_t bg
+    const th_IOColour_t bg,
+    FILE *stream
 );
 
 /**
  * @brief Reset input/output colours to default
+ *
+ * @param stream The stream to reset the colour in (relevant for Unix)
  */
-const void th_IOColourDefaults();
+const void th_IOColourDefaults(
+    FILE *stream
+);
 
 #ifdef __cplusplus
     }
