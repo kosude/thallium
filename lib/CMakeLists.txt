@@ -1,5 +1,6 @@
 set(SOURCES_CORE
-    "utils/log.c"       "utils/log.h"
+    "utils/io_colour.c"     "utils/io_colour.h"
+    "utils/log.c"           "utils/log.h"
 
     "test.c"
 )

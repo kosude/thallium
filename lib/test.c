@@ -12,5 +12,9 @@
 void th_TestFunc(int x) {
     printf("x = %d\n", x);
 
-    printf("1 + 2 = %d\n", th_Test());
+    th_Log("Hello world");
+    th_Note("Hello world");
+    th_Warn("Hello world");
+    th_Error("Hello world");
+    th_Fatal("Hello world");
 }

@@ -4,14 +4,14 @@ project(thallium)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-# set(THALLIUM_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/CMake")
+set(THALLIUM_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake")
 set(THALLIUM_DOCS_DIR "${CMAKE_CURRENT_LIST_DIR}/docs")
 set(THALLIUM_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/include")
 set(THALLIUM_LIB_DIR "${CMAKE_CURRENT_LIST_DIR}/lib")
 set(THALLIUM_TESTS_DIR "${CMAKE_CURRENT_LIST_DIR}/tests")
 # set(THALLIUM_EXAMPLES_DIR "${CMAKE_CURRENT_LIST_DIR}/examples")
 
-# set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}")
+set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}")
 
 set(THALLIUM_LIBRARIES)
 
@@ -75,9 +75,9 @@ if (NOT CMAKE_BUILD_TYPE)
     message(FATAL_ERROR "Missing build configuration type! Reconfigure project with option -DCMAKE_BUILD_TYPE=(Debug|Release)")
 endif()
 
-# string(TOUPPER "${CMAKE_BUILD_TYPE}" _upperBuildType)
-# set("BUILD_${_upperBuildType}" 1)
-# configure_file("${THALLIUM_CMAKE_DIR}/generate/platform.h" "${PROJECT_BINARY_DIR}/generated/cmake_platform.h")
+string(TOUPPER "${CMAKE_BUILD_TYPE}" _upperBuildType)
+set("BUILD_${_upperBuildType}" 1)
+configure_file("${THALLIUM_CMAKE_DIR}/generate/platform.h" "${PROJECT_BINARY_DIR}/generated/cmake_platform.h")
 
 if (APPLE OR CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(SUMMARY_TARGET_ARCH "AMD64 (x86_64)")

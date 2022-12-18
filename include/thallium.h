@@ -10,12 +10,11 @@
  * @brief Public Thallium API header
  *
  * @copyright Copyright (c) 2022
- *
  */
 
 #pragma once
-#ifndef _THALLIUM_H
-#define _THALLIUM_H
+#ifndef _THALLIUM_PUB_H
+#define _THALLIUM_PUB_H
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
@@ -25,4 +24,4 @@
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_H
+#endif // !_THALLIUM_PUB_H
