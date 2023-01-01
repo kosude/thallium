@@ -12,5 +12,10 @@
 int main() {
     th_ConfigureDebugMessageFilter(THALLIUM_DEBUG_SEVERITY_ALL_BIT);
 
+    const th_Renderer_t vulkan = th_CreateRenderer("vulkan");
+
+    std::cout << vulkan.apiName << std::endl;
+    std::cout << std::to_string(vulkan.apiId) << std::endl;
+
     return 0;
 }

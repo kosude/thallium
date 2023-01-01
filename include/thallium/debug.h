@@ -13,7 +13,6 @@
  *
  * @defgroup debug Library debug configuration
  * @brief Functions pertaining to Thallium debugging
- * @ingroup utils
  *
  * Library compounds for configuring Thallium debug output.
  *
@@ -28,10 +27,8 @@
     extern "C" {
 #endif // __cplusplus
 
-/// @ingroup debug
-/// @{
-
 /**
+ * @ingroup debug
  * @brief Enum for explicit function return statuses.
  *
  * This enumeration provides explicit function return statuses.
@@ -48,6 +45,7 @@ typedef enum th_Status_t {
 } th_Status_t;
 
 /**
+ * @ingroup debug
  * @brief Enumeration containing severities to describe debug messages.
  *
  * This enumeration contains severities to describe debug messages.
@@ -70,6 +68,7 @@ typedef enum th_DebugSeverity_t {
 } th_DebugSeverity_t;
 
 /**
+ * @ingroup debug
  * @brief Select certain types of debugging messages to be displayed by Thallium.
  *
  * This function enables Thallium debug output with the specified criteria.
@@ -77,17 +76,15 @@ typedef enum th_DebugSeverity_t {
  * A list of error severities can be seen in the documentation for the @ref th_DebugSeverity_t enumeration.
  *
  * @param severityBits bit field of @ref th_DebugSeverity_t enumerator(s)
- * @return [Return status](@ref th_Status_t) of the function
+ * @return @returnstatus
  *
- * @note *This function will always return THALLIUM_STATUS_OK*.
+ * @alwaysok
  *
  * @sa @ref th_DebugSeverity_t
  */
 const th_Status_t th_ConfigureDebugMessageFilter(
     const th_DebugSeverity_t severityBits
 );
-
-/// @}
 
 #ifdef __cplusplus
     }

@@ -25,10 +25,10 @@
     extern "C" {
 #endif // __cplusplus
 
-/// @ingroup utils_log
-/// @{
+#include <stdint.h>
 
 /**
+ * @ingroup utils_log
  * @brief Write a log message to stdout.
  *
  * This function prints a log message to *stdout*, in the following format:
@@ -40,13 +40,17 @@
  *
  * @param format String format
  * @param ... Variadic formatted string arguments
+ * @return @returnstatus
+ *
+ * @alwaysok
  */
-const void th_Log(
+const uint8_t th_Log(
     const char *format,
     ...
 );
 
 /**
+ * @ingroup utils_log
  * @brief Write a notification message to stdout.
  *
  * This function prints a notification message to *stdout*, in the following format:
@@ -58,13 +62,17 @@ const void th_Log(
  *
  * @param format String format
  * @param ... Variadic formatted string arguments
+ * @return @returnstatus
+ *
+ * @alwaysok
  */
-const void th_Note(
+const uint8_t th_Note(
     const char *format,
     ...
 );
 
 /**
+ * @ingroup utils_log
  * @brief Write a warning message to stdout.
  *
  * This function prints a warning message to *stdout*, in the following format:
@@ -76,13 +84,17 @@ const void th_Note(
  *
  * @param format String format
  * @param ... Variadic formatted string arguments
+ * @return @returnstatus
+ *
+ * @alwaysok
  */
-const void th_Warn(
+const uint8_t th_Warn(
     const char *format,
     ...
 );
 
 /**
+ * @ingroup utils_log
  * @brief Write an error message to stderr.
  *
  * This function prints an error message to *stderr*, in the following format:
@@ -94,13 +106,17 @@ const void th_Warn(
  *
  * @param format String format
  * @param ... Variadic formatted string arguments
+ * @return @returnstatus
+ *
+ * @alwaysok
  */
-const void th_Error(
+const uint8_t th_Error(
     const char *format,
     ...
 );
 
 /**
+ * @ingroup utils_log
  * @brief Write a fatal error message to stderr.
  *
  * This function prints a fatal error message to *stderr*, in the following format:
@@ -112,13 +128,14 @@ const void th_Error(
  *
  * @param format String format
  * @param ... Variadic formatted string arguments
+ * @return @returnstatus
+ *
+ * @alwaysok
  */
-const void th_Fatal(
+const uint8_t th_Fatal(
     const char *format,
     ...
 );
-
-/// @}
 
 #ifdef __cplusplus
     }

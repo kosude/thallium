@@ -33,10 +33,8 @@ typedef struct _IO_FILE FILE;
 
 // @endcond DOCS_IGNORE
 
-/// @ingroup utils_io_colour
-/// @{
-
 /**
+ * @ingroup utils_io_colour
  * @brief Enumeration containing colour options for input/output
  *
  * This enumeration contains options for setting colour of output within a stream.
@@ -77,6 +75,7 @@ typedef enum th_IOColour_t {
 } th_IOColour_t;
 
 /**
+ * @ingroup utils_io_colour
  * @brief Set input/output colours
  *
  * This function sets input/output colours as given.
@@ -86,9 +85,9 @@ typedef enum th_IOColour_t {
  * @param fg Foreground colour
  * @param bg Background colour
  * @param stream The stream to set the colour in (relevant for Unix platforms)
- * @return Return status of the function
+ * @return @returnstatus
  *
- * @note *This function will always return THALLIUM_STATUS_OK*.
+ * @alwaysok
  */
 const uint8_t th_SetIOColour(
     const th_IOColour_t fg,
@@ -97,20 +96,19 @@ const uint8_t th_SetIOColour(
 );
 
 /**
+ * @ingroup utils_io_colour
  * @brief Reset input/output colours to default.
  *
  * This function resets input/output colours to default.
  *
  * @param stream The stream to reset the colour in (relevant for Unix platforms)
- * @return Return status of the function
+ * @return @returnstatus
  *
- * @note *This function will always return THALLIUM_STATUS_OK*.
+ * @alwaysok
  */
 const uint8_t th_DefaultIOColour(
     FILE *stream
 );
-
-/// @}
 
 #ifdef __cplusplus
     }

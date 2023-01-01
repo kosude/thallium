@@ -27,7 +27,7 @@
 #define ASSERT_FILTER(sev) \
 { \
     if ((thallium.debugSeverityFilter & sev) != sev) { \
-        return; \
+        return THALLIUM_STATUS_OK; \
     } \
 }
 
@@ -45,16 +45,18 @@
     va_end(varargs); \
 }
 
-const void th_Log(const char *format, ...) {
+const uint8_t th_Log(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
 
     char msg[MAX_DBGMSG_LEN];
     FORMAT_STR(format);
 
     printf("(thallium!) %s\n", msg);
+
+    return THALLIUM_STATUS_OK;
 }
 
-const void th_Note(const char *format, ...) {
+const uint8_t th_Note(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -63,9 +65,11 @@ const void th_Note(const char *format, ...) {
     th_SetIOColour(THALLIUM_IO_COLOUR_BLUE, 0xFF, stdout);
     printf("(thallium!) %s\n", msg);
     th_DefaultIOColour(stdout);
+
+    return THALLIUM_STATUS_OK;
 }
 
-const void th_Warn(const char *format, ...) {
+const uint8_t th_Warn(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_WARNING_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -74,9 +78,11 @@ const void th_Warn(const char *format, ...) {
     th_SetIOColour(THALLIUM_IO_COLOUR_YELLOW, 0xFF, stdout);
     printf("(thallium!) WARN: %s\n", msg);
     th_DefaultIOColour(stdout);
+
+    return THALLIUM_STATUS_OK;
 }
 
-const void th_Error(const char *format, ...) {
+const uint8_t th_Error(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_ERROR_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -85,9 +91,11 @@ const void th_Error(const char *format, ...) {
     th_SetIOColour(THALLIUM_IO_COLOUR_RED, 0xFF, stderr);
     fprintf(stderr, "(thallium!) ERROR: %s\n", msg);
     th_DefaultIOColour(stderr);
+
+    return THALLIUM_STATUS_OK;
 }
 
-const void th_Fatal(const char *format, ...) {
+const uint8_t th_Fatal(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_FATAL_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -98,4 +106,6 @@ const void th_Fatal(const char *format, ...) {
     th_DefaultIOColour(stderr);
 
     th_KillProc();
+
+    return THALLIUM_STATUS_OK;
 }

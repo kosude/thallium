@@ -21,10 +21,8 @@
 
 #include <stdint.h>
 
-/// @ingroup state
-/// @{
-
 /**
+ * @ingroup state
  * @brief Internal library state structure.
  */
 typedef struct th_State_t {
@@ -33,11 +31,10 @@ typedef struct th_State_t {
 } th_State_t;
 
 /**
+ * @ingroup state
  * @brief Globally accessible instance of @ref th_State_t.
  */
 extern th_State_t thallium;
-
-/// @}
 
 #ifdef __cplusplus
     }

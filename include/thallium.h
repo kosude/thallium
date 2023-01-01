@@ -20,6 +20,7 @@
 #endif // __cplusplus
 
 #include "thallium/debug.h"
+#include "thallium/renderer.h"
 
 #ifdef __cplusplus
     }

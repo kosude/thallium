@@ -25,18 +25,20 @@
     extern "C" {
 #endif // __cplusplus
 
-/// @ingroup utils_proc
-/// @{
+#include <stdint.h>
 
 /**
+ * @ingroup utils_proc
  * @brief Kill the currently executing process.
  *
  * This function kills the currently executing process. This may be useful for when a fatal
  * error is thrown.
+ *
+ * @return @returnstatus
+ *
+ * @alwaysok
  */
-const void th_KillProc();
-
-/// @}
+const uint8_t th_KillProc();
 
 #ifdef __cplusplus
     }

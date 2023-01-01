@@ -7,12 +7,16 @@
 
 #include "proc.h"
 
+#include "thallium/debug.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
-const void th_KillProc() {
+const uint8_t th_KillProc() {
     fprintf(stderr, "HALT AND CATCH FIRE -- invoked by libthallium\n");
 
     fprintf(stderr, "Killed process\n");
     exit(EXIT_FAILURE);
+
+    return THALLIUM_STATUS_OK;
 }

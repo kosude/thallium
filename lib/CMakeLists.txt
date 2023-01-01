@@ -6,6 +6,7 @@ set(SOURCES_CORE
     "utils/proc.c"
 
     "debug.c"
+    "renderer.c"
 )
 
 
