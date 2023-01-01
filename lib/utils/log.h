@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2022 Jack Bennett
+ *   Copyright (c) 2023 Jack Bennett
  *   All rights reserved.
  *
  *   Please see the LICENCE file for more information.
@@ -9,7 +9,7 @@
  * @file log.h
  * @brief Low-level functions for printing formatted log messages.
  *
- * @copyright Copyright (c) 2022
+ * @copyright Copyright (c) 2023
  *
  * @defgroup utils_log Message logging
  * @brief Writing formatted messages to an output stream

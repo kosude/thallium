@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2022 Jack Bennett
+ *   Copyright (c) 2023 Jack Bennett
  *   All rights reserved.
  *
  *   Please see the LICENCE file for more information.
@@ -9,7 +9,7 @@
  * @file io_colour.h
  * @brief Low-level functions for setting the print colour of an output stream.
  *
- * @copyright Copyright (c) 2022
+ * @copyright Copyright (c) 2023
  *
  * @defgroup utils_io_colour IO colours
  * @brief Setting stream input/output colours

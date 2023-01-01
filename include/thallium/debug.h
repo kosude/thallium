@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2022 Jack Bennett
+ *   Copyright (c) 2023 Jack Bennett
  *   All rights reserved.
  *
  *   Please see the LICENCE file for more information.
@@ -9,7 +9,7 @@
  * @file debug.h
  * @brief Library compounds for configuring Thallium debug output.
  *
- * @copyright Copyright (c) 2022
+ * @copyright Copyright (c) 2023
  *
  * @defgroup debug Library debug configuration
  * @brief Functions pertaining to Thallium debugging

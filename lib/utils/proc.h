@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2022 Jack Bennett
+ *   Copyright (c) 2023 Jack Bennett
  *   All rights reserved.
  *
  *   Please see the LICENCE file for more information.
@@ -9,7 +9,7 @@
  * @file proc.h
  * @brief Functions for managing the currently executing process.
  *
- * @copyright Copyright (c) 2022
+ * @copyright Copyright (c) 2023
  *
  * @defgroup utils_proc Process management
  * @brief Managing process
