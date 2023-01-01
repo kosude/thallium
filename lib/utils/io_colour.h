@@ -25,6 +25,8 @@
     extern "C" {
 #endif // __cplusplus
 
+#include <stdint.h>
+
 // @cond DOCS_IGNORE
 
 typedef struct _IO_FILE FILE;
@@ -84,8 +86,11 @@ typedef enum th_IOColour_t {
  * @param fg Foreground colour
  * @param bg Background colour
  * @param stream The stream to set the colour in (relevant for Unix platforms)
+ * @return Return status of the function
+ *
+ * @note *This function will always return THALLIUM_STATUS_OK*.
  */
-const void th_SetIOColour(
+const uint8_t th_SetIOColour(
     const th_IOColour_t fg,
     const th_IOColour_t bg,
     FILE *stream
@@ -97,8 +102,11 @@ const void th_SetIOColour(
  * This function resets input/output colours to default.
  *
  * @param stream The stream to reset the colour in (relevant for Unix platforms)
+ * @return Return status of the function
+ *
+ * @note *This function will always return THALLIUM_STATUS_OK*.
  */
-const void th_DefaultIOColour(
+const uint8_t th_DefaultIOColour(
     FILE *stream
 );
 

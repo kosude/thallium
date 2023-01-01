@@ -7,7 +7,7 @@
 
 [![GitHub](https://img.shields.io/github/license/kosude/thallium)](LICENCE)
 
-Thallium is a planned C/C++ library that will provide the ability to write cross-renderer applications with the same interface. Cross-platform
+Thallium is a C/C++ library that will provide the ability to write cross-renderer applications with the same interface. Cross-platform
 renderers (i.e. Vulkan and OpenGL) will be prioritised, but I plan to also implement Metal, DX11, and DX12 in the far future.
 
 > **Warning**: Thallium is a very work-in-progress **personal project**, so it can change at any time, and without warning.

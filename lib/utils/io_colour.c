@@ -9,6 +9,8 @@
 
 #include "cmake_platform.h"
 
+#include "thallium/debug.h"
+
 #ifdef WIN32
 #   define WIN32_LEAN_AND_MEAN
 #   include <Windows.h>
@@ -80,10 +82,10 @@
     }
 #endif
 
-const void th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *stream) {
+const uint8_t th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *stream) {
     if (fg == 0xFF && bg == 0xFF) {
         // no values given
-        return;
+        return THALLIUM_STATUS_OK;
     }
 
 #   ifdef WIN32
@@ -115,9 +117,11 @@ const void th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *
         // TODO: macOS support
         printf("/?/");
 #   endif
+
+    return THALLIUM_STATUS_OK;
 }
 
-const void th_DefaultIOColour(FILE *stream) {
+const uint8_t th_DefaultIOColour(FILE *stream) {
 #   if defined(WIN32)
         // NOTE: this is yet to be tested
         static const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -128,4 +132,6 @@ const void th_DefaultIOColour(FILE *stream) {
         // TODO: macOS support
         printf("/?/");
 #   endif
+
+    return THALLIUM_STATUS_OK;
 }

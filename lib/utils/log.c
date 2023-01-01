@@ -9,8 +9,8 @@
 
 #include "thallium/debug.h"
 
-#include "io_colour.h"
-#include "proc.h"
+#include "utils/io_colour.h"
+#include "utils/proc.h"
 #include "state/state.h"
 
 #include <stdio.h>

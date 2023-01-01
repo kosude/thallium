@@ -9,6 +9,8 @@
 
 #include "state/state.h"
 
-const void th_ConfigureDebugMessageFilter(const th_DebugSeverity_t severityBits) {
+const th_Status_t th_ConfigureDebugMessageFilter(const th_DebugSeverity_t severityBits) {
     thallium.debugSeverityFilter = severityBits;
+
+    return THALLIUM_STATUS_OK;
 }

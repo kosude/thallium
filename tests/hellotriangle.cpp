@@ -7,6 +7,10 @@
 
 #include "thallium.h"
 
+#include <iostream>
+
 int main() {
+    th_ConfigureDebugMessageFilter(THALLIUM_DEBUG_SEVERITY_ALL_BIT);
+
     return 0;
 }
