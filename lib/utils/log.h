@@ -9,8 +9,6 @@
  * @file log.h
  * @brief Low-level functions for printing formatted log messages.
  *
- * @copyright Copyright (c) 2023
- *
  * @defgroup utils_log Message logging
  * @brief Writing formatted messages to an output stream
  * @ingroup utils
@@ -67,6 +65,29 @@ const uint8_t th_Log(
  * @alwaysok
  */
 const uint8_t th_Note(
+    const char *format,
+    ...
+);
+
+/**
+ * @ingroup utils_log
+ * @brief Write a useful hint to stdout.
+ *
+ * This function prints a hint to *stdout*, in the following format:
+ * ```
+ * (thallium!) Hint: <MSG>
+ * ```
+ *
+ * The message is printed in a grey foreground colour, and is **treated with the same
+ * severity as [notes](@ref th_Note())**.
+ *
+ * @param format String format
+ * @param ... Variadic formatted string arguments
+ * @return @returnstatus
+ *
+ * @alwaysok
+ */
+const uint8_t th_Hint(
     const char *format,
     ...
 );

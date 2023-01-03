@@ -9,8 +9,6 @@
  * @file debug.h
  * @brief Library compounds for configuring Thallium debug output.
  *
- * @copyright Copyright (c) 2023
- *
  * @defgroup debug Library debug configuration
  * @brief Functions pertaining to Thallium debugging
  *

@@ -9,8 +9,6 @@
  * @file proc.h
  * @brief Functions for managing the currently executing process.
  *
- * @copyright Copyright (c) 2023
- *
  * @defgroup utils_proc Process management
  * @brief Managing process
  * @ingroup utils

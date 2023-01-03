@@ -50,9 +50,6 @@ if (THALLIUM_BUILD_LIB)
     # apple isn't as intelligent as everyone else so their toy "computers" don't support vulkan
     if (NOT APPLE)
         option(THALLIUM_BUILD_MODULE_VULKAN "Include the Vulkan module in the compilation" OFF)
-        if (${THALLIUM_BUILD_MODULE_VULKAN})
-            add_compile_definitions("VULKAN_MODULE_INCLUDED")
-        endif()
     endif()
 endif()
 

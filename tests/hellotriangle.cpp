@@ -6,10 +6,13 @@
  */
 
 #include "thallium.h"
+#include "thallium_vulkan.h"
 
 #include <iostream>
 
 int main() {
+    thvk_TestVkFunc();
+
     th_ConfigureDebugMessageFilter(THALLIUM_DEBUG_SEVERITY_ALL_BIT);
 
     const th_Renderer_t vulkan = th_CreateRenderer("vulkan");

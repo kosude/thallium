@@ -24,8 +24,21 @@ PRIVATE
     "${PROJECT_BINARY_DIR}/generated" # for generated resources and headers
 )
 
+if (THALLIUM_BUILD_MODULE_VULKAN)
+    target_compile_definitions(${PROJECT_NAME}_core PRIVATE "THALLIUM_VULKAN_INCL")
+endif()
+
+
+# API modules
+
+if (THALLIUM_BUILD_MODULE_VULKAN)
+    add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/vulkan")
+endif()
+
 
 # Interface library
 
 add_library(${PROJECT_NAME} INTERFACE)
 target_link_libraries(${PROJECT_NAME} INTERFACE ${THALLIUM_LIBRARIES})
+
+message(STATUS "libthallium includes: ${THALLIUM_LIBRARIES}")

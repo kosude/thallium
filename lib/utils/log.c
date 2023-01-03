@@ -69,6 +69,19 @@ const uint8_t th_Note(const char *format, ...) {
     return THALLIUM_STATUS_OK;
 }
 
+const uint8_t th_Hint(const char *format, ...) {
+    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
+
+    char msg[MAX_DBGMSG_LEN];
+    FORMAT_STR(format);
+
+    th_SetIOColour(THALLIUM_IO_COLOUR_GREY, 0xFF, stdout);
+    printf("(thallium!) Hint: %s\n", msg);
+    th_DefaultIOColour(stdout);
+
+    return THALLIUM_STATUS_OK;
+}
+
 const uint8_t th_Warn(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_WARNING_BIT);
 

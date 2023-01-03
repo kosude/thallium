@@ -9,8 +9,6 @@
  * @file renderer.h
  * @brief Renderer structure(s) and related functions.
  *
- * @copyright Copyright (c) 2023
- *
  * @defgroup renderer Managing renderer objects
  * @brief Creating and managing renderer objects
  *
@@ -71,6 +69,9 @@ typedef struct th_Renderer_t {
  * @brief Create, populate, and return a new renderer struct.
  *
  * This function constructs and returns a renderer struct.
+ *
+ * If `apiName` is invalid, then an 'empty' struct is returned (e.g. apiId set to NULL). Note that
+ * this includes API modules that were not included when Thallium was compiled.
  *
  * @param apiName name of the graphics API to represent
  * @return The new renderer object

@@ -8,8 +8,6 @@
 /**
  * @file state.h
  * @brief Global state variable declarations.
- *
- * @copyright Copyright (c) 2023
  */
 
 #pragma once

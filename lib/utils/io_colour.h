@@ -9,8 +9,6 @@
  * @file io_colour.h
  * @brief Low-level functions for setting the print colour of an output stream.
  *
- * @copyright Copyright (c) 2023
- *
  * @defgroup utils_io_colour IO colours
  * @brief Setting stream input/output colours
  * @ingroup utils
