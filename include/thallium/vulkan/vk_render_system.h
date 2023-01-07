@@ -69,6 +69,11 @@ typedef struct thvk_RenderSystemDescriptor_t {
     const char **layerNames;
     /// @brief The amount of elements in `layerNames`.
     int layerCount;
+
+    /// @brief If applicable, the severities to include in the instance debug messenger
+    VkDebugUtilsMessageSeverityFlagBitsEXT debugMessengerSeverities;
+    /// @brief If applicable, the types to include in the instance debug messenger
+    VkDebugUtilsMessageTypeFlagBitsEXT debugMessengerTypes;
 } thvk_RenderSystemDescriptor_t;
 
 /**

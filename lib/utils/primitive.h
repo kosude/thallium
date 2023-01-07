@@ -1,0 +1,65 @@
+/*
+ *   Copyright (c) 2023 Jack Bennett
+ *   All rights reserved.
+ *
+ *   Please see the LICENCE file for more information.
+ */
+
+/**
+ * @file primitive.h
+ * @brief General-use helper functions for handling primitive types.
+ *
+ * @defgroup utils_primitive Primitive helper functions
+ * @brief General-use internal helper functions for primitive types
+ * @ingroup utils
+ *
+ * General-use helper functions for handling primitive types.
+ */
+
+#pragma once
+#ifndef _THALLIUM_PRIMITIVE_H
+#define _THALLIUM_PRIMITIVE_H
+#ifdef __cplusplus
+    extern "C" {
+#endif // __cplusplus
+
+/**
+ * @ingroup utils_primitive
+ * @brief Check if an integer value is in the given array.
+ *
+ * This function looks for the specified value in the given array.
+ *
+ * @param val Value to look for
+ * @param arr Array to consider
+ * @param arrSize Size of array `arr`
+ * @return 0 if the value was not found in the array
+ * @return 1 if the value was found in the array
+ */
+const int th_IntValueInArray(
+    const int val,
+    const int *arr,
+    const unsigned int arrSize
+);
+
+/**
+ * @ingroup utils_primitive
+ * @brief Check if a string value is in the given array.
+ *
+ * This function looks for the specified value in the given array.
+ *
+ * @param val Value to look for
+ * @param arr Array to consider
+ * @param arrSize Size of array `arr`
+ * @return 0 if the value was not found in the array
+ * @return 1 if the value was found in the array
+ */
+const int th_StringValueInArray(
+    const char *const val,
+    const char *const *arr,
+    const unsigned int arrSize
+);
+
+#ifdef __cplusplus
+    }
+#endif // __cplusplus
+#endif // !_THALLIUM_PRIMITIVE_H

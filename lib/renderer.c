@@ -36,6 +36,11 @@ typedef enum ApiId_t {
     th_Hint("Engine version = %s", engVer); \
 }
 
+#ifdef THALLIUM_VULKAN_INCL
+    static const VkDebugUtilsMessageSeverityFlagBitsEXT GetVkDebugMessengerSeverityFlags(const th_RendererDescriptor_t descriptor);
+    static const VkDebugUtilsMessageTypeFlagBitsEXT GetVkDebugMessengerTypeFlags(const th_RendererDescriptor_t descriptor);
+#endif
+
 const th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor) {
     th_Renderer_t *r = malloc(sizeof(th_Renderer_t));
     if (!r) {
@@ -66,6 +71,9 @@ const th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor)
                 .instanceExtensionCount = descriptor.extensionDescriptor.vulkan.extensionCount,
                 .layerNames = descriptor.extensionDescriptor.vulkan.layerNames,
                 .layerCount = descriptor.extensionDescriptor.vulkan.layerCount,
+
+                .debugMessengerSeverities = GetVkDebugMessengerSeverityFlags(descriptor),
+                .debugMessengerTypes = GetVkDebugMessengerTypeFlags(descriptor),
             };
 
             // create the render system
@@ -86,3 +94,23 @@ const th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor)
 
     return r;
 }
+
+#ifdef THALLIUM_VULKAN_INCL
+    static const VkDebugUtilsMessageSeverityFlagBitsEXT GetVkDebugMessengerSeverityFlags(const th_RendererDescriptor_t descriptor) {
+        // NOTE: it's probably worth looking to see if there is a better way of doing this.
+        return
+            (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT) << 0
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT) << 3
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT) << 6
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT) << 9;
+    }
+
+    static const VkDebugUtilsMessageTypeFlagBitsEXT GetVkDebugMessengerTypeFlags(const th_RendererDescriptor_t descriptor) {
+        // NOTE: see note in GetVkDebugMessengerSeverityFlags
+        return
+            (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT) >> 4
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT) >> 4
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT) >> 4
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT) >> 4;
+    }
+#endif // THALLIUM_VULKAN_INCL

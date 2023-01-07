@@ -10,6 +10,9 @@
 
 #include "utils/log.h"
 
+#include <stdio.h>
+#include <string.h>
+
 #define FMT_VK_VERSION(vers) \
     VK_MAKE_VERSION( \
         vers.major, \
@@ -26,6 +29,8 @@
     )
 
 static const int CreateInstance(VkInstance *instance, const thvk_RenderSystemDescriptor_t descriptor);
+static VKAPI_ATTR const VkBool32 VKAPI_CALL InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+    VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT *pCallbackData, void *pUserData);
 
 const int thvk_InitRenderSystem(thvk_RenderSystem_t *renderSystem, const thvk_RenderSystemDescriptor_t descriptor) {
     if (!renderSystem) {
@@ -66,9 +71,84 @@ static const int CreateInstance(VkInstance *instance, const thvk_RenderSystemDes
         .ppEnabledExtensionNames = (const char *const *) descriptor.instanceExtensionNames
     };
 
+    // check if debug utils flags were specified
+    // if they were not, then create the instnace and return now.
+    if (!descriptor.debugMessengerSeverities && !descriptor.debugMessengerTypes) {
+        if (vkCreateInstance(&instanceDescr, NULL, instance)) {
+            return 0;
+        }
+
+        return 1;
+    }
+
+    // otherwise, define a debug messenger and append it onto the instance
+
+    // debug messenger create info
+    VkDebugUtilsMessengerCreateInfoEXT messengerDescr = {
+        .sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
+        .pNext = NULL,
+        .flags = 0, // NOTE: "reserved for future use"
+        .messageSeverity = descriptor.debugMessengerSeverities,
+        .messageType = descriptor.debugMessengerTypes,
+        .pfnUserCallback = InstanceDebugMessengerCallback,
+        .pUserData = NULL
+    };
+
+    instanceDescr.pNext = &messengerDescr;
+
+    // then we create the instance
     if (vkCreateInstance(&instanceDescr, NULL, instance)) {
         return 0;
     }
 
     return 1;
+}
+
+static VKAPI_ATTR const VkBool32 VKAPI_CALL InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
+    VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT *callbackData, void *userData)
+{
+    char msg[1024];
+    memset(msg, 0, 1024);
+
+    // convert the severity to a string
+    char severityStr[15];
+    switch (severity) {
+        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
+            snprintf(severityStr, 15, "LOG  ");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:
+            snprintf(severityStr, 15, "NOTIF");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
+            snprintf(severityStr, 15, "WARN ");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
+        default:
+            snprintf(severityStr, 15, "ERROR");
+            break;
+    }
+
+    // convert the type to string
+    char typeStr[15];
+    switch (type) {
+        case VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT:
+        default:
+            snprintf(typeStr, 15, "GENERAL    ");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT:
+            snprintf(typeStr, 15, "VALIDATION ");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT:
+            snprintf(typeStr, 15, "PERFORMANCE");
+            break;
+    }
+
+    // print the message
+
+    // We do not use Thallium logging functions to avoid associating Vulkan messages with Thallium message severities.
+    // Note that the severity filter for this callback was defined by the user separate from the severity filter for Thallium messages.
+
+    printf("vk: %s msg, type %s: %s\n", severityStr, typeStr, callbackData->pMessage);
+
+    return VK_FALSE;
 }

@@ -23,18 +23,23 @@ int main() {
     th_ConfigureDebugMessageFilter(THALLIUM_DEBUG_SEVERITY_ALL_BIT);
 
     th_RendererExtensionDescriptor_t extensionDescr = {
-        // vulkan extension
+        // vulkan renderers
         {
             // extensions
             VulkanExtensions.data(),
             (int) VulkanExtensions.size(),
             // layers
             VulkanLayers.data(),
-            (int) VulkanLayers.size()
+            (int) VulkanLayers.size(),
+            // flags
+            THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT | THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT
+            | THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT
         }
     };
-
-    th_ValidateRendererExtensionDescriptor(extensionDescr);
+    if (!th_ValidateRendererExtensionDescriptor(extensionDescr)) {
+        std::cout << "Problem with renderer extension descriptor" << std::endl;
+        return 1;
+    }
 
     const th_Renderer_t *vulkan = th_CreateRenderer({
         "vulkan",           // api name

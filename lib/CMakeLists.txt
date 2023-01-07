@@ -3,6 +3,7 @@ set(SOURCES_CORE
 
     "utils/io_colour.c"
     "utils/log.c"
+    "utils/primitive.c"
     "utils/proc.c"
 
     "debug.c"

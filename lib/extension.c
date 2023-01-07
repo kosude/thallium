@@ -10,6 +10,7 @@
 #include "cmake_modules.h"
 
 #include "utils/log.h"
+#include "utils/primitive.h"
 
 #ifdef THALLIUM_VULKAN_INCL
 #   include "thallium_vulkan.h"
@@ -24,6 +25,14 @@ const int th_ValidateRendererExtensionDescriptor(const th_RendererExtensionDescr
             return 0;
         }
         if (descriptor.vulkan.extensionNames && !ValidateVulkanIExtensions(descriptor)) {
+            return 0;
+        }
+
+        // if vulkan instance debug messenger is requested but the required extension is not specified then uh oh
+        if (
+            (descriptor.vulkan.flags & (THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ALL_BIT | THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT))
+            && !th_StringValueInArray(VK_EXT_DEBUG_UTILS_EXTENSION_NAME, descriptor.vulkan.extensionNames, descriptor.vulkan.extensionCount)
+        ) {
             return 0;
         }
 #   endif
