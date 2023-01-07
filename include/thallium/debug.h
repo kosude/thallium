@@ -27,23 +27,6 @@
 
 /**
  * @ingroup debug
- * @brief Enum for explicit function return statuses.
- *
- * This enumeration provides explicit function return statuses.
- * The only two available values are '1' for OK, and '0' for an error.
- *
- * Using this, you may choose to assert `!th_ExampleFunction()` to check if function `th_ExampleFunction()`
- * returned successfully.
- */
-typedef enum th_Status_t {
-    /// @brief The function returned successfully
-    THALLIUM_STATUS_OK =    0x01,
-    /// @brief The function encountered a severe or fatal error
-    THALLIUM_STATUS_ERROR = 0x00
-} th_Status_t;
-
-/**
- * @ingroup debug
  * @brief Enumeration containing severities to describe debug messages.
  *
  * This enumeration contains severities to describe debug messages.
@@ -80,7 +63,7 @@ typedef enum th_DebugSeverity_t {
  *
  * @sa @ref th_DebugSeverity_t
  */
-const th_Status_t th_ConfigureDebugMessageFilter(
+const int th_ConfigureDebugMessageFilter(
     const th_DebugSeverity_t severityBits
 );
 

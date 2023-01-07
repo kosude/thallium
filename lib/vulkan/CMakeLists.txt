@@ -1,5 +1,6 @@
 set(SOURCES_VULKAN
-    "test.c"
+    "vk_extension.c"
+    "vk_render_system.c"
 )
 
 find_package("Vulkan" REQUIRED)

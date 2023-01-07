@@ -12,11 +12,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const uint8_t th_KillProc() {
-    fprintf(stderr, "HALT AND CATCH FIRE -- invoked by libthallium\n");
-
-    fprintf(stderr, "Killed process\n");
+const int th_KillProc() {
+    fprintf(stderr, "(thallium!) HALT AND CATCH FIRE -- invoked by libthallium\n");
     exit(EXIT_FAILURE);
 
-    return THALLIUM_STATUS_OK;
+    return 1;
 }

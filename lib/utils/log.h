@@ -23,8 +23,6 @@
     extern "C" {
 #endif // __cplusplus
 
-#include <stdint.h>
-
 /**
  * @ingroup utils_log
  * @brief Write a log message to stdout.
@@ -42,7 +40,7 @@
  *
  * @alwaysok
  */
-const uint8_t th_Log(
+const int th_Log(
     const char *format,
     ...
 );
@@ -64,7 +62,7 @@ const uint8_t th_Log(
  *
  * @alwaysok
  */
-const uint8_t th_Note(
+const int th_Note(
     const char *format,
     ...
 );
@@ -87,7 +85,7 @@ const uint8_t th_Note(
  *
  * @alwaysok
  */
-const uint8_t th_Hint(
+const int th_Hint(
     const char *format,
     ...
 );
@@ -109,7 +107,7 @@ const uint8_t th_Hint(
  *
  * @alwaysok
  */
-const uint8_t th_Warn(
+const int th_Warn(
     const char *format,
     ...
 );
@@ -131,7 +129,7 @@ const uint8_t th_Warn(
  *
  * @alwaysok
  */
-const uint8_t th_Error(
+const int th_Error(
     const char *format,
     ...
 );
@@ -153,7 +151,7 @@ const uint8_t th_Error(
  *
  * @alwaysok
  */
-const uint8_t th_Fatal(
+const int th_Fatal(
     const char *format,
     ...
 );

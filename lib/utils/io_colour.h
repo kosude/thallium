@@ -23,8 +23,6 @@
     extern "C" {
 #endif // __cplusplus
 
-#include <stdint.h>
-
 // @cond DOCS_IGNORE
 
 typedef struct _IO_FILE FILE;
@@ -87,7 +85,7 @@ typedef enum th_IOColour_t {
  *
  * @alwaysok
  */
-const uint8_t th_SetIOColour(
+const int th_SetIOColour(
     const th_IOColour_t fg,
     const th_IOColour_t bg,
     FILE *stream
@@ -104,7 +102,7 @@ const uint8_t th_SetIOColour(
  *
  * @alwaysok
  */
-const uint8_t th_DefaultIOColour(
+const int th_DefaultIOColour(
     FILE *stream
 );
 

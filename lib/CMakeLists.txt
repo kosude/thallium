@@ -6,7 +6,9 @@ set(SOURCES_CORE
     "utils/proc.c"
 
     "debug.c"
+    "extension.c"
     "renderer.c"
+    "version.c"
 )
 
 
@@ -31,9 +33,16 @@ endif()
 
 # API modules
 
+# variable to be substituted into generate/modules.h.
+set(THALLIUM_MODULE_INCLUDES)
+
 if (THALLIUM_BUILD_MODULE_VULKAN)
     add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/vulkan")
+
+    set(THALLIUM_MODULE_INCLUDES "${THALLIUM_MODULE_INCLUDES}\n#include \"thallium_vulkan.h\"")
 endif()
+
+configure_file("${THALLIUM_CMAKE_DIR}/generate/modules.h" "${PROJECT_BINARY_DIR}/generated/cmake_modules.h")
 
 
 # Interface library

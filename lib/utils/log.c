@@ -27,7 +27,7 @@
 #define ASSERT_FILTER(sev) \
 { \
     if ((thallium.debugSeverityFilter & sev) != sev) { \
-        return THALLIUM_STATUS_OK; \
+        return 1; \
     } \
 }
 
@@ -45,7 +45,7 @@
     va_end(varargs); \
 }
 
-const uint8_t th_Log(const char *format, ...) {
+const int th_Log(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -53,10 +53,10 @@ const uint8_t th_Log(const char *format, ...) {
 
     printf("(thallium!) %s\n", msg);
 
-    return THALLIUM_STATUS_OK;
+    return 1;
 }
 
-const uint8_t th_Note(const char *format, ...) {
+const int th_Note(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -66,10 +66,10 @@ const uint8_t th_Note(const char *format, ...) {
     printf("(thallium!) %s\n", msg);
     th_DefaultIOColour(stdout);
 
-    return THALLIUM_STATUS_OK;
+    return 1;
 }
 
-const uint8_t th_Hint(const char *format, ...) {
+const int th_Hint(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -79,10 +79,10 @@ const uint8_t th_Hint(const char *format, ...) {
     printf("(thallium!) Hint: %s\n", msg);
     th_DefaultIOColour(stdout);
 
-    return THALLIUM_STATUS_OK;
+    return 1;
 }
 
-const uint8_t th_Warn(const char *format, ...) {
+const int th_Warn(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_WARNING_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -92,10 +92,10 @@ const uint8_t th_Warn(const char *format, ...) {
     printf("(thallium!) WARN: %s\n", msg);
     th_DefaultIOColour(stdout);
 
-    return THALLIUM_STATUS_OK;
+    return 1;
 }
 
-const uint8_t th_Error(const char *format, ...) {
+const int th_Error(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_ERROR_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -105,10 +105,10 @@ const uint8_t th_Error(const char *format, ...) {
     fprintf(stderr, "(thallium!) ERROR: %s\n", msg);
     th_DefaultIOColour(stderr);
 
-    return THALLIUM_STATUS_OK;
+    return 1;
 }
 
-const uint8_t th_Fatal(const char *format, ...) {
+const int th_Fatal(const char *format, ...) {
     ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_FATAL_BIT);
 
     char msg[MAX_DBGMSG_LEN];
@@ -120,5 +120,5 @@ const uint8_t th_Fatal(const char *format, ...) {
 
     th_KillProc();
 
-    return THALLIUM_STATUS_OK;
+    return 1;
 }

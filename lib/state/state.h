@@ -17,15 +17,13 @@
     extern "C" {
 #endif // __cplusplus
 
-#include <stdint.h>
-
 /**
  * @ingroup state
  * @brief Internal library state structure.
  */
 typedef struct th_State_t {
     /// @brief th_DebugSeverity_t bit-field holding severities of messages to display.
-    uint8_t debugSeverityFilter;
+    int debugSeverityFilter;
 } th_State_t;
 
 /**

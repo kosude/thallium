@@ -5,10 +5,9 @@
  *   Please see the LICENCE file for more information.
  */
 
-#include "thallium.h"
+#pragma once
+#ifndef _CMAKE_MODULES_H
+#define _CMAKE_MODULES_H
+@THALLIUM_MODULE_INCLUDES@
 
-#include <stdio.h>
-
-const void thvk_TestVkFunc() {
-    printf("Hello thallium_vulkan!\n");
-}
+#endif // _CMAKE_MODULES_H

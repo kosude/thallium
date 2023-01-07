@@ -1,0 +1,7 @@
+/**
+ * @defgroup utils Utilities
+ * @brief Utility functions and structures
+
+ * @defgroup vulkan Vulkan
+ * @brief Vulkan-specific functions and types
+ */

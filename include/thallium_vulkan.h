@@ -10,10 +10,13 @@
  * @brief Thallium Vulkan module header
  *
  * You may include this file if you wish to directly use more low-level Vulkan
- * abstractions within Thallium.
+ * abstractions within Thallium. This is not recommended as it reduces API-agnosticism and
+ * therefore code portability.
  *
  * @note To use functions included in this API, make sure you include the Vulkan module
- * when compiling the Thallium library.
+ * when compiling the Thallium library with the `-DTHALLIUM_BUILD_MODULE_VULKAN=ON` flag.
+ *
+ * Thallium functions are prefixed with `thvk_`.
  */
 
 #pragma once
@@ -23,7 +26,8 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/vulkan/test.h"
+#include "thallium/vulkan/vk_extension.h"
+#include "thallium/vulkan/vk_render_system.h"
 
 #ifdef __cplusplus
     }

@@ -34,50 +34,60 @@
 #endif // __cplusplus
 
 #include "thallium/debug.h"
-
-/**
- * @ingroup renderer
- * @brief An enumeration to represent options of graphics apis
- *
- * An enumeration to represent options of graphics APIs.
- */
-typedef enum th_ApiId_t {
-    /// @brief Null API
-    THALLIUM_API_ID_NULL = 0x00,
-    /// @brief The [Vulkan API](https://www.vulkan.org/)
-    THALLIUM_API_ID_VULKAN = 0x01
-} th_ApiId_t;
+#include "thallium/extension.h"
+#include "thallium/version.h"
 
 /**
  * @ingroup renderer
  * @brief A structure to represent a graphics API.
  *
- * This structure provides a representation of a certain graphics API.
- *
- * @warning Setting the contents of the structure at runtime will almost certainly result in an
- * exception. If you want to use a different API for some functions, **create another renderer.**
+ * This opaque structure provides a representation of a certain graphics API.
  */
-typedef struct th_Renderer_t {
-    /// @brief The ID of the graphics API specified to the renderer.
-    const th_ApiId_t apiId;
-    /// @brief The name of the graphics API specified to the renderer.
-    const char *const apiName;
-} th_Renderer_t;
+typedef struct th_Renderer_t th_Renderer_t;
+
+/**
+ * @ingroup renderer
+ * @brief A structure describing a renderer to be created.
+ *
+ * This structure describes a renderer to be created.
+ */
+typedef struct th_RendererDescriptor_t {
+    /// @brief The name of the API being represented
+    const char *apiName;
+    /// @brief The version of the API being represented
+    th_Version_t apiVersion;
+
+    /// @brief The name of the application
+    const char *applicationName;
+    /// @brief The application's version
+    th_Version_t applicationVersion;
+    /// @brief The name of the engine being used, if applicable
+    const char *engineName;
+    /// @brief The version of the engine being used, if applicable
+    th_Version_t engineVersion;
+
+    /// @brief A descriptor containing extensions to the renderer
+    th_RendererExtensionDescriptor_t extensionDescriptor;
+} th_RendererDescriptor_t;
 
 /**
  * @ingroup renderer
  * @brief Create, populate, and return a new renderer struct.
  *
- * This function constructs and returns a renderer struct.
+ * This function constructs and returns a pointer to a heap-allocated renderer struct.
  *
- * If `apiName` is invalid, then an 'empty' struct is returned (e.g. apiId set to NULL). Note that
- * this includes API modules that were not included when Thallium was compiled.
+ * If `descriptor.apiName` is invalid, then NULL is returned. Note that this includes API modules
+ * that were not included when Thallium was compiled.
  *
- * @param apiName name of the graphics API to represent
- * @return The new renderer object
+ * The validity of `descriptor.apiVersion`, as well as application info such as
+ * `descriptor.applicationName` and `descriptor.engineVersion` depends on the graphics API
+ * being used.
+ *
+ * @param descriptor creation description for the renderer
+ * @return Pointer to the new renderer object
  */
-const th_Renderer_t th_CreateRenderer(
-    const char *const apiName
+const th_Renderer_t *th_CreateRenderer(
+    const th_RendererDescriptor_t descriptor
 );
 
 #ifdef __cplusplus

@@ -87,7 +87,7 @@
     <detaileddescription title=""/>
     <memberdef>
       <inlineclasses title=""/>
-      <typedefs title=""/>
+      <typedefs title="Type Documentation"/>
       <enums title=""/>
       <services title=""/>
       <interfaces title=""/>
@@ -114,7 +114,7 @@
       <concepts visible="yes" title=""/>
       <structs visible="yes" title=""/>
       <exceptions visible="yes" title=""/>
-      <typedefs title=""/>
+      <typedefs title="Types"/>
       <sequences title=""/>
       <dictionaries title=""/>
       <enums title=""/>
@@ -125,7 +125,7 @@
     <detaileddescription title=""/>
     <memberdef>
       <inlineclasses title=""/>
-      <typedefs title=""/>
+      <typedefs title="Type Documentation"/>
       <sequences title=""/>
       <dictionaries title=""/>
       <enums title=""/>
@@ -160,7 +160,7 @@
       <concepts visible="yes" title=""/>
       <constantgroups visible="yes" title=""/>
       <defines title=""/>
-      <typedefs title=""/>
+      <typedefs title="Types"/>
       <sequences title=""/>
       <dictionaries title=""/>
       <enums title=""/>
@@ -172,7 +172,7 @@
     <memberdef>
       <inlineclasses title=""/>
       <defines title=""/>
-      <typedefs title=""/>
+      <typedefs title="Type Documentation"/>
       <sequences title=""/>
       <dictionaries title=""/>
       <enums title=""/>
@@ -195,7 +195,7 @@
       <concepts visible="yes" title=""/>
       <classes visible="yes" title=""/>
       <defines title=""/>
-      <typedefs title=""/>
+      <typedefs title="Types"/>
       <sequences title=""/>
       <dictionaries title=""/>
       <enums title=""/>
@@ -215,7 +215,7 @@
       <pagedocs/>
       <inlineclasses title=""/>
       <defines title=""/>
-      <typedefs title=""/>
+      <typedefs title="Type Documentation"/>
       <sequences title=""/>
       <dictionaries title=""/>
       <enums title=""/>

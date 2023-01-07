@@ -5,19 +5,19 @@
  *   Please see the LICENCE file for more information.
  */
 
-/**
- *  ___________________________
- * < THALLIUM GRAPHICS LIBRARY >
- *  ---------------------------
- *         \   ^__^
- *          \  (oo)\_______
- *             (__)\       )\/
- *                 ||----w |
- *                 ||     ||
- *
- * Contribute at https://github.com/kosude/thallium uwu
- *
- */
+//
+//  ___________________________
+// < THALLIUM GRAPHICS LIBRARY >
+//  ---------------------------
+//         \   ^__^
+//          \  (oo)\_______
+//             (__)\       )\/
+//                 ||----w |
+//                 ||     ||
+//
+// Contribute at https://github.com/kosude/thallium uwu
+//
+//
 
 /**
  * @file thallium.h
@@ -32,6 +32,8 @@
  *
  * You can also directly include the graphics API's own headers, as their include directories are publicly
  * included in each API module that is compiled.
+ *
+ * Thallium functions are prefixed with `th_`.
  */
 
 #pragma once
@@ -43,10 +45,6 @@
 
 #include "thallium/debug.h"
 #include "thallium/renderer.h"
-
-#ifdef THALLIUM_VULKAN_INCL
-#   include "thallium/vulkan/test.h"
-#endif
 
 #ifdef __cplusplus
     }

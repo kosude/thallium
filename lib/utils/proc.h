@@ -23,8 +23,6 @@
     extern "C" {
 #endif // __cplusplus
 
-#include <stdint.h>
-
 /**
  * @ingroup utils_proc
  * @brief Kill the currently executing process.
@@ -36,7 +34,7 @@
  *
  * @alwaysok
  */
-const uint8_t th_KillProc();
+const int th_KillProc();
 
 #ifdef __cplusplus
     }
