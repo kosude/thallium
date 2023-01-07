@@ -1,0 +1,40 @@
+name: Build and deploy documentation
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # we install doxygen because otherwise CMake fails, but we use one fetched with wget because the
+      # one fetched with apt is outdated and the styling is broken.
+
+      - name: Install requirements
+        run: sudo apt install doxygen
+
+      - name: Fetch Doxygen
+        run: wget https://www.doxygen.nl/files/doxygen-1.9.6.linux.bin.tar.gz
+          && tar -xvzf ./doxygen-1.9.6.linux.bin.tar.gz
+          && ln -s ./doxygen-1.9.6/bin/doxygen ${GITHUB_WORKSPACE}/doxygen
+
+      - name: Build docs
+        run: cmake . -B ${GITHUB_WORKSPACE}/build/ -DCMAKE_BUILD_TYPE=Release -DTHALLIUM_BUILD_LIB=OFF -DTHALLIUM_BUILD_DOCS=ON
+          && cd ${GITHUB_WORKSPACE}/build/docs/
+          && ${GITHUB_WORKSPACE}/doxygen Doxyfile.pub.conf.out
+          && ${GITHUB_WORKSPACE}/doxygen Doxyfile.int.conf.out
+          && touch ${GITHUB_WORKSPACE}/build/docs/html/.nojekyll
+          && cd ${GITHUB_WORKSPACE}
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: build/docs/html

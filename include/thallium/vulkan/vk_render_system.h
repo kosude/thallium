@@ -10,7 +10,7 @@
  * @brief API-dependent render systems for Vulkan
  *
  * @defgroup vk_render_system Vulkan render systems
- * @brief Handling low-level Vulkan-specific render systems
+ * @brief Handling low-level Vulkan-specific render system structures
  * @ingroup vulkan
  *
  * This group involves types and functions specific to rendering with Vulkan.

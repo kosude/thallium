@@ -9,8 +9,8 @@
  * @file vk_extension.h
  * @brief Vulkan-specific extension management
  *
- * @defgroup vk_extension Vulkan render systems
- * @brief Handling low-level Vulkan-specific extensions
+ * @defgroup vk_extension Vulkan extensions and layers
+ * @brief Handling Vulkan-specific extensions
  * @ingroup vulkan
  *
  * This group involves types and functions specific to handling Vulkan extensions and layers.
