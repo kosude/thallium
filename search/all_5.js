@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['layercount_0',['layerCount',['../d5/db6/a00042.html#acafc534f05423c4f5fdd9998fa4be4dd',1,'th_RendererExtensionDescriptor_t::layerCount()'],['../df/d03/a00062.html#a7a400a317a41183992ef5ad93c83b5f3',1,'thvk_RenderSystemDescriptor_t::layerCount()']]],
-  ['layernames_1',['layerNames',['../d5/db6/a00042.html#add6a95ddc0f7a11e207b4de6facf3e28',1,'th_RendererExtensionDescriptor_t::layerNames()'],['../df/d03/a00062.html#a26b1143a0b414f1e3f48199116e2f911',1,'thvk_RenderSystemDescriptor_t::layerNames()']]],
-  ['library_20debug_20configuration_2',['Library debug configuration',['../dc/d87/a00032.html',1,'']]]
+  ['instance_0',['instance',['../d7/df7/a00058.html#adac49d039637bd33afde650f823cf282',1,'thvk_RenderSystem_t']]],
+  ['instanceextensioncount_1',['instanceExtensionCount',['../df/d03/a00062.html#af37b73db29755857797ea7de3ca53622',1,'thvk_RenderSystemDescriptor_t']]],
+  ['instanceextensionnames_2',['instanceExtensionNames',['../df/d03/a00062.html#abc1a022de0b242f790b1ce8102da3fea',1,'thvk_RenderSystemDescriptor_t']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['major_0',['major',['../d1/dea/a00054.html#a6a9a7d0d4eff83ad5a5803602eacf9e8',1,'th_Version_t']]],
-  ['managing_20renderer_20objects_1',['Managing renderer objects',['../db/df3/a00034.html',1,'']]],
-  ['minor_2',['minor',['../d1/dea/a00054.html#acfbba1290f25364c32bbd467d86cf6dc',1,'th_Version_t']]]
+  ['layercount_0',['layerCount',['../d5/db6/a00042.html#acafc534f05423c4f5fdd9998fa4be4dd',1,'th_RendererExtensionDescriptor_t::layerCount()'],['../df/d03/a00062.html#a7a400a317a41183992ef5ad93c83b5f3',1,'thvk_RenderSystemDescriptor_t::layerCount()']]],
+  ['layernames_1',['layerNames',['../d5/db6/a00042.html#add6a95ddc0f7a11e207b4de6facf3e28',1,'th_RendererExtensionDescriptor_t::layerNames()'],['../df/d03/a00062.html#a26b1143a0b414f1e3f48199116e2f911',1,'thvk_RenderSystemDescriptor_t::layerNames()']]],
+  ['library_20debug_20configuration_2',['Library debug configuration',['../dc/d87/a00032.html',1,'']]]
 ];
