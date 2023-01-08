@@ -74,6 +74,7 @@ const th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor)
 
                 .debugMessengerSeverities = GetVkDebugMessengerSeverityFlags(descriptor),
                 .debugMessengerTypes = GetVkDebugMessengerTypeFlags(descriptor),
+                .detailedDebugMessenger = descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED
             };
 
             // create the render system

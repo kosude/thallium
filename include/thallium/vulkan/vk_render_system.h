@@ -74,6 +74,8 @@ typedef struct thvk_RenderSystemDescriptor_t {
     VkDebugUtilsMessageSeverityFlagBitsEXT debugMessengerSeverities;
     /// @brief If applicable, the types to include in the instance debug messenger
     VkDebugUtilsMessageTypeFlagBitsEXT debugMessengerTypes;
+    /// @brief If applicable, should the instance debug messenger print detailed information?
+    int detailedDebugMessenger;
 } thvk_RenderSystemDescriptor_t;
 
 /**

@@ -35,27 +35,30 @@
  */
 typedef enum th_VulkanRendererExtensionFlag_t {
     /// @brief Create a debug messenger in Vulkan renderers that includes LOG messages.
-    /* 00000001 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT =           0x01,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT =           0x001,
     /// @brief Create a debug messenger in Vulkan renderers that includes INFO messages.
-    /* 00000010 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT =          0x02,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT =          0x002,
     /// @brief Create a debug messenger in Vulkan renderers that includes WARNING messages.
-    /* 00000100 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT =       0x04,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT =       0x004,
     /// @brief Create a debug messenger in Vulkan renderers that includes ERROR messages.
-    /* 00001000 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT =         0x08,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT =         0x008,
     /// @brief Create a debug messenger in Vulkan renderers that includes all debug message severities.
-    /* 00001111 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ALL_BIT =           0x0F,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ALL_BIT =           0x00F,
 
     /// @brief Create a debug messenger in Vulkan renderers that includes GENERAL messages.
-    /* 00010000 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT =      0x10,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT =      0x010,
     /// @brief Create a debug messenger in Vulkan renderers that includes VALIDATION messages.
-    /* 00100000 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT =   0x20,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT =   0x020,
     /// @brief Create a debug messenger in Vulkan renderers that includes PERFORMANCE messages.
-    /* 01000000 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT =  0x40,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT =  0x040,
     /// @brief Create a debug messenger in Vulkan renderers that includes DEVICE ADDRESS BINDING messages.
     // Note that this is only available with `VK_EXT_device_address_binding_report` specified.
-    /* 10000000 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT =  0x80,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT =  0x080,
     /// @brief Create a debug messenger in Vulkan renderers that includes all debug message types.
-    /* 11110000 */ THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT =          0xF0,
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT =          0x0F0,
+
+    /// @brief Set instance debug messenger to print detailed information (usually not necessary).
+    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED =              0x100,
 } th_VulkanRendererExtensionFlag_t;
 
 /**

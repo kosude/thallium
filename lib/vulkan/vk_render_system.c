@@ -91,7 +91,7 @@ static const int CreateInstance(VkInstance *instance, const thvk_RenderSystemDes
         .messageSeverity = descriptor.debugMessengerSeverities,
         .messageType = descriptor.debugMessengerTypes,
         .pfnUserCallback = InstanceDebugMessengerCallback,
-        .pUserData = NULL
+        .pUserData = (void *) &descriptor.detailedDebugMessenger
     };
 
     instanceDescr.pNext = &messengerDescr;
@@ -149,6 +149,37 @@ static VKAPI_ATTR const VkBool32 VKAPI_CALL InstanceDebugMessengerCallback(VkDeb
     // Note that the severity filter for this callback was defined by the user separate from the severity filter for Thallium messages.
 
     printf("vk: %s msg, type %s: %s\n", severityStr, typeStr, callbackData->pMessage);
+
+    // userData will be set to whether or not THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED was enabled or not
+    if (!*(int *) userData) {
+        return VK_FALSE;
+    }
+
+    // if detailed debug messenger was enabled for this render system:
+
+    // current queue info
+    printf("\t%d queue items\n", callbackData->queueLabelCount);
+    for (unsigned int i = 0; i < callbackData->queueLabelCount; i++) {
+        if (callbackData->pQueueLabels[i].pLabelName) {
+            printf("%s\n", callbackData->pQueueLabels[i].pLabelName);
+        }
+    }
+
+    // command buffer info
+    printf("\t%d command buffer contents\n", callbackData->cmdBufLabelCount);
+    for (unsigned int i = 0; i < callbackData->cmdBufLabelCount; i++) {
+        if (callbackData->pCmdBufLabels[i].pLabelName) {
+            printf("%s\n", callbackData->pCmdBufLabels[i].pLabelName);
+        }
+    }
+
+    // related objects
+    printf("\t%d objects\n", callbackData->objectCount);
+    for (unsigned int i = 0; i < callbackData->objectCount; i++) {
+        if (callbackData->pObjects[i].pObjectName) {
+            printf("%s\n", callbackData->pObjects[i].pObjectName);
+        }
+    }
 
     return VK_FALSE;
 }

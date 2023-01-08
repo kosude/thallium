@@ -35,17 +35,17 @@
  */
 typedef enum th_DebugSeverity_t {
     /// @brief Includes log messages.
-    /* 00010000 */ THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT =   0x10,
+    THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT =   0x10,
     /// @brief Includes notification output.
-    /* 00001000 */ THALLIUM_DEBUG_SEVERITY_NOTIF_BIT =     0x08,
+    THALLIUM_DEBUG_SEVERITY_NOTIF_BIT =     0x08,
     /// @brief Includes warning output.
-    /* 00000100 */ THALLIUM_DEBUG_SEVERITY_WARNING_BIT =   0x04,
+    THALLIUM_DEBUG_SEVERITY_WARNING_BIT =   0x04,
     /// @brief Includes non-fatal error output.
-    /* 00000010 */ THALLIUM_DEBUG_SEVERITY_ERROR_BIT =     0x02,
+    THALLIUM_DEBUG_SEVERITY_ERROR_BIT =     0x02,
     /// @brief Includes fatal error output.
-    /* 00000001 */ THALLIUM_DEBUG_SEVERITY_FATAL_BIT =     0x01,
+    THALLIUM_DEBUG_SEVERITY_FATAL_BIT =     0x01,
     /// @brief Includes all debug messages.
-    /* 00011111 */ THALLIUM_DEBUG_SEVERITY_ALL_BIT =       0x1F
+    THALLIUM_DEBUG_SEVERITY_ALL_BIT =       0x1F
 } th_DebugSeverity_t;
 
 /**
