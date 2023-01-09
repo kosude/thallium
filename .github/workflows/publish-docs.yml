@@ -25,7 +25,7 @@ jobs:
           && ln -s ./doxygen-1.9.6/bin/doxygen ${GITHUB_WORKSPACE}/doxygen
 
       - name: Build docs
-        run: cmake . -B ${GITHUB_WORKSPACE}/build/ -DCMAKE_BUILD_TYPE=Release -DTHALLIUM_BUILD_LIB=OFF -DTHALLIUM_BUILD_DOCS=ON
+        run: cmake . -B ${GITHUB_WORKSPACE}/build/ -DCMAKE_BUILD_TYPE=Release -DTHALLIUM_BUILD_LIB=OFF -DTHALLIUM_BUILD_DOCS=ON -DTHALLIUM_SKIP_VERSION=ON
           && cd ${GITHUB_WORKSPACE}/build/docs/
           && ${GITHUB_WORKSPACE}/doxygen Doxyfile.pub.conf.out
           && ${GITHUB_WORKSPACE}/doxygen Doxyfile.int.conf.out

@@ -27,7 +27,9 @@ PRIVATE
     "${PROJECT_BINARY_DIR}/generated" # for generated resources and headers
 )
 
-add_dependencies(${PROJECT_NAME}_core ${PROJECT_NAME}version)
+if (NOT THALLIUM_SKIP_VERSION)
+    add_dependencies(${PROJECT_NAME}_core ${PROJECT_NAME}version)
+endif()
 
 if (THALLIUM_BUILD_MODULE_VULKAN)
     target_compile_definitions(${PROJECT_NAME}_core PRIVATE "THALLIUM_VULKAN_INCL")

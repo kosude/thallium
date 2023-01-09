@@ -94,19 +94,25 @@ endif()
 #     add_subdirectory("${THALLIUM_EXAMPLES_DIR}/")
 # endif()
 
-find_package(Python3 REQUIRED COMPONENTS Interpreter)
+option(THALLIUM_SKIP_VERSION "Skip getting Thallium version dynamically" OFF)
 
-add_custom_target(${PROJECT_NAME}version
-    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py cfg
-    BYPRODUCTS "${PROJECT_BINARY_DIR}/generated/dyn_version.h"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-)
-message("${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py cfg")
+if (NOT THALLIUM_SKIP_VERSION)
+    find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
-execute_process(
-    COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py"
-    OUTPUT_VARIABLE THALLIUM_VERSION
-)
+    add_custom_target(${PROJECT_NAME}version
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py cfg
+        BYPRODUCTS "${PROJECT_BINARY_DIR}/generated/dyn_version.h"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+    )
+    message("${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py cfg")
+
+    execute_process(
+        COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py"
+        OUTPUT_VARIABLE THALLIUM_VERSION
+    )
+else()
+    configure_file("${THALLIUM_CMAKE_DIR}/generate/dyn_version_skip.h" "${PROJECT_BINARY_DIR}/generated/dyn_version.h")
+endif()
 
 if (APPLE OR CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(SUMMARY_TARGET_ARCH "AMD64 (x86_64)")
