@@ -33,7 +33,6 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/debug.h"
 #include "thallium/extension.h"
 #include "thallium/version.h"
 

@@ -46,6 +46,16 @@ const void th_VersionToString(
     char *out_string
 );
 
+/**
+ * @ingroup utils
+ * @brief Retrieve, as a string, the version of Thallium that was compiled.
+ *
+ * This function returns the version of Thallium that was compiled in the format of a string.
+ *
+ * @return Thallium version
+ */
+const char *const th_ThalliumVersion();
+
 #ifdef __cplusplus
     }
 #endif // __cplusplus

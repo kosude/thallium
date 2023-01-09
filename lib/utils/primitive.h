@@ -25,24 +25,6 @@
 
 /**
  * @ingroup utils_primitive
- * @brief Check if an integer value is in the given array.
- *
- * This function looks for the specified value in the given array.
- *
- * @param val Value to look for
- * @param arr Array to consider
- * @param arrSize Size of array `arr`
- * @return 0 if the value was not found in the array
- * @return 1 if the value was found in the array
- */
-const int th_IntValueInArray(
-    const int val,
-    const int *arr,
-    const unsigned int arrSize
-);
-
-/**
- * @ingroup utils_primitive
  * @brief Check if a string value is in the given array.
  *
  * This function looks for the specified value in the given array.

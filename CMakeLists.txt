@@ -78,6 +78,36 @@ string(TOUPPER "${CMAKE_BUILD_TYPE}" _upperBuildType)
 set("BUILD_${_upperBuildType}" 1)
 configure_file("${THALLIUM_CMAKE_DIR}/generate/platform.h" "${PROJECT_BINARY_DIR}/generated/cmake_platform.h")
 
+if (THALLIUM_BUILD_LIB)
+    add_subdirectory("${THALLIUM_LIB_DIR}/")
+endif()
+
+if (THALLIUM_BUILD_TESTS)
+    add_subdirectory("${THALLIUM_TESTS_DIR}/")
+endif()
+
+if (THALLIUM_BUILD_DOCS)
+    add_subdirectory("${THALLIUM_DOCS_DIR}/")
+endif()
+
+# if (THALLIUM_BUILD_EXAMPLES)
+#     add_subdirectory("${THALLIUM_EXAMPLES_DIR}/")
+# endif()
+
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
+
+add_custom_target(${PROJECT_NAME}version
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py cfg
+    BYPRODUCTS "${PROJECT_BINARY_DIR}/generated/dyn_version.h"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+)
+message("${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py cfg")
+
+execute_process(
+    COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py"
+    OUTPUT_VARIABLE THALLIUM_VERSION
+)
+
 if (APPLE OR CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(SUMMARY_TARGET_ARCH "AMD64 (x86_64)")
 else()
@@ -95,22 +125,6 @@ elseif (APPLE)
 elseif (UNIX)
     set(SUMMARY_TARGET_PLATFORM "Unix")
 endif()
-
-if (THALLIUM_BUILD_LIB)
-    add_subdirectory("${THALLIUM_LIB_DIR}/")
-endif()
-
-if (THALLIUM_BUILD_TESTS)
-    add_subdirectory("${THALLIUM_TESTS_DIR}/")
-endif()
-
-if (THALLIUM_BUILD_DOCS)
-    add_subdirectory("${THALLIUM_DOCS_DIR}/")
-endif()
-
-# if (THALLIUM_BUILD_EXAMPLES)
-#     add_subdirectory("${THALLIUM_EXAMPLES_DIR}/")
-# endif()
 
 message("")
 
