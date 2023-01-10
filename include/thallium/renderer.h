@@ -85,8 +85,24 @@ typedef struct th_RendererDescriptor_t {
  * @param descriptor creation description for the renderer
  * @return Pointer to the new renderer object
  */
-const th_Renderer_t *th_CreateRenderer(
+th_Renderer_t *th_CreateRenderer(
     const th_RendererDescriptor_t descriptor
+);
+
+/**
+ * @ingroup renderer
+ * @brief Free the given renderer object.
+ *
+ * This function frees the specified renderer object. You should set the pointer to NULL
+ * after calling this function, as you would normally when calling free().
+ *
+ * @param renderer Pointer to the renderer object to free.
+ * @return @returnstatus
+ *
+ * @alwaysok
+ */
+const int th_DestroyRenderer(
+    th_Renderer_t *renderer
 );
 
 #ifdef __cplusplus

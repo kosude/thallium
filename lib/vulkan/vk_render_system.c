@@ -11,6 +11,7 @@
 #include "utils/log.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define FMT_VK_VERSION(vers) \
@@ -28,83 +29,7 @@
         vers.patch \
     )
 
-static const int CreateInstance(VkInstance *instance, const thvk_RenderSystemDescriptor_t descriptor);
-static VKAPI_ATTR const VkBool32 VKAPI_CALL InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
-    VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT *pCallbackData, void *pUserData);
-
-const int thvk_InitRenderSystem(thvk_RenderSystem_t *renderSystem, const thvk_RenderSystemDescriptor_t descriptor) {
-    if (!renderSystem) {
-        th_Error("Render system pointer parameter was NULL in thvk_InitRenderSystem");
-        return 0;
-    }
-
-    if (!CreateInstance(&renderSystem->instance, descriptor)) {
-        return 0;
-    }
-
-    th_Log("Initialised Vulkan render system: %p", renderSystem);
-
-    return 1;
-}
-
-static const int CreateInstance(VkInstance *instance, const thvk_RenderSystemDescriptor_t descriptor) {
-    // convert descriptor to app info
-    VkApplicationInfo appInfo = {
-        .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
-        .pNext = NULL,
-        .pApplicationName = descriptor.applicationName,
-        .applicationVersion = FMT_VK_VERSION(descriptor.applicationVersion),
-        .pEngineName = descriptor.engineName,
-        .engineVersion = FMT_VK_VERSION(descriptor.engineVersion),
-        .apiVersion = FMT_VK_API_VERSION(descriptor.apiVersion)
-    };
-
-    // create instance
-    VkInstanceCreateInfo instanceDescr = {
-        .sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
-        .pNext = NULL,
-        .flags = 0,
-        .pApplicationInfo = &appInfo,
-        .enabledLayerCount = descriptor.layerCount,
-        .ppEnabledLayerNames = (const char *const *) descriptor.layerNames,
-        .enabledExtensionCount = descriptor.instanceExtensionCount,
-        .ppEnabledExtensionNames = (const char *const *) descriptor.instanceExtensionNames
-    };
-
-    // check if debug utils flags were specified
-    // if they were not, then create the instnace and return now.
-    if (!descriptor.debugMessengerSeverities && !descriptor.debugMessengerTypes) {
-        if (vkCreateInstance(&instanceDescr, NULL, instance)) {
-            return 0;
-        }
-
-        return 1;
-    }
-
-    // otherwise, define a debug messenger and append it onto the instance
-
-    // debug messenger create info
-    VkDebugUtilsMessengerCreateInfoEXT messengerDescr = {
-        .sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
-        .pNext = NULL,
-        .flags = 0, // NOTE: "reserved for future use"
-        .messageSeverity = descriptor.debugMessengerSeverities,
-        .messageType = descriptor.debugMessengerTypes,
-        .pfnUserCallback = InstanceDebugMessengerCallback,
-        .pUserData = (void *) &descriptor.detailedDebugMessenger
-    };
-
-    instanceDescr.pNext = &messengerDescr;
-
-    // then we create the instance
-    if (vkCreateInstance(&instanceDescr, NULL, instance)) {
-        return 0;
-    }
-
-    return 1;
-}
-
-static VKAPI_ATTR const VkBool32 VKAPI_CALL InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
+static VKAPI_ATTR const VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
     VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT *callbackData, void *userData)
 {
     char msg[1024];
@@ -182,4 +107,88 @@ static VKAPI_ATTR const VkBool32 VKAPI_CALL InstanceDebugMessengerCallback(VkDeb
     }
 
     return VK_FALSE;
+}
+
+static const int _CreateInstance(VkInstance *instance, const thvk_RenderSystemDescriptor_t descriptor) {
+    // convert descriptor to app info
+    VkApplicationInfo appInfo = {
+        .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
+        .pNext = NULL,
+        .pApplicationName = descriptor.applicationName,
+        .applicationVersion = FMT_VK_VERSION(descriptor.applicationVersion),
+        .pEngineName = descriptor.engineName,
+        .engineVersion = FMT_VK_VERSION(descriptor.engineVersion),
+        .apiVersion = FMT_VK_API_VERSION(descriptor.apiVersion)
+    };
+
+    // create instance
+    VkInstanceCreateInfo instanceDescr = {
+        .sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
+        .pNext = NULL,
+        .flags = 0,
+        .pApplicationInfo = &appInfo,
+        .enabledLayerCount = descriptor.layerCount,
+        .ppEnabledLayerNames = (const char *const *) descriptor.layerNames,
+        .enabledExtensionCount = descriptor.instanceExtensionCount,
+        .ppEnabledExtensionNames = (const char *const *) descriptor.instanceExtensionNames
+    };
+
+    // check if debug utils flags were specified
+    // if they were not, then create the instnace and return now.
+    if (!descriptor.debugMessengerSeverities && !descriptor.debugMessengerTypes) {
+        if (vkCreateInstance(&instanceDescr, NULL, instance)) {
+            return 0;
+        }
+
+        return 1;
+    }
+
+    // otherwise, define a debug messenger and append it onto the instance
+
+    // debug messenger create info
+    VkDebugUtilsMessengerCreateInfoEXT messengerDescr = {
+        .sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
+        .pNext = NULL,
+        .flags = 0, // NOTE: "reserved for future use"
+        .messageSeverity = descriptor.debugMessengerSeverities,
+        .messageType = descriptor.debugMessengerTypes,
+        .pfnUserCallback = _InstanceDebugMessengerCallback,
+        .pUserData = (void *) &descriptor.detailedDebugMessenger
+    };
+
+    instanceDescr.pNext = &messengerDescr;
+
+    // then we create the instance
+    if (vkCreateInstance(&instanceDescr, NULL, instance)) {
+        return 0;
+    }
+
+    return 1;
+}
+
+
+// ===========================================================================
+//                       THALLIUM PUBLIC API DEFINITIONS
+// ===========================================================================
+
+thvk_RenderSystem_t *thvk_CreateRenderSystem(const thvk_RenderSystemDescriptor_t descriptor) {
+    thvk_RenderSystem_t *r = malloc(sizeof(thvk_RenderSystem_t));
+    if (!r) {
+        th_Fatal("MALLOC fault in th_CreateRenderer!");
+        return NULL;
+    }
+
+    if (!_CreateInstance(&r->instance, descriptor)) {
+        return NULL;
+    }
+
+    th_Log("Created Vulkan render system at %p", r);
+
+    return r;
+}
+
+const int thvk_DestroyRenderSystem(thvk_RenderSystem_t *renderSystem) {
+    vkDestroyInstance(renderSystem->instance, NULL);
+
+    return 1;
 }

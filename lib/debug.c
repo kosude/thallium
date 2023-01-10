@@ -9,6 +9,11 @@
 
 #include "state/state.h"
 
+
+// ===========================================================================
+//                       THALLIUM PUBLIC API DEFINITIONS
+// ===========================================================================
+
 const int th_ConfigureDebugMessageFilter(const th_DebugSeverity_t severityBits) {
     thallium.debugSeverityFilter = severityBits;
 

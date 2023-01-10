@@ -15,12 +15,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Typedef for readability: different IDs to represent different graphics APIs.
-typedef enum ApiId_t {
-    THALLIUM_API_ID_NULL = 0x00,
-    THALLIUM_API_ID_VULKAN = 0x01
-} ApiId_t;
-
 #define RENDER_SYSTEM_CREATE_ERROR { \
     char apiVer[256], appVer[256], engVer[256]; \
     \
@@ -36,12 +30,38 @@ typedef enum ApiId_t {
     th_Hint("Engine version = %s", engVer); \
 }
 
+// Typedef for readability: different IDs to represent different graphics APIs.
+typedef enum ApiId_t {
+    THALLIUM_API_ID_NULL = 0x00,
+    THALLIUM_API_ID_VULKAN = 0x01
+} ApiId_t;
+
 #ifdef THALLIUM_VULKAN_INCL
-    static const VkDebugUtilsMessageSeverityFlagBitsEXT GetVkDebugMessengerSeverityFlags(const th_RendererDescriptor_t descriptor);
-    static const VkDebugUtilsMessageTypeFlagBitsEXT GetVkDebugMessengerTypeFlags(const th_RendererDescriptor_t descriptor);
+    static const VkDebugUtilsMessageSeverityFlagBitsEXT _GetVkDebugMessengerSeverityFlags(const th_RendererDescriptor_t descriptor) {
+        // NOTE: it's probably worth looking to see if there is a better way of doing this.
+        return
+            (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT) << 0
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT) << 3
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT) << 6
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT) << 9;
+    }
+
+    static const VkDebugUtilsMessageTypeFlagBitsEXT _GetVkDebugMessengerTypeFlags(const th_RendererDescriptor_t descriptor) {
+        // NOTE: see note in GetVkDebugMessengerSeverityFlags
+        return
+            (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT) >> 4
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT) >> 4
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT) >> 4
+            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT) >> 4;
+    }
 #endif
 
-const th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor) {
+
+// ===========================================================================
+//                       THALLIUM PUBLIC API DEFINITIONS
+// ===========================================================================
+
+th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor) {
     th_Renderer_t *r = malloc(sizeof(th_Renderer_t));
     if (!r) {
         th_Fatal("MALLOC fault in th_CreateRenderer!");
@@ -54,12 +74,6 @@ const th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor)
             r->apiId = THALLIUM_API_ID_VULKAN;
 
             // vulkan render system
-            r->renderSystem = malloc(sizeof(thvk_RenderSystem_t));
-            if (!r->renderSystem) {
-                th_Fatal("MALLOC fault in th_CreateRenderer!");
-                return NULL;
-            }
-
             thvk_RenderSystemDescriptor_t renderSystemDescr = {
                 .apiVersion = descriptor.apiVersion,
                 .applicationName = descriptor.applicationName,
@@ -78,8 +92,10 @@ const th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor)
             };
 
             // create the render system
-            if (!thvk_InitRenderSystem(r->renderSystem, renderSystemDescr)) {
+            r->renderSystem = thvk_CreateRenderSystem(renderSystemDescr);
+            if (!r->renderSystem) {
                 RENDER_SYSTEM_CREATE_ERROR;
+                return NULL;
             }
 #       else
             th_Error("th_CreateRenderer attempted to create renderer for API which was not compiled (\"%s\")", descriptor.apiName);
@@ -96,22 +112,15 @@ const th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor)
     return r;
 }
 
-#ifdef THALLIUM_VULKAN_INCL
-    static const VkDebugUtilsMessageSeverityFlagBitsEXT GetVkDebugMessengerSeverityFlags(const th_RendererDescriptor_t descriptor) {
-        // NOTE: it's probably worth looking to see if there is a better way of doing this.
-        return
-            (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT) << 0
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT) << 3
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT) << 6
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT) << 9;
-    }
+const int th_DestroyRenderer(th_Renderer_t *renderer) {
+#   ifdef THALLIUM_VULKAN_INCL
+        if (renderer->apiId == THALLIUM_API_ID_VULKAN) {
+            thvk_DestroyRenderSystem(renderer->renderSystem);
+        }
+#   endif // THALLIUM_VULKAN_INCL
 
-    static const VkDebugUtilsMessageTypeFlagBitsEXT GetVkDebugMessengerTypeFlags(const th_RendererDescriptor_t descriptor) {
-        // NOTE: see note in GetVkDebugMessengerSeverityFlags
-        return
-            (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT) >> 4
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT) >> 4
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT) >> 4
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT) >> 4;
-    }
-#endif // THALLIUM_VULKAN_INCL
+    free(renderer->renderSystem);
+    free(renderer);
+
+    return 1;
+}

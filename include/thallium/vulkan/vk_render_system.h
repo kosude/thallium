@@ -36,7 +36,7 @@
  * For example, each Vulkan render system holds one Vulkan
  * [instance](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkInstance.html).
  *
- * @sa @ref thvk_InitRenderSystem()
+ * @sa @ref thvk_CreateRenderSystem()
  */
 typedef struct thvk_RenderSystem_t {
     /// @brief Vulkan instance
@@ -80,21 +80,37 @@ typedef struct thvk_RenderSystemDescriptor_t {
 
 /**
  * @ingroup vk_render_system
- * @brief Initialise the specified Vulkan render system.
+ * @brief Create and return a heap-allocated Vulkan render system.
  *
- * This function initialises the data held in the specified Vulkan render system.
+ * This function creates a new Vulkan render system and returns it. If there were any errors in
+ * creation, NULL will be returned instead.
  *
- * This function should NOT be invoked multiple times.
- *
- * @param renderSystem Pointer to the render system to initialise.
- * @param descriptor Description of the render system to initialise.
- * @return @returnstatus
+ * @param descriptor Description of the render system to create.
+ * @return The new render system
  *
  * @sa @ref thvk_RenderSystem_t
+ * @sa @ref thvk_DestroyRenderSystem()
  */
-const int thvk_InitRenderSystem(
-    thvk_RenderSystem_t *renderSystem,
+thvk_RenderSystem_t *thvk_CreateRenderSystem(
     const thvk_RenderSystemDescriptor_t descriptor
+);
+
+/**
+ * @ingroup vk_render_system
+ * @brief Free the given Vulkan render system object.
+ *
+ * This function frees the specified render system object. You should set the pointer to
+ * NULL after calling this function, as you would normally when calling free().
+ *
+ * @param renderSystem Pointer to the Vulkan render system to free.
+ * @return @returnstatus
+ *
+ * @alwaysok
+ *
+ * @sa @ref thvk_CreateRenderSystem()
+ */
+const int thvk_DestroyRenderSystem(
+    thvk_RenderSystem_t *renderSystem
 );
 
 #ifdef __cplusplus

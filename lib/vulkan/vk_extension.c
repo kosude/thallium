@@ -13,6 +13,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+// ===========================================================================
+//                       THALLIUM PUBLIC API DEFINITIONS
+// ===========================================================================
+
 const int thvk_ValidateInstanceExtension(const char *const extensionName, const char *const layerName) {
     if (!extensionName) {
         th_Error("Extension name parameter NULL in thvk_ValidateInstanceExtension");

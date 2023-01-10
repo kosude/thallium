@@ -11,6 +11,11 @@
 
 #include <stdio.h>
 
+
+// ===========================================================================
+//                       THALLIUM PUBLIC API DEFINITIONS
+// ===========================================================================
+
 const void th_VersionToString(const th_Version_t version, char *out_string) {
     snprintf(out_string, 256, "%d.%d.%d", version.major, version.minor, version.patch);
 }

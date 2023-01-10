@@ -43,7 +43,7 @@ int main() {
         return 1;
     }
 
-    const th_Renderer_t *vulkan = th_CreateRenderer({
+    th_Renderer_t *vulkan = th_CreateRenderer({
         "vulkan",           // api name
         { 1, 3, 0 },        // api version
         "Hello triangle",   // application name
@@ -53,7 +53,12 @@ int main() {
         extensionDescr      // extension descriptor
     });
 
-    std::cout << vulkan << std::endl;
+    if (!vulkan) {
+        printf("Could not create renderer\n");
+        return 0;
+    }
+
+    th_DestroyRenderer(vulkan);
 
     return 0;
 }

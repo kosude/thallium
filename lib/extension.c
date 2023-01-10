@@ -13,35 +13,7 @@
 #include "utils/primitive.h"
 
 #ifdef THALLIUM_VULKAN_INCL
-#   include "thallium_vulkan.h"
-
-    static const int ValidateVulkanLayers(const th_RendererExtensionDescriptor_t descriptor);
-    static const int ValidateVulkanIExtensions(const th_RendererExtensionDescriptor_t descriptor);
-#endif
-
-const int th_ValidateRendererExtensionDescriptor(const th_RendererExtensionDescriptor_t descriptor) {
-#   ifdef THALLIUM_VULKAN_INCL
-        if (descriptor.vulkan.layerNames && !ValidateVulkanLayers(descriptor)) {
-            return 0;
-        }
-        if (descriptor.vulkan.extensionNames && !ValidateVulkanIExtensions(descriptor)) {
-            return 0;
-        }
-
-        // if vulkan instance debug messenger is requested but the required extension is not specified then uh oh
-        if (
-            (descriptor.vulkan.flags & (THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ALL_BIT | THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT))
-            && !th_StringValueInArray(VK_EXT_DEBUG_UTILS_EXTENSION_NAME, descriptor.vulkan.extensionNames, descriptor.vulkan.extensionCount)
-        ) {
-            return 0;
-        }
-#   endif
-
-    return 1;
-}
-
-#ifdef THALLIUM_VULKAN_INCL
-    static const int ValidateVulkanLayers(const th_RendererExtensionDescriptor_t descriptor) {
+    static const int _ValidateVulkanLayers(const th_RendererExtensionDescriptor_t descriptor) {
         for (unsigned int i = 0; i < (unsigned int) descriptor.vulkan.layerCount; i++) {
             if (!thvk_ValidateLayer(descriptor.vulkan.layerNames[i])) {
                 th_Warn("When validating Vulkan layers: layer \"%s\" not valid", descriptor.vulkan.layerNames[i]);
@@ -52,7 +24,7 @@ const int th_ValidateRendererExtensionDescriptor(const th_RendererExtensionDescr
         return 1;
     }
 
-    static const int ValidateVulkanIExtensions(const th_RendererExtensionDescriptor_t descriptor) {
+    static const int _ValidateVulkanIExtensions(const th_RendererExtensionDescriptor_t descriptor) {
         for (unsigned int i = 0; i < (unsigned int) descriptor.vulkan.extensionCount; i++) {
             if (thvk_ValidateInstanceExtension(descriptor.vulkan.extensionNames[i], NULL)) {
                 return 1;
@@ -74,4 +46,30 @@ const int th_ValidateRendererExtensionDescriptor(const th_RendererExtensionDescr
 
         return 1;
     }
-#endif // THALLIUM_VULKAN_INCL
+#endif
+
+
+// ===========================================================================
+//                       THALLIUM PUBLIC API DEFINITIONS
+// ===========================================================================
+
+const int th_ValidateRendererExtensionDescriptor(const th_RendererExtensionDescriptor_t descriptor) {
+#   ifdef THALLIUM_VULKAN_INCL
+        if (descriptor.vulkan.layerNames && !ValidateVulkanLayers(descriptor)) {
+            return 0;
+        }
+        if (descriptor.vulkan.extensionNames && !ValidateVulkanIExtensions(descriptor)) {
+            return 0;
+        }
+
+        // if vulkan instance debug messenger is requested but the required extension is not specified then uh oh
+        if (
+            (descriptor.vulkan.flags & (THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ALL_BIT | THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT))
+            && !th_StringValueInArray(VK_EXT_DEBUG_UTILS_EXTENSION_NAME, descriptor.vulkan.extensionNames, descriptor.vulkan.extensionCount)
+        ) {
+            return 0;
+        }
+#   endif
+
+    return 1;
+}
