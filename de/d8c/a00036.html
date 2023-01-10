@@ -132,47 +132,68 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga1c687d01c097bb52daeff667bc1dacdf"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d8c/a00036.html#ga1c687d01c097bb52daeff667bc1dacdf">thvk_InitRenderSystem</a> (<a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> *renderSystem, const <a class="el" href="../../df/d03/a00062.html">thvk_RenderSystemDescriptor_t</a> descriptor)</td></tr>
-<tr class="memdesc:ga1c687d01c097bb52daeff667bc1dacdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the specified Vulkan render system.  <br /></td></tr>
-<tr class="separator:ga1c687d01c097bb52daeff667bc1dacdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8c1976ebff59faa81235ba220d9d8c37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d8c/a00036.html#ga8c1976ebff59faa81235ba220d9d8c37">thvk_CreateRenderSystem</a> (const <a class="el" href="../../df/d03/a00062.html">thvk_RenderSystemDescriptor_t</a> descriptor)</td></tr>
+<tr class="memdesc:ga8c1976ebff59faa81235ba220d9d8c37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and return a heap-allocated Vulkan render system.  <br /></td></tr>
+<tr class="separator:ga8c1976ebff59faa81235ba220d9d8c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae75b162f13fc63c0399afbb2c593e4ba"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d8c/a00036.html#gae75b162f13fc63c0399afbb2c593e4ba">thvk_DestroyRenderSystem</a> (<a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> *renderSystem)</td></tr>
+<tr class="memdesc:gae75b162f13fc63c0399afbb2c593e4ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given Vulkan render system object.  <br /></td></tr>
+<tr class="separator:gae75b162f13fc63c0399afbb2c593e4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga1c687d01c097bb52daeff667bc1dacdf" name="ga1c687d01c097bb52daeff667bc1dacdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1c687d01c097bb52daeff667bc1dacdf">&#9670;&#160;</a></span>thvk_InitRenderSystem()</h2>
+<a id="ga8c1976ebff59faa81235ba220d9d8c37" name="ga8c1976ebff59faa81235ba220d9d8c37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8c1976ebff59faa81235ba220d9d8c37">&#9670;&#160;</a></span>thvk_CreateRenderSystem()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int thvk_InitRenderSystem </td>
+          <td class="memname"><a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> * thvk_CreateRenderSystem </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> *&#160;</td>
-          <td class="paramname"><em>renderSystem</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const <a class="el" href="../../df/d03/a00062.html">thvk_RenderSystemDescriptor_t</a>&#160;</td>
-          <td class="paramname"><em>descriptor</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>descriptor</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function initialises the data held in the specified Vulkan render system.</p>
-<p>This function should NOT be invoked multiple times.</p>
+<p>This function creates a new Vulkan render system and returns it. If there were any errors in creation, NULL will be returned instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">renderSystem</td><td>Pointer to the render system to initialise. </td></tr>
-    <tr><td class="paramname">descriptor</td><td>Description of the render system to initialise. </td></tr>
+    <tr><td class="paramname">descriptor</td><td>Description of the render system to create. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new render system</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> </dd>
+<dd>
+<a class="el" href="../../de/d8c/a00036.html#gae75b162f13fc63c0399afbb2c593e4ba">thvk_DestroyRenderSystem()</a> </dd></dl>
+
+</div>
+</div>
+<a id="gae75b162f13fc63c0399afbb2c593e4ba" name="gae75b162f13fc63c0399afbb2c593e4ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae75b162f13fc63c0399afbb2c593e4ba">&#9670;&#160;</a></span>thvk_DestroyRenderSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int thvk_DestroyRenderSystem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> *&#160;</td>
+          <td class="paramname"><em>renderSystem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function frees the specified render system object. You should set the pointer to NULL after calling this function, as you would normally when calling free().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderSystem</td><td>Pointer to the Vulkan render system to free. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><em>This function will always return 1</em>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../de/d8c/a00036.html#ga8c1976ebff59faa81235ba220d9d8c37">thvk_CreateRenderSystem()</a> </dd></dl>
 
 </div>
 </div>

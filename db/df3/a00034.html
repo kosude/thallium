@@ -144,9 +144,12 @@ Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf279607e6e2bae33c43eb012b3402eb0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#gaf279607e6e2bae33c43eb012b3402eb0">th_CreateRenderer</a> (const <a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a> descriptor)</td></tr>
-<tr class="memdesc:gaf279607e6e2bae33c43eb012b3402eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create, populate, and return a new renderer struct.  <br /></td></tr>
-<tr class="separator:gaf279607e6e2bae33c43eb012b3402eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1190a4d2ce3e0bbe3cc84a41f5029364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga1190a4d2ce3e0bbe3cc84a41f5029364">th_CreateRenderer</a> (const <a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a> descriptor)</td></tr>
+<tr class="memdesc:ga1190a4d2ce3e0bbe3cc84a41f5029364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create, populate, and return a new renderer struct.  <br /></td></tr>
+<tr class="separator:ga1190a4d2ce3e0bbe3cc84a41f5029364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d">th_DestroyRenderer</a> (<a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
+<tr class="memdesc:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given renderer object.  <br /></td></tr>
+<tr class="separator:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Type Documentation</h2>
 <a id="ga49c612e4742d9a5b5decdc74bfe0c869" name="ga49c612e4742d9a5b5decdc74bfe0c869"></a>
@@ -165,14 +168,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gaf279607e6e2bae33c43eb012b3402eb0" name="gaf279607e6e2bae33c43eb012b3402eb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf279607e6e2bae33c43eb012b3402eb0">&#9670;&#160;</a></span>th_CreateRenderer()</h2>
+<a id="ga1190a4d2ce3e0bbe3cc84a41f5029364" name="ga1190a4d2ce3e0bbe3cc84a41f5029364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1190a4d2ce3e0bbe3cc84a41f5029364">&#9670;&#160;</a></span>th_CreateRenderer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> * th_CreateRenderer </td>
+          <td class="memname"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> * th_CreateRenderer </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a>&#160;</td>
           <td class="paramname"><em>descriptor</em></td><td>)</td>
@@ -190,6 +193,33 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the new renderer object </dd></dl>
+
+</div>
+</div>
+<a id="ga33cfd8bcc4b9d8236a2dfb4aae602e2d" name="ga33cfd8bcc4b9d8236a2dfb4aae602e2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga33cfd8bcc4b9d8236a2dfb4aae602e2d">&#9670;&#160;</a></span>th_DestroyRenderer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int th_DestroyRenderer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td>
+          <td class="paramname"><em>renderer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function frees the specified renderer object. You should set the pointer to NULL after calling this function, as you would normally when calling free().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Pointer to the renderer object to free. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><em>This function will always return 1</em>. </dd></dl>
 
 </div>
 </div>
