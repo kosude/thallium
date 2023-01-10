@@ -100,14 +100,14 @@ if (NOT THALLIUM_SKIP_VERSION)
     find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
     add_custom_target(${PROJECT_NAME}version
-        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py cfg
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/utils/py/GetVersion.py cfg
         BYPRODUCTS "${PROJECT_BINARY_DIR}/generated/dyn_version.h"
         WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
     )
-    message("${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py cfg")
+    message("${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/utils/py/GetVersion.py cfg")
 
     execute_process(
-        COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_LIST_DIR}/py/GetVersion.py"
+        COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_LIST_DIR}/utils/py/GetVersion.py"
         OUTPUT_VARIABLE THALLIUM_VERSION
     )
 else()
