@@ -56,7 +56,7 @@ if (THALLIUM_BUILD_LIB)
 endif()
 
 option(THALLIUM_DEBUG_LAYER "Enable Thallium debugging utilities (applies to both Debug and Release configs)" ON)
-if (${THALLIUM_DEBUG_LAYER})
+if (THALLIUM_DEBUG_LAYER)
     add_compile_definitions("THALLIUM_DEBUG_LAYER")
 endif()
 

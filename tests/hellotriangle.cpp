@@ -20,7 +20,7 @@ static std::vector<const char *> VulkanLayers {
 };
 
 int main() {
-    printf("-- Thallium %s\n\n", th_ThalliumVersion());
+    printf("-- Thallium %s\n\n", th_GetThalliumVersion());
 
     th_ConfigureDebugMessageFilter(THALLIUM_DEBUG_SEVERITY_ALL_BIT);
 

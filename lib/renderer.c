@@ -86,8 +86,8 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor) {
                 .layerNames = descriptor.extensionDescriptor.vulkan.layerNames,
                 .layerCount = descriptor.extensionDescriptor.vulkan.layerCount,
 
-                .debugMessengerSeverities = GetVkDebugMessengerSeverityFlags(descriptor),
-                .debugMessengerTypes = GetVkDebugMessengerTypeFlags(descriptor),
+                .debugMessengerSeverities = _GetVkDebugMessengerSeverityFlags(descriptor),
+                .debugMessengerTypes = _GetVkDebugMessengerTypeFlags(descriptor),
                 .detailedDebugMessenger = descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED
             };
 

@@ -46,38 +46,44 @@
 }
 
 const int th_Log(const char *format, ...) {
-    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
+#   ifdef THALLIUM_DEBUG_LAYER
+        ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
 
-    char msg[MAX_DBGMSG_LEN];
-    FORMAT_STR(format);
+        char msg[MAX_DBGMSG_LEN];
+        FORMAT_STR(format);
 
-    printf("(thallium!) %s\n", msg);
+        printf("(thallium!) %s\n", msg);
+#   endif
 
     return 1;
 }
 
 const int th_Note(const char *format, ...) {
-    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
+#   ifdef THALLIUM_DEBUG_LAYER
+        ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
-    char msg[MAX_DBGMSG_LEN];
-    FORMAT_STR(format);
+        char msg[MAX_DBGMSG_LEN];
+        FORMAT_STR(format);
 
-    th_SetIOColour(THALLIUM_IO_COLOUR_BLUE, 0xFF, stdout);
-    printf("(thallium!) %s\n", msg);
-    th_DefaultIOColour(stdout);
+        th_SetIOColour(THALLIUM_IO_COLOUR_BLUE, 0xFF, stdout);
+        printf("(thallium!) %s\n", msg);
+        th_DefaultIOColour(stdout);
+#   endif
 
     return 1;
 }
 
 const int th_Hint(const char *format, ...) {
-    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
+#   ifdef THALLIUM_DEBUG_LAYER
+        ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
-    char msg[MAX_DBGMSG_LEN];
-    FORMAT_STR(format);
+        char msg[MAX_DBGMSG_LEN];
+        FORMAT_STR(format);
 
-    th_SetIOColour(THALLIUM_IO_COLOUR_GREY, 0xFF, stdout);
-    printf("(thallium!) Hint: %s\n", msg);
-    th_DefaultIOColour(stdout);
+        th_SetIOColour(THALLIUM_IO_COLOUR_GREY, 0xFF, stdout);
+        printf("(thallium!) Hint: %s\n", msg);
+        th_DefaultIOColour(stdout);
+#   endif
 
     return 1;
 }

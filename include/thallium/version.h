@@ -54,7 +54,7 @@ const void th_VersionToString(
  *
  * @return Thallium version
  */
-const char *const th_ThalliumVersion();
+const char *const th_GetThalliumVersion();
 
 #ifdef __cplusplus
     }

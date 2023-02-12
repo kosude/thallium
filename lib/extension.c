@@ -55,10 +55,10 @@
 
 const int th_ValidateRendererExtensionDescriptor(const th_RendererExtensionDescriptor_t descriptor) {
 #   ifdef THALLIUM_VULKAN_INCL
-        if (descriptor.vulkan.layerNames && !ValidateVulkanLayers(descriptor)) {
+        if (descriptor.vulkan.layerNames && !_ValidateVulkanLayers(descriptor)) {
             return 0;
         }
-        if (descriptor.vulkan.extensionNames && !ValidateVulkanIExtensions(descriptor)) {
+        if (descriptor.vulkan.extensionNames && !_ValidateVulkanIExtensions(descriptor)) {
             return 0;
         }
 
