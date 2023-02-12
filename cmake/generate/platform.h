@@ -9,10 +9,6 @@
 #ifndef _CMAKE_PLATFORM_H
 #define _CMAKE_PLATFORM_H
 
-#cmakedefine WIN32
-#cmakedefine APPLE
-#cmakedefine UNIX
-
 #if defined(_MSC_VER) // if using MSVC:
 #    if _DEBUG
 #        define BUILD_DEBUG

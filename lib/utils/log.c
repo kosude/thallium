@@ -46,7 +46,7 @@
 }
 
 const int th_Log(const th_Debugger_t *debugger, const char *format, ...) {
-#   ifdef THALLIUM_DEBUG_LAYER
+#   if defined(THALLIUM_DEBUG_LAYER)
         ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
 
         char msg[MAX_DBGMSG_LEN];
@@ -59,7 +59,7 @@ const int th_Log(const th_Debugger_t *debugger, const char *format, ...) {
 }
 
 const int th_Note(const th_Debugger_t *debugger, const char *format, ...) {
-#   ifdef THALLIUM_DEBUG_LAYER
+#   if defined(THALLIUM_DEBUG_LAYER)
         ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
         char msg[MAX_DBGMSG_LEN];
@@ -74,7 +74,7 @@ const int th_Note(const th_Debugger_t *debugger, const char *format, ...) {
 }
 
 const int th_Hint(const th_Debugger_t *debugger, const char *format, ...) {
-#   ifdef THALLIUM_DEBUG_LAYER
+#   if defined(THALLIUM_DEBUG_LAYER)
         ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
         char msg[MAX_DBGMSG_LEN];
@@ -89,7 +89,7 @@ const int th_Hint(const th_Debugger_t *debugger, const char *format, ...) {
 }
 
 const int th_Warn(const th_Debugger_t *debugger, const char *format, ...) {
-#   ifdef THALLIUM_DEBUG_LAYER
+#   if defined(THALLIUM_DEBUG_LAYER)
         ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_WARNING_BIT);
 
         char msg[MAX_DBGMSG_LEN];
@@ -104,7 +104,7 @@ const int th_Warn(const th_Debugger_t *debugger, const char *format, ...) {
 }
 
 const int th_Error(const th_Debugger_t *debugger, const char *format, ...) {
-#   ifdef THALLIUM_DEBUG_LAYER
+#   if defined(THALLIUM_DEBUG_LAYER)
         ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_ERROR_BIT);
 
         char msg[MAX_DBGMSG_LEN];
@@ -119,7 +119,7 @@ const int th_Error(const th_Debugger_t *debugger, const char *format, ...) {
 }
 
 const int th_Fatal(const th_Debugger_t *debugger, const char *format, ...) {
-#   ifdef THALLIUM_DEBUG_LAYER
+#   if defined(THALLIUM_DEBUG_LAYER)
         ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_FATAL_BIT);
 
         char msg[MAX_DBGMSG_LEN];

@@ -7,18 +7,16 @@
 
 #include "io_colour.h"
 
-#include "cmake_platform.h"
-
 #include "thallium/debug.h"
 
-#ifdef WIN32
+#if defined(_WIN32)
 #   define WIN32_LEAN_AND_MEAN
 #   include <Windows.h>
 #else
 #   include <stdio.h>
 #endif
 
-#ifdef UNIX
+#if defined(__unix__) || defined(__unix)
     /**
      * @brief Convert a numerical IO colour output (@ref th_IOColour_t) to a UNIX text colour escape string
      *
@@ -88,7 +86,7 @@ const int th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *s
         return 1;
     }
 
-#   ifdef WIN32
+#   if defined(_WIN32)
         // NOTE: this is yet to be tested
 
         unsigned int colourAttribute = 0;
@@ -106,7 +104,7 @@ const int th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *s
 
         static const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(handle, bg << 4 | fg);
-#   elif defined(UNIX)
+#   elif defined(__unix__) || defined(__unix)
         fprintf(stream,
             "\033[%s%s%sm",
             (fg != 0xFF) ? _GetFGColourCode(fg) : "0",
@@ -122,11 +120,11 @@ const int th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *s
 }
 
 const int th_DefaultIOColour(FILE *stream) {
-#   if defined(WIN32)
+#   if defined(_WIN32)
         // NOTE: this is yet to be tested
         static const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(handle, 7);
-#   elif defined(UNIX)
+#   elif defined(__unix__) || defined(__unix)
         fprintf(stream, "\033[0m");
 #   else
         // TODO: macOS support

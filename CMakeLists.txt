@@ -44,8 +44,12 @@ set(SUMMARY_LIB_TYPE "Unknown")
 
 option(BUILD_SHARED_LIBS "Build shared libraries (or DLLs if on Windows)" ON)
 option(THALLIUM_BUILD_LIB "Build the core Thallium library" ON)
-option(THALLIUM_BUILD_TESTS "Build Thallium tests" OFF)
-# option(THALLIUM_BUILD_EXAMPLES "Build Thallium example projects" OFF)
+
+if (THALLIUM_BUILD_LIB)
+    option(THALLIUM_BUILD_TESTS "Build Thallium tests" OFF)
+    # option(THALLIUM_BUILD_EXAMPLES "Build Thallium example projects" OFF)
+endif()
+
 option(THALLIUM_BUILD_DOCS "Build Thallium HTML documentation" OFF)
 
 if (THALLIUM_BUILD_LIB)
@@ -74,10 +78,6 @@ if (NOT CMAKE_BUILD_TYPE)
     message(FATAL_ERROR "Missing build configuration type! Reconfigure project with option -DCMAKE_BUILD_TYPE=(Debug|Release)")
 endif()
 
-string(TOUPPER "${CMAKE_BUILD_TYPE}" _upperBuildType)
-set("BUILD_${_upperBuildType}" 1)
-configure_file("${THALLIUM_CMAKE_DIR}/generate/platform.h" "${PROJECT_BINARY_DIR}/generated/cmake_platform.h")
-
 if (THALLIUM_BUILD_LIB)
     add_subdirectory("${THALLIUM_LIB_DIR}/")
 endif()
@@ -95,7 +95,6 @@ endif()
 # endif()
 
 option(THALLIUM_SKIP_VERSION "Skip getting Thallium version dynamically" OFF)
-
 if (NOT THALLIUM_SKIP_VERSION)
     find_package(Python3 REQUIRED COMPONENTS Interpreter)
 

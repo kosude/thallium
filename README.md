@@ -15,6 +15,38 @@ renderers (i.e. Vulkan and OpenGL) will be prioritised, but I plan to also imple
 > Please see the [Trello board](https://trello.com/b/Fbj9GSzf/thallium-todo) for a TO-DO list.
 
 
+## Building
+
+CMake is used to generate build files. *This section assumes you are building on a Linux machine.*
+
+The available command-line options can be seen below. Alternatively, you can use the `utils/build.sh` interactive script to build the
+project, if that's what you prefer.
+
+### General options
+
+|        Option name      |            Description           | Default |
+| ----------------------- | -------------------------------- | ------- |
+| BUILD_SHARED_LIBS       | Build shared libraries           | ON      |
+| THALLIUM_BUILD_LIB      | Build core library               | ON      |
+| THALLIUM_BUILD_DOCS     | Build HTML documentation         | OFF     |
+| THALLIUM_DEBUG_LAYER    | Enable the Thallium debug layer  | ON      |
+| THALLIUM_SKIP_VERSION   | Skip getting VCS project version | OFF     |
+
+> **Note**: By default, a detailed project version is fetched dynamically (via a Python script) with information from Git.
+> This can be disabled by setting THALLIUM_SKIP_VERSION to ON. If it is not disabled, you need to have the
+> [GitPython](https://github.com/gitpython-developers/GitPython) package installed.
+
+### When building core library
+
+These options are only available if THALLIUM_BUILD_LIB is ON.
+
+|          Option name         |           Description         | Default |
+| ---------------------------- | ----------------------------- | ------- |
+| THALLIUM_BUILD_MODULE_VULKAN | Build Vulkan library module   | OFF     |
+| THALLIUM_BUILD_TESTS         | Build test executables        | OFF     |
+| THALLIUM_BUILD_EXAMPLES      | Build example projects        | OFF     |
+
+
 ## Documentation
 
 Please see the Thallium documentation hosted on GH Pages at https://kosude.github.io/thallium/. Local HTML documentation can also be built by setting

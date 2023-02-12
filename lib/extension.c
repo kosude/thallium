@@ -12,7 +12,7 @@
 #include "utils/log.h"
 #include "utils/primitive.h"
 
-#ifdef THALLIUM_VULKAN_INCL
+#if defined(THALLIUM_VULKAN_INCL)
     static const int _ValidateVulkanLayers(const th_RendererExtensionDescriptor_t descriptor, const th_Debugger_t *debugger) {
         for (unsigned int i = 0; i < (unsigned int) descriptor.vulkan.layerCount; i++) {
             if (!thvk_ValidateLayer(descriptor.vulkan.layerNames[i], debugger)) {
@@ -54,7 +54,7 @@
 // ===========================================================================
 
 const int th_ValidateRendererExtensionDescriptor(const th_RendererExtensionDescriptor_t descriptor, const th_Debugger_t *debugger) {
-#   ifdef THALLIUM_VULKAN_INCL
+#   if defined(THALLIUM_VULKAN_INCL)
         if (descriptor.vulkan.layerNames && !_ValidateVulkanLayers(descriptor, debugger)) {
             return 0;
         }

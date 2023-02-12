@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 #
 #   Copyright (c) 2023 Jack Bennett
 #   All rights reserved.
@@ -29,8 +31,9 @@ then
     exit
 fi
 
+VALGRIND_CMD="/usr/bin/valgrind"
+
 TEST_EXEC="$(readlink -f "${1}")"
-VALGRIND_CMD="valgrind"
 PROJECT_PATH="$(dirname -- "$(dirname -- "$(dirname -- "$(readlink -f "${BASH_SOURCE}")")")")"
 
 # get suppression files

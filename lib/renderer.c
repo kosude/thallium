@@ -36,7 +36,7 @@ typedef enum ApiId_t {
     THALLIUM_API_ID_VULKAN = 0x01
 } ApiId_t;
 
-#ifdef THALLIUM_VULKAN_INCL
+#if defined(THALLIUM_VULKAN_INCL)
     static const VkDebugUtilsMessageSeverityFlagBitsEXT _GetVkDebugMessengerSeverityFlags(const th_RendererDescriptor_t descriptor) {
         // NOTE: it's probably worth looking to see if there is a better way of doing this.
         return
@@ -73,7 +73,7 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
 
     // vulkan renderers
     if (!strcmp(descriptor.apiName, "vulkan")) {
-#       ifdef THALLIUM_VULKAN_INCL
+#       if defined(THALLIUM_VULKAN_INCL)
             r->apiId = THALLIUM_API_ID_VULKAN;
 
             // vulkan render system
@@ -116,7 +116,7 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
 }
 
 const int th_DestroyRenderer(th_Renderer_t *renderer) {
-#   ifdef THALLIUM_VULKAN_INCL
+#   if defined(THALLIUM_VULKAN_INCL)
         if (renderer->apiId == THALLIUM_API_ID_VULKAN) {
             thvk_DestroyRenderSystem(renderer->renderSystem);
         }
