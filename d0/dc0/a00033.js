@@ -21,5 +21,5 @@ var a00033 =
       [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29adb1f324eece3bf4328a73e5b10683945", null ],
       [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a32a13d891304d2f6e1a1ed991d6b4055", null ]
     ] ],
-    [ "th_ValidateRendererExtensionDescriptor", "d0/dc0/a00033.html#gaf93919af5202fc2190362c0f74aaedcf", null ]
+    [ "th_ValidateRendererExtensionDescriptor", "d0/dc0/a00033.html#ga2fb0753764adfb77593c9e27b5cdbabf", null ]
 ];

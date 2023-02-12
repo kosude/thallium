@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium_vulkan.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -109,26 +109,27 @@ $(document).ready(function(){initNavTree('d7/d46/a00002.html','../../'); initRes
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">thallium_vulkan.h File Reference</div></div>
+  <div class="headertitle"><div class="title">thallium.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Thallium Vulkan module header.  
+<p>Public Thallium API header.  
 <a href="#details">More...</a></p>
 
 <p><a href="../../d7/d46/a00002_source.html">Go to the source code of this file.</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>You may include this file if you wish to directly use more low-level Vulkan abstractions within Thallium. This is not recommended as it reduces API-agnosticism and therefore code portability.</p>
-<dl class="section note"><dt>Note</dt><dd>To use functions included in this API, make sure you include the Vulkan module when compiling the Thallium library with the <code>-DTHALLIUM_BUILD_MODULE_VULKAN=ON</code> flag.</dd></dl>
-<p>Thallium functions are prefixed with <code>thvk_</code>. </p>
+<div class="textblock"><p>Include this file to gain access to all public Thallium functions and types.</p>
+<p>Generally, you only need to include this header. However, if you want to access the more low-level Thallium abstractions of a certain graphics API, you may include the appropriate header, such as <code><a class="el" href="../../d3/d52/a00023.html" title="Thallium Vulkan module header.">thallium_vulkan.h</a></code> for Vulkan. Again; this isn't required, but it is possible in case the surface-level API does not provide all the functionality you need.</p>
+<p>You can also directly include the graphics API's own headers, as their include directories are publicly included in each API module that is compiled.</p>
+<p>Thallium functions are prefixed with <code>th_</code>. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../d7/d46/a00002.html">thallium_vulkan.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../d7/d46/a00002.html">thallium.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Jan 10 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Sun Feb 12 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

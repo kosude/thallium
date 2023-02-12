@@ -1,12 +1,5 @@
 var a00008 =
 [
-    [ "th_DebugSeverity_t", "dc/d87/a00032.html#ga437ad5d0c16115fb79ecdcff529399e3", [
-      [ "THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT", "dc/d87/a00032.html#gga437ad5d0c16115fb79ecdcff529399e3a67e9eb97381e9ac6c7be9f39cca62ba9", null ],
-      [ "THALLIUM_DEBUG_SEVERITY_NOTIF_BIT", "dc/d87/a00032.html#gga437ad5d0c16115fb79ecdcff529399e3a69939395e3bddb38b5980f8589fdc50c", null ],
-      [ "THALLIUM_DEBUG_SEVERITY_WARNING_BIT", "dc/d87/a00032.html#gga437ad5d0c16115fb79ecdcff529399e3a36c539c8fce66321b4475f9bf413aeab", null ],
-      [ "THALLIUM_DEBUG_SEVERITY_ERROR_BIT", "dc/d87/a00032.html#gga437ad5d0c16115fb79ecdcff529399e3a328a92c5411951faec26a1489a4a373e", null ],
-      [ "THALLIUM_DEBUG_SEVERITY_FATAL_BIT", "dc/d87/a00032.html#gga437ad5d0c16115fb79ecdcff529399e3a81cc3ba862df633c2da0b173674fa5a5", null ],
-      [ "THALLIUM_DEBUG_SEVERITY_ALL_BIT", "dc/d87/a00032.html#gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309", null ]
-    ] ],
-    [ "th_ConfigureDebugMessageFilter", "dc/d87/a00032.html#gaa871bfe36794628acc401e6c44eaca6d", null ]
+    [ "thvk_ValidateInstanceExtension", "d4/d8c/a00035.html#gaccdb3b9957e04b918f64f521dd7f87a1", null ],
+    [ "thvk_ValidateLayer", "d4/d8c/a00035.html#gae6bdceae670fd3f4f0aaa8c4ddcdc3e5", null ]
 ];

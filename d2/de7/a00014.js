@@ -1,5 +1,5 @@
 var a00014 =
 [
-    [ "thvk_CreateRenderSystem", "de/d8c/a00036.html#ga8c1976ebff59faa81235ba220d9d8c37", null ],
-    [ "thvk_DestroyRenderSystem", "de/d8c/a00036.html#gae75b162f13fc63c0399afbb2c593e4ba", null ]
+    [ "th_VersionToString", "d1/dc6/a00037.html#gab997b95b23c8cf033601fe5ebdffb4c4", null ],
+    [ "th_GetThalliumVersion", "d1/dc6/a00037.html#ga079a6eec1ee51e03d1671a90b42175c2", null ]
 ];

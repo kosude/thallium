@@ -144,9 +144,9 @@ Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga1190a4d2ce3e0bbe3cc84a41f5029364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga1190a4d2ce3e0bbe3cc84a41f5029364">th_CreateRenderer</a> (const <a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a> descriptor)</td></tr>
-<tr class="memdesc:ga1190a4d2ce3e0bbe3cc84a41f5029364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create, populate, and return a new renderer struct.  <br /></td></tr>
-<tr class="separator:ga1190a4d2ce3e0bbe3cc84a41f5029364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8">th_CreateRenderer</a> (const <a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a> descriptor, <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create, populate, and return a new renderer struct.  <br /></td></tr>
+<tr class="separator:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d">th_DestroyRenderer</a> (<a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
 <tr class="memdesc:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given renderer object.  <br /></td></tr>
 <tr class="separator:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,13 +163,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This opaque structure provides a representation of a certain graphics API. </p>
+<p>This opaque structure provides a representation of a certain graphics API.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../db/df3/a00034.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8" title="Create, populate, and return a new renderer struct.">th_CreateRenderer()</a> </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga1190a4d2ce3e0bbe3cc84a41f5029364" name="ga1190a4d2ce3e0bbe3cc84a41f5029364"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1190a4d2ce3e0bbe3cc84a41f5029364">&#9670;&#160;</a></span>th_CreateRenderer()</h2>
+<a id="gaf9d4bd5ba4a3ca004a2ea636015af9a8" name="gaf9d4bd5ba4a3ca004a2ea636015af9a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf9d4bd5ba4a3ca004a2ea636015af9a8">&#9670;&#160;</a></span>th_CreateRenderer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,8 +179,18 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> * th_CreateRenderer </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a>&#160;</td>
-          <td class="paramname"><em>descriptor</em></td><td>)</td>
+          <td class="paramname"><em>descriptor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
+          <td class="paramname"><em>debugger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -189,6 +200,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">descriptor</td><td>creation description for the renderer </td></tr>
+    <tr><td class="paramname">debugger</td><td>Debugger to read configuration from when debugging (or NULL for no debugging) </td></tr>
   </table>
   </dd>
 </dl>
@@ -229,7 +241,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Jan 10 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Sun Feb 12 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

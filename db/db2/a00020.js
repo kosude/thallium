@@ -1,17 +1,6 @@
 var a00020 =
 [
-    [ "th_VulkanRendererExtensionFlag_t", "d0/dc0/a00033.html#gaeb26179f77edc495a3e2b75966361b29", [
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29abe88da511057048583bfacd1aae7ea39", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a0044281bf54f064bf37b20ccbd1285a5", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29af7795965559c2e7761ee23ceab215e60", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a59ae7f8fcb26718290b05ffb23a52cf4", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ALL_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a12399ddaa830b5e9c27c147e5ca17946", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a87c9108aa3e74c04c2ef243ad8ccf397", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a5eccab4c49db2c6d029c7bd645941bcd", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a0fc0a510a3373ca341adcf8e7ba4834a", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a7ad28045d319ddb10b2e5bff8dda9fda", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29adb1f324eece3bf4328a73e5b10683945", null ],
-      [ "THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED", "d0/dc0/a00033.html#ggaeb26179f77edc495a3e2b75966361b29a32a13d891304d2f6e1a1ed991d6b4055", null ]
-    ] ],
-    [ "th_ValidateRendererExtensionDescriptor", "d0/dc0/a00033.html#gaf93919af5202fc2190362c0f74aaedcf", null ]
+    [ "th_Renderer_t", "db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869", null ],
+    [ "th_CreateRenderer", "db/df3/a00034.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8", null ],
+    [ "th_DestroyRenderer", "db/df3/a00034.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d", null ]
 ];

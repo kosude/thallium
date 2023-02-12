@@ -83,12 +83,18 @@ html {
     --toc-max-height: calc(100vh - 2 * var(--spacing-medium) - 85px);
 
     /* colors for various content boxes: @warning, @note, @deprecated @bug */
-    --warning-color: #f8d1cc;
-    --warning-color-dark: #b61825;
-    --warning-color-darker: #75070f;
-    --note-color: #faf3d8;
-    --note-color-dark: #f3a600;
-    --note-color-darker: #5f4204;
+    /* --warning-color: #f8d1cc; */
+    --warning-color: #faf3d8;
+    /* --warning-color-dark: #b61825; */
+    --warning-color-dark: #db9600;
+    /* --warning-color-darker: #75070f; */
+    --warning-color-darker: #5f4204;
+    /* --note-color: #faf3d8; */
+    --note-color: #cde8fd;
+    /* --note-color-dark: #f3a600; */
+    --note-color-dark: #2e8edd;
+    /* --note-color-darker: #5f4204; */
+    --note-color-darker: #0b4c66;
     --todo-color: #e4f3ff;
     --todo-color-dark: #1879C4;
     --todo-color-darker: #274a5c;
@@ -119,7 +125,6 @@ html {
     --menu-focus-foreground: var(--page-background-color);
     --menu-focus-background: var(--primary-color);
     --menu-selected-background: rgba(0,0,0,.05);
-
 
     --header-background: var(--page-background-color);
     --header-foreground: var(--page-foreground-color);
@@ -211,12 +216,18 @@ html {
         --blockquote-background: #222325;
         --blockquote-foreground: #7e8c92;
 
-        --warning-color: #2e1917;
-        --warning-color-dark: #ad2617;
-        --warning-color-darker: #f5b1aa;
-        --note-color: #3b2e04;
-        --note-color-dark: #f1b602;
-        --note-color-darker: #ceb670;
+        /* --warning-color: #2e1917; */
+        --warning-color: #3b2e04;
+        /* --warning-color-dark: #ad2617; */
+        --warning-color-dark: #f1b602;
+        /* --warning-color-darker: #f5b1aa; */
+        --warning-color-darker: #ceb670;
+        /* --note-color: #3b2e04; */
+        --note-color: #15253a;
+        /* --note-color-dark: #f1b602; */
+        --note-color-dark: #207bf1;
+        /* --note-color-darker: #ceb670; */
+        --note-color-darker: #77aee2;
         --todo-color: #163750;
         --todo-color-dark: #1982D2;
         --todo-color-darker: #dcf0fa;
@@ -272,12 +283,18 @@ html.dark-mode {
     --blockquote-background: #222325;
     --blockquote-foreground: #7e8c92;
 
-    --warning-color: #2e1917;
-    --warning-color-dark: #ad2617;
-    --warning-color-darker: #f5b1aa;
-    --note-color: #3b2e04;
-    --note-color-dark: #f1b602;
-    --note-color-darker: #ceb670;
+    /* --warning-color: #2e1917; */
+    --warning-color: #3b2e04;
+    /* --warning-color-dark: #ad2617; */
+    --warning-color-dark: #f1b602;
+    /* --warning-color-darker: #f5b1aa; */
+    --warning-color-darker: #ceb670;
+    /* --note-color: #3b2e04; */
+    --note-color: #15253a;
+    /* --note-color-dark: #f1b602; */
+    --note-color-dark: #207bf1;
+    /* --note-color-darker: #ceb670; */
+    --note-color-darker: #77aee2;
     --todo-color: #163750;
     --todo-color-dark: #1982D2;
     --todo-color-darker: #dcf0fa;
@@ -2306,7 +2323,7 @@ doxygen-awesome-dark-mode-toggle > svg {
 }
 
 doxygen-awesome-dark-mode-toggle:active > svg {
-    transform: scale(.5);
+    transform: scale(0.7);
 }
 
 doxygen-awesome-dark-mode-toggle:hover {

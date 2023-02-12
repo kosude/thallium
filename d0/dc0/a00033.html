@@ -136,9 +136,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf93919af5202fc2190362c0f74aaedcf"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#gaf93919af5202fc2190362c0f74aaedcf">th_ValidateRendererExtensionDescriptor</a> (const <a class="el" href="../../d5/db6/a00042.html">th_RendererExtensionDescriptor_t</a> descriptor)</td></tr>
-<tr class="memdesc:gaf93919af5202fc2190362c0f74aaedcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the relevant contents of the given renderer extension descriptor.  <br /></td></tr>
-<tr class="separator:gaf93919af5202fc2190362c0f74aaedcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#ga2fb0753764adfb77593c9e27b5cdbabf">th_ValidateRendererExtensionDescriptor</a> (const <a class="el" href="../../d5/db6/a00042.html">th_RendererExtensionDescriptor_t</a> descriptor, const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the relevant contents of the given renderer extension descriptor.  <br /></td></tr>
+<tr class="separator:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="gaeb26179f77edc495a3e2b75966361b29" name="gaeb26179f77edc495a3e2b75966361b29"></a>
@@ -182,8 +182,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gaf93919af5202fc2190362c0f74aaedcf" name="gaf93919af5202fc2190362c0f74aaedcf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf93919af5202fc2190362c0f74aaedcf">&#9670;&#160;</a></span>th_ValidateRendererExtensionDescriptor()</h2>
+<a id="ga2fb0753764adfb77593c9e27b5cdbabf" name="ga2fb0753764adfb77593c9e27b5cdbabf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2fb0753764adfb77593c9e27b5cdbabf">&#9670;&#160;</a></span>th_ValidateRendererExtensionDescriptor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -192,8 +192,18 @@ Functions</h2></td></tr>
           <td class="memname">const int th_ValidateRendererExtensionDescriptor </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../d5/db6/a00042.html">th_RendererExtensionDescriptor_t</a>&#160;</td>
-          <td class="paramname"><em>descriptor</em></td><td>)</td>
+          <td class="paramname"><em>descriptor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
+          <td class="paramname"><em>debugger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -203,6 +213,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">descriptor</td><td>The extension descriptor to check </td></tr>
+    <tr><td class="paramname">debugger</td><td>Debugger to read configuration options from (or NULL for no debugging) </td></tr>
   </table>
   </dd>
 </dl>
@@ -218,7 +229,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Jan 10 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Sun Feb 12 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

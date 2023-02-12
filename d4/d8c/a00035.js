@@ -1,5 +1,5 @@
 var a00035 =
 [
-    [ "thvk_ValidateInstanceExtension", "d4/d8c/a00035.html#ga5497181dc2153b85bd2078b4c6f39b0d", null ],
-    [ "thvk_ValidateLayer", "d4/d8c/a00035.html#gadb79b168fca6c279474f8f98b294e617", null ]
+    [ "thvk_ValidateInstanceExtension", "d4/d8c/a00035.html#gaccdb3b9957e04b918f64f521dd7f87a1", null ],
+    [ "thvk_ValidateLayer", "d4/d8c/a00035.html#gae6bdceae670fd3f4f0aaa8c4ddcdc3e5", null ]
 ];

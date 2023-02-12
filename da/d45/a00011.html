@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/version.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/debug.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -110,40 +110,48 @@ $(document).ready(function(){initNavTree('da/d45/a00011.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Types</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">version.h File Reference</div></div>
+  <div class="headertitle"><div class="title">debug.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Version structure definition and relevant function(s)  
+<p>Library compounds for configuring Thallium debug output.  
 <a href="#details">More...</a></p>
 
 <p><a href="../../da/d45/a00011_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dea/a00054.html">th_Version_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure to describe a version.  <a href="../../d1/dea/a00054.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Types</h2></td></tr>
+<tr class="memitem:ga024bcefec03671b7056e182ce4fb19f6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a></td></tr>
+<tr class="memdesc:ga024bcefec03671b7056e182ce4fb19f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure used to debug renderers.  <br /></td></tr>
+<tr class="separator:ga024bcefec03671b7056e182ce4fb19f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga437ad5d0c16115fb79ecdcff529399e3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d87/a00032.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> </td></tr>
+<tr class="memdesc:ga437ad5d0c16115fb79ecdcff529399e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration containing severities to describe debug messages.  <a href="../../dc/d87/a00032.html#ga437ad5d0c16115fb79ecdcff529399e3">More...</a><br /></td></tr>
+<tr class="separator:ga437ad5d0c16115fb79ecdcff529399e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="memItemLeft" align="right" valign="top">const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#gab997b95b23c8cf033601fe5ebdffb4c4">th_VersionToString</a> (const <a class="el" href="../../d1/dea/a00054.html">th_Version_t</a> version, char *out_string)</td></tr>
-<tr class="memdesc:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the given version to a string and return it.  <br /></td></tr>
-<tr class="separator:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1e0086ab96a10c95c81d14edcff70d3e"><td class="memItemLeft" align="right" valign="top">const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#ga1e0086ab96a10c95c81d14edcff70d3e">th_ThalliumVersion</a> ()</td></tr>
-<tr class="memdesc:ga1e0086ab96a10c95c81d14edcff70d3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve, as a string, the version of Thallium that was compiled.  <br /></td></tr>
-<tr class="separator:ga1e0086ab96a10c95c81d14edcff70d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88e81a6db13dd6cfb6ac08a45621c6ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d87/a00032.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">th_CreateDebugger</a> (const <a class="el" href="../../dc/d87/a00032.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> severities)</td></tr>
+<tr class="memdesc:ga88e81a6db13dd6cfb6ac08a45621c6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a debugger struct with the specified configuration options.  <br /></td></tr>
+<tr class="separator:ga88e81a6db13dd6cfb6ac08a45621c6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad4bacb24b41c355fdccbc0313940b2ce"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d87/a00032.html#gad4bacb24b41c355fdccbc0313940b2ce">th_DestroyDebugger</a> (<a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:gad4bacb24b41c355fdccbc0313940b2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given debugger object.  <br /></td></tr>
+<tr class="separator:gad4bacb24b41c355fdccbc0313940b2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"></div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../da/d45/a00011.html">version.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../da/d45/a00011.html">debug.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Jan 10 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Sun Feb 12 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

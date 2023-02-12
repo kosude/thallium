@@ -122,16 +122,16 @@ $(document).ready(function(){initNavTree('d4/d8c/a00035.html','../../'); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga5497181dc2153b85bd2078b4c6f39b0d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8c/a00035.html#ga5497181dc2153b85bd2078b4c6f39b0d">thvk_ValidateInstanceExtension</a> (const char *const extensionName, const char *const layerName)</td></tr>
-<tr class="memdesc:ga5497181dc2153b85bd2078b4c6f39b0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the given instance extension.  <br /></td></tr>
-<tr class="separator:ga5497181dc2153b85bd2078b4c6f39b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadb79b168fca6c279474f8f98b294e617"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8c/a00035.html#gadb79b168fca6c279474f8f98b294e617">thvk_ValidateLayer</a> (const char *const layerName)</td></tr>
-<tr class="memdesc:gadb79b168fca6c279474f8f98b294e617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the given layer.  <br /></td></tr>
-<tr class="separator:gadb79b168fca6c279474f8f98b294e617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaccdb3b9957e04b918f64f521dd7f87a1"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8c/a00035.html#gaccdb3b9957e04b918f64f521dd7f87a1">thvk_ValidateInstanceExtension</a> (const char *const extensionName, const char *const layerName, const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:gaccdb3b9957e04b918f64f521dd7f87a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the given instance extension.  <br /></td></tr>
+<tr class="separator:gaccdb3b9957e04b918f64f521dd7f87a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6bdceae670fd3f4f0aaa8c4ddcdc3e5"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8c/a00035.html#gae6bdceae670fd3f4f0aaa8c4ddcdc3e5">thvk_ValidateLayer</a> (const char *const layerName, const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:gae6bdceae670fd3f4f0aaa8c4ddcdc3e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the given layer.  <br /></td></tr>
+<tr class="separator:gae6bdceae670fd3f4f0aaa8c4ddcdc3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga5497181dc2153b85bd2078b4c6f39b0d" name="ga5497181dc2153b85bd2078b4c6f39b0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5497181dc2153b85bd2078b4c6f39b0d">&#9670;&#160;</a></span>thvk_ValidateInstanceExtension()</h2>
+<a id="gaccdb3b9957e04b918f64f521dd7f87a1" name="gaccdb3b9957e04b918f64f521dd7f87a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaccdb3b9957e04b918f64f521dd7f87a1">&#9670;&#160;</a></span>thvk_ValidateInstanceExtension()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -146,7 +146,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *const&#160;</td>
-          <td class="paramname"><em>layerName</em>&#160;</td>
+          <td class="paramname"><em>layerName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
+          <td class="paramname"><em>debugger</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -161,6 +167,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">extensionName</td><td>The name of the instance extension to check </td></tr>
     <tr><td class="paramname">layerName</td><td>NULL or the name of the layer to check the extension against </td></tr>
+    <tr><td class="paramname">debugger</td><td>NULL or debugger to read configuration from when reporting debug messages </td></tr>
   </table>
   </dd>
 </dl>
@@ -170,8 +177,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gadb79b168fca6c279474f8f98b294e617" name="gadb79b168fca6c279474f8f98b294e617"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gadb79b168fca6c279474f8f98b294e617">&#9670;&#160;</a></span>thvk_ValidateLayer()</h2>
+<a id="gae6bdceae670fd3f4f0aaa8c4ddcdc3e5" name="gae6bdceae670fd3f4f0aaa8c4ddcdc3e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae6bdceae670fd3f4f0aaa8c4ddcdc3e5">&#9670;&#160;</a></span>thvk_ValidateLayer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,8 +187,18 @@ Functions</h2></td></tr>
           <td class="memname">const int thvk_ValidateLayer </td>
           <td>(</td>
           <td class="paramtype">const char *const&#160;</td>
-          <td class="paramname"><em>layerName</em></td><td>)</td>
+          <td class="paramname"><em>layerName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
+          <td class="paramname"><em>debugger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -189,6 +206,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">layerName</td><td>the name of the layer to validate </td></tr>
+    <tr><td class="paramname">debugger</td><td>NULL or debugger to read configuration from when reporting debug messages </td></tr>
   </table>
   </dd>
 </dl>
@@ -204,7 +222,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Jan 10 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Sun Feb 12 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

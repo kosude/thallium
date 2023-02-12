@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/vulkan/vk_render_system.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/version.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -112,42 +112,38 @@ $(document).ready(function(){initNavTree('d2/de7/a00014.html','../../'); initRes
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">vk_render_system.h File Reference</div></div>
+  <div class="headertitle"><div class="title">version.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>API-dependent render systems for Vulkan.  
+<p>Version structure definition and relevant function(s)  
 <a href="#details">More...</a></p>
 
 <p><a href="../../d2/de7/a00014_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A render system to hold Vulkan-specific rendering data.  <a href="../../d7/df7/a00058.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d03/a00062.html">thvk_RenderSystemDescriptor_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure describing a render system to be created.  <a href="../../df/d03/a00062.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dea/a00054.html">th_Version_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure to describe a version.  <a href="../../d1/dea/a00054.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga8c1976ebff59faa81235ba220d9d8c37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d8c/a00036.html#ga8c1976ebff59faa81235ba220d9d8c37">thvk_CreateRenderSystem</a> (const <a class="el" href="../../df/d03/a00062.html">thvk_RenderSystemDescriptor_t</a> descriptor)</td></tr>
-<tr class="memdesc:ga8c1976ebff59faa81235ba220d9d8c37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and return a heap-allocated Vulkan render system.  <br /></td></tr>
-<tr class="separator:ga8c1976ebff59faa81235ba220d9d8c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae75b162f13fc63c0399afbb2c593e4ba"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d8c/a00036.html#gae75b162f13fc63c0399afbb2c593e4ba">thvk_DestroyRenderSystem</a> (<a class="el" href="../../d7/df7/a00058.html">thvk_RenderSystem_t</a> *renderSystem)</td></tr>
-<tr class="memdesc:gae75b162f13fc63c0399afbb2c593e4ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given Vulkan render system object.  <br /></td></tr>
-<tr class="separator:gae75b162f13fc63c0399afbb2c593e4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="memItemLeft" align="right" valign="top">const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#gab997b95b23c8cf033601fe5ebdffb4c4">th_VersionToString</a> (const <a class="el" href="../../d1/dea/a00054.html">th_Version_t</a> version, char *out_string)</td></tr>
+<tr class="memdesc:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the given version to a string and return it.  <br /></td></tr>
+<tr class="separator:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga079a6eec1ee51e03d1671a90b42175c2"><td class="memItemLeft" align="right" valign="top">const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#ga079a6eec1ee51e03d1671a90b42175c2">th_GetThalliumVersion</a> ()</td></tr>
+<tr class="memdesc:ga079a6eec1ee51e03d1671a90b42175c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve, as a string, the version of Thallium that was compiled.  <br /></td></tr>
+<tr class="separator:ga079a6eec1ee51e03d1671a90b42175c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"></div></div><!-- contents -->
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_1500ff34775cbad5418b92be88e6a332.html">vulkan</a></li><li class="navelem"><a class="el" href="../../d2/de7/a00014.html">vk_render_system.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../d2/de7/a00014.html">version.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Jan 10 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Sun Feb 12 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

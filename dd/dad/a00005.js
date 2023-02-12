@@ -1,6 +1,5 @@
 var a00005 =
 [
-    [ "th_Renderer_t", "db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869", null ],
-    [ "th_CreateRenderer", "db/df3/a00034.html#ga1190a4d2ce3e0bbe3cc84a41f5029364", null ],
-    [ "th_DestroyRenderer", "db/df3/a00034.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d", null ]
+    [ "thvk_CreateRenderSystem", "de/d8c/a00036.html#ga4c8c9582ed9465a8c1432ba96048d2e0", null ],
+    [ "thvk_DestroyRenderSystem", "de/d8c/a00036.html#gae75b162f13fc63c0399afbb2c593e4ba", null ]
 ];
