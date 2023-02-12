@@ -100,8 +100,8 @@ var NAVTREEINDEX0 =
 "globals_type.html":[2,1,2],
 "index.html":[0],
 "index.html":[],
+"index.html#sct_mainpage_building":[0,0],
 "index.html#sct_mainpage_internaldocs":[0,1],
-"index.html#sct_mainpage_summary":[0,0],
 "modules.html":[1],
 "pages.html":[]
 };
