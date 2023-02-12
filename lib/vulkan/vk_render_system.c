@@ -171,10 +171,10 @@ static const int _CreateInstance(VkInstance *instance, const thvk_RenderSystemDe
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-thvk_RenderSystem_t *thvk_CreateRenderSystem(const thvk_RenderSystemDescriptor_t descriptor) {
+thvk_RenderSystem_t *thvk_CreateRenderSystem(const thvk_RenderSystemDescriptor_t descriptor, const th_Debugger_t *debugger) {
     thvk_RenderSystem_t *r = malloc(sizeof(thvk_RenderSystem_t));
     if (!r) {
-        th_Fatal("MALLOC fault in th_CreateRenderer!");
+        th_Fatal(debugger, "MALLOC fault in th_CreateRenderer!");
         return NULL;
     }
 
@@ -182,7 +182,7 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const thvk_RenderSystemDescriptor_t
         return NULL;
     }
 
-    th_Log("Created Vulkan render system at %p", r);
+    th_Log(debugger, "Created Vulkan render system at %p", r);
 
     return r;
 }

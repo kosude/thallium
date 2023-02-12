@@ -105,11 +105,13 @@ typedef struct th_RendererExtensionDescriptor_t {
  * compiled. Otherwise, they will be ignored.
  *
  * @param descriptor The extension descriptor to check
+ * @param debugger Debugger to read configuration options from (or NULL for no debugging)
  * @return 0 if the descriptor was INVALID
  * @return 1 if the descriptor was VALID
  */
 const int th_ValidateRendererExtensionDescriptor(
-    const th_RendererExtensionDescriptor_t descriptor
+    const th_RendererExtensionDescriptor_t descriptor,
+    const th_Debugger_t *debugger
 );
 
 #ifdef __cplusplus

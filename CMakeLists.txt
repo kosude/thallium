@@ -104,7 +104,6 @@ if (NOT THALLIUM_SKIP_VERSION)
         BYPRODUCTS "${PROJECT_BINARY_DIR}/generated/dyn_version.h"
         WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
     )
-    message("${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/utils/py/GetVersion.py cfg")
 
     execute_process(
         COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_LIST_DIR}/utils/py/GetVersion.py"
@@ -157,6 +156,8 @@ message(STATUS "BUILT docs?\t\t=>\t${THALLIUM_BUILD_DOCS}")
 if (THALLIUM_BUILD_DOCS)
     message(STATUS "  - see output at ${PROJECT_BINARY_DIR}/docs/html/index.html")
 endif()
+
+message(STATUS "Debug layer enabled?\t=>\t${THALLIUM_DEBUG_LAYER}")
 
 message("")
 

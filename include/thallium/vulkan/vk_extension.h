@@ -34,12 +34,14 @@
  *
  * @param extensionName The name of the instance extension to check
  * @param layerName NULL or the name of the layer to check the extension against
+ * @param debugger NULL or debugger to read configuration from when reporting debug messages
  * @return 0 if the instance extension was INVALID
  * @return 1 if the instance extension was VALID
  */
 const int thvk_ValidateInstanceExtension(
     const char *const extensionName,
-    const char *const layerName
+    const char *const layerName,
+    const th_Debugger_t *debugger
 );
 
 /**
@@ -49,11 +51,13 @@ const int thvk_ValidateInstanceExtension(
  * Validate the given layer.
  *
  * @param layerName the name of the layer to validate
+ * @param debugger NULL or debugger to read configuration from when reporting debug messages
  * @return 0 if the layer was INVALID
  * @return 1 if the layer was VALID
  */
 const int thvk_ValidateLayer(
-    const char *const layerName
+    const char *const layerName,
+    const th_Debugger_t *debugger
 );
 
 #ifdef __cplusplus

@@ -1,6 +1,4 @@
 set(SOURCES_CORE
-    "state/state.c"
-
     "utils/io_colour.c"
     "utils/log.c"
     "utils/primitive.c"

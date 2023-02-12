@@ -11,7 +11,7 @@
 
 #include "utils/io_colour.h"
 #include "utils/proc.h"
-#include "state/state.h"
+#include "types.h"
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -22,11 +22,11 @@
 #define MAX_DBGMSG_LEN 512
 
 /**
- * @brief Return from the parent function if the given severity is not included in the user filter.
+ * @brief Return from the parent function if the given severity is not included in the debugger filter.
  */
-#define ASSERT_FILTER(sev) \
+#define ASSERT_FILTER(debugger, sev) \
 { \
-    if ((thallium.debugSeverityFilter & sev) != sev) { \
+    if (!debugger || (debugger->debugSeverityFilter & sev) != sev) { \
         return 1; \
     } \
 }
@@ -45,9 +45,9 @@
     va_end(varargs); \
 }
 
-const int th_Log(const char *format, ...) {
+const int th_Log(const th_Debugger_t *debugger, const char *format, ...) {
 #   ifdef THALLIUM_DEBUG_LAYER
-        ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
+        ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT);
 
         char msg[MAX_DBGMSG_LEN];
         FORMAT_STR(format);
@@ -58,9 +58,9 @@ const int th_Log(const char *format, ...) {
     return 1;
 }
 
-const int th_Note(const char *format, ...) {
+const int th_Note(const th_Debugger_t *debugger, const char *format, ...) {
 #   ifdef THALLIUM_DEBUG_LAYER
-        ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
+        ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
         char msg[MAX_DBGMSG_LEN];
         FORMAT_STR(format);
@@ -73,9 +73,9 @@ const int th_Note(const char *format, ...) {
     return 1;
 }
 
-const int th_Hint(const char *format, ...) {
+const int th_Hint(const th_Debugger_t *debugger, const char *format, ...) {
 #   ifdef THALLIUM_DEBUG_LAYER
-        ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
+        ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_NOTIF_BIT);
 
         char msg[MAX_DBGMSG_LEN];
         FORMAT_STR(format);
@@ -88,41 +88,47 @@ const int th_Hint(const char *format, ...) {
     return 1;
 }
 
-const int th_Warn(const char *format, ...) {
-    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_WARNING_BIT);
+const int th_Warn(const th_Debugger_t *debugger, const char *format, ...) {
+#   ifdef THALLIUM_DEBUG_LAYER
+        ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_WARNING_BIT);
 
-    char msg[MAX_DBGMSG_LEN];
-    FORMAT_STR(format);
+        char msg[MAX_DBGMSG_LEN];
+        FORMAT_STR(format);
 
-    th_SetIOColour(THALLIUM_IO_COLOUR_YELLOW, 0xFF, stdout);
-    printf("(thallium!) WARN: %s\n", msg);
-    th_DefaultIOColour(stdout);
-
-    return 1;
-}
-
-const int th_Error(const char *format, ...) {
-    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_ERROR_BIT);
-
-    char msg[MAX_DBGMSG_LEN];
-    FORMAT_STR(format);
-
-    th_SetIOColour(THALLIUM_IO_COLOUR_RED, 0xFF, stderr);
-    fprintf(stderr, "(thallium!) ERROR: %s\n", msg);
-    th_DefaultIOColour(stderr);
+        th_SetIOColour(THALLIUM_IO_COLOUR_YELLOW, 0xFF, stdout);
+        printf("(thallium!) WARN: %s\n", msg);
+        th_DefaultIOColour(stdout);
+#   endif
 
     return 1;
 }
 
-const int th_Fatal(const char *format, ...) {
-    ASSERT_FILTER(THALLIUM_DEBUG_SEVERITY_FATAL_BIT);
+const int th_Error(const th_Debugger_t *debugger, const char *format, ...) {
+#   ifdef THALLIUM_DEBUG_LAYER
+        ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_ERROR_BIT);
 
-    char msg[MAX_DBGMSG_LEN];
-    FORMAT_STR(format);
+        char msg[MAX_DBGMSG_LEN];
+        FORMAT_STR(format);
 
-    th_SetIOColour(THALLIUM_IO_COLOUR_RED, THALLIUM_IO_COLOUR_YELLOW, stderr);
-    fprintf(stderr, "(thallium!) FATAL: %s\n", msg);
-    th_DefaultIOColour(stderr);
+        th_SetIOColour(THALLIUM_IO_COLOUR_RED, 0xFF, stderr);
+        fprintf(stderr, "(thallium!) ERROR: %s\n", msg);
+        th_DefaultIOColour(stderr);
+#   endif
+
+    return 1;
+}
+
+const int th_Fatal(const th_Debugger_t *debugger, const char *format, ...) {
+#   ifdef THALLIUM_DEBUG_LAYER
+        ASSERT_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_FATAL_BIT);
+
+        char msg[MAX_DBGMSG_LEN];
+        FORMAT_STR(format);
+
+        th_SetIOColour(THALLIUM_IO_COLOUR_RED, THALLIUM_IO_COLOUR_YELLOW, stderr);
+        fprintf(stderr, "(thallium!) FATAL: %s\n", msg);
+        th_DefaultIOColour(stderr);
+#   endif
 
     th_KillProc();
 

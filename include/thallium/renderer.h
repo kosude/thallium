@@ -41,6 +41,8 @@
  * @brief A structure to represent a graphics API.
  *
  * This opaque structure provides a representation of a certain graphics API.
+ *
+ * @sa th_CreateRenderer()
  */
 typedef struct th_Renderer_t th_Renderer_t;
 
@@ -83,10 +85,12 @@ typedef struct th_RendererDescriptor_t {
  * being used.
  *
  * @param descriptor creation description for the renderer
+ * @param debugger Debugger to read configuration from when debugging (or NULL for no debugging)
  * @return Pointer to the new renderer object
  */
 th_Renderer_t *th_CreateRenderer(
-    const th_RendererDescriptor_t descriptor
+    const th_RendererDescriptor_t descriptor,
+    th_Debugger_t *debugger
 );
 
 /**

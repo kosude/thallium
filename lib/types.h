@@ -35,7 +35,22 @@ typedef struct th_Renderer_t {
     /// @brief Render system - the API-specific data held within the renderer.
     /// This structure is defined in the relevant module.
     void *renderSystem;
+
+    /// @brief Debugger to read configuration from when reporting debug messages.
+    /// (Can be NULL - this just means no debug messages)
+    th_Debugger_t *debugger;
 } th_Renderer_t;
+
+/**
+ * @ingroup opaque_types
+ * @brief A structure used to debug renderers.
+ *
+ * This opaque structure provides debugging configuration options for Thallium renderers.
+ */
+typedef struct th_Debugger_t {
+    /// @brief th_DebugSeverity_t bit-field holding severities of messages to display.
+    int debugSeverityFilter;
+} th_Debugger_t;
 
 #ifdef __cplusplus
     }

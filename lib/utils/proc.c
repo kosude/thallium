@@ -7,13 +7,11 @@
 
 #include "proc.h"
 
-#include "thallium/debug.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
 const int th_KillProc() {
-    fprintf(stderr, "(thallium!) HALT AND CATCH FIRE -- invoked by libthallium\n");
+    fprintf(stderr, "HALT_AND_CATCH_FIRE ~libthallium\n");
     exit(EXIT_FAILURE);
 
     return 1;

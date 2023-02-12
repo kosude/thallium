@@ -86,13 +86,15 @@ typedef struct thvk_RenderSystemDescriptor_t {
  * creation, NULL will be returned instead.
  *
  * @param descriptor Description of the render system to create.
+ * @param debugger Debugger to read configuration options from when posting debug messages
  * @return The new render system
  *
  * @sa @ref thvk_RenderSystem_t
  * @sa @ref thvk_DestroyRenderSystem()
  */
 thvk_RenderSystem_t *thvk_CreateRenderSystem(
-    const thvk_RenderSystemDescriptor_t descriptor
+    const thvk_RenderSystemDescriptor_t descriptor,
+    const th_Debugger_t *debugger
 );
 
 /**

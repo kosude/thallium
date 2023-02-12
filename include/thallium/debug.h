@@ -12,7 +12,7 @@
  * @defgroup debug Library debug configuration
  * @brief Functions pertaining to Thallium debugging
  *
- * Library compounds for configuring Thallium debug output.
+ * Library compounds for configuring Thallium debug output with debuggers.
  *
  * Note that these are independent of the graphics API - for instance, you would still need to handle a
  * Vulkan debug messenger pipeline yourself.
@@ -31,7 +31,8 @@
  *
  * This enumeration contains severities to describe debug messages.
  *
- * @sa @ref th_ConfigureDebugMessageFilter()
+ * @sa @ref th_Debugger_t
+ * @sa @ref th_CreateDebugger()
  */
 typedef enum th_DebugSeverity_t {
     /// @brief Includes log messages.
@@ -50,21 +51,48 @@ typedef enum th_DebugSeverity_t {
 
 /**
  * @ingroup debug
- * @brief Select certain types of debugging messages to be displayed by Thallium.
+ * @brief A structure used to debug renderers.
  *
- * This function enables Thallium debug output with the specified criteria.
+ * This structure can be created and passed to renderer creation to enable runtime
+ * debug messages - for instance, it is needed to recieve errors and warnings.
  *
- * A list of error severities can be seen in the documentation for the @ref th_DebugSeverity_t enumeration.
+ * Note that this is independent of API-specific debugging methods (such as OpenGL debug output).
  *
- * @param severityBits bit field of @ref th_DebugSeverity_t enumerator(s)
+ * @warning Debuggers will not be used if the Thallium debug layer was not enabled on compilation.
+ *
+ * @sa @ref th_CreateDebugger()
+ */
+typedef struct th_Debugger_t th_Debugger_t;
+
+/**
+ * @ingroup debug
+ * @brief Create a debugger struct with the specified configuration options.
+ *
+ * This function creates a debugger structure with the specified configuration options.
+ *
+ * @param severities bit field of @ref th_DebugSeverity_t enumerator(s) - messages of these severities will be reported
+ * @return Pointer to the new debugger
+ *
+ * @sa @ref th_Debugger_t
+ */
+th_Debugger_t *th_CreateDebugger(
+    const th_DebugSeverity_t severities
+);
+
+/**
+ * @ingroup debug
+ * @brief Free the given debugger object.
+ *
+ * This function frees the specified debugger object. You should set the pointer to NULL
+ * after calling this function, as you would normally when calling free().
+ *
+ * @param debugger Pointer to the debugger object to free.
  * @return @returnstatus
  *
  * @alwaysok
- *
- * @sa @ref th_DebugSeverity_t
  */
-const int th_ConfigureDebugMessageFilter(
-    const th_DebugSeverity_t severityBits
+const int th_DestroyDebugger(
+    th_Debugger_t *debugger
 );
 
 #ifdef __cplusplus

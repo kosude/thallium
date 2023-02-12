@@ -23,6 +23,8 @@
     extern "C" {
 #endif // __cplusplus
 
+typedef struct th_Debugger_t th_Debugger_t;
+
 /**
  * @ingroup utils_log
  * @brief Write a log message to stdout.
@@ -34,6 +36,7 @@
  *
  * The message is printed in the default text colour.
  *
+ * @param debugger Debugger to read configuration from
  * @param format String format
  * @param ... Variadic formatted string arguments
  * @return @returnstatus
@@ -41,6 +44,7 @@
  * @alwaysok
  */
 const int th_Log(
+    const th_Debugger_t *debugger,
     const char *format,
     ...
 );
@@ -56,6 +60,7 @@ const int th_Log(
  *
  * The message is printed in a blue foreground colour.
  *
+ * @param debugger Debugger to read configuration from
  * @param format String format
  * @param ... Variadic formatted string arguments
  * @return @returnstatus
@@ -63,6 +68,7 @@ const int th_Log(
  * @alwaysok
  */
 const int th_Note(
+    const th_Debugger_t *debugger,
     const char *format,
     ...
 );
@@ -79,6 +85,7 @@ const int th_Note(
  * The message is printed in a grey foreground colour, and is **treated with the same
  * severity as [notes](@ref th_Note())**.
  *
+ * @param debugger Debugger to read configuration from
  * @param format String format
  * @param ... Variadic formatted string arguments
  * @return @returnstatus
@@ -86,6 +93,7 @@ const int th_Note(
  * @alwaysok
  */
 const int th_Hint(
+    const th_Debugger_t *debugger,
     const char *format,
     ...
 );
@@ -101,6 +109,7 @@ const int th_Hint(
  *
  * The message is printed in a yellow foreground colour.
  *
+ * @param debugger Debugger to read configuration from
  * @param format String format
  * @param ... Variadic formatted string arguments
  * @return @returnstatus
@@ -108,6 +117,7 @@ const int th_Hint(
  * @alwaysok
  */
 const int th_Warn(
+    const th_Debugger_t *debugger,
     const char *format,
     ...
 );
@@ -123,6 +133,7 @@ const int th_Warn(
  *
  * The message is printed in a red foreground colour.
  *
+ * @param debugger Debugger to read configuration from
  * @param format String format
  * @param ... Variadic formatted string arguments
  * @return @returnstatus
@@ -130,6 +141,7 @@ const int th_Warn(
  * @alwaysok
  */
 const int th_Error(
+    const th_Debugger_t *debugger,
     const char *format,
     ...
 );
@@ -145,6 +157,7 @@ const int th_Error(
  *
  * Due to its implied importance, the message is printed in a red foreground colour on a yellow background.
  *
+ * @param debugger Debugger to read configuration from
  * @param format String format
  * @param ... Variadic formatted string arguments
  * @return @returnstatus
@@ -152,6 +165,7 @@ const int th_Error(
  * @alwaysok
  */
 const int th_Fatal(
+    const th_Debugger_t *debugger,
     const char *format,
     ...
 );

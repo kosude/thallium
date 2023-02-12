@@ -18,9 +18,9 @@
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-const int thvk_ValidateInstanceExtension(const char *const extensionName, const char *const layerName) {
+const int thvk_ValidateInstanceExtension(const char *const extensionName, const char *const layerName, const th_Debugger_t *debugger) {
     if (!extensionName) {
-        th_Error("Extension name parameter NULL in thvk_ValidateInstanceExtension");
+        th_Error(debugger, "Extension name parameter NULL in thvk_ValidateInstanceExtension");
         return 0;
     }
 
@@ -29,7 +29,7 @@ const int thvk_ValidateInstanceExtension(const char *const extensionName, const 
 
     VkExtensionProperties *availableExts = malloc(extCount * sizeof(VkExtensionProperties));
     if (!availableExts) {
-        th_Fatal("MALLOC fault in thvk_ValidateInstanceExtension!");
+        th_Fatal(debugger, "MALLOC fault in thvk_ValidateInstanceExtension!");
         return 0;
     }
     vkEnumerateInstanceExtensionProperties(layerName, &extCount, availableExts);
@@ -50,9 +50,9 @@ const int thvk_ValidateInstanceExtension(const char *const extensionName, const 
     return found;
 }
 
-const int thvk_ValidateLayer(const char *const layerName) {
+const int thvk_ValidateLayer(const char *const layerName, const th_Debugger_t *debugger) {
     if (!layerName) {
-        th_Error("Layer name parameter NULL in thvk_ValidateLayer");
+        th_Error(debugger, "Layer name parameter NULL in thvk_ValidateLayer");
         return 0;
     }
 
@@ -61,7 +61,7 @@ const int thvk_ValidateLayer(const char *const layerName) {
 
     VkLayerProperties *availableLayers = malloc(layerCount * sizeof(VkLayerProperties));
     if (!availableLayers) {
-        th_Fatal("MALLOC fault in thvk_ValidateLayer!");
+        th_Fatal(debugger, "MALLOC fault in thvk_ValidateLayer!");
         return 0;
     }
     vkEnumerateInstanceLayerProperties(&layerCount, availableLayers);

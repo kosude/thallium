@@ -15,19 +15,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define RENDER_SYSTEM_CREATE_ERROR { \
+#define RENDER_SYSTEM_CREATE_ERROR(debugger) { \
     char apiVer[256], appVer[256], engVer[256]; \
     \
     th_VersionToString(descriptor.apiVersion, apiVer); \
     th_VersionToString(descriptor.applicationVersion, appVer); \
     th_VersionToString(descriptor.engineVersion, engVer); \
     \
-    th_Error("Failed to create render system (th_CreateRenderer)"); \
-    th_Hint("API = \"%s\" (%s)", descriptor.apiName, apiVer); \
-    th_Hint("Application name = %s", descriptor.applicationName); \
-    th_Hint("Application version = %s", appVer); \
-    th_Hint("Engine name = %s", descriptor.engineName); \
-    th_Hint("Engine version = %s", engVer); \
+    th_Error(debugger, "Failed to create render system (th_CreateRenderer)"); \
+    th_Hint(debugger, "API = \"%s\" (%s)", descriptor.apiName, apiVer); \
+    th_Hint(debugger, "Application name = %s", descriptor.applicationName); \
+    th_Hint(debugger, "Application version = %s", appVer); \
+    th_Hint(debugger, "Engine name = %s", descriptor.engineName); \
+    th_Hint(debugger, "Engine version = %s", engVer); \
 }
 
 // Typedef for readability: different IDs to represent different graphics APIs.
@@ -61,12 +61,15 @@ typedef enum ApiId_t {
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor) {
+th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_Debugger_t *debugger) {
     th_Renderer_t *r = malloc(sizeof(th_Renderer_t));
     if (!r) {
-        th_Fatal("MALLOC fault in th_CreateRenderer!");
+        th_Fatal(debugger, "MALLOC fault in th_CreateRenderer!");
         return NULL;
     }
+
+    // copy debugger pointer to renderer for future functions
+    r->debugger = debugger;
 
     // vulkan renderers
     if (!strcmp(descriptor.apiName, "vulkan")) {
@@ -92,20 +95,20 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor) {
             };
 
             // create the render system
-            r->renderSystem = thvk_CreateRenderSystem(renderSystemDescr);
+            r->renderSystem = thvk_CreateRenderSystem(renderSystemDescr, debugger);
             if (!r->renderSystem) {
-                RENDER_SYSTEM_CREATE_ERROR;
+                RENDER_SYSTEM_CREATE_ERROR(debugger);
                 return NULL;
             }
 #       else
-            th_Error("th_CreateRenderer attempted to create renderer for API which was not compiled (\"%s\")", descriptor.apiName);
-            th_Hint("Recompile Thallium with the -DTHALLIUM_BUILD_MODULE_VULKAN=ON flag!");
+            th_Error(debugger, "th_CreateRenderer attempted to create renderer for API which was not compiled (\"%s\")", descriptor.apiName);
+            th_Hint(debugger, "Recompile Thallium with the -DTHALLIUM_BUILD_MODULE_VULKAN=ON flag!");
             return NULL;
 #       endif
     }
     // other/invalid renderers
     else {
-        th_Error("Invalid graphics API \"%s\" specified in th_CreateRenderer", descriptor.apiName);
+        th_Error(debugger, "Invalid graphics API \"%s\" specified in th_CreateRenderer", descriptor.apiName);
         return NULL;
     }
 

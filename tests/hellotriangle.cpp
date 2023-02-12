@@ -22,7 +22,8 @@ static std::vector<const char *> VulkanLayers {
 int main() {
     printf("-- Thallium %s\n\n", th_GetThalliumVersion());
 
-    th_ConfigureDebugMessageFilter(THALLIUM_DEBUG_SEVERITY_ALL_BIT);
+    // debugger for thallium functions
+    th_Debugger_t *debugger = th_CreateDebugger(THALLIUM_DEBUG_SEVERITY_ALL_BIT);
 
     th_RendererExtensionDescriptor_t extensionDescr = {
         // vulkan renderers
@@ -38,7 +39,7 @@ int main() {
             | THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT
         }
     };
-    if (!th_ValidateRendererExtensionDescriptor(extensionDescr)) {
+    if (!th_ValidateRendererExtensionDescriptor(extensionDescr, debugger)) {
         std::cout << "Problem with renderer extension descriptor" << std::endl;
         return 1;
     }
@@ -51,7 +52,7 @@ int main() {
         "No Engine",        // engine name
         { 0, 0, 0 },        // engine version
         extensionDescr      // extension descriptor
-    });
+    }, debugger);
 
     if (!vulkan) {
         printf("Could not create renderer\n");
