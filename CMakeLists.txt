@@ -16,6 +16,7 @@ set(THALLIUM_TESTS_DIR "${CMAKE_CURRENT_LIST_DIR}/tests")
 set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}")
 
 set(THALLIUM_LIBRARIES)
+set(THALLIUM_LIBRARY_DEFS)
 
 if (MSVC)
     add_compile_options(
@@ -61,7 +62,7 @@ endif()
 
 option(THALLIUM_DEBUG_LAYER "Enable Thallium debugging utilities (applies to both Debug and Release configs)" ON)
 if (THALLIUM_DEBUG_LAYER)
-    add_compile_definitions("THALLIUM_DEBUG_LAYER")
+    set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "THALLIUM_DEBUG_LAYER")
 endif()
 
 if (BUILD_SHARED_LIBS)
@@ -78,6 +79,22 @@ if (NOT CMAKE_BUILD_TYPE)
     message(FATAL_ERROR "Missing build configuration type! Reconfigure project with option -DCMAKE_BUILD_TYPE=(Debug|Release)")
 endif()
 
+option(THALLIUM_SKIP_VERSION "Skip getting Thallium version dynamically" OFF)
+
+# either building docs or otherwise not skipping version retrieval
+if (NOT THALLIUM_SKIP_VERSION OR THALLIUM_BUILD_DOCS)
+    find_package(Python3 REQUIRED COMPONENTS Interpreter)
+
+    execute_process(
+        COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_LIST_DIR}/utils/py/GetVersion.py"
+        OUTPUT_VARIABLE THALLIUM_VERSION
+    )
+else()
+    set(THALLIUM_VERSION "unknown_version")
+endif()
+
+set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "THALLIUM_VERSION=\"${THALLIUM_VERSION}\"")
+
 if (THALLIUM_BUILD_LIB)
     add_subdirectory("${THALLIUM_LIB_DIR}/")
 endif()
@@ -93,24 +110,6 @@ endif()
 # if (THALLIUM_BUILD_EXAMPLES)
 #     add_subdirectory("${THALLIUM_EXAMPLES_DIR}/")
 # endif()
-
-option(THALLIUM_SKIP_VERSION "Skip getting Thallium version dynamically" OFF)
-if (NOT THALLIUM_SKIP_VERSION)
-    find_package(Python3 REQUIRED COMPONENTS Interpreter)
-
-    add_custom_target(${PROJECT_NAME}version
-        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/utils/py/GetVersion.py cfg
-        BYPRODUCTS "${PROJECT_BINARY_DIR}/generated/dyn_version.h"
-        WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-    )
-
-    execute_process(
-        COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_LIST_DIR}/utils/py/GetVersion.py"
-        OUTPUT_VARIABLE THALLIUM_VERSION
-    )
-else()
-    configure_file("${THALLIUM_CMAKE_DIR}/generate/dyn_version_skip.h" "${PROJECT_BINARY_DIR}/generated/dyn_version.h")
-endif()
 
 if (APPLE OR CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(SUMMARY_TARGET_ARCH "AMD64 (x86_64)")
@@ -164,3 +163,5 @@ message(STATUS "See the online documentation at https://kosude.github.io/thalliu
 message(STATUS "Or contribute to the upstream repository at https://github.com/kosude/thallium")
 
 message("")
+
+message(STATUS "Thallium version ${THALLIUM_VERSION}")

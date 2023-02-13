@@ -48,9 +48,9 @@ const void th_VersionToString(
 
 /**
  * @ingroup utils
- * @brief Retrieve, as a string, the version of Thallium that was compiled.
+ * @brief Retrieve, as a human-readable string, the version of Thallium that was compiled.
  *
- * This function returns the version of Thallium that was compiled in the format of a string.
+ * This function returns the version of Thallium that was compiled in the format of a human-readable string.
  *
  * @return Thallium version
  */

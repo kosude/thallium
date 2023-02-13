@@ -7,7 +7,7 @@
 
 #include "thallium.h"
 
-#include "dyn_version.h"
+// #include "dyn_version.h"
 
 #include <stdio.h>
 

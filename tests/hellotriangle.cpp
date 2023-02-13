@@ -61,5 +61,7 @@ int main() {
 
     th_DestroyRenderer(vulkan);
 
+    th_DestroyDebugger(debugger);
+
     return 0;
 }

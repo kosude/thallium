@@ -182,7 +182,7 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const thvk_RenderSystemDescriptor_t
         return NULL;
     }
 
-    th_Log(debugger, "Created Vulkan render system at %p", r);
+    th_Note(debugger, "Created Vulkan render system at %p", r);
 
     return r;
 }

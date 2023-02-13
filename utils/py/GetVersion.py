@@ -10,7 +10,6 @@
 # Produce a dynamically-generated project version string from the latest Git
 # tag and commit names, as well as the date of the last commit.
 # Note! This MUST be executed from the root directory (thallium/)!!!
-# Pass "cfg" as a CLI argument to also create a build/generated/dyn_version.h file.
 
 # dependencies:
 # GitPython (https://github.com/gitpython-developers/GitPython)
@@ -20,7 +19,6 @@
 PRERELEASE = True
 
 import os
-import sys
 from datetime import datetime, timezone
 from git import Repo
 
@@ -45,7 +43,6 @@ date_time = datetime.fromtimestamp(date_epoch, timezone.utc)
 
 date = str(date_time.date())
 
-
 # concatenate + conditional dev_ suffix
 
 version_str = current_tag
@@ -55,21 +52,5 @@ if PRERELEASE:
 
 version_str += " (" + date + ")"
 
-if len(sys.argv) > 1 and sys.argv[1] == "cfg":
-    header_path = "build/generated/"
-
-    if not os.path.exists(header_path):
-        os.makedirs(header_path)
-
-    with open(os.path.join(header_path, "dyn_version.h"), "w") as file:
-        file.write("""#pragma once
-#ifndef _DYN_VERSION_H
-#define _DYN_VERSION_H
-
-#define THALLIUM_VERSION \"{0}\"
-
-#endif // _DYN_VERSION_H
-        """.format(version_str))
-else:
-    # output -> version_str
-    print(version_str)
+# output -> version_str
+print(version_str, end="")

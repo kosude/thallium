@@ -14,24 +14,17 @@ set(SOURCES_CORE
 # Core library
 
 add_library(${PROJECT_NAME}_core ${LIB_BUILD_TYPE} ${SOURCES_CORE})
+
 set(THALLIUM_LIBRARIES ${THALLIUM_LIBRARIES} ${PROJECT_NAME}_core)
 
 target_include_directories(
-${PROJECT_NAME}_core
-PUBLIC
-    "${THALLIUM_INCLUDE_DIR}"
-PRIVATE
-    "${THALLIUM_LIB_DIR}" # this directory for internal headers
-    "${PROJECT_BINARY_DIR}/generated" # for generated resources and headers
+    ${PROJECT_NAME}_core
+    PUBLIC
+        "${THALLIUM_INCLUDE_DIR}"
+    PRIVATE
+        "${THALLIUM_LIB_DIR}" # this directory for internal headers
+        "${PROJECT_BINARY_DIR}/generated" # for generated resources and headers
 )
-
-if (NOT THALLIUM_SKIP_VERSION)
-    add_dependencies(${PROJECT_NAME}_core ${PROJECT_NAME}version)
-endif()
-
-if (THALLIUM_BUILD_MODULE_VULKAN)
-    target_compile_definitions(${PROJECT_NAME}_core PRIVATE "THALLIUM_VULKAN_INCL")
-endif()
 
 
 # API modules
@@ -47,6 +40,8 @@ endif()
 
 configure_file("${THALLIUM_CMAKE_DIR}/generate/modules.h" "${PROJECT_BINARY_DIR}/generated/cmake_modules.h")
 
+# add compilation definitions AFTER subdirectories so module flags are included
+target_compile_definitions(${PROJECT_NAME}_core PRIVATE ${THALLIUM_LIBRARY_DEFS})
 
 # Interface library
 

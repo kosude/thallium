@@ -34,7 +34,8 @@ project, if that's what you prefer.
 
 > **Note**: By default, a detailed project version is fetched dynamically (via a Python script) with information from Git.
 > This can be disabled by setting THALLIUM_SKIP_VERSION to ON. If it is not disabled, you need to have the
-> [GitPython](https://github.com/gitpython-developers/GitPython) package installed.
+> [GitPython](https://github.com/gitpython-developers/GitPython) package installed. **This cannot be disabled if documentation
+> is being built.**
 
 ### When building core library
 
