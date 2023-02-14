@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_947e856 (2023-02-14)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_f040899 (2023-02-14)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -151,6 +151,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d">th_DestroyRenderer</a> (<a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
 <tr class="memdesc:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given renderer object.  <br /></td></tr>
 <tr class="separator:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0ce080d05a07073492125a60997274ca"><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga0ce080d05a07073492125a60997274ca">th_GetRendererRenderSystem</a> (const <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
+<tr class="memdesc:ga0ce080d05a07073492125a60997274ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to the render system within the given renderer.  <br /></td></tr>
+<tr class="separator:ga0ce080d05a07073492125a60997274ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Type Documentation</h2>
 <a id="ga49c612e4742d9a5b5decdc74bfe0c869" name="ga49c612e4742d9a5b5decdc74bfe0c869"></a>
@@ -233,6 +236,32 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd><em>This function will always return 1</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ga0ce080d05a07073492125a60997274ca" name="ga0ce080d05a07073492125a60997274ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0ce080d05a07073492125a60997274ca">&#9670;&#160;</a></span>th_GetRendererRenderSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void * th_GetRendererRenderSystem </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td>
+          <td class="paramname"><em>renderer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function returns a pointer to the <a class="el" href="../../de/d8c/a00036.html">render system</a> within the given renderer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Pointer to the renderer to evaluate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The render system within the renderer. This should not be NULL! </dd></dl>
 
 </div>
 </div>
