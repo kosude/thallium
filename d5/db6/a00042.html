@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>th_RendererExtensionDescriptor_t Struct Reference - Thallium</title>
+        <title>th_VulkanRendererExtensionDescriptor_t Struct Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_099fb35 (2023-02-13)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_947e856 (2023-02-14)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,53 +112,47 @@ $(document).ready(function(){initNavTree('d5/db6/a00042.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">th_RendererExtensionDescriptor_t Struct Reference<div class="ingroups"><a class="el" href="../../d0/dc0/a00033.html">Extending graphics APIs and renderers</a></div></div></div>
+  <div class="headertitle"><div class="title">th_VulkanRendererExtensionDescriptor_t Struct Reference<div class="ingroups"><a class="el" href="../../d0/dc0/a00033.html">Extending graphics APIs and renderers</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A struct to describe extensions to each graphics API.  
+<p>A struct to describe extensions for Vulkan renderers.  
  <a href="../../d5/db6/a00042.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:aecbec6d5d5db48ac83e9ade8b8ce9b75"><td class="memItemLeft" ><a id="aecbec6d5d5db48ac83e9ade8b8ce9b75" name="aecbec6d5d5db48ac83e9ade8b8ce9b75"></a>
-struct {</td></tr>
-<tr class="memitem:af7d805fa65427ea3a7ac7167dd310a3c"><td class="memItemLeft" >
-&#160;&#160;&#160;const char **&#160;&#160;&#160;<b>extensionNames</b></td></tr>
-<tr class="memdesc:af7d805fa65427ea3a7ac7167dd310a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of names of Vulkan instance extensions to enable,. <br /></td></tr>
-<tr class="separator:af7d805fa65427ea3a7ac7167dd310a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3665af26e400f0eb99cd2a3b455ebf2e"><td class="memItemLeft" >
-&#160;&#160;&#160;int&#160;&#160;&#160;<b>extensionCount</b></td></tr>
-<tr class="memdesc:a3665af26e400f0eb99cd2a3b455ebf2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>extensionNames</code>. <br /></td></tr>
-<tr class="separator:a3665af26e400f0eb99cd2a3b455ebf2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1027968d306825e2116f0f7eb9847c8"><td class="memItemLeft" >
-&#160;&#160;&#160;const char **&#160;&#160;&#160;<b>layerNames</b></td></tr>
-<tr class="memdesc:aa1027968d306825e2116f0f7eb9847c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of names of Vulkan layers to enable. <br /></td></tr>
-<tr class="separator:aa1027968d306825e2116f0f7eb9847c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e69d001c7fbc3f1e4abb39e96704211"><td class="memItemLeft" >
-&#160;&#160;&#160;int&#160;&#160;&#160;<b>layerCount</b></td></tr>
-<tr class="memdesc:a3e69d001c7fbc3f1e4abb39e96704211"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>layerNames</code>. <br /></td></tr>
-<tr class="separator:a3e69d001c7fbc3f1e4abb39e96704211"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d4978513f5172b6cb848e53dd40a9e4"><td class="memItemLeft" >
-&#160;&#160;&#160;int&#160;&#160;&#160;<b>flags</b></td></tr>
-<tr class="memdesc:a7d4978513f5172b6cb848e53dd40a9e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration flags for Vulkan renderers. <br /></td></tr>
-<tr class="separator:a7d4978513f5172b6cb848e53dd40a9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecbec6d5d5db48ac83e9ade8b8ce9b75"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><b>vulkan</b></td></tr>
-<tr class="memdesc:aecbec6d5d5db48ac83e9ade8b8ce9b75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Description to extend Vulkan renderers. <br /></td></tr>
-<tr class="separator:aecbec6d5d5db48ac83e9ade8b8ce9b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34dad9971c1d16800094ad474a8979e5"><td class="memItemLeft" align="right" valign="top"><a id="a34dad9971c1d16800094ad474a8979e5" name="a34dad9971c1d16800094ad474a8979e5"></a>
+const char **&#160;</td><td class="memItemRight" valign="bottom"><b>extensionNames</b></td></tr>
+<tr class="memdesc:a34dad9971c1d16800094ad474a8979e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of names of Vulkan instance extensions to enable,. <br /></td></tr>
+<tr class="separator:a34dad9971c1d16800094ad474a8979e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547a7c3d23f3d277f07928468a6e155f"><td class="memItemLeft" align="right" valign="top"><a id="a547a7c3d23f3d277f07928468a6e155f" name="a547a7c3d23f3d277f07928468a6e155f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>extensionCount</b></td></tr>
+<tr class="memdesc:a547a7c3d23f3d277f07928468a6e155f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>extensionNames</code>. <br /></td></tr>
+<tr class="separator:a547a7c3d23f3d277f07928468a6e155f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1dd5f093100784252eaba0e1510a3df"><td class="memItemLeft" align="right" valign="top"><a id="ab1dd5f093100784252eaba0e1510a3df" name="ab1dd5f093100784252eaba0e1510a3df"></a>
+const char **&#160;</td><td class="memItemRight" valign="bottom"><b>layerNames</b></td></tr>
+<tr class="memdesc:ab1dd5f093100784252eaba0e1510a3df"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of names of Vulkan layers to enable. <br /></td></tr>
+<tr class="separator:ab1dd5f093100784252eaba0e1510a3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae32cb103ceb6ab5678e09e851d53f588"><td class="memItemLeft" align="right" valign="top"><a id="ae32cb103ceb6ab5678e09e851d53f588" name="ae32cb103ceb6ab5678e09e851d53f588"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>layerCount</b></td></tr>
+<tr class="memdesc:ae32cb103ceb6ab5678e09e851d53f588"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>layerNames</code>. <br /></td></tr>
+<tr class="separator:ae32cb103ceb6ab5678e09e851d53f588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3be480b0a99057cd60f8bfd67d1eb41"><td class="memItemLeft" align="right" valign="top"><a id="ad3be480b0a99057cd60f8bfd67d1eb41" name="ad3be480b0a99057cd60f8bfd67d1eb41"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>flags</b></td></tr>
+<tr class="memdesc:ad3be480b0a99057cd60f8bfd67d1eb41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration flags for Vulkan renderers. <br /></td></tr>
+<tr class="separator:ad3be480b0a99057cd60f8bfd67d1eb41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This struct describes extensions to each graphics API.</p>
-<p>Because extending the renderer is inherently API-dependent, this struct is split into smaller, API-specific structures that contain the different equivalents for each API.</p>
-<p>When defining the extensions you need in this structure, you should also consider defining the equivalents to those extensions in all other APIs you wish to support. </p>
+<div class="textblock"><p>This struct describes extensions for Vulkan renderers.</p>
+<p>When defining the extensions you need in this structure, you should also consider defining the equivalents to those extensions in all other APIs you wish to support in their respective structures. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../d5/db6/a00042.html">th_RendererExtensionDescriptor_t</a></li>
+                <li class="navelem"><a class="el" href="../../d5/db6/a00042.html">th_VulkanRendererExtensionDescriptor_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Mon Feb 13 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Feb 14 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>
