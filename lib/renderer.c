@@ -38,21 +38,23 @@ typedef enum ApiId_t {
 
 #if defined(THALLIUM_VULKAN_INCL)
     static const VkDebugUtilsMessageSeverityFlagBitsEXT _GetVkDebugMessengerSeverityFlags(const th_RendererDescriptor_t descriptor) {
-        // NOTE: it's probably worth looking to see if there is a better way of doing this.
+        int flags = descriptor.extensionDescriptor.vulkan->flags;
+
         return
-            (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT) << 0
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT) << 3
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT) << 6
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT) << 9;
+            (flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT) << 0
+            | (flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT) << 3
+            | (flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT) << 6
+            | (flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT) << 9;
     }
 
     static const VkDebugUtilsMessageTypeFlagBitsEXT _GetVkDebugMessengerTypeFlags(const th_RendererDescriptor_t descriptor) {
-        // NOTE: see note in GetVkDebugMessengerSeverityFlags
+        int flags = descriptor.extensionDescriptor.vulkan->flags;
+
         return
-            (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT) >> 4
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT) >> 4
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT) >> 4
-            | (descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT) >> 4;
+            (flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT) >> 4
+            | (flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT) >> 4
+            | (flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT) >> 4
+            | (flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT) >> 4;
     }
 #endif
 
@@ -76,6 +78,8 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
 #       if defined(THALLIUM_VULKAN_INCL)
             r->apiId = THALLIUM_API_ID_VULKAN;
 
+            th_VulkanRendererExtensionDescriptor_t extensionDescriptor = *descriptor.extensionDescriptor.vulkan;
+
             // vulkan render system
             thvk_RenderSystemDescriptor_t renderSystemDescr = {
                 .apiVersion = descriptor.apiVersion,
@@ -84,14 +88,14 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
                 .engineName = descriptor.engineName,
                 .engineVersion = descriptor.engineVersion,
 
-                .instanceExtensionNames = descriptor.extensionDescriptor.vulkan.extensionNames,
-                .instanceExtensionCount = descriptor.extensionDescriptor.vulkan.extensionCount,
-                .layerNames = descriptor.extensionDescriptor.vulkan.layerNames,
-                .layerCount = descriptor.extensionDescriptor.vulkan.layerCount,
+                .instanceExtensionNames = extensionDescriptor.extensionNames,
+                .instanceExtensionCount = extensionDescriptor.extensionCount,
+                .layerNames = extensionDescriptor.layerNames,
+                .layerCount = extensionDescriptor.layerCount,
 
                 .debugMessengerSeverities = _GetVkDebugMessengerSeverityFlags(descriptor),
                 .debugMessengerTypes = _GetVkDebugMessengerTypeFlags(descriptor),
-                .detailedDebugMessenger = descriptor.extensionDescriptor.vulkan.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED
+                .detailedDebugMessenger = extensionDescriptor.flags & THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED
             };
 
             // create the render system

@@ -63,9 +63,35 @@ typedef enum th_VulkanRendererExtensionFlag_t {
 
 /**
  * @ingroup extension
+ * @brief A struct to describe extensions for Vulkan renderers.
+ *
+ * This struct describes extensions for Vulkan renderers.
+ *
+ * When defining the extensions you need in this structure, you should also consider defining
+ * the equivalents to those extensions in all other APIs you wish to support in their respective
+ * structures.
+ */
+typedef struct th_VulkanRendererExtensionDescriptor_t {
+    /// @brief An array of names of Vulkan instance extensions to enable,.
+    const char **extensionNames;
+    /// @brief The amount of elements in `extensionNames`.
+    int extensionCount;
+
+    /// @brief An array of names of Vulkan layers to enable
+    const char **layerNames;
+    /// @brief The amount of elements in `layerNames`.
+    int layerCount;
+
+    /// @brief Configuration flags for Vulkan renderers
+    int flags;
+} th_VulkanRendererExtensionDescriptor_t;
+
+/**
+ * @ingroup extension
  * @brief A struct to describe extensions to each graphics API
  *
- * This struct describes extensions to each graphics API.
+ * This struct describes extensions to each graphics API through the use of other API-specific
+ * descriptor structures.
  *
  * Because extending the renderer is inherently API-dependent, this struct is split into
  * smaller, API-specific structures that contain the different equivalents for each API.
@@ -75,20 +101,7 @@ typedef enum th_VulkanRendererExtensionFlag_t {
  */
 typedef struct th_RendererExtensionDescriptor_t {
     /// @brief Description to extend Vulkan renderers
-    struct {
-        /// @brief An array of names of Vulkan instance extensions to enable,.
-        const char **extensionNames;
-        /// @brief The amount of elements in `extensionNames`.
-        int extensionCount;
-
-        /// @brief An array of names of Vulkan layers to enable
-        const char **layerNames;
-        /// @brief The amount of elements in `layerNames`.
-        int layerCount;
-
-        /// @brief Configuration flags for Vulkan renderers
-        int flags;
-    } vulkan;
+    th_VulkanRendererExtensionDescriptor_t *vulkan;
 } th_RendererExtensionDescriptor_t;
 
 /**
