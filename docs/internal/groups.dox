@@ -4,4 +4,7 @@
  *
  * @defgroup state Global state
  * @brief Internal state properties of the Thallium library
+ *
+ * @defgroup vulkan Internal Vulkan functions
+ * @brief Internal functions within the Vulkan library module
  */

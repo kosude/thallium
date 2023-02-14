@@ -109,6 +109,20 @@ const int th_DestroyRenderer(
     th_Renderer_t *renderer
 );
 
+/**
+ * @ingroup renderer
+ * @brief Get pointer to the render system within the given renderer.
+ *
+ * This function returns a pointer to the [render system](@ref vk_render_system) within the given
+ * renderer.
+ *
+ * @param renderer Pointer to the renderer to evaluate
+ * @return The render system within the renderer. This should not be NULL!
+ */
+const void *th_GetRendererRenderSystem(
+    const th_Renderer_t *renderer
+);
+
 #ifdef __cplusplus
     }
 #endif // __cplusplus

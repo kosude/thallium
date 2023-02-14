@@ -131,3 +131,7 @@ const int th_DestroyRenderer(th_Renderer_t *renderer) {
 
     return 1;
 }
+
+const void *th_GetRendererRenderSystem(const th_Renderer_t *renderer) {
+    return renderer->renderSystem;
+}

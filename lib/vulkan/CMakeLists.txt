@@ -1,5 +1,6 @@
 set(SOURCES_VULKAN
     "vk_extension.c"
+    "vk_instance.c"
     "vk_render_system.c"
 )
 
