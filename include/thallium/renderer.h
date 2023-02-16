@@ -33,7 +33,6 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/extension.h"
 #include "thallium/version.h"
 
 /**
@@ -47,17 +46,12 @@
 typedef struct th_Renderer_t th_Renderer_t;
 
 /**
- * @ingroup renderer
- * @brief A structure describing a renderer to be created.
+ * @ingroup vulkan
+ * @brief Configuration structure specifically for Vulkan renderers
  *
- * This structure describes a renderer to be created.
+ * This structure provides exclusive configuration options specifically for Vulkan renderers.
  */
-typedef struct th_RendererDescriptor_t {
-    /// @brief The name of the API being represented
-    const char *apiName;
-    /// @brief The version of the API being represented
-    th_Version_t apiVersion;
-
+typedef struct th_RendererConfigVulkan_t {
     /// @brief The name of the application
     const char *applicationName;
     /// @brief The application's version
@@ -67,8 +61,34 @@ typedef struct th_RendererDescriptor_t {
     /// @brief The version of the engine being used, if applicable
     th_Version_t engineVersion;
 
-    /// @brief A descriptor containing extensions to the renderer
-    th_RendererExtensionDescriptor_t extensionDescriptor;
+    /// @brief An array of names of Vulkan layers to enable
+    const char **layerNames;
+    /// @brief The amount of elements in `layerNames`
+    int layerCount;
+} th_RendererConfigVulkan_t;
+
+/**
+ * @ingroup renderer
+ * @brief A structure describing a renderer to be created.
+ *
+ * This structure describes a renderer to be created.
+ *
+ * Common practice is to set `rendererConfig` to NULL. However, it may be necessary to provide API-specific configuration,
+ * which this parameter allows. See a Vulkan example below.
+ *
+ * @par Renderer config example
+ * Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a
+ * `th_RendererConfigVulkan_t` structure with the relevant information, and pass a pointer to it via the `rendererConfig`
+ * parameter.
+ */
+typedef struct th_RendererDescriptor_t {
+    /// @brief The name of the API being represented
+    const char *apiName;
+    /// @brief The version of the API being represented
+    th_Version_t apiVersion;
+
+    /// @brief Optional pointer to an API-specific configuration structure
+    void *rendererConfig;
 } th_RendererDescriptor_t;
 
 /**
@@ -77,16 +97,16 @@ typedef struct th_RendererDescriptor_t {
  *
  * This function constructs and returns a pointer to a heap-allocated renderer struct.
  *
- * If `descriptor.apiName` is invalid, then NULL is returned. Note that this includes API modules
- * that were not included when Thallium was compiled.
+ * If `descriptor.apiName` is invalid, then NULL is returned. Note that this includes API modules that were not included
+ * when Thallium was compiled. The validity of `descriptor.apiVersion` depends on the graphics API being used.
  *
- * The validity of `descriptor.apiVersion`, as well as application info such as
- * `descriptor.applicationName` and `descriptor.engineVersion` depends on the graphics API
- * being used.
+ * For information on the `descriptor.rendererConfig` parameter, see the @ref th_RendererDescriptor_t documentation.
  *
  * @param descriptor creation description for the renderer
  * @param debugger Debugger to read configuration from when debugging (or NULL for no debugging)
  * @return Pointer to the new renderer object
+ *
+ * @sa @ref th_RendererDescriptor_t
  */
 th_Renderer_t *th_CreateRenderer(
     const th_RendererDescriptor_t descriptor,

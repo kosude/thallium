@@ -10,6 +10,7 @@
 #include <iostream>
 #include <vector>
 
+// TODO: currently redoing this, layers and extensions not working as of current
 static std::vector<const char *> VulkanExtensions {
     "VK_KHR_surface",
     "VK_KHR_xcb_surface",
@@ -19,40 +20,34 @@ static std::vector<const char *> VulkanLayers {
     "VK_LAYER_KHRONOS_validation"
 };
 
-static th_VulkanRendererExtensionDescriptor_t VulkanExtensionDescriptor = {
-    // extensions
-    VulkanExtensions.data(),
-    (int) VulkanExtensions.size(),
-    // layers
-    VulkanLayers.data(),
-    (int) VulkanLayers.size(),
-    // flags
-    THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT | THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT
-    | THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT
-};
-
 int main() {
     printf("-- Thallium %s\n\n", th_GetThalliumVersion());
 
-    th_Debugger_t *debugger = th_CreateDebugger(THALLIUM_DEBUG_SEVERITY_ALL_BIT);
+    th_Debugger_t *debugger = th_CreateDebugger((th_DebugSeverity_t)
+        (
+            THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT |
+            THALLIUM_DEBUG_SEVERITY_NOTIF_BIT |
+            THALLIUM_DEBUG_SEVERITY_WARNING_BIT |
+            THALLIUM_DEBUG_SEVERITY_ERROR_BIT |
+            THALLIUM_DEBUG_SEVERITY_FATAL_BIT
+        )
+    );
 
-    th_RendererExtensionDescriptor_t extensionDescr = {
-        &VulkanExtensionDescriptor
+    th_RendererConfigVulkan_t vulkanConfig = {
+        "Hello triangle",   // app name
+        { 0, 1, 0 },        // app version
+        "No Engine",        // engine name
+        { 0, 0, 0, },       // engine version
+        NULL,               // optional layers
+        0                   // optional layer count
     };
-    if (!th_ValidateRendererExtensionDescriptor(extensionDescr, debugger)) {
-        std::cout << "Problem with renderer extension descriptor" << std::endl;
-        return 1;
-    }
 
     th_Renderer_t *vulkan = th_CreateRenderer({
         "vulkan",           // api name
         { 1, 3, 0 },        // api version
-        "Hello triangle",   // application name
-        { 0, 1, 0 },        // application version
-        "No Engine",        // engine name
-        { 0, 0, 0 },        // engine version
-        extensionDescr      // extension descriptor
+        &vulkanConfig       // vulkan api configuration
     }, debugger);
+
     if (!vulkan) {
         printf("Could not create renderer\n");
         return 0;

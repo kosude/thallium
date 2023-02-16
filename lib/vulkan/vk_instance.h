@@ -27,19 +27,11 @@
 #include <vulkan/vulkan.h>
 #include "thallium/vulkan/vk_render_system.h"
 
-/**
- * @ingroup vk_instance
- * @brief Callback function used for instance debug messengers.
- *
- * This Vulkan debug callback function is used when Vulkan instances have debug utils enabled.
- *
- * @param severity Debug message severity
- * @param type Debug message type
- * @param callbackData Extra data passed to callback by the Vulkan API
- * @param userData Data passed to callback by the user
- * @return Always VK_FALSE
- */
-extern const PFN_vkDebugUtilsMessengerCallbackEXT thvk_InstanceDebugMessengerCallback;
+// @cond DOCS_IGNORE
+
+typedef struct th_Debugger_t th_Debugger_t;
+
+// @endcond DOCS_IGNORE
 
 /**
  * @ingroup vk_instance
@@ -47,13 +39,19 @@ extern const PFN_vkDebugUtilsMessengerCallbackEXT thvk_InstanceDebugMessengerCal
  *
  * This function creates a Vulkan instance into the location `instance`.
  *
+ * If `debugger` is not NULL, a debug messenger will be created alongside the instance for Vulkan debugging.
+ *
  * @param instance Pointer to the location into which the Vulkan instance will be returned.
- * @param descriptor Description of the render system that the instance is intended to be a part of.
+ * @param config Pointer to a Vulkan renderer configuration structure.
+ * @param apiVersion Vulkan API version to create instance for (as a th_Version_t structure)
+ * @param debugger NULL or a pointer to a Thallium debugger
  * @return @returnstatus
  */
 const int thvk_CreateInstance(
     VkInstance *instance,
-    const thvk_RenderSystemDescriptor_t descriptor
+    const th_RendererConfigVulkan_t *config,
+    const th_Version_t apiVersion,
+    const th_Debugger_t *debugger
 );
 
 #ifdef __cplusplus

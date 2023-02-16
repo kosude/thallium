@@ -17,6 +17,11 @@
 #include <stdarg.h>
 
 /**
+ * @brief String to add to Thallium debug messages as a prefix
+ */
+#define THALLIUM_DBGMSG_PREFIX "(thallium!)"
+
+/**
  * @brief Maximum length of debug messages.
  */
 #define MAX_DBGMSG_LEN 512
@@ -52,7 +57,7 @@ const int th_Log(const th_Debugger_t *debugger, const char *format, ...) {
         char msg[MAX_DBGMSG_LEN];
         FORMAT_STR(format);
 
-        printf("(thallium!) %s\n", msg);
+        printf("%s %s\n", THALLIUM_DBGMSG_PREFIX, msg);
 #   endif
 
     return 1;
@@ -66,7 +71,7 @@ const int th_Note(const th_Debugger_t *debugger, const char *format, ...) {
         FORMAT_STR(format);
 
         th_SetIOColour(THALLIUM_IO_COLOUR_BLUE, 0xFF, stdout);
-        printf("(thallium!) %s\n", msg);
+        printf("%s %s\n", THALLIUM_DBGMSG_PREFIX, msg);
         th_DefaultIOColour(stdout);
 #   endif
 
@@ -81,7 +86,7 @@ const int th_Hint(const th_Debugger_t *debugger, const char *format, ...) {
         FORMAT_STR(format);
 
         th_SetIOColour(THALLIUM_IO_COLOUR_GREY, 0xFF, stdout);
-        printf("(thallium!) Hint: %s\n", msg);
+        printf("%s Hint: %s\n", THALLIUM_DBGMSG_PREFIX, msg);
         th_DefaultIOColour(stdout);
 #   endif
 
@@ -96,7 +101,7 @@ const int th_Warn(const th_Debugger_t *debugger, const char *format, ...) {
         FORMAT_STR(format);
 
         th_SetIOColour(THALLIUM_IO_COLOUR_YELLOW, 0xFF, stdout);
-        printf("(thallium!) WARN: %s\n", msg);
+        printf("%s WARN: %s\n", THALLIUM_DBGMSG_PREFIX, msg);
         th_DefaultIOColour(stdout);
 #   endif
 
@@ -111,7 +116,7 @@ const int th_Error(const th_Debugger_t *debugger, const char *format, ...) {
         FORMAT_STR(format);
 
         th_SetIOColour(THALLIUM_IO_COLOUR_RED, 0xFF, stderr);
-        fprintf(stderr, "(thallium!) ERROR: %s\n", msg);
+        fprintf(stderr, "%s ERROR: %s\n", THALLIUM_DBGMSG_PREFIX, msg);
         th_DefaultIOColour(stderr);
 #   endif
 
@@ -126,7 +131,7 @@ const int th_Fatal(const th_Debugger_t *debugger, const char *format, ...) {
         FORMAT_STR(format);
 
         th_SetIOColour(THALLIUM_IO_COLOUR_RED, THALLIUM_IO_COLOUR_YELLOW, stderr);
-        fprintf(stderr, "(thallium!) FATAL: %s\n", msg);
+        fprintf(stderr, "%s FATAL: %s\n", THALLIUM_DBGMSG_PREFIX, msg);
         th_DefaultIOColour(stderr);
 #   endif
 

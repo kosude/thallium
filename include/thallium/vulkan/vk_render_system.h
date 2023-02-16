@@ -30,6 +30,7 @@
 // @cond DOCS_IGNORE
 
 typedef struct th_Debugger_t th_Debugger_t;
+typedef struct th_RendererConfigVulkan_t th_RendererConfigVulkan_t;
 
 // @endcond DOCS_IGNORE
 
@@ -45,44 +46,12 @@ typedef struct th_Debugger_t th_Debugger_t;
  * @sa @ref thvk_CreateRenderSystem()
  */
 typedef struct thvk_RenderSystem_t {
+    /// @brief Pointer to Thallium debugger config struct
+    const th_Debugger_t *debugger;
+
     /// @brief Vulkan instance
     VkInstance instance;
 } thvk_RenderSystem_t;
-
-/**
- * @ingroup vk_render_system
- * @brief A structure describing a render system to be created.
- *
- * This structure describes a Vulkan render system to be created.
- */
-typedef struct thvk_RenderSystemDescriptor_t {
-    /// @brief The version of the API being represented
-    th_Version_t apiVersion;
-    /// @brief The name of the application
-    const char *applicationName;
-    /// @brief The application's version
-    th_Version_t applicationVersion;
-    /// @brief The name of the engine being used, if applicable
-    const char *engineName;
-    /// @brief The version of the engine being used, if applicable
-    th_Version_t engineVersion;
-
-    /// @brief Array of names of enabled instance extensions.
-    const char **instanceExtensionNames;
-    /// @brief The amount of elements in `instanceExtensionNames`.
-    int instanceExtensionCount;
-    /// @brief Array of names of enabled layers.
-    const char **layerNames;
-    /// @brief The amount of elements in `layerNames`.
-    int layerCount;
-
-    /// @brief If applicable, the severities to include in the instance debug messenger
-    VkDebugUtilsMessageSeverityFlagBitsEXT debugMessengerSeverities;
-    /// @brief If applicable, the types to include in the instance debug messenger
-    VkDebugUtilsMessageTypeFlagBitsEXT debugMessengerTypes;
-    /// @brief If applicable, should the instance debug messenger print detailed information?
-    int detailedDebugMessenger;
-} thvk_RenderSystemDescriptor_t;
 
 /**
  * @ingroup vk_render_system
@@ -91,15 +60,17 @@ typedef struct thvk_RenderSystemDescriptor_t {
  * This function creates a new Vulkan render system and returns it. If there were any errors in
  * creation, NULL will be returned instead.
  *
- * @param descriptor Description of the render system to create.
+ * @param config Pointer to a Vulkan renderer configuration structure.
  * @param debugger Debugger to read configuration options from when posting debug messages
+ * @param apiVersion Vulkan API version (as a Thallium @ref th_Version_t structure)
  * @return The new render system
  *
  * @sa @ref thvk_RenderSystem_t
  * @sa @ref thvk_DestroyRenderSystem()
  */
 thvk_RenderSystem_t *thvk_CreateRenderSystem(
-    const thvk_RenderSystemDescriptor_t descriptor,
+    const th_RendererConfigVulkan_t *config,
+    const th_Version_t apiVersion,
     const th_Debugger_t *debugger
 );
 

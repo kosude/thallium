@@ -7,6 +7,12 @@
 
 #include "vk_instance.h"
 
+#include "thallium/debug.h"
+#include "thallium/renderer.h"
+#include "types.h"
+
+#include "utils/log.h"
+
 #include <stdio.h>
 #include <string.h>
 
@@ -25,138 +31,126 @@
         vers.patch \
     )
 
+// Callback for instance debug messengers - redirects messages to Thallium debugger
+// userData is a pointer to the Thallium debugger struct
 static VKAPI_ATTR const VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
     VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT *callbackData, void *userData)
 {
-    char msg[1024];
-    memset(msg, 0, 1024);
-
-    // convert the severity to a string
-    char severityStr[15];
-    switch (severity) {
-        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
-            snprintf(severityStr, 15, "LOG  ");
-            break;
-        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:
-            snprintf(severityStr, 15, "NOTIF");
-            break;
-        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
-            snprintf(severityStr, 15, "WARN ");
-            break;
-        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
-        default:
-            snprintf(severityStr, 15, "ERROR");
-            break;
-    }
-
-    // convert the type to string
-    char typeStr[15];
+    // convert the type to a string
+    char typeStr[32];
     switch (type) {
         case VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT:
         default:
-            snprintf(typeStr, 15, "GENERAL    ");
+            snprintf(typeStr, 32, "GENERAL");
             break;
         case VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT:
-            snprintf(typeStr, 15, "VALIDATION ");
+            snprintf(typeStr, 32, "VALIDATION");
             break;
         case VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT:
-            snprintf(typeStr, 15, "PERFORMANCE");
+            snprintf(typeStr, 32, "PERFORMANCE");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT:
+            snprintf(typeStr, 32, "DEVICE_ADDRESS_BINDING");
             break;
     }
 
-    // print the message
-
-    // We do not use Thallium logging functions to avoid associating Vulkan messages with Thallium message severities.
-    // Note that the severity filter for this callback was defined by the user separate from the severity filter for Thallium messages.
-
-    printf("vk: %s msg, type %s: %s\n", severityStr, typeStr, callbackData->pMessage);
-
-    // userData will be set to whether or not THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED was enabled or not
-    if (!*(int *) userData) {
-        return VK_FALSE;
-    }
-
-    // if detailed debug messenger was enabled for this render system:
-
-    // current queue info
-    printf("\t%d queue items\n", callbackData->queueLabelCount);
-    for (unsigned int i = 0; i < callbackData->queueLabelCount; i++) {
-        if (callbackData->pQueueLabels[i].pLabelName) {
-            printf("%s\n", callbackData->pQueueLabels[i].pLabelName);
-        }
-    }
-
-    // command buffer info
-    printf("\t%d command buffer contents\n", callbackData->cmdBufLabelCount);
-    for (unsigned int i = 0; i < callbackData->cmdBufLabelCount; i++) {
-        if (callbackData->pCmdBufLabels[i].pLabelName) {
-            printf("%s\n", callbackData->pCmdBufLabels[i].pLabelName);
-        }
-    }
-
-    // related objects
-    printf("\t%d objects\n", callbackData->objectCount);
-    for (unsigned int i = 0; i < callbackData->objectCount; i++) {
-        if (callbackData->pObjects[i].pObjectName) {
-            printf("%s\n", callbackData->pObjects[i].pObjectName);
-        }
+    // redirect to appropriate logging function based on severity
+    switch (severity) {
+        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
+            th_Warn(userData, "%s: %s", typeStr, callbackData->pMessage);
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
+            th_Error(userData, "%s: %s", typeStr, callbackData->pMessage);
+            break;
+        default:
+            th_Log(userData, "%s: %s", typeStr, callbackData->pMessage);
+            break;
     }
 
     return VK_FALSE;
 }
-const PFN_vkDebugUtilsMessengerCallbackEXT thvk_InstanceDebugMessengerCallback = _InstanceDebugMessengerCallback;
 
-const int thvk_CreateInstance(VkInstance *instance, const thvk_RenderSystemDescriptor_t descriptor) {
-    // convert descriptor to app info
-    VkApplicationInfo appInfo = {
-        .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
-        .pNext = NULL,
-        .pApplicationName = descriptor.applicationName,
-        .applicationVersion = FMT_VK_VERSION(descriptor.applicationVersion),
-        .pEngineName = descriptor.engineName,
-        .engineVersion = FMT_VK_VERSION(descriptor.engineVersion),
-        .apiVersion = FMT_VK_API_VERSION(descriptor.apiVersion)
-    };
+// Convert debug message severity flags from Thallium format to Vulkan format.
+static const VkDebugUtilsMessageSeverityFlagsEXT _ThalliumDebugSeveritiesToVulkanFlags(th_DebugSeverity_t severities) {
+    // NOTIF severity is not considerered as the only appropriate Vulkan severities (VERBOSE and INFO) are
+    // output via th_Log(), which would not show if the VERBOSE severity is not enabled anyway.
+    // i.e., even when considering NOTIF, nothing different is output, so there's no point.
+    return
+          (severities & THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT) >> 4   // VERBOSE  --> VERBOSE
+        | (severities & THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT)        //              + INFO
+        | (severities & THALLIUM_DEBUG_SEVERITY_WARNING_BIT) << 6   // WARNING  --> WARNING
+        | (severities & THALLIUM_DEBUG_SEVERITY_ERROR_BIT) << 11    // ERROR    --> ERROR
+        | (severities & THALLIUM_DEBUG_SEVERITY_FATAL_BIT) << 12;   // FATAL    --> ERROR
+}
 
-    // create instance
-    VkInstanceCreateInfo instanceDescr = {
-        .sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
-        .pNext = NULL,
-        .flags = 0,
-        .pApplicationInfo = &appInfo,
-        .enabledLayerCount = descriptor.layerCount,
-        .ppEnabledLayerNames = (const char *const *) descriptor.layerNames,
-        .enabledExtensionCount = descriptor.instanceExtensionCount,
-        .ppEnabledExtensionNames = (const char *const *) descriptor.instanceExtensionNames
-    };
-
-    // check if debug utils flags were specified
-    // if they were not, then create the instnace and return now.
-    if (!descriptor.debugMessengerSeverities && !descriptor.debugMessengerTypes) {
-        if (vkCreateInstance(&instanceDescr, NULL, instance)) {
-            return 0;
-        }
-
-        return 1;
-    }
-
-    // otherwise, define a debug messenger and append it onto the instance
-
-    // debug messenger create info
-    VkDebugUtilsMessengerCreateInfoEXT messengerDescr = {
+// Create a debug messenger (return its descriptor)
+static const VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_Debugger_t *debugger) {
+    return (VkDebugUtilsMessengerCreateInfoEXT) {
         .sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
         .pNext = NULL,
         .flags = 0, // NOTE: "reserved for future use"
-        .messageSeverity = descriptor.debugMessengerSeverities,
-        .messageType = descriptor.debugMessengerTypes,
-        .pfnUserCallback = thvk_InstanceDebugMessengerCallback,
-        .pUserData = (void *) &descriptor.detailedDebugMessenger
+        .messageSeverity = _ThalliumDebugSeveritiesToVulkanFlags(debugger->debugSeverityFilter),
+        .messageType =
+            VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT
+            | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT
+            | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT
+            | VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT,
+        .pfnUserCallback = _InstanceDebugMessengerCallback,
+        .pUserData = (void *) debugger
     };
+}
 
-    instanceDescr.pNext = &messengerDescr;
+
+// ===========================================================================
+//                       THALLIUM PUBLIC API DEFINITIONS
+// ===========================================================================
+
+const int thvk_CreateInstance(VkInstance *instance, const th_RendererConfigVulkan_t *config, const th_Version_t apiVersion,
+    const th_Debugger_t *debugger)
+{
+    VkApplicationInfo appInfo;
+    VkInstanceCreateInfo instanceInfo;
+    VkDebugUtilsMessengerCreateInfoEXT debugMessengerInfo;
+
+    instanceInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    instanceInfo.flags = 0;
+
+    // populate application info based on config if it was given
+    if (config) {
+        appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+        appInfo.pNext = NULL;
+        appInfo.pApplicationName = config->applicationName;
+        appInfo.applicationVersion = FMT_VK_VERSION(config->applicationVersion);
+        appInfo.pEngineName = config->engineName;
+        appInfo.engineVersion = FMT_VK_VERSION(config->engineVersion);
+        appInfo.apiVersion = FMT_VK_API_VERSION(apiVersion);
+
+        instanceInfo.pApplicationInfo = &appInfo;
+    } else {
+        instanceInfo.pApplicationInfo = NULL;
+    }
+
+    // if a debugger was passed, then we can use it to describe a debug messenger.
+    // this will require the VK_EXT_debug_utils to be enabled; this is handled as part of the
+    // required layers and instance extensions checking.
+    if (debugger) {
+        debugMessengerInfo = _CreateDebugMessenger(debugger);
+        instanceInfo.pNext = &debugMessengerInfo;
+    } else {
+        instanceInfo.pNext = NULL;
+    }
+
+    // TODO: see Trello: change Vulkan extensions design (required instance extensions)
+    // i.e.: getting all supported layers/extensions, and filtering the non-required ones out.
+    // required layers include ones optionally specified by the user in `config`.
+    // required extensions include OS-dependent surface extensions and, conditionally, debug utils.
+    instanceInfo.enabledLayerCount = 0;
+    instanceInfo.enabledExtensionCount = 0;
+    instanceInfo.ppEnabledLayerNames = NULL;
+    instanceInfo.ppEnabledExtensionNames = NULL;
 
     // then we create the instance
-    if (vkCreateInstance(&instanceDescr, NULL, instance)) {
+    if (vkCreateInstance(&instanceInfo, NULL, instance)) {
         return 0;
     }
 
