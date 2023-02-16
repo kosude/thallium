@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Vulkan instance functions - Thallium@v0.0.0dev_f040899 (2023-02-14)</title>
+        <title>Internal Vulkan functions - Thallium@v0.0.0dev_eda7409 (2023-02-16)</title>
         <link rel="shortcut icon" href="../../render.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Internal Codebase
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_f040899 (2023-02-14)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,108 +111,28 @@ $(document).ready(function(){initNavTree('df/d5f/a00064.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
-  <div class="headertitle"><div class="title">Vulkan instance functions<div class="ingroups"><a class="el" href="../../dc/ddf/a00067.html">Internal Vulkan functions</a></div></div></div>
+<a href="#groups">Subgroups</a>  </div>
+  <div class="headertitle"><div class="title">Internal Vulkan functions</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Internally used functions for managing Vulkan instances.  
+<p>Internal functions within the Vulkan library module.  
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Some functions for creating and handling Vulkan instances. These are frequently used when managing Vulkan render systems. </p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ga4ef9046f45e4bdc2b128afba08941d33"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d5f/a00064.html#ga4ef9046f45e4bdc2b128afba08941d33">thvk_CreateInstance</a> (VkInstance *instance, const thvk_RenderSystemDescriptor_t descriptor)</td></tr>
-<tr class="memdesc:ga4ef9046f45e4bdc2b128afba08941d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Vulkan instance.  <br /></td></tr>
-<tr class="separator:ga4ef9046f45e4bdc2b128afba08941d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ga93cd6b1e5743cf52670008a878587e0c"><td class="memItemLeft" align="right" valign="top">const PFN_vkDebugUtilsMessengerCallbackEXT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d5f/a00064.html#ga93cd6b1e5743cf52670008a878587e0c">thvk_InstanceDebugMessengerCallback</a></td></tr>
-<tr class="memdesc:ga93cd6b1e5743cf52670008a878587e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function used for instance debug messengers.  <br /></td></tr>
-<tr class="separator:ga93cd6b1e5743cf52670008a878587e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
+Subgroups</h2></td></tr>
+<tr class="memitem:d4/de8/a00061"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/de8/a00061.html">Vulkan instance functions</a></td></tr>
+<tr class="memdesc:d4/de8/a00061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internally used functions for managing Vulkan instances. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ga4ef9046f45e4bdc2b128afba08941d33" name="ga4ef9046f45e4bdc2b128afba08941d33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4ef9046f45e4bdc2b128afba08941d33">&#9670;&#160;</a></span>thvk_CreateInstance()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int thvk_CreateInstance </td>
-          <td>(</td>
-          <td class="paramtype">VkInstance *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const thvk_RenderSystemDescriptor_t&#160;</td>
-          <td class="paramname"><em>descriptor</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This function creates a Vulkan instance into the location <code>instance</code>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>Pointer to the location into which the Vulkan instance will be returned. </td></tr>
-    <tr><td class="paramname">descriptor</td><td>Description of the render system that the instance is intended to be a part of. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success. </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ga93cd6b1e5743cf52670008a878587e0c" name="ga93cd6b1e5743cf52670008a878587e0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga93cd6b1e5743cf52670008a878587e0c">&#9670;&#160;</a></span>thvk_InstanceDebugMessengerCallback</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const PFN_vkDebugUtilsMessengerCallbackEXT thvk_InstanceDebugMessengerCallback</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>This Vulkan debug callback function is used when Vulkan instances have debug utils enabled.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">severity</td><td>Debug message severity </td></tr>
-    <tr><td class="paramname">type</td><td>Debug message type </td></tr>
-    <tr><td class="paramname">callbackData</td><td>Extra data passed to callback by the Vulkan API </td></tr>
-    <tr><td class="paramname">userData</td><td>Data passed to callback by the user </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Always VK_FALSE </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../../index.html">public api</a> » doxygen <b>1.9.6</b> » Tue Feb 14 2023 »
+                    <a href="../../../index.html">public api</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

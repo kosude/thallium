@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Managing renderer objects - Thallium</title>
+        <title>Vulkan - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_f040899 (2023-02-14)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,167 +111,38 @@ $(document).ready(function(){initNavTree('db/df3/a00034.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#typedef-members">Types</a> &#124;
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">Managing renderer objects</div></div>
+<a href="#groups">Subgroups</a> &#124;
+<a href="#nested-classes">Data Structures</a>  </div>
+  <div class="headertitle"><div class="title">Vulkan</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Creating and managing renderer objects.  
+<p>Vulkan-specific functions and types.  
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Renderer structure(s) and related functions.</p>
-<h3><a class="anchor" id="autotoc_md0"></a>
-Explanation of terminology</h3>
-<p>In Thallium, a <b>graphics API</b> such as OpenGL or Vulkan is represented by a structure called a <b>renderer</b>. When building Thallium you need to make sure the appropriate <b>module</b> is compiled for the desired renderer; otherwise, you will be attempting to use undefined functions.</p>
-<p>To summarise:</p><ul>
-<li><b>API</b>: OpenGL, Vulkan, Metal, etc</li>
-<li><b>renderer</b>: user-created structure</li>
-<li><b>module</b>: section of the library source code to optionally be compiled </li>
-</ul>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure describing a renderer to be created.  <a href="../../d5/de0/a00050.html#details">More...</a><br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
+Subgroups</h2></td></tr>
+<tr class="memitem:df/d61/a00031"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d61/a00031.html">Vulkan extensions and layers</a></td></tr>
+<tr class="memdesc:df/d61/a00031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handling Vulkan-specific extensions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:dc/d87/a00032"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d87/a00032.html">Vulkan render systems</a></td></tr>
+<tr class="memdesc:dc/d87/a00032"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handling low-level Vulkan-specific render system structures. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Types</h2></td></tr>
-<tr class="memitem:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a></td></tr>
-<tr class="memdesc:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure to represent a graphics API.  <br /></td></tr>
-<tr class="separator:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8">th_CreateRenderer</a> (const <a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a> descriptor, <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create, populate, and return a new renderer struct.  <br /></td></tr>
-<tr class="separator:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d">th_DestroyRenderer</a> (<a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
-<tr class="memdesc:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given renderer object.  <br /></td></tr>
-<tr class="separator:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0ce080d05a07073492125a60997274ca"><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df3/a00034.html#ga0ce080d05a07073492125a60997274ca">th_GetRendererRenderSystem</a> (const <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
-<tr class="memdesc:ga0ce080d05a07073492125a60997274ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to the render system within the given renderer.  <br /></td></tr>
-<tr class="separator:ga0ce080d05a07073492125a60997274ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d41/a00038.html">th_RendererConfigVulkan_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure specifically for Vulkan renderers.  <a href="../../d8/d41/a00038.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Type Documentation</h2>
-<a id="ga49c612e4742d9a5b5decdc74bfe0c869" name="ga49c612e4742d9a5b5decdc74bfe0c869"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga49c612e4742d9a5b5decdc74bfe0c869">&#9670;&#160;</a></span>th_Renderer_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This opaque structure provides a representation of a certain graphics API.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../db/df3/a00034.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8" title="Create, populate, and return a new renderer struct.">th_CreateRenderer()</a> </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="gaf9d4bd5ba4a3ca004a2ea636015af9a8" name="gaf9d4bd5ba4a3ca004a2ea636015af9a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf9d4bd5ba4a3ca004a2ea636015af9a8">&#9670;&#160;</a></span>th_CreateRenderer()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> * th_CreateRenderer </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../d5/de0/a00050.html">th_RendererDescriptor_t</a>&#160;</td>
-          <td class="paramname"><em>descriptor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
-          <td class="paramname"><em>debugger</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This function constructs and returns a pointer to a heap-allocated renderer struct.</p>
-<p>If <code>descriptor.apiName</code> is invalid, then NULL is returned. Note that this includes API modules that were not included when Thallium was compiled.</p>
-<p>The validity of <code>descriptor.apiVersion</code>, as well as application info such as <code>descriptor.applicationName</code> and <code>descriptor.engineVersion</code> depends on the graphics API being used.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">descriptor</td><td>creation description for the renderer </td></tr>
-    <tr><td class="paramname">debugger</td><td>Debugger to read configuration from when debugging (or NULL for no debugging) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the new renderer object </dd></dl>
-
-</div>
-</div>
-<a id="ga33cfd8bcc4b9d8236a2dfb4aae602e2d" name="ga33cfd8bcc4b9d8236a2dfb4aae602e2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga33cfd8bcc4b9d8236a2dfb4aae602e2d">&#9670;&#160;</a></span>th_DestroyRenderer()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int th_DestroyRenderer </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td>
-          <td class="paramname"><em>renderer</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This function frees the specified renderer object. You should set the pointer to NULL after calling this function, as you would normally when calling free().</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">renderer</td><td>Pointer to the renderer object to free. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd><em>This function will always return 1</em>. </dd></dl>
-
-</div>
-</div>
-<a id="ga0ce080d05a07073492125a60997274ca" name="ga0ce080d05a07073492125a60997274ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0ce080d05a07073492125a60997274ca">&#9670;&#160;</a></span>th_GetRendererRenderSystem()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const void * th_GetRendererRenderSystem </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../db/df3/a00034.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td>
-          <td class="paramname"><em>renderer</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This function returns a pointer to the <a class="el" href="../../de/d8c/a00036.html">render system</a> within the given renderer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">renderer</td><td>Pointer to the renderer to evaluate </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The render system within the renderer. This should not be NULL! </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Feb 14 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

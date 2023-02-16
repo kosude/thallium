@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['library_20debugging_0',['Library debugging',['../dc/d87/a00032.html',1,'']]]
+  ['managing_20renderer_20objects_0',['Managing renderer objects',['../d5/d79/a00030.html',1,'']]]
 ];

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Extending graphics APIs and renderers - Thallium</title>
+        <title>Utilities - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_f040899 (2023-02-14)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,97 +112,48 @@ $(document).ready(function(){initNavTree('d0/dc0/a00033.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">Extending graphics APIs and renderers</div></div>
+  <div class="headertitle"><div class="title">Utilities</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Managing graphics API extensions.  
+<p>Utility functions and structures.  
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Members of this group allow you to extend certain graphics APIs as you need. </p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/db6/a00042.html">th_VulkanRendererExtensionDescriptor_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct to describe extensions for Vulkan renderers.  <a href="../../d5/db6/a00042.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dea/a00046.html">th_Version_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure to describe a version.  <a href="../../d3/dea/a00046.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dea/a00046.html">th_RendererExtensionDescriptor_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct to describe extensions to each graphics API.  <a href="../../d3/dea/a00046.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:gaeb26179f77edc495a3e2b75966361b29"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#gaeb26179f77edc495a3e2b75966361b29">th_VulkanRendererExtensionFlag_t</a> </td></tr>
-<tr class="memdesc:gaeb26179f77edc495a3e2b75966361b29"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enumeration containing Vulkan-specific configuration flags.  <a href="../../d0/dc0/a00033.html#gaeb26179f77edc495a3e2b75966361b29">More...</a><br /></td></tr>
-<tr class="separator:gaeb26179f77edc495a3e2b75966361b29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#ga2fb0753764adfb77593c9e27b5cdbabf">th_ValidateRendererExtensionDescriptor</a> (const <a class="el" href="../../d3/dea/a00046.html">th_RendererExtensionDescriptor_t</a> descriptor, const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the relevant contents of the given renderer extension descriptor.  <br /></td></tr>
-<tr class="separator:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="memItemLeft" align="right" valign="top">const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#gab997b95b23c8cf033601fe5ebdffb4c4">th_VersionToString</a> (const <a class="el" href="../../d3/dea/a00046.html">th_Version_t</a> version, char *out_string)</td></tr>
+<tr class="memdesc:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the given version to a string and return it.  <br /></td></tr>
+<tr class="separator:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga079a6eec1ee51e03d1671a90b42175c2"><td class="memItemLeft" align="right" valign="top">const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#ga079a6eec1ee51e03d1671a90b42175c2">th_GetThalliumVersion</a> ()</td></tr>
+<tr class="memdesc:ga079a6eec1ee51e03d1671a90b42175c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve, as a human-readable string, the version of Thallium that was compiled.  <br /></td></tr>
+<tr class="separator:ga079a6eec1ee51e03d1671a90b42175c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="gaeb26179f77edc495a3e2b75966361b29" name="gaeb26179f77edc495a3e2b75966361b29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaeb26179f77edc495a3e2b75966361b29">&#9670;&#160;</a></span>th_VulkanRendererExtensionFlag_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="../../d0/dc0/a00033.html#gaeb26179f77edc495a3e2b75966361b29">th_VulkanRendererExtensionFlag_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This enumeration contains API-dependent configuration flags for Vulkan.</p>
-<dl class="section note"><dt>Note</dt><dd>One use of this property is to have a debug messenger internally appended onto the instance in Vulkan renderers. To do this, simply specify any of the enumerators prefixed with THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_*. Note that this requires the debug utils extension to also be defined in the renderer descriptor. </dd></dl>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29abe88da511057048583bfacd1aae7ea39" name="ggaeb26179f77edc495a3e2b75966361b29abe88da511057048583bfacd1aae7ea39"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_LOG_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes LOG messages. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29a0044281bf54f064bf37b20ccbd1285a5" name="ggaeb26179f77edc495a3e2b75966361b29a0044281bf54f064bf37b20ccbd1285a5"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_INFO_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes INFO messages. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29af7795965559c2e7761ee23ceab215e60" name="ggaeb26179f77edc495a3e2b75966361b29af7795965559c2e7761ee23ceab215e60"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_WARNING_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes WARNING messages. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29a59ae7f8fcb26718290b05ffb23a52cf4" name="ggaeb26179f77edc495a3e2b75966361b29a59ae7f8fcb26718290b05ffb23a52cf4"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ERROR_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes ERROR messages. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29a12399ddaa830b5e9c27c147e5ca17946" name="ggaeb26179f77edc495a3e2b75966361b29a12399ddaa830b5e9c27c147e5ca17946"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_SEV_ALL_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes all debug message severities. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29a87c9108aa3e74c04c2ef243ad8ccf397" name="ggaeb26179f77edc495a3e2b75966361b29a87c9108aa3e74c04c2ef243ad8ccf397"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_GENERAL_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes GENERAL messages. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29a5eccab4c49db2c6d029c7bd645941bcd" name="ggaeb26179f77edc495a3e2b75966361b29a5eccab4c49db2c6d029c7bd645941bcd"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_VALIDATION_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes VALIDATION messages. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29a0fc0a510a3373ca341adcf8e7ba4834a" name="ggaeb26179f77edc495a3e2b75966361b29a0fc0a510a3373ca341adcf8e7ba4834a"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_PERFORMANCE_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes PERFORMANCE messages. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29a7ad28045d319ddb10b2e5bff8dda9fda" name="ggaeb26179f77edc495a3e2b75966361b29a7ad28045d319ddb10b2e5bff8dda9fda"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_DEVICE_BIND_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes DEVICE ADDRESS BINDING messages. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29adb1f324eece3bf4328a73e5b10683945" name="ggaeb26179f77edc495a3e2b75966361b29adb1f324eece3bf4328a73e5b10683945"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_TYPE_ALL_BIT&#160;</td><td class="fielddoc"><p>Create a debug messenger in Vulkan renderers that includes all debug message types. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggaeb26179f77edc495a3e2b75966361b29a32a13d891304d2f6e1a1ed991d6b4055" name="ggaeb26179f77edc495a3e2b75966361b29a32a13d891304d2f6e1a1ed991d6b4055"></a>THALLIUM_VK_INSTANCE_DEBUG_MESSENGER_DETAILED&#160;</td><td class="fielddoc"><p>Set instance debug messenger to print detailed information (usually not necessary). </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga2fb0753764adfb77593c9e27b5cdbabf" name="ga2fb0753764adfb77593c9e27b5cdbabf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2fb0753764adfb77593c9e27b5cdbabf">&#9670;&#160;</a></span>th_ValidateRendererExtensionDescriptor()</h2>
+<a id="gab997b95b23c8cf033601fe5ebdffb4c4" name="gab997b95b23c8cf033601fe5ebdffb4c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab997b95b23c8cf033601fe5ebdffb4c4">&#9670;&#160;</a></span>th_VersionToString()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int th_ValidateRendererExtensionDescriptor </td>
+          <td class="memname">const void th_VersionToString </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../d3/dea/a00046.html">th_RendererExtensionDescriptor_t</a>&#160;</td>
-          <td class="paramname"><em>descriptor</em>, </td>
+          <td class="paramtype">const <a class="el" href="../../d3/dea/a00046.html">th_Version_t</a>&#160;</td>
+          <td class="paramname"><em>version</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
-          <td class="paramname"><em>debugger</em>&#160;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>out_string</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -211,19 +162,33 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function validates the contents of the given renderer extension descriptor that are relevant to any graphics API modules that were compiled.</p>
-<p>The descriptor structure is not changed.</p>
-<dl class="section note"><dt>Note</dt><dd>Extensions for API modules that weren't compiled are not considered; for example, any Vulkan layers specified in the descriptor will only be validated if the Vulkan module was compiled. Otherwise, they will be ignored.</dd></dl>
+<p>Convert the given version to a string and return it into <code>out_str</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">descriptor</td><td>The extension descriptor to check </td></tr>
-    <tr><td class="paramname">debugger</td><td>Debugger to read configuration options from (or NULL for no debugging) </td></tr>
+    <tr><td class="paramname">version</td><td>The version to stringify </td></tr>
+    <tr><td class="paramname">out_string</td><td>Pointer to the string to update </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if the descriptor was INVALID </dd>
-<dd>
-1 if the descriptor was VALID </dd></dl>
+
+</div>
+</div>
+<a id="ga079a6eec1ee51e03d1671a90b42175c2" name="ga079a6eec1ee51e03d1671a90b42175c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga079a6eec1ee51e03d1671a90b42175c2">&#9670;&#160;</a></span>th_GetThalliumVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char *const th_GetThalliumVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function returns the version of Thallium that was compiled in the format of a human-readable string.</p>
+<dl class="section return"><dt>Returns</dt><dd>Thallium version </dd></dl>
 
 </div>
 </div>
@@ -233,7 +198,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Feb 14 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

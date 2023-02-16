@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['patch_0',['patch',['../d1/dea/a00054.html#a4bb100ea6bc032df2b4e47f080ef0be9',1,'th_Version_t']]]
+  ['renderer_2eh_0',['renderer.h',['../d4/d51/a00017.html',1,'']]],
+  ['rendererconfig_1',['rendererConfig',['../d5/db6/a00042.html#af9fd34a99180dcc7d1af2dbc65f4fe5f',1,'th_RendererDescriptor_t']]]
 ];

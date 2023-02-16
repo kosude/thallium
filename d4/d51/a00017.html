@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/extension.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/renderer.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_f040899 (2023-02-14)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,37 +112,43 @@ $(document).ready(function(){initNavTree('d4/d51/a00017.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
+<a href="#typedef-members">Types</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">extension.h File Reference</div></div>
+  <div class="headertitle"><div class="title">renderer.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Structures related to extending renderers.  
+<p>Renderer structure(s) and related functions.  
 <a href="#details">More...</a></p>
 
 <p><a href="../../d4/d51/a00017_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/db6/a00042.html">th_VulkanRendererExtensionDescriptor_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct to describe extensions for Vulkan renderers.  <a href="../../d5/db6/a00042.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d41/a00038.html">th_RendererConfigVulkan_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure specifically for Vulkan renderers.  <a href="../../d8/d41/a00038.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dea/a00046.html">th_RendererExtensionDescriptor_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct to describe extensions to each graphics API.  <a href="../../d3/dea/a00046.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/db6/a00042.html">th_RendererDescriptor_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure describing a renderer to be created.  <a href="../../d5/db6/a00042.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:gaeb26179f77edc495a3e2b75966361b29"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#gaeb26179f77edc495a3e2b75966361b29">th_VulkanRendererExtensionFlag_t</a> </td></tr>
-<tr class="memdesc:gaeb26179f77edc495a3e2b75966361b29"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enumeration containing Vulkan-specific configuration flags.  <a href="../../d0/dc0/a00033.html#gaeb26179f77edc495a3e2b75966361b29">More...</a><br /></td></tr>
-<tr class="separator:gaeb26179f77edc495a3e2b75966361b29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Types</h2></td></tr>
+<tr class="memitem:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a></td></tr>
+<tr class="memdesc:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure to represent a graphics API.  <br /></td></tr>
+<tr class="separator:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#ga2fb0753764adfb77593c9e27b5cdbabf">th_ValidateRendererExtensionDescriptor</a> (const <a class="el" href="../../d3/dea/a00046.html">th_RendererExtensionDescriptor_t</a> descriptor, const <a class="el" href="../../dc/d87/a00032.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the relevant contents of the given renderer extension descriptor.  <br /></td></tr>
-<tr class="separator:ga2fb0753764adfb77593c9e27b5cdbabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d79/a00030.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8">th_CreateRenderer</a> (const <a class="el" href="../../d5/db6/a00042.html">th_RendererDescriptor_t</a> descriptor, <a class="el" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create, populate, and return a new renderer struct.  <br /></td></tr>
+<tr class="separator:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d79/a00030.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d">th_DestroyRenderer</a> (<a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
+<tr class="memdesc:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given renderer object.  <br /></td></tr>
+<tr class="separator:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0ce080d05a07073492125a60997274ca"><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d79/a00030.html#ga0ce080d05a07073492125a60997274ca">th_GetRendererRenderSystem</a> (const <a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
+<tr class="memdesc:ga0ce080d05a07073492125a60997274ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to the render system within the given renderer.  <br /></td></tr>
+<tr class="separator:ga0ce080d05a07073492125a60997274ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"></div></div><!-- contents -->
@@ -150,9 +156,9 @@ Functions</h2></td></tr>
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../d4/d51/a00017.html">extension.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../d4/d51/a00017.html">renderer.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Feb 14 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

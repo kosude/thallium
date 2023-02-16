@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Vulkan - Thallium</title>
+        <title>th_RendererConfigVulkan_t Struct Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_f040899 (2023-02-14)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,31 +111,51 @@ $(document).ready(function(){initNavTree('d8/d41/a00038.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#groups">Subgroups</a>  </div>
-  <div class="headertitle"><div class="title">Vulkan</div></div>
+<a href="#pub-attribs">Data Fields</a>  </div>
+  <div class="headertitle"><div class="title">th_RendererConfigVulkan_t Struct Reference<div class="ingroups"><a class="el" href="../../db/df3/a00034.html">Vulkan</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Vulkan-specific functions and types.  
-<a href="#details">More...</a></p>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Configuration structure specifically for Vulkan renderers.  
+ <a href="../../d8/d41/a00038.html#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
-Subgroups</h2></td></tr>
-<tr class="memitem:d4/d8c/a00035"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8c/a00035.html">Vulkan extensions and layers</a></td></tr>
-<tr class="memdesc:d4/d8c/a00035"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handling Vulkan-specific extensions. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:de/d8c/a00036"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d8c/a00036.html">Vulkan render systems</a></td></tr>
-<tr class="memdesc:de/d8c/a00036"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handling low-level Vulkan-specific render system structures. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a0318d9ea8ced6493417ded4f551c85ca"><td class="memItemLeft" align="right" valign="top"><a id="a0318d9ea8ced6493417ded4f551c85ca" name="a0318d9ea8ced6493417ded4f551c85ca"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>applicationName</b></td></tr>
+<tr class="memdesc:a0318d9ea8ced6493417ded4f551c85ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the application. <br /></td></tr>
+<tr class="separator:a0318d9ea8ced6493417ded4f551c85ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c1a1ad1c44b554afe3261356b12f992"><td class="memItemLeft" align="right" valign="top"><a id="a9c1a1ad1c44b554afe3261356b12f992" name="a9c1a1ad1c44b554afe3261356b12f992"></a>
+<a class="el" href="../../d3/dea/a00046.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>applicationVersion</b></td></tr>
+<tr class="memdesc:a9c1a1ad1c44b554afe3261356b12f992"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's version. <br /></td></tr>
+<tr class="separator:a9c1a1ad1c44b554afe3261356b12f992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f422e789909d742eddcb78c38dc1b0"><td class="memItemLeft" align="right" valign="top"><a id="af3f422e789909d742eddcb78c38dc1b0" name="af3f422e789909d742eddcb78c38dc1b0"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>engineName</b></td></tr>
+<tr class="memdesc:af3f422e789909d742eddcb78c38dc1b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the engine being used, if applicable. <br /></td></tr>
+<tr class="separator:af3f422e789909d742eddcb78c38dc1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4f05b22edb3ac7b9ff7d49b3e54323e"><td class="memItemLeft" align="right" valign="top"><a id="aa4f05b22edb3ac7b9ff7d49b3e54323e" name="aa4f05b22edb3ac7b9ff7d49b3e54323e"></a>
+<a class="el" href="../../d3/dea/a00046.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>engineVersion</b></td></tr>
+<tr class="memdesc:aa4f05b22edb3ac7b9ff7d49b3e54323e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version of the engine being used, if applicable. <br /></td></tr>
+<tr class="separator:aa4f05b22edb3ac7b9ff7d49b3e54323e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee625f07403e109e3f45ab4ca241501e"><td class="memItemLeft" align="right" valign="top"><a id="aee625f07403e109e3f45ab4ca241501e" name="aee625f07403e109e3f45ab4ca241501e"></a>
+const char **&#160;</td><td class="memItemRight" valign="bottom"><b>layerNames</b></td></tr>
+<tr class="memdesc:aee625f07403e109e3f45ab4ca241501e"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of names of Vulkan layers to enable. <br /></td></tr>
+<tr class="separator:aee625f07403e109e3f45ab4ca241501e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8777ef620ad2dc8144ff7337f3c08f4"><td class="memItemLeft" align="right" valign="top"><a id="aa8777ef620ad2dc8144ff7337f3c08f4" name="aa8777ef620ad2dc8144ff7337f3c08f4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>layerCount</b></td></tr>
+<tr class="memdesc:aa8777ef620ad2dc8144ff7337f3c08f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>layerNames</code> <br /></td></tr>
+<tr class="separator:aa8777ef620ad2dc8144ff7337f3c08f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This structure provides exclusive configuration options specifically for Vulkan renderers. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
+                <li class="navelem"><a class="el" href="../../d8/d41/a00038.html">th_RendererConfigVulkan_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Feb 14 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

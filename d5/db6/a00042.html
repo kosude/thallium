@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>th_VulkanRendererExtensionDescriptor_t Struct Reference - Thallium</title>
+        <title>th_RendererDescriptor_t Struct Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_f040899 (2023-02-14)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,47 +112,40 @@ $(document).ready(function(){initNavTree('d5/db6/a00042.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">th_VulkanRendererExtensionDescriptor_t Struct Reference<div class="ingroups"><a class="el" href="../../d0/dc0/a00033.html">Extending graphics APIs and renderers</a></div></div></div>
+  <div class="headertitle"><div class="title">th_RendererDescriptor_t Struct Reference<div class="ingroups"><a class="el" href="../../d5/d79/a00030.html">Managing renderer objects</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A struct to describe extensions for Vulkan renderers.  
+<p>A structure describing a renderer to be created.  
  <a href="../../d5/db6/a00042.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a34dad9971c1d16800094ad474a8979e5"><td class="memItemLeft" align="right" valign="top"><a id="a34dad9971c1d16800094ad474a8979e5" name="a34dad9971c1d16800094ad474a8979e5"></a>
-const char **&#160;</td><td class="memItemRight" valign="bottom"><b>extensionNames</b></td></tr>
-<tr class="memdesc:a34dad9971c1d16800094ad474a8979e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of names of Vulkan instance extensions to enable,. <br /></td></tr>
-<tr class="separator:a34dad9971c1d16800094ad474a8979e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a547a7c3d23f3d277f07928468a6e155f"><td class="memItemLeft" align="right" valign="top"><a id="a547a7c3d23f3d277f07928468a6e155f" name="a547a7c3d23f3d277f07928468a6e155f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>extensionCount</b></td></tr>
-<tr class="memdesc:a547a7c3d23f3d277f07928468a6e155f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>extensionNames</code>. <br /></td></tr>
-<tr class="separator:a547a7c3d23f3d277f07928468a6e155f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1dd5f093100784252eaba0e1510a3df"><td class="memItemLeft" align="right" valign="top"><a id="ab1dd5f093100784252eaba0e1510a3df" name="ab1dd5f093100784252eaba0e1510a3df"></a>
-const char **&#160;</td><td class="memItemRight" valign="bottom"><b>layerNames</b></td></tr>
-<tr class="memdesc:ab1dd5f093100784252eaba0e1510a3df"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of names of Vulkan layers to enable. <br /></td></tr>
-<tr class="separator:ab1dd5f093100784252eaba0e1510a3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae32cb103ceb6ab5678e09e851d53f588"><td class="memItemLeft" align="right" valign="top"><a id="ae32cb103ceb6ab5678e09e851d53f588" name="ae32cb103ceb6ab5678e09e851d53f588"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>layerCount</b></td></tr>
-<tr class="memdesc:ae32cb103ceb6ab5678e09e851d53f588"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>layerNames</code>. <br /></td></tr>
-<tr class="separator:ae32cb103ceb6ab5678e09e851d53f588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3be480b0a99057cd60f8bfd67d1eb41"><td class="memItemLeft" align="right" valign="top"><a id="ad3be480b0a99057cd60f8bfd67d1eb41" name="ad3be480b0a99057cd60f8bfd67d1eb41"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>flags</b></td></tr>
-<tr class="memdesc:ad3be480b0a99057cd60f8bfd67d1eb41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration flags for Vulkan renderers. <br /></td></tr>
-<tr class="separator:ad3be480b0a99057cd60f8bfd67d1eb41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="memItemLeft" align="right" valign="top"><a id="a2b5ff509d638705dadb1effb2ef0c2dc" name="a2b5ff509d638705dadb1effb2ef0c2dc"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>apiName</b></td></tr>
+<tr class="memdesc:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the API being represented. <br /></td></tr>
+<tr class="separator:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7558e2e44f28014e287b872cacfb1c95"><td class="memItemLeft" align="right" valign="top"><a id="a7558e2e44f28014e287b872cacfb1c95" name="a7558e2e44f28014e287b872cacfb1c95"></a>
+<a class="el" href="../../d3/dea/a00046.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>apiVersion</b></td></tr>
+<tr class="memdesc:a7558e2e44f28014e287b872cacfb1c95"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version of the API being represented. <br /></td></tr>
+<tr class="separator:a7558e2e44f28014e287b872cacfb1c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="memItemLeft" align="right" valign="top"><a id="af9fd34a99180dcc7d1af2dbc65f4fe5f" name="af9fd34a99180dcc7d1af2dbc65f4fe5f"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>rendererConfig</b></td></tr>
+<tr class="memdesc:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional pointer to an API-specific configuration structure. <br /></td></tr>
+<tr class="separator:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This struct describes extensions for Vulkan renderers.</p>
-<p>When defining the extensions you need in this structure, you should also consider defining the equivalents to those extensions in all other APIs you wish to support in their respective structures. </p>
+<div class="textblock"><p>This structure describes a renderer to be created.</p>
+<p>Common practice is to set <code>rendererConfig</code> to NULL. However, it may be necessary to provide API-specific configuration, which this parameter allows. See a Vulkan example below.</p>
+<dl class="section user"><dt>Renderer config example</dt><dd>Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a <code><a class="el" href="../../d8/d41/a00038.html" title="Configuration structure specifically for Vulkan renderers.">th_RendererConfigVulkan_t</a></code> structure with the relevant information, and pass a pointer to it via the <code>rendererConfig</code> parameter. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../d5/db6/a00042.html">th_VulkanRendererExtensionDescriptor_t</a></li>
+                <li class="navelem"><a class="el" href="../../d5/db6/a00042.html">th_RendererDescriptor_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Feb 14 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

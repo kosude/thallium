@@ -1,7 +1,7 @@
 var modules =
 [
-    [ "Opaque type definitions", "d3/d8b/a00059.html", "d3/d8b/a00059" ],
-    [ "Utilities", "de/de1/a00065.html", "de/de1/a00065" ],
-    [ "Global state", "d9/db3/a00066.html", null ],
-    [ "Internal Vulkan functions", "dc/ddf/a00067.html", "dc/ddf/a00067" ]
+    [ "Opaque type definitions", "d9/d2e/a00056.html", "d9/d2e/a00056" ],
+    [ "Utilities", "df/d03/a00062.html", "df/d03/a00062" ],
+    [ "Global state", "d1/d6f/a00063.html", null ],
+    [ "Internal Vulkan functions", "df/d5f/a00064.html", "df/d5f/a00064" ]
 ];

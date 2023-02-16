@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>th_RendererExtensionDescriptor_t Struct Reference - Thallium</title>
+        <title>th_Version_t Struct Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_f040899 (2023-02-14)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,32 +112,38 @@ $(document).ready(function(){initNavTree('d3/dea/a00046.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">th_RendererExtensionDescriptor_t Struct Reference<div class="ingroups"><a class="el" href="../../d0/dc0/a00033.html">Extending graphics APIs and renderers</a></div></div></div>
+  <div class="headertitle"><div class="title">th_Version_t Struct Reference<div class="ingroups"><a class="el" href="../../d0/dc0/a00033.html">Utilities</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A struct to describe extensions to each graphics API.  
+<p>A structure to describe a version.  
  <a href="../../d3/dea/a00046.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a28f30dd25ebb599c63079a7adc3a3696"><td class="memItemLeft" align="right" valign="top"><a id="a28f30dd25ebb599c63079a7adc3a3696" name="a28f30dd25ebb599c63079a7adc3a3696"></a>
-<a class="el" href="../../d5/db6/a00042.html">th_VulkanRendererExtensionDescriptor_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>vulkan</b></td></tr>
-<tr class="memdesc:a28f30dd25ebb599c63079a7adc3a3696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Description to extend Vulkan renderers. <br /></td></tr>
-<tr class="separator:a28f30dd25ebb599c63079a7adc3a3696"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9a7d0d4eff83ad5a5803602eacf9e8"><td class="memItemLeft" align="right" valign="top"><a id="a6a9a7d0d4eff83ad5a5803602eacf9e8" name="a6a9a7d0d4eff83ad5a5803602eacf9e8"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>major</b></td></tr>
+<tr class="memdesc:a6a9a7d0d4eff83ad5a5803602eacf9e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Major version number. <br /></td></tr>
+<tr class="separator:a6a9a7d0d4eff83ad5a5803602eacf9e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfbba1290f25364c32bbd467d86cf6dc"><td class="memItemLeft" align="right" valign="top"><a id="acfbba1290f25364c32bbd467d86cf6dc" name="acfbba1290f25364c32bbd467d86cf6dc"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>minor</b></td></tr>
+<tr class="memdesc:acfbba1290f25364c32bbd467d86cf6dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minor version number. <br /></td></tr>
+<tr class="separator:acfbba1290f25364c32bbd467d86cf6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bb100ea6bc032df2b4e47f080ef0be9"><td class="memItemLeft" align="right" valign="top"><a id="a4bb100ea6bc032df2b4e47f080ef0be9" name="a4bb100ea6bc032df2b4e47f080ef0be9"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>patch</b></td></tr>
+<tr class="memdesc:a4bb100ea6bc032df2b4e47f080ef0be9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Patch/build number. <br /></td></tr>
+<tr class="separator:a4bb100ea6bc032df2b4e47f080ef0be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This struct describes extensions to each graphics API through the use of other API-specific descriptor structures.</p>
-<p>Because extending the renderer is inherently API-dependent, this struct is split into smaller, API-specific structures that contain the different equivalents for each API.</p>
-<p>When defining the extensions you need in this structure, you should also consider defining the equivalents to those extensions in all other APIs you wish to support. </p>
+<div class="textblock"><p>This structure describes a version with major, minor, and patch values. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../d3/dea/a00046.html">th_RendererExtensionDescriptor_t</a></li>
+                <li class="navelem"><a class="el" href="../../d3/dea/a00046.html">th_Version_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Tue Feb 14 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

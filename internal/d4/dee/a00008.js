@@ -1,5 +1,4 @@
 var a00008 =
 [
-    [ "thvk_CreateInstance", "df/d5f/a00064.html#ga4ef9046f45e4bdc2b128afba08941d33", null ],
-    [ "thvk_InstanceDebugMessengerCallback", "df/d5f/a00064.html#ga93cd6b1e5743cf52670008a878587e0c", null ]
+    [ "thvk_CreateInstance", "d4/de8/a00061.html#ga504410e74c2334a6ade14867d7ead52e", null ]
 ];
