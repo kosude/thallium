@@ -47,6 +47,7 @@
 #endif // __cplusplus
 
 #include "thallium/debug.h"
+#include "thallium/renderer_config.h"
 #include "thallium/renderer.h"
 #include "thallium/version.h"
 

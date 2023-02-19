@@ -36,7 +36,7 @@ typedef struct th_Version_t {
  * @ingroup utils
  * @brief Convert the given version to a string and return it.
  *
- * Convert the given version to a string and return it into `out_str`.
+ * Convert the given version to a string and return it into `out_string`.
  *
  * @param version The version to stringify
  * @param out_string Pointer to the string to update
@@ -52,9 +52,9 @@ const void th_VersionToString(
  *
  * This function returns the version of Thallium that was compiled in the format of a human-readable string.
  *
- * @return Thallium version
+ * @return Stringified Thallium version
  */
-const char *const th_GetThalliumVersion();
+const char *const th_GetThalliumVersionString();
 
 #ifdef __cplusplus
     }

@@ -15,15 +15,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define RENDER_SYSTEM_CREATE_ERROR(debugger) { \
-    char apiVer[256]; \
-    \
-    th_VersionToString(descriptor.apiVersion, apiVer); \
-    \
-    th_Error(debugger, "Failed to create render system (th_CreateRenderer)"); \
-    th_Hint(debugger, "API = \"%s\" (%s)", descriptor.apiName, apiVer); \
-}
-
 // Typedef for readability: different IDs to represent different graphics APIs.
 typedef enum ApiId_t {
     THALLIUM_API_ID_NULL = 0x00,
@@ -52,7 +43,7 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
             // create the render system
             r->renderSystem = thvk_CreateRenderSystem((th_RendererConfigVulkan_t *) descriptor.rendererConfig, descriptor.apiVersion, debugger);
             if (!r->renderSystem) {
-                RENDER_SYSTEM_CREATE_ERROR(debugger);
+                th_Error(debugger, "Failed to create render system (th_CreateRenderer)");
                 return NULL;
             }
 #       else

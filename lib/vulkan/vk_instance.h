@@ -24,14 +24,13 @@
     extern "C" {
 #endif // __cplusplus
 
-#include <vulkan/vulkan.h>
 #include "thallium/vulkan/vk_render_system.h"
 
-// @cond DOCS_IGNORE
+/// @cond DOCS_IGNORE
 
 typedef struct th_Debugger_t th_Debugger_t;
 
-// @endcond DOCS_IGNORE
+/// @endcond DOCS_IGNORE
 
 /**
  * @ingroup vk_instance
@@ -41,14 +40,14 @@ typedef struct th_Debugger_t th_Debugger_t;
  *
  * If `debugger` is not NULL, a debug messenger will be created alongside the instance for Vulkan debugging.
  *
- * @param instance Pointer to the location into which the Vulkan instance will be returned.
+ * @param out_instance Pointer to the location into which the Vulkan instance will be returned.
  * @param config Pointer to a Vulkan renderer configuration structure.
  * @param apiVersion Vulkan API version to create instance for (as a th_Version_t structure)
  * @param debugger NULL or a pointer to a Thallium debugger
  * @return @returnstatus
  */
 const int thvk_CreateInstance(
-    VkInstance *instance,
+    VkInstance *out_instance,
     const th_RendererConfigVulkan_t *config,
     const th_Version_t apiVersion,
     const th_Debugger_t *debugger

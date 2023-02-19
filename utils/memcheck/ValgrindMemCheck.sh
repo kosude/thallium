@@ -66,3 +66,5 @@ fi
 
 # execute command
 ${VALGRIND_CMD}
+
+cd "${PROJECT_PATH}"

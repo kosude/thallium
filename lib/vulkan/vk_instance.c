@@ -8,12 +8,16 @@
 #include "vk_instance.h"
 
 #include "thallium/debug.h"
-#include "thallium/renderer.h"
-#include "types.h"
+#include "thallium/renderer_config.h"
 
+#include "thallium/vulkan/vk_extension.h"
+
+#include "types.h"
 #include "utils/log.h"
+#include "utils/primitive.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define FMT_VK_VERSION(vers) \
@@ -30,6 +34,9 @@
         vers.minor, \
         vers.patch \
     )
+
+#define MAX_INSTANCE_LAYER_NAME_COUNT 128
+#define MAX_INSTANCE_EXTENSION_NAME_COUNT 128
 
 // Callback for instance debug messengers - redirects messages to Thallium debugger
 // userData is a pointer to the Thallium debugger struct
@@ -105,7 +112,7 @@ static const VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_D
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-const int thvk_CreateInstance(VkInstance *instance, const th_RendererConfigVulkan_t *config, const th_Version_t apiVersion,
+const int thvk_CreateInstance(VkInstance *out_instance, const th_RendererConfigVulkan_t *config, const th_Version_t apiVersion,
     const th_Debugger_t *debugger)
 {
     VkApplicationInfo appInfo;
@@ -140,19 +147,80 @@ const int thvk_CreateInstance(VkInstance *instance, const th_RendererConfigVulka
         instanceInfo.pNext = NULL;
     }
 
-    // TODO: see Trello: change Vulkan extensions design (required instance extensions)
-    // i.e.: getting all supported layers/extensions, and filtering the non-required ones out.
-    // required layers include ones optionally specified by the user in `config`.
-    // required extensions include OS-dependent surface extensions and, conditionally, debug utils.
-    instanceInfo.enabledLayerCount = 0;
-    instanceInfo.enabledExtensionCount = 0;
-    instanceInfo.ppEnabledLayerNames = NULL;
-    instanceInfo.ppEnabledExtensionNames = NULL;
+    unsigned int layerCount = 0;
+    unsigned int extensionCount = 0;
+    const char *layerNames[MAX_INSTANCE_LAYER_NAME_COUNT];
+    const char *extensionNames[MAX_INSTANCE_EXTENSION_NAME_COUNT];
+
+    // get required and available layers
+    unsigned int requiredLayerCount, availableLayerCount;
+    char **requiredLayerNames = thvk_GetRequiredLayers(&requiredLayerCount, config);
+    char **availableLayerNames = thvk_GetAvailableLayers(&availableLayerCount, debugger);
+
+    // filter supported layers against required ones
+    for (unsigned int i = 0; i < requiredLayerCount; i++) {
+        // if required layer is available
+        if (th_StringValueInArray(requiredLayerNames[i], (const char *const *) availableLayerNames, availableLayerCount)) {
+            if (layerCount++ > MAX_INSTANCE_LAYER_NAME_COUNT) {
+                th_Warn(debugger, "Count of specified layer names for VkInstance exceeds max (%d)", MAX_INSTANCE_LAYER_NAME_COUNT);
+            }
+
+            layerNames[i] = requiredLayerNames[i];
+        }
+        // otherwise print msg
+        else {
+            th_Warn(debugger, "Required or specified layer \"%s\" not available or supported by the installed Vulkan implementation. "
+                "(from thvk_CreateInstance)", requiredLayerNames[i]);
+        }
+    }
+
+    // get required and available extensions
+    unsigned int requiredExtensionCount, availableExtensionCount;
+    char **requiredExtensionNames = thvk_GetRequiredInstanceExtensions(&requiredExtensionCount, debugger != NULL, debugger);
+    char **availableExtensionNames = thvk_GetAvailableInstanceExtensions(&availableExtensionCount, NULL, debugger);
+
+    // filter supported extensions against required ones
+    for (unsigned int i = 0; i < requiredExtensionCount; i++) {
+        // if required extension is available
+        if (th_StringValueInArray(requiredExtensionNames[i], (const char *const *) availableExtensionNames, availableExtensionCount)) {
+            if (extensionCount++ > MAX_INSTANCE_EXTENSION_NAME_COUNT) {
+                th_Warn(debugger, "Count of specified extension names for VkInstance exceeds max (%d)", MAX_INSTANCE_EXTENSION_NAME_COUNT);
+            }
+
+            extensionNames[i] = requiredExtensionNames[i];
+        }
+        // otherwise print msg
+        else {
+            th_Warn(debugger, "Required or specified extension \"%s\" not available or supported by the installed Vulkan implementation. "
+                "(from thvk_CreateInstance)", requiredExtensionNames[i]);
+        }
+    }
+
+    // apply layers and extensions
+    instanceInfo.enabledLayerCount = layerCount;
+    instanceInfo.enabledExtensionCount = extensionCount;
+    instanceInfo.ppEnabledLayerNames = layerNames;
+    instanceInfo.ppEnabledExtensionNames = extensionNames;
 
     // then we create the instance
-    if (vkCreateInstance(&instanceInfo, NULL, instance)) {
+    if (vkCreateInstance(&instanceInfo, NULL, out_instance)) {
         return 0;
     }
+
+    // cleaning up local malloc'd stuff
+
+    for (unsigned int i = 0; i < availableLayerCount; i++) {
+        free(availableLayerNames[i]);
+    }
+    free(availableLayerNames);
+
+    for (unsigned int i = 0; i < availableExtensionCount; i++) {
+        free(availableExtensionNames[i]);
+    }
+    free(availableExtensionNames);
+
+    // requiredLayerNames is stack-allocated so doesn't ned to be freed
+    free(requiredExtensionNames);
 
     return 1;
 }

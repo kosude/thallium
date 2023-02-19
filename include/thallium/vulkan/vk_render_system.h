@@ -27,12 +27,12 @@
 
 #include <vulkan/vulkan.h>
 
-// @cond DOCS_IGNORE
+/// @cond DOCS_IGNORE
 
 typedef struct th_Debugger_t th_Debugger_t;
 typedef struct th_RendererConfigVulkan_t th_RendererConfigVulkan_t;
 
-// @endcond DOCS_IGNORE
+/// @endcond DOCS_IGNORE
 
 /**
  * @ingroup vk_render_system

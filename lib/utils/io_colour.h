@@ -23,11 +23,11 @@
     extern "C" {
 #endif // __cplusplus
 
-// @cond DOCS_IGNORE
+/// @cond DOCS_IGNORE
 
 typedef struct _IO_FILE FILE;
 
-// @endcond DOCS_IGNORE
+/// @endcond DOCS_IGNORE
 
 /**
  * @ingroup utils_io_colour

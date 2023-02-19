@@ -46,40 +46,20 @@
 typedef struct th_Renderer_t th_Renderer_t;
 
 /**
- * @ingroup vulkan
- * @brief Configuration structure specifically for Vulkan renderers
- *
- * This structure provides exclusive configuration options specifically for Vulkan renderers.
- */
-typedef struct th_RendererConfigVulkan_t {
-    /// @brief The name of the application
-    const char *applicationName;
-    /// @brief The application's version
-    th_Version_t applicationVersion;
-    /// @brief The name of the engine being used, if applicable
-    const char *engineName;
-    /// @brief The version of the engine being used, if applicable
-    th_Version_t engineVersion;
-
-    /// @brief An array of names of Vulkan layers to enable
-    const char **layerNames;
-    /// @brief The amount of elements in `layerNames`
-    int layerCount;
-} th_RendererConfigVulkan_t;
-
-/**
  * @ingroup renderer
  * @brief A structure describing a renderer to be created.
  *
  * This structure describes a renderer to be created.
  *
- * Common practice is to set `rendererConfig` to NULL. However, it may be necessary to provide API-specific configuration,
- * which this parameter allows. See a Vulkan example below.
+ * Common practice is to set `rendererConfig` to NULL. However, it may be necessary to provide
+ * [API-specific configuration](@ref renderer_config), which this parameter allows. See a Vulkan example below.
  *
  * @par Renderer config example
  * Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a
  * `th_RendererConfigVulkan_t` structure with the relevant information, and pass a pointer to it via the `rendererConfig`
  * parameter.
+ *
+ * For more, see the @ref renderer_config page.
  */
 typedef struct th_RendererDescriptor_t {
     /// @brief The name of the API being represented
