@@ -11,11 +11,16 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PUB_VERSION_H
-#define _THALLIUM_PUB_VERSION_H
+#ifndef __thallium_version_h__
+#define __thallium_version_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
+
+
+// ===========================================================================
+//                           THALLIUM PUBLIC API
+// ===========================================================================
 
 /**
  * @ingroup utils
@@ -59,4 +64,4 @@ const char *const th_GetThalliumVersionString();
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PUB_VERSION_H
+#endif // !__thallium_version_h__

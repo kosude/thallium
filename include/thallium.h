@@ -40,18 +40,20 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PUB_H
-#define _THALLIUM_PUB_H
+#ifndef __thallium_h__
+#define __thallium_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/debug.h"
-#include "thallium/renderer_config.h"
-#include "thallium/renderer.h"
-#include "thallium/version.h"
+#include "thallium/enums.h"
+
+#include "thallium/core/debug.h"
+#include "thallium/core/renderer_config.h"
+#include "thallium/core/renderer.h"
+#include "thallium/core/version.h"
 
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PUB_H
+#endif // !__thallium_h__

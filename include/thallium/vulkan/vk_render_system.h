@@ -17,22 +17,21 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PUB_VULKAN_RENDER_SYSTEM_H
-#define _THALLIUM_PUB_VULKAN_RENDER_SYSTEM_H
+#ifndef __thallium_vk_render_system_h__
+#define __thallium_vk_render_system_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/version.h"
+#include "thallium/core/version.h"
+#include "thallium/fwd.h"
 
 #include <vulkan/vulkan.h>
 
-/// @cond DOCS_IGNORE
 
-typedef struct th_Debugger_t th_Debugger_t;
-typedef struct th_RendererConfigVulkan_t th_RendererConfigVulkan_t;
-
-/// @endcond DOCS_IGNORE
+// ===========================================================================
+//                           THALLIUM PUBLIC API
+// ===========================================================================
 
 /**
  * @ingroup vk_render_system
@@ -69,7 +68,7 @@ typedef struct thvk_RenderSystem_t {
  * @sa @ref thvk_DestroyRenderSystem()
  */
 thvk_RenderSystem_t *thvk_CreateRenderSystem(
-    const th_RendererConfigVulkan_t *config,
+    const th_RendererConfig_Vulkan_t *config,
     const th_Version_t apiVersion,
     const th_Debugger_t *debugger
 );
@@ -95,4 +94,4 @@ const int thvk_DestroyRenderSystem(
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PUB_VULKAN_RENDER_SYSTEM_H
+#endif // !__thallium_vk_render_system_h__

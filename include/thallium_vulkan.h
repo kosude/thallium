@@ -20,11 +20,13 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PUB_VULKAN_H
-#define _THALLIUM_PUB_VULKAN_H
+#ifndef __thallium_vulkan_h__
+#define __thallium_vulkan_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
+
+#include <vulkan/vulkan.h>
 
 #include "thallium/vulkan/vk_extension.h"
 #include "thallium/vulkan/vk_render_system.h"
@@ -32,4 +34,4 @@
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PUB_VULKAN_H
+#endif // !__thallium_vulkan_h__

@@ -5,9 +5,6 @@
  *   Please see the LICENCE file for more information.
  */
 
-#include "thallium.h"
-#include "thallium_vulkan.h"
-
 #include "utils/log.h"
 #include "vk_instance.h"
 
@@ -18,7 +15,7 @@
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_RendererConfigVulkan_t *config, const th_Version_t apiVersion, const th_Debugger_t *debugger) {
+thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_RendererConfig_Vulkan_t *config, const th_Version_t apiVersion, const th_Debugger_t *debugger) {
     thvk_RenderSystem_t *r = malloc(sizeof(thvk_RenderSystem_t));
     if (!r) {
         th_Fatal(debugger, "MALLOC fault in th_CreateRenderer!");

@@ -5,7 +5,7 @@
  *   Please see the LICENCE file for more information.
  */
 
-#include "thallium.h"
+#include "thallium/core/renderer.h"
 
 #include "cmake_modules.h"
 
@@ -16,6 +16,7 @@
 #include <string.h>
 
 // Typedef for readability: different IDs to represent different graphics APIs.
+// This is not in renderer.h as it is not necessary to be in the public interface!
 typedef enum ApiId_t {
     THALLIUM_API_ID_NULL = 0x00,
     THALLIUM_API_ID_VULKAN = 0x01
@@ -41,7 +42,7 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
             r->apiId = THALLIUM_API_ID_VULKAN;
 
             // create the render system
-            r->renderSystem = thvk_CreateRenderSystem((th_RendererConfigVulkan_t *) descriptor.rendererConfig, descriptor.apiVersion, debugger);
+            r->renderSystem = thvk_CreateRenderSystem((th_RendererConfig_Vulkan_t *) descriptor.rendererConfig, descriptor.apiVersion, debugger);
             if (!r->renderSystem) {
                 th_Error(debugger, "Failed to create render system (th_CreateRenderer)");
                 return NULL;

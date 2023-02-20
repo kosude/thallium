@@ -23,7 +23,7 @@
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-char **thvk_GetRequiredLayers(unsigned int *out_count, const th_RendererConfigVulkan_t *config) {
+char **thvk_GetRequiredLayers(unsigned int *out_count, const th_RendererConfig_Vulkan_t *config) {
     if (out_count) {
         *out_count = config->layerCount;
     }

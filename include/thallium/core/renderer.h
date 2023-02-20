@@ -27,13 +27,19 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PUB_RENDERER_H
-#define _THALLIUM_PUB_RENDERER_H
+#ifndef __thallium_renderer_h__
+#define __thallium_renderer_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/version.h"
+#include "thallium/fwd.h"
+#include "thallium/core/version.h"
+
+
+// ===========================================================================
+//                           THALLIUM PUBLIC API
+// ===========================================================================
 
 /**
  * @ingroup renderer
@@ -56,7 +62,7 @@ typedef struct th_Renderer_t th_Renderer_t;
  *
  * @par Renderer config example
  * Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a
- * `th_RendererConfigVulkan_t` structure with the relevant information, and pass a pointer to it via the `rendererConfig`
+ * `th_RendererConfig_Vulkan_t` structure with the relevant information, and pass a pointer to it via the `rendererConfig`
  * parameter.
  *
  * For more, see the @ref renderer_config page.
@@ -126,4 +132,4 @@ const void *th_GetRendererRenderSystem(
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PUB_RENDERER_H
+#endif // !__thallium_renderer_h__

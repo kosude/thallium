@@ -37,7 +37,7 @@ if (THALLIUM_BUILD_MODULE_VULKAN)
     set(THALLIUM_MODULE_INCLUDES "${THALLIUM_MODULE_INCLUDES}\n#include \"thallium_vulkan.h\"")
 endif()
 
-configure_file("${THALLIUM_CMAKE_DIR}/generate/modules.h" "${PROJECT_BINARY_DIR}/generated/cmake_modules.h")
+configure_file("${THALLIUM_CMAKE_DIR}/modules.h" "${PROJECT_BINARY_DIR}/generated/cmake_modules.h")
 
 # add compilation definitions AFTER subdirectories so module flags are included
 target_compile_definitions(${PROJECT_NAME}_core PRIVATE ${THALLIUM_LIBRARY_DEFS})

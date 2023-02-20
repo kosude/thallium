@@ -19,35 +19,18 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PUB_DEBUG_H
-#define _THALLIUM_PUB_DEBUG_H
+#ifndef __thallium_debug_h__
+#define __thallium_debug_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-/**
- * @ingroup debug
- * @brief Enumeration containing severities to describe debug messages.
- *
- * This enumeration contains severities to describe debug messages.
- *
- * @sa @ref th_Debugger_t
- * @sa @ref th_CreateDebugger()
- */
-typedef enum th_DebugSeverity_t {
-    /// @brief Includes log messages.
-    THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT =   0x10,
-    /// @brief Includes notification output.
-    THALLIUM_DEBUG_SEVERITY_NOTIF_BIT =     0x08,
-    /// @brief Includes warning output.
-    THALLIUM_DEBUG_SEVERITY_WARNING_BIT =   0x04,
-    /// @brief Includes non-fatal error output.
-    THALLIUM_DEBUG_SEVERITY_ERROR_BIT =     0x02,
-    /// @brief Includes fatal error output.
-    THALLIUM_DEBUG_SEVERITY_FATAL_BIT =     0x01,
-    /// @brief Includes all debug messages.
-    THALLIUM_DEBUG_SEVERITY_ALL_BIT =       0x1F
-} th_DebugSeverity_t;
+#include "thallium/enums.h"
+
+
+// ===========================================================================
+//                           THALLIUM PUBLIC API
+// ===========================================================================
 
 /**
  * @ingroup debug
@@ -98,4 +81,4 @@ const int th_DestroyDebugger(
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PUB_DEBUG_H
+#endif // !__thallium_debug_h__

@@ -18,19 +18,14 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_VULKAN_INSTANCE_H
-#define _THALLIUM_VULKAN_INSTANCE_H
+#ifndef __thallium_vk_instance_h__
+#define __thallium_vk_instance_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
 #include "thallium/vulkan/vk_render_system.h"
-
-/// @cond DOCS_IGNORE
-
-typedef struct th_Debugger_t th_Debugger_t;
-
-/// @endcond DOCS_IGNORE
+#include "thallium/fwd.h"
 
 /**
  * @ingroup vk_instance
@@ -48,7 +43,7 @@ typedef struct th_Debugger_t th_Debugger_t;
  */
 const int thvk_CreateInstance(
     VkInstance *out_instance,
-    const th_RendererConfigVulkan_t *config,
+    const th_RendererConfig_Vulkan_t *config,
     const th_Version_t apiVersion,
     const th_Debugger_t *debugger
 );
@@ -56,4 +51,4 @@ const int thvk_CreateInstance(
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_VULKAN_INSTANCE_H
+#endif // !__thallium_vk_instance_h__

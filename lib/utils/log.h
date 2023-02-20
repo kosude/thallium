@@ -17,13 +17,13 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_LOG_H
-#define _THALLIUM_LOG_H
+#ifndef __thallium_log_h__
+#define __thallium_log_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-typedef struct th_Debugger_t th_Debugger_t;
+#include "thallium/fwd.h"
 
 /**
  * @ingroup utils_log
@@ -173,4 +173,4 @@ const int th_Fatal(
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_LOG_H
+#endif // !__thallium_log_h__

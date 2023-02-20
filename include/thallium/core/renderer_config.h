@@ -17,13 +17,18 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PUB_RENDERER_CONFIG_H
-#define _THALLIUM_PUB_RENDERER_CONFIG_H
+#ifndef __thallium_renderer_config_h__
+#define __thallium_renderer_config_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/version.h"
+#include "thallium/core/version.h"
+
+
+// ===========================================================================
+//                           THALLIUM PUBLIC API
+// ===========================================================================
 
 /**
  * @ingroup renderer_config
@@ -37,7 +42,7 @@
  * @sa @ref th_CreateRenderer()
  * @sa @ref th_RendererDescriptor_t
  */
-typedef struct th_RendererConfigVulkan_t {
+typedef struct th_RendererConfig_Vulkan_t {
     /// @brief The name of the application
     const char *applicationName;
     /// @brief The application's version
@@ -51,9 +56,9 @@ typedef struct th_RendererConfigVulkan_t {
     const char **layerNames;
     /// @brief The amount of elements in `layerNames`
     int layerCount;
-} th_RendererConfigVulkan_t;
+} th_RendererConfig_Vulkan_t;
 
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PUB_RENDERER_CONFIG_H
+#endif // !__thallium_renderer_config_h__

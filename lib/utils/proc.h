@@ -17,8 +17,8 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PROC_H
-#define _THALLIUM_PROC_H
+#ifndef __thallium_proc_h__
+#define __thallium_proc_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
@@ -39,4 +39,4 @@ const int th_KillProc();
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PROC_H
+#endif // !__thallium_proc_h__

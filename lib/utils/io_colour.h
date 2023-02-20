@@ -17,17 +17,16 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_IO_COLOUR_H
-#define _THALLIUM_IO_COLOUR_H
+#ifndef __thallium_io_colour_h__
+#define __thallium_io_colour_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-/// @cond DOCS_IGNORE
-
+// FORWARD DECLS
+/** @cond */
 typedef struct _IO_FILE FILE;
-
-/// @endcond DOCS_IGNORE
+/** @endcond */
 
 /**
  * @ingroup utils_io_colour
@@ -109,4 +108,4 @@ const int th_DefaultIOColour(
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_IO_COLOUR_H
+#endif // !__thallium_io_colour_h__

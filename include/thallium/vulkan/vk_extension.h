@@ -17,18 +17,18 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PUB_VULKAN_EXTENSION_H
-#define _THALLIUM_PUB_VULKAN_EXTENSION_H
+#ifndef __thallium_vk_extension_h__
+#define __thallium_vk_extension_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-/// @cond DOCS_IGNORE
+#include "thallium/fwd.h"
 
-typedef struct th_Debugger_t th_Debugger_t;
-typedef struct th_RendererConfigVulkan_t th_RendererConfigVulkan_t;
 
-/// @endcond DOCS_IGNORE
+// ===========================================================================
+//                           THALLIUM PUBLIC API
+// ===========================================================================
 
 /**
  * @ingroup vk_extension
@@ -47,7 +47,7 @@ typedef struct th_RendererConfigVulkan_t th_RendererConfigVulkan_t;
  */
 char **thvk_GetRequiredLayers(
     unsigned int *out_count,
-    const th_RendererConfigVulkan_t *config
+    const th_RendererConfig_Vulkan_t *config
 );
 
 /**
@@ -113,4 +113,4 @@ char **thvk_GetAvailableInstanceExtensions(
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PUB_VULKAN_EXTENSION_H
+#endif // !__thallium_vk_extension_h__

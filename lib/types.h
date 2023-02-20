@@ -16,8 +16,8 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_RENDERER_H
-#define _THALLIUM_RENDERER_H
+#ifndef __thallium_types_h__
+#define __thallium_types_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
@@ -55,4 +55,4 @@ typedef struct th_Debugger_t {
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_TYPES_H
+#endif // !__thallium_types_h__

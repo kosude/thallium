@@ -17,8 +17,8 @@
  */
 
 #pragma once
-#ifndef _THALLIUM_PRIMITIVE_H
-#define _THALLIUM_PRIMITIVE_H
+#ifndef __thallium_primitive_h__
+#define __thallium_primitive_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
@@ -44,4 +44,4 @@ const int th_StringValueInArray(
 #ifdef __cplusplus
     }
 #endif // __cplusplus
-#endif // !_THALLIUM_PRIMITIVE_H
+#endif // !__thallium_primitive_h__

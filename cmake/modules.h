@@ -6,8 +6,8 @@
  */
 
 #pragma once
-#ifndef _CMAKE_MODULES_H
-#define _CMAKE_MODULES_H
+#ifndef __thallium_gen_modules_h__
+#define __thallium_gen_modules_h__
 @THALLIUM_MODULE_INCLUDES@
 
-#endif // _CMAKE_MODULES_H
+#endif // !__thallium_modules_h__

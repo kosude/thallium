@@ -7,7 +7,7 @@
 
 #include "log.h"
 
-#include "thallium/debug.h"
+#include "thallium/core/debug.h"
 
 #include "utils/io_colour.h"
 #include "utils/proc.h"

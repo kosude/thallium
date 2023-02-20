@@ -7,8 +7,6 @@
 
 #include "io_colour.h"
 
-#include "thallium/debug.h"
-
 #if defined(_WIN32)
 #   define WIN32_LEAN_AND_MEAN
 #   include <Windows.h>

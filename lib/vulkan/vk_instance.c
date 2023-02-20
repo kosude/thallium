@@ -7,8 +7,8 @@
 
 #include "vk_instance.h"
 
-#include "thallium/debug.h"
-#include "thallium/renderer_config.h"
+#include "thallium/core/debug.h"
+#include "thallium/core/renderer_config.h"
 
 #include "thallium/vulkan/vk_extension.h"
 
@@ -18,7 +18,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define FMT_VK_VERSION(vers) \
     VK_MAKE_VERSION( \
@@ -107,12 +106,7 @@ static const VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_D
     };
 }
 
-
-// ===========================================================================
-//                       THALLIUM PUBLIC API DEFINITIONS
-// ===========================================================================
-
-const int thvk_CreateInstance(VkInstance *out_instance, const th_RendererConfigVulkan_t *config, const th_Version_t apiVersion,
+const int thvk_CreateInstance(VkInstance *out_instance, const th_RendererConfig_Vulkan_t *config, const th_Version_t apiVersion,
     const th_Debugger_t *debugger)
 {
     VkApplicationInfo appInfo;

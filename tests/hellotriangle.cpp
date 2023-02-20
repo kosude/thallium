@@ -26,7 +26,7 @@ int main() {
     const std::vector<const char *> vulkanLayers {
         "VK_LAYER_KHRONOS_validation"
     };
-    th_RendererConfigVulkan_t vulkanConfig = {
+    th_RendererConfig_Vulkan_t vulkanConfig = {
         "Hello triangle",                       // app name
         { 0, 1, 0 },                            // app version
         "No Engine",                            // engine name
