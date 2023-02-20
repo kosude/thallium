@@ -1,5 +1,7 @@
 var a00014 =
 [
-    [ "th_VersionToString", "d0/dc0/a00033.html#gab997b95b23c8cf033601fe5ebdffb4c4", null ],
-    [ "th_GetThalliumVersion", "d0/dc0/a00033.html#ga079a6eec1ee51e03d1671a90b42175c2", null ]
+    [ "th_Renderer_t", "d3/de7/a00039.html#ga49c612e4742d9a5b5decdc74bfe0c869", null ],
+    [ "th_CreateRenderer", "d3/de7/a00039.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8", null ],
+    [ "th_DestroyRenderer", "d3/de7/a00039.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d", null ],
+    [ "th_GetRendererRenderSystem", "d3/de7/a00039.html#ga0ce080d05a07073492125a60997274ca", null ]
 ];

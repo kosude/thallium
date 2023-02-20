@@ -1,4 +1,4 @@
 var a00008 =
 [
-    [ "thvk_CreateInstance", "d4/de8/a00061.html#ga504410e74c2334a6ade14867d7ead52e", null ]
+    [ "th_KillProc", "d9/d73/a00060.html#ga242bacdc20f9adc235a2a8020a576688", null ]
 ];

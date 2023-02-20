@@ -1,29 +1,4 @@
 var searchData=
 [
-  ['th_5fcreatedebugger_0',['th_CreateDebugger',['../d5/d16/a00029.html#ga88e81a6db13dd6cfb6ac08a45621c6ab',1,'debug.h']]],
-  ['th_5fcreaterenderer_1',['th_CreateRenderer',['../d5/d79/a00030.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8',1,'renderer.h']]],
-  ['th_5fdebugger_5ft_2',['th_Debugger_t',['../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6',1,'debug.h']]],
-  ['th_5fdebugseverity_5ft_3',['th_DebugSeverity_t',['../d5/d16/a00029.html#ga437ad5d0c16115fb79ecdcff529399e3',1,'debug.h']]],
-  ['th_5fdestroydebugger_4',['th_DestroyDebugger',['../d5/d16/a00029.html#gad4bacb24b41c355fdccbc0313940b2ce',1,'debug.h']]],
-  ['th_5fdestroyrenderer_5',['th_DestroyRenderer',['../d5/d79/a00030.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d',1,'renderer.h']]],
-  ['th_5fgetrendererrendersystem_6',['th_GetRendererRenderSystem',['../d5/d79/a00030.html#ga0ce080d05a07073492125a60997274ca',1,'renderer.h']]],
-  ['th_5fgetthalliumversion_7',['th_GetThalliumVersion',['../d0/dc0/a00033.html#ga079a6eec1ee51e03d1671a90b42175c2',1,'version.h']]],
-  ['th_5frenderer_5ft_8',['th_Renderer_t',['../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869',1,'renderer.h']]],
-  ['th_5frendererconfigvulkan_5ft_9',['th_RendererConfigVulkan_t',['../d8/d41/a00038.html',1,'']]],
-  ['th_5frendererdescriptor_5ft_10',['th_RendererDescriptor_t',['../d5/db6/a00042.html',1,'']]],
-  ['th_5fversion_5ft_11',['th_Version_t',['../d3/dea/a00046.html',1,'']]],
-  ['th_5fversiontostring_12',['th_VersionToString',['../d0/dc0/a00033.html#gab997b95b23c8cf033601fe5ebdffb4c4',1,'version.h']]],
-  ['thallium_2eh_13',['thallium.h',['../d7/d46/a00002.html',1,'']]],
-  ['thallium_5fdebug_5fseverity_5fall_5fbit_14',['THALLIUM_DEBUG_SEVERITY_ALL_BIT',['../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309',1,'debug.h']]],
-  ['thallium_5fdebug_5fseverity_5ferror_5fbit_15',['THALLIUM_DEBUG_SEVERITY_ERROR_BIT',['../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a328a92c5411951faec26a1489a4a373e',1,'debug.h']]],
-  ['thallium_5fdebug_5fseverity_5ffatal_5fbit_16',['THALLIUM_DEBUG_SEVERITY_FATAL_BIT',['../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a81cc3ba862df633c2da0b173674fa5a5',1,'debug.h']]],
-  ['thallium_5fdebug_5fseverity_5fnotif_5fbit_17',['THALLIUM_DEBUG_SEVERITY_NOTIF_BIT',['../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a69939395e3bddb38b5980f8589fdc50c',1,'debug.h']]],
-  ['thallium_5fdebug_5fseverity_5fverbose_5fbit_18',['THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT',['../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a67e9eb97381e9ac6c7be9f39cca62ba9',1,'debug.h']]],
-  ['thallium_5fdebug_5fseverity_5fwarning_5fbit_19',['THALLIUM_DEBUG_SEVERITY_WARNING_BIT',['../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a36c539c8fce66321b4475f9bf413aeab',1,'debug.h']]],
-  ['thallium_5fvulkan_2eh_20',['thallium_vulkan.h',['../db/db2/a00020.html',1,'']]],
-  ['thvk_5fcreaterendersystem_21',['thvk_CreateRenderSystem',['../dc/d87/a00032.html#gacee1734a7c319b6049ce66dea53e5492',1,'vk_render_system.h']]],
-  ['thvk_5fdestroyrendersystem_22',['thvk_DestroyRenderSystem',['../dc/d87/a00032.html#gae75b162f13fc63c0399afbb2c593e4ba',1,'vk_render_system.h']]],
-  ['thvk_5frendersystem_5ft_23',['thvk_RenderSystem_t',['../d5/de0/a00050.html',1,'']]],
-  ['thvk_5fvalidateinstanceextension_24',['thvk_ValidateInstanceExtension',['../df/d61/a00031.html#gaccdb3b9957e04b918f64f521dd7f87a1',1,'vk_extension.h']]],
-  ['thvk_5fvalidatelayer_25',['thvk_ValidateLayer',['../df/d61/a00031.html#gae6bdceae670fd3f4f0aaa8c4ddcdc3e5',1,'vk_extension.h']]]
+  ['patch_0',['patch',['../d9/d2e/a00056.html#a4bb100ea6bc032df2b4e47f080ef0be9',1,'th_Version_t']]]
 ];

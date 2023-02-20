@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/debug.h Source File - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/core/debug.h Source File - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -121,53 +121,46 @@ $(document).ready(function(){initNavTree('da/d45/a00011_source.html','../../'); 
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef _THALLIUM_PUB_DEBUG_H</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define _THALLIUM_PUB_DEBUG_H</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef __thallium_debug_h__</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define __thallium_debug_h__</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#ifdef __cplusplus</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#ga437ad5d0c16115fb79ecdcff529399e3">   37</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="../../d5/d16/a00029.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a67e9eb97381e9ac6c7be9f39cca62ba9">   39</a></span>    <a class="code hl_enumvalue" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a67e9eb97381e9ac6c7be9f39cca62ba9">THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT</a> =   0x10,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a69939395e3bddb38b5980f8589fdc50c">   41</a></span>    <a class="code hl_enumvalue" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a69939395e3bddb38b5980f8589fdc50c">THALLIUM_DEBUG_SEVERITY_NOTIF_BIT</a> =     0x08,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a36c539c8fce66321b4475f9bf413aeab">   43</a></span>    <a class="code hl_enumvalue" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a36c539c8fce66321b4475f9bf413aeab">THALLIUM_DEBUG_SEVERITY_WARNING_BIT</a> =   0x04,</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a328a92c5411951faec26a1489a4a373e">   45</a></span>    <a class="code hl_enumvalue" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a328a92c5411951faec26a1489a4a373e">THALLIUM_DEBUG_SEVERITY_ERROR_BIT</a> =     0x02,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a81cc3ba862df633c2da0b173674fa5a5">   47</a></span>    <a class="code hl_enumvalue" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a81cc3ba862df633c2da0b173674fa5a5">THALLIUM_DEBUG_SEVERITY_FATAL_BIT</a> =     0x01,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_enumvalue" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309">THALLIUM_DEBUG_SEVERITY_ALL_BIT</a> =       0x1F</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309">   50</a></span>} <a class="code hl_enumeration" href="../../d5/d16/a00029.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">   65</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_typedef" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> <a class="code hl_typedef" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">   78</a></span><a class="code hl_typedef" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *<a class="code hl_function" href="../../d5/d16/a00029.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">th_CreateDebugger</a>(</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">const</span> <a class="code hl_enumeration" href="../../d5/d16/a00029.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> severities</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="../../d5/d16/a00029.html#gad4bacb24b41c355fdccbc0313940b2ce">   94</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../d5/d16/a00029.html#gad4bacb24b41c355fdccbc0313940b2ce">th_DestroyDebugger</a>(</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_typedef" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#endif </span><span class="comment">// !_THALLIUM_PUB_DEBUG_H</span></div>
-<div class="ttc" id="aa00029_html_ga024bcefec03671b7056e182ce4fb19f6"><div class="ttname"><a href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a></div><div class="ttdeci">struct th_Debugger_t th_Debugger_t</div><div class="ttdoc">A structure used to debug renderers.</div><div class="ttdef"><b>Definition:</b> debug.h:65</div></div>
-<div class="ttc" id="aa00029_html_ga437ad5d0c16115fb79ecdcff529399e3"><div class="ttname"><a href="../../d5/d16/a00029.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a></div><div class="ttdeci">th_DebugSeverity_t</div><div class="ttdoc">Enumeration containing severities to describe debug messages.</div><div class="ttdef"><b>Definition:</b> debug.h:37</div></div>
-<div class="ttc" id="aa00029_html_ga88e81a6db13dd6cfb6ac08a45621c6ab"><div class="ttname"><a href="../../d5/d16/a00029.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">th_CreateDebugger</a></div><div class="ttdeci">th_Debugger_t * th_CreateDebugger(const th_DebugSeverity_t severities)</div><div class="ttdoc">Create a debugger struct with the specified configuration options.</div></div>
-<div class="ttc" id="aa00029_html_gad4bacb24b41c355fdccbc0313940b2ce"><div class="ttname"><a href="../../d5/d16/a00029.html#gad4bacb24b41c355fdccbc0313940b2ce">th_DestroyDebugger</a></div><div class="ttdeci">const int th_DestroyDebugger(th_Debugger_t *debugger)</div><div class="ttdoc">Free the given debugger object.</div></div>
-<div class="ttc" id="aa00029_html_gga437ad5d0c16115fb79ecdcff529399e3a328a92c5411951faec26a1489a4a373e"><div class="ttname"><a href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a328a92c5411951faec26a1489a4a373e">THALLIUM_DEBUG_SEVERITY_ERROR_BIT</a></div><div class="ttdeci">@ THALLIUM_DEBUG_SEVERITY_ERROR_BIT</div><div class="ttdoc">Includes non-fatal error output.</div><div class="ttdef"><b>Definition:</b> debug.h:45</div></div>
-<div class="ttc" id="aa00029_html_gga437ad5d0c16115fb79ecdcff529399e3a36c539c8fce66321b4475f9bf413aeab"><div class="ttname"><a href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a36c539c8fce66321b4475f9bf413aeab">THALLIUM_DEBUG_SEVERITY_WARNING_BIT</a></div><div class="ttdeci">@ THALLIUM_DEBUG_SEVERITY_WARNING_BIT</div><div class="ttdoc">Includes warning output.</div><div class="ttdef"><b>Definition:</b> debug.h:43</div></div>
-<div class="ttc" id="aa00029_html_gga437ad5d0c16115fb79ecdcff529399e3a67e9eb97381e9ac6c7be9f39cca62ba9"><div class="ttname"><a href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a67e9eb97381e9ac6c7be9f39cca62ba9">THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT</a></div><div class="ttdeci">@ THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT</div><div class="ttdoc">Includes log messages.</div><div class="ttdef"><b>Definition:</b> debug.h:39</div></div>
-<div class="ttc" id="aa00029_html_gga437ad5d0c16115fb79ecdcff529399e3a69939395e3bddb38b5980f8589fdc50c"><div class="ttname"><a href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a69939395e3bddb38b5980f8589fdc50c">THALLIUM_DEBUG_SEVERITY_NOTIF_BIT</a></div><div class="ttdeci">@ THALLIUM_DEBUG_SEVERITY_NOTIF_BIT</div><div class="ttdoc">Includes notification output.</div><div class="ttdef"><b>Definition:</b> debug.h:41</div></div>
-<div class="ttc" id="aa00029_html_gga437ad5d0c16115fb79ecdcff529399e3a81cc3ba862df633c2da0b173674fa5a5"><div class="ttname"><a href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3a81cc3ba862df633c2da0b173674fa5a5">THALLIUM_DEBUG_SEVERITY_FATAL_BIT</a></div><div class="ttdeci">@ THALLIUM_DEBUG_SEVERITY_FATAL_BIT</div><div class="ttdoc">Includes fatal error output.</div><div class="ttdef"><b>Definition:</b> debug.h:47</div></div>
-<div class="ttc" id="aa00029_html_gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309"><div class="ttname"><a href="../../d5/d16/a00029.html#gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309">THALLIUM_DEBUG_SEVERITY_ALL_BIT</a></div><div class="ttdeci">@ THALLIUM_DEBUG_SEVERITY_ALL_BIT</div><div class="ttdoc">Includes all debug messages.</div><div class="ttdef"><b>Definition:</b> debug.h:49</div></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d46/a00002.html">thallium/enums.h</a>&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">//                           THALLIUM PUBLIC API</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">   48</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_typedef" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> <a class="code hl_typedef" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="../../d8/d41/a00038.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">   61</a></span><a class="code hl_typedef" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *<a class="code hl_function" href="../../d8/d41/a00038.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">th_CreateDebugger</a>(</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">const</span> <a class="code hl_enumeration" href="../../d8/d41/a00038.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> severities</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../d8/d41/a00038.html#gad4bacb24b41c355fdccbc0313940b2ce">   77</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../d8/d41/a00038.html#gad4bacb24b41c355fdccbc0313940b2ce">th_DestroyDebugger</a>(</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_typedef" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif </span><span class="comment">// !__thallium_debug_h__</span></div>
+<div class="ttc" id="aa00002_html"><div class="ttname"><a href="../../d7/d46/a00002.html">enums.h</a></div><div class="ttdoc">Thallium enumerators.</div></div>
+<div class="ttc" id="aa00038_html_ga024bcefec03671b7056e182ce4fb19f6"><div class="ttname"><a href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a></div><div class="ttdeci">struct th_Debugger_t th_Debugger_t</div><div class="ttdoc">A structure used to debug renderers.</div><div class="ttdef"><b>Definition:</b> debug.h:48</div></div>
+<div class="ttc" id="aa00038_html_ga437ad5d0c16115fb79ecdcff529399e3"><div class="ttname"><a href="../../d8/d41/a00038.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a></div><div class="ttdeci">th_DebugSeverity_t</div><div class="ttdoc">Enumeration containing severities to describe debug messages.</div><div class="ttdef"><b>Definition:</b> enums.h:36</div></div>
+<div class="ttc" id="aa00038_html_ga88e81a6db13dd6cfb6ac08a45621c6ab"><div class="ttname"><a href="../../d8/d41/a00038.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">th_CreateDebugger</a></div><div class="ttdeci">th_Debugger_t * th_CreateDebugger(const th_DebugSeverity_t severities)</div><div class="ttdoc">Create a debugger struct with the specified configuration options.</div></div>
+<div class="ttc" id="aa00038_html_gad4bacb24b41c355fdccbc0313940b2ce"><div class="ttname"><a href="../../d8/d41/a00038.html#gad4bacb24b41c355fdccbc0313940b2ce">th_DestroyDebugger</a></div><div class="ttdeci">const int th_DestroyDebugger(th_Debugger_t *debugger)</div><div class="ttdoc">Free the given debugger object.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../da/d45/a00011.html">debug.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_9176111427d15f0d8e7373d493508e43.html">core</a></li><li class="navelem"><a class="el" href="../../da/d45/a00011.html">debug.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

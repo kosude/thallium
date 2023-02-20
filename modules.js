@@ -1,7 +1,7 @@
 var modules =
 [
-    [ "Library debugging", "d5/d16/a00029.html", "d5/d16/a00029" ],
-    [ "Managing renderer objects", "d5/d79/a00030.html", "d5/d79/a00030" ],
-    [ "Utilities", "d0/dc0/a00033.html", "d0/dc0/a00033" ],
-    [ "Vulkan", "db/df3/a00034.html", "db/df3/a00034" ]
+    [ "Library debugging", "d8/d41/a00038.html", "d8/d41/a00038" ],
+    [ "Managing renderer objects", "d3/de7/a00039.html", "d3/de7/a00039" ],
+    [ "Utilities", "d6/d42/a00043.html", "d6/d42/a00043" ],
+    [ "Vulkan", "d5/df9/a00044.html", "d5/df9/a00044" ]
 ];

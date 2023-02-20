@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>th_RendererDescriptor_t Struct Reference - Thallium</title>
+        <title>Vulkan render systems - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,41 +111,115 @@ $(document).ready(function(){initNavTree('d5/db6/a00042.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">th_RendererDescriptor_t Struct Reference<div class="ingroups"><a class="el" href="../../d5/d79/a00030.html">Managing renderer objects</a></div></div></div>
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Vulkan render systems<div class="ingroups"><a class="el" href="../../d5/df9/a00044.html">Vulkan</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A structure describing a renderer to be created.  
- <a href="../../d5/db6/a00042.html#details">More...</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="memItemLeft" align="right" valign="top"><a id="a2b5ff509d638705dadb1effb2ef0c2dc" name="a2b5ff509d638705dadb1effb2ef0c2dc"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>apiName</b></td></tr>
-<tr class="memdesc:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the API being represented. <br /></td></tr>
-<tr class="separator:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7558e2e44f28014e287b872cacfb1c95"><td class="memItemLeft" align="right" valign="top"><a id="a7558e2e44f28014e287b872cacfb1c95" name="a7558e2e44f28014e287b872cacfb1c95"></a>
-<a class="el" href="../../d3/dea/a00046.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>apiVersion</b></td></tr>
-<tr class="memdesc:a7558e2e44f28014e287b872cacfb1c95"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version of the API being represented. <br /></td></tr>
-<tr class="separator:a7558e2e44f28014e287b872cacfb1c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="memItemLeft" align="right" valign="top"><a id="af9fd34a99180dcc7d1af2dbc65f4fe5f" name="af9fd34a99180dcc7d1af2dbc65f4fe5f"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>rendererConfig</b></td></tr>
-<tr class="memdesc:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional pointer to an API-specific configuration structure. <br /></td></tr>
-<tr class="separator:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
+<p>Handling low-level Vulkan-specific render system structures.  
+<a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This structure describes a renderer to be created.</p>
-<p>Common practice is to set <code>rendererConfig</code> to NULL. However, it may be necessary to provide API-specific configuration, which this parameter allows. See a Vulkan example below.</p>
-<dl class="section user"><dt>Renderer config example</dt><dd>Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a <code><a class="el" href="../../d8/d41/a00038.html" title="Configuration structure specifically for Vulkan renderers.">th_RendererConfigVulkan_t</a></code> structure with the relevant information, and pass a pointer to it via the <code>rendererConfig</code> parameter. </dd></dl>
-</div></div><!-- contents -->
+<p>This group involves types and functions specific to rendering with Vulkan. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A render system to hold Vulkan-specific rendering data.  <a href="../../d9/d73/a00060.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga7010868c053dab837d0ac4cc795fff85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/db6/a00042.html#ga7010868c053dab837d0ac4cc795fff85">thvk_CreateRenderSystem</a> (const <a class="el" href="../../d1/d84/a00052.html">th_RendererConfig_Vulkan_t</a> *config, const <a class="el" href="../../d9/d2e/a00056.html">th_Version_t</a> apiVersion, const <a class="el" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:ga7010868c053dab837d0ac4cc795fff85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and return a heap-allocated Vulkan render system.  <br /></td></tr>
+<tr class="separator:ga7010868c053dab837d0ac4cc795fff85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae75b162f13fc63c0399afbb2c593e4ba"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/db6/a00042.html#gae75b162f13fc63c0399afbb2c593e4ba">thvk_DestroyRenderSystem</a> (<a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a> *renderSystem)</td></tr>
+<tr class="memdesc:gae75b162f13fc63c0399afbb2c593e4ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given Vulkan render system object.  <br /></td></tr>
+<tr class="separator:gae75b162f13fc63c0399afbb2c593e4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga7010868c053dab837d0ac4cc795fff85" name="ga7010868c053dab837d0ac4cc795fff85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7010868c053dab837d0ac4cc795fff85">&#9670;&#160;</a></span>thvk_CreateRenderSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a> * thvk_CreateRenderSystem </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d1/d84/a00052.html">th_RendererConfig_Vulkan_t</a> *&#160;</td>
+          <td class="paramname"><em>config</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d9/d2e/a00056.html">th_Version_t</a>&#160;</td>
+          <td class="paramname"><em>apiVersion</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
+          <td class="paramname"><em>debugger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function creates a new Vulkan render system and returns it. If there were any errors in creation, NULL will be returned instead.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>Pointer to a Vulkan renderer configuration structure. </td></tr>
+    <tr><td class="paramname">debugger</td><td>Debugger to read configuration options from when posting debug messages </td></tr>
+    <tr><td class="paramname">apiVersion</td><td>Vulkan API version (as a Thallium <a class="el" href="../../d9/d2e/a00056.html">th_Version_t</a> structure) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new render system</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a> </dd>
+<dd>
+<a class="el" href="../../d5/db6/a00042.html#gae75b162f13fc63c0399afbb2c593e4ba">thvk_DestroyRenderSystem()</a> </dd></dl>
+
+</div>
+</div>
+<a id="gae75b162f13fc63c0399afbb2c593e4ba" name="gae75b162f13fc63c0399afbb2c593e4ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae75b162f13fc63c0399afbb2c593e4ba">&#9670;&#160;</a></span>thvk_DestroyRenderSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int thvk_DestroyRenderSystem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a> *&#160;</td>
+          <td class="paramname"><em>renderSystem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function frees the specified render system object. You should set the pointer to NULL after calling this function, as you would normally when calling free().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderSystem</td><td>Pointer to the Vulkan render system to free. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><em>This function will always return 1</em>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d5/db6/a00042.html#ga7010868c053dab837d0ac4cc795fff85">thvk_CreateRenderSystem()</a> </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../d5/db6/a00042.html">th_RendererDescriptor_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['layercount_0',['layerCount',['../d8/d41/a00038.html#aa8777ef620ad2dc8144ff7337f3c08f4',1,'th_RendererConfigVulkan_t']]],
-  ['layernames_1',['layerNames',['../d8/d41/a00038.html#aee625f07403e109e3f45ab4ca241501e',1,'th_RendererConfigVulkan_t']]],
-  ['library_20debugging_2',['Library debugging',['../d5/d16/a00029.html',1,'']]]
+  ['instance_0',['instance',['../d9/d73/a00060.html#adac49d039637bd33afde650f823cf282',1,'thvk_RenderSystem_t']]]
 ];

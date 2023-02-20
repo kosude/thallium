@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Vulkan instance functions - Thallium@v0.0.0dev_eda7409 (2023-02-16)</title>
+        <title>Vulkan instance functions - Thallium@v0.0.0dev_aef287c (2023-02-20)</title>
         <link rel="shortcut icon" href="../../render.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Internal Codebase
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -123,27 +123,27 @@ $(document).ready(function(){initNavTree('d4/de8/a00061.html','../../'); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga504410e74c2334a6ade14867d7ead52e"><td class="memItemLeft" align="right" valign="top">DOCS_IGNORE const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/de8/a00061.html#ga504410e74c2334a6ade14867d7ead52e">thvk_CreateInstance</a> (VkInstance *instance, const th_RendererConfigVulkan_t *config, const th_Version_t apiVersion, const <a class="el" href="../../d6/d2c/a00072.html">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:ga504410e74c2334a6ade14867d7ead52e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Vulkan instance.  <br /></td></tr>
-<tr class="separator:ga504410e74c2334a6ade14867d7ead52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga89bd3560724fc01ef3f3bfa2d314bd96"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/de8/a00061.html#ga89bd3560724fc01ef3f3bfa2d314bd96">thvk_CreateInstance</a> (VkInstance *out_instance, const th_RendererConfig_Vulkan_t *config, const th_Version_t apiVersion, const <a class="el" href="../../d6/d2c/a00072.html">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:ga89bd3560724fc01ef3f3bfa2d314bd96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Vulkan instance.  <br /></td></tr>
+<tr class="separator:ga89bd3560724fc01ef3f3bfa2d314bd96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga504410e74c2334a6ade14867d7ead52e" name="ga504410e74c2334a6ade14867d7ead52e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga504410e74c2334a6ade14867d7ead52e">&#9670;&#160;</a></span>thvk_CreateInstance()</h2>
+<a id="ga89bd3560724fc01ef3f3bfa2d314bd96" name="ga89bd3560724fc01ef3f3bfa2d314bd96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga89bd3560724fc01ef3f3bfa2d314bd96">&#9670;&#160;</a></span>thvk_CreateInstance()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">DOCS_IGNORE const int thvk_CreateInstance </td>
+          <td class="memname">const int thvk_CreateInstance </td>
           <td>(</td>
           <td class="paramtype">VkInstance *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
+          <td class="paramname"><em>out_instance</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const th_RendererConfigVulkan_t *&#160;</td>
+          <td class="paramtype">const th_RendererConfig_Vulkan_t *&#160;</td>
           <td class="paramname"><em>config</em>, </td>
         </tr>
         <tr>
@@ -169,7 +169,7 @@ Functions</h2></td></tr>
 <p>If <code>debugger</code> is not NULL, a debug messenger will be created alongside the instance for Vulkan debugging.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">instance</td><td>Pointer to the location into which the Vulkan instance will be returned. </td></tr>
+    <tr><td class="paramname">out_instance</td><td>Pointer to the location into which the Vulkan instance will be returned. </td></tr>
     <tr><td class="paramname">config</td><td>Pointer to a Vulkan renderer configuration structure. </td></tr>
     <tr><td class="paramname">apiVersion</td><td>Vulkan API version to create instance for (as a th_Version_t structure) </td></tr>
     <tr><td class="paramname">debugger</td><td>NULL or a pointer to a Thallium debugger </td></tr>
@@ -186,7 +186,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../../index.html">public api</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
+                    <a href="../../../index.html">public api</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

@@ -1,5 +1,5 @@
 var a00008 =
 [
-    [ "thvk_ValidateInstanceExtension", "df/d61/a00031.html#gaccdb3b9957e04b918f64f521dd7f87a1", null ],
-    [ "thvk_ValidateLayer", "df/d61/a00031.html#gae6bdceae670fd3f4f0aaa8c4ddcdc3e5", null ]
+    [ "th_VersionToString", "d6/d42/a00043.html#gab997b95b23c8cf033601fe5ebdffb4c4", null ],
+    [ "th_GetThalliumVersionString", "d6/d42/a00043.html#gada9f24473c7f0d71d770557a08360502", null ]
 ];

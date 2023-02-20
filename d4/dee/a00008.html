@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/vulkan/vk_extension.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/core/version.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,34 +111,41 @@ $(document).ready(function(){initNavTree('d4/dee/a00008.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">vk_extension.h File Reference</div></div>
+  <div class="headertitle"><div class="title">version.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Vulkan-specific extension management.  
+<p>Version structure definition and relevant function(s)  
 <a href="#details">More...</a></p>
 
 <p><a href="../../d4/dee/a00008_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d2e/a00056.html">th_Version_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure to describe a version.  <a href="../../d9/d2e/a00056.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaccdb3b9957e04b918f64f521dd7f87a1"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d61/a00031.html#gaccdb3b9957e04b918f64f521dd7f87a1">thvk_ValidateInstanceExtension</a> (const char *const extensionName, const char *const layerName, const <a class="el" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:gaccdb3b9957e04b918f64f521dd7f87a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the given instance extension.  <br /></td></tr>
-<tr class="separator:gaccdb3b9957e04b918f64f521dd7f87a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae6bdceae670fd3f4f0aaa8c4ddcdc3e5"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d61/a00031.html#gae6bdceae670fd3f4f0aaa8c4ddcdc3e5">thvk_ValidateLayer</a> (const char *const layerName, const <a class="el" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:gae6bdceae670fd3f4f0aaa8c4ddcdc3e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the given layer.  <br /></td></tr>
-<tr class="separator:gae6bdceae670fd3f4f0aaa8c4ddcdc3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="memItemLeft" align="right" valign="top">const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#gab997b95b23c8cf033601fe5ebdffb4c4">th_VersionToString</a> (const <a class="el" href="../../d9/d2e/a00056.html">th_Version_t</a> version, char *out_string)</td></tr>
+<tr class="memdesc:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the given version to a string and return it.  <br /></td></tr>
+<tr class="separator:gab997b95b23c8cf033601fe5ebdffb4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada9f24473c7f0d71d770557a08360502"><td class="memItemLeft" align="right" valign="top">const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#gada9f24473c7f0d71d770557a08360502">th_GetThalliumVersionString</a> ()</td></tr>
+<tr class="memdesc:gada9f24473c7f0d71d770557a08360502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve, as a human-readable string, the version of Thallium that was compiled.  <br /></td></tr>
+<tr class="separator:gada9f24473c7f0d71d770557a08360502"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"></div></div><!-- contents -->
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_1500ff34775cbad5418b92be88e6a332.html">vulkan</a></li><li class="navelem"><a class="el" href="../../d4/dee/a00008.html">vk_extension.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_9176111427d15f0d8e7373d493508e43.html">core</a></li><li class="navelem"><a class="el" href="../../d4/dee/a00008.html">version.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

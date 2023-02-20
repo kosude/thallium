@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/renderer.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/vulkan/vk_render_system.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_eda7409 (2023-02-16)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,43 +112,31 @@ $(document).ready(function(){initNavTree('d4/d51/a00017.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#typedef-members">Types</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">renderer.h File Reference</div></div>
+  <div class="headertitle"><div class="title">vk_render_system.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Renderer structure(s) and related functions.  
+<p>API-dependent render systems for Vulkan.  
 <a href="#details">More...</a></p>
 
 <p><a href="../../d4/d51/a00017_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d41/a00038.html">th_RendererConfigVulkan_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure specifically for Vulkan renderers.  <a href="../../d8/d41/a00038.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A render system to hold Vulkan-specific rendering data.  <a href="../../d9/d73/a00060.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/db6/a00042.html">th_RendererDescriptor_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure describing a renderer to be created.  <a href="../../d5/db6/a00042.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Types</h2></td></tr>
-<tr class="memitem:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a></td></tr>
-<tr class="memdesc:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure to represent a graphics API.  <br /></td></tr>
-<tr class="separator:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d79/a00030.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8">th_CreateRenderer</a> (const <a class="el" href="../../d5/db6/a00042.html">th_RendererDescriptor_t</a> descriptor, <a class="el" href="../../d5/d16/a00029.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create, populate, and return a new renderer struct.  <br /></td></tr>
-<tr class="separator:gaf9d4bd5ba4a3ca004a2ea636015af9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d79/a00030.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d">th_DestroyRenderer</a> (<a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
-<tr class="memdesc:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given renderer object.  <br /></td></tr>
-<tr class="separator:ga33cfd8bcc4b9d8236a2dfb4aae602e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0ce080d05a07073492125a60997274ca"><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d79/a00030.html#ga0ce080d05a07073492125a60997274ca">th_GetRendererRenderSystem</a> (const <a class="el" href="../../d5/d79/a00030.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
-<tr class="memdesc:ga0ce080d05a07073492125a60997274ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to the render system within the given renderer.  <br /></td></tr>
-<tr class="separator:ga0ce080d05a07073492125a60997274ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7010868c053dab837d0ac4cc795fff85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/db6/a00042.html#ga7010868c053dab837d0ac4cc795fff85">thvk_CreateRenderSystem</a> (const <a class="el" href="../../d1/d84/a00052.html">th_RendererConfig_Vulkan_t</a> *config, const <a class="el" href="../../d9/d2e/a00056.html">th_Version_t</a> apiVersion, const <a class="el" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:ga7010868c053dab837d0ac4cc795fff85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and return a heap-allocated Vulkan render system.  <br /></td></tr>
+<tr class="separator:ga7010868c053dab837d0ac4cc795fff85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae75b162f13fc63c0399afbb2c593e4ba"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/db6/a00042.html#gae75b162f13fc63c0399afbb2c593e4ba">thvk_DestroyRenderSystem</a> (<a class="el" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a> *renderSystem)</td></tr>
+<tr class="memdesc:gae75b162f13fc63c0399afbb2c593e4ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given Vulkan render system object.  <br /></td></tr>
+<tr class="separator:gae75b162f13fc63c0399afbb2c593e4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"></div></div><!-- contents -->
@@ -156,9 +144,9 @@ Functions</h2></td></tr>
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../d4/d51/a00017.html">renderer.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_1500ff34775cbad5418b92be88e6a332.html">vulkan</a></li><li class="navelem"><a class="el" href="../../d4/d51/a00017.html">vk_render_system.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » Thu Feb 16 2023 »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

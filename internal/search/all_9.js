@@ -29,6 +29,6 @@ var searchData=
   ['thallium_5fio_5fcolour_5fred_26',['THALLIUM_IO_COLOUR_RED',['../d1/d22/a00057.html#gga894ad24cab6ffa4029e5f0328c89aff3a9ca31a2300b7ceeb2bf3af9bd3630f90',1,'io_colour.h']]],
   ['thallium_5fio_5fcolour_5fwhite_27',['THALLIUM_IO_COLOUR_WHITE',['../d1/d22/a00057.html#gga894ad24cab6ffa4029e5f0328c89aff3a49ba7881bf99fec4e10ea3a867cbb268',1,'io_colour.h']]],
   ['thallium_5fio_5fcolour_5fyellow_28',['THALLIUM_IO_COLOUR_YELLOW',['../d1/d22/a00057.html#gga894ad24cab6ffa4029e5f0328c89aff3a5ddb3cd9a455dfb707e5bb3f5e9b7081',1,'io_colour.h']]],
-  ['thvk_5fcreateinstance_29',['thvk_CreateInstance',['../d4/de8/a00061.html#ga504410e74c2334a6ade14867d7ead52e',1,'thvk_CreateInstance(VkInstance *instance, const th_RendererConfigVulkan_t *config, const th_Version_t apiVersion, const th_Debugger_t *debugger):&#160;vk_instance.c'],['../d4/de8/a00061.html#ga504410e74c2334a6ade14867d7ead52e',1,'thvk_CreateInstance(VkInstance *instance, const th_RendererConfigVulkan_t *config, const th_Version_t apiVersion, const th_Debugger_t *debugger):&#160;vk_instance.c']]],
-  ['types_2eh_30',['types.h',['../db/db2/a00020.html',1,'']]]
+  ['thvk_5fcreateinstance_29',['thvk_CreateInstance',['../d4/de8/a00061.html#ga89bd3560724fc01ef3f3bfa2d314bd96',1,'thvk_CreateInstance(VkInstance *out_instance, const th_RendererConfig_Vulkan_t *config, const th_Version_t apiVersion, const th_Debugger_t *debugger):&#160;vk_instance.c'],['../d4/de8/a00061.html#ga89bd3560724fc01ef3f3bfa2d314bd96',1,'thvk_CreateInstance(VkInstance *out_instance, const th_RendererConfig_Vulkan_t *config, const th_Version_t apiVersion, const th_Debugger_t *debugger):&#160;vk_instance.c']]],
+  ['types_2eh_30',['types.h',['../dd/dad/a00005.html',1,'']]]
 ];
