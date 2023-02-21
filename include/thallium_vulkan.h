@@ -29,6 +29,7 @@
 #include <vulkan/vulkan.h>
 
 #include "thallium/vulkan/vk_extension.h"
+#include "thallium/vulkan/vk_physical_device.h"
 #include "thallium/vulkan/vk_render_system.h"
 
 #ifdef __cplusplus

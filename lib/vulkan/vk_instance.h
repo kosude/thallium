@@ -35,17 +35,13 @@
  *
  * If `debugger` is not NULL, a debug messenger will be created alongside the instance for Vulkan debugging.
  *
- * @param out_instance Pointer to the location into which the Vulkan instance will be returned.
+ * @param renderSystem Pointer to the render system into which the instance will be returned.
  * @param config Pointer to a Vulkan renderer configuration structure.
- * @param apiVersion Vulkan API version to create instance for (as a th_Version_t structure)
- * @param debugger NULL or a pointer to a Thallium debugger
  * @return @returnstatus
  */
 const int thvk_CreateInstance(
-    VkInstance *out_instance,
-    const th_RendererConfig_Vulkan_t *config,
-    const th_Version_t apiVersion,
-    const th_Debugger_t *debugger
+    thvk_RenderSystem_t *renderSystem,
+    const th_RendererConfig_Vulkan_t *config
 );
 
 #ifdef __cplusplus

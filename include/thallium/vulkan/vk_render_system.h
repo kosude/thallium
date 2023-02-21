@@ -23,8 +23,10 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/core/version.h"
 #include "thallium/fwd.h"
+#include "thallium/fwdvk.h"
+
+#include "thallium/core/version.h"
 
 #include <vulkan/vulkan.h>
 
@@ -50,6 +52,8 @@ typedef struct thvk_RenderSystem_t {
 
     /// @brief Vulkan instance
     VkInstance instance;
+    /// @brief Vulkan API version (formatted with VK_MAKE_API_VERSION())
+    int apiVersion;
 } thvk_RenderSystem_t;
 
 /**
@@ -60,8 +64,8 @@ typedef struct thvk_RenderSystem_t {
  * creation, NULL will be returned instead.
  *
  * @param config Pointer to a Vulkan renderer configuration structure.
- * @param debugger Debugger to read configuration options from when posting debug messages
  * @param apiVersion Vulkan API version (as a Thallium @ref th_Version_t structure)
+ * @param debugger NULL or debugger to read configuration options from when posting debug messages
  * @return The new render system
  *
  * @sa @ref thvk_RenderSystem_t

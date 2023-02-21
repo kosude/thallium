@@ -26,14 +26,6 @@
         vers.patch \
     )
 
-#define FMT_VK_API_VERSION(vers) \
-    VK_MAKE_API_VERSION( \
-        0, \
-        vers.major, \
-        vers.minor, \
-        vers.patch \
-    )
-
 #define MAX_INSTANCE_LAYER_NAME_COUNT 128
 #define MAX_INSTANCE_EXTENSION_NAME_COUNT 128
 
@@ -106,12 +98,12 @@ static const VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_D
     };
 }
 
-const int thvk_CreateInstance(VkInstance *out_instance, const th_RendererConfig_Vulkan_t *config, const th_Version_t apiVersion,
-    const th_Debugger_t *debugger)
-{
+const int thvk_CreateInstance(thvk_RenderSystem_t *renderSystem, const th_RendererConfig_Vulkan_t *config) {
     VkApplicationInfo appInfo;
     VkInstanceCreateInfo instanceInfo;
     VkDebugUtilsMessengerCreateInfoEXT debugMessengerInfo;
+
+    const th_Debugger_t *debugger = renderSystem->debugger;
 
     instanceInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
     instanceInfo.flags = 0;
@@ -124,7 +116,7 @@ const int thvk_CreateInstance(VkInstance *out_instance, const th_RendererConfig_
         appInfo.applicationVersion = FMT_VK_VERSION(config->applicationVersion);
         appInfo.pEngineName = config->engineName;
         appInfo.engineVersion = FMT_VK_VERSION(config->engineVersion);
-        appInfo.apiVersion = FMT_VK_API_VERSION(apiVersion);
+        appInfo.apiVersion = renderSystem->apiVersion;
 
         instanceInfo.pApplicationInfo = &appInfo;
     } else {
@@ -197,20 +189,18 @@ const int thvk_CreateInstance(VkInstance *out_instance, const th_RendererConfig_
     instanceInfo.ppEnabledExtensionNames = extensionNames;
 
     // then we create the instance
-    if (vkCreateInstance(&instanceInfo, NULL, out_instance)) {
+    if (vkCreateInstance(&instanceInfo, NULL, &(renderSystem->instance))) {
         return 0;
     }
 
     // cleaning up local malloc'd stuff
 
-    for (unsigned int i = 0; i < availableLayerCount; i++) {
+    for (unsigned int i = 0; i < availableLayerCount; i++)
         free(availableLayerNames[i]);
-    }
     free(availableLayerNames);
 
-    for (unsigned int i = 0; i < availableExtensionCount; i++) {
+    for (unsigned int i = 0; i < availableExtensionCount; i++)
         free(availableExtensionNames[i]);
-    }
     free(availableExtensionNames);
 
     // requiredLayerNames is stack-allocated so doesn't ned to be freed

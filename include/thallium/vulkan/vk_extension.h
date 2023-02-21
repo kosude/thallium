@@ -24,6 +24,7 @@
 #endif // __cplusplus
 
 #include "thallium/fwd.h"
+#include "thallium/fwdvk.h"
 
 
 // ===========================================================================
@@ -63,7 +64,7 @@ char **thvk_GetRequiredLayers(
  * @param out_count NULL or location to which the amount of extensions will be returned
  * @param debugUtilsEnabled Boolean - are debug utils enabled for the renderer?
  * @param debugger NULL or a pointer to a Thallium debugger
- * @return Array of extension names
+ * @return Array of extension names (NULL if error)
  */
 char **thvk_GetRequiredInstanceExtensions(
     unsigned int *out_count,
@@ -81,7 +82,7 @@ char **thvk_GetRequiredInstanceExtensions(
  *
  * @param out_count NULL or location to which the amount of layers will be returned
  * @param debugger NULL or a pointer to a Thallium debugger
- * @return Array of layer names
+ * @return Array of layer names (NULL if error)
  */
 char **thvk_GetAvailableLayers(
     unsigned int *out_count,
@@ -102,7 +103,7 @@ char **thvk_GetAvailableLayers(
  * @param out_count NULL or location to which the amount of extensions will be returned
  * @param layerName NULL or layer to check against
  * @param debugger NULL or a pointer to a Thallium debugger
- * @return Array of instance extension names
+ * @return Array of instance extension names (NULL if error)
  */
 char **thvk_GetAvailableInstanceExtensions(
     unsigned int *out_count,

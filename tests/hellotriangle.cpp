@@ -10,8 +10,14 @@
 #include <iostream>
 #include <vector>
 
+// Print a formatted message to stdout.
+template <typename... Args>
+void Print(Args... args) {
+    (std::cout << "hellotriangle >>> " << ... << args) << std::endl;
+}
+
 int main() {
-    printf("-- Thallium %s\n\n", th_GetThalliumVersionString());
+    Print("Thallium ", th_GetThalliumVersionString());
 
     th_Debugger_t *debugger = th_CreateDebugger((th_DebugSeverity_t)
         (
@@ -42,7 +48,7 @@ int main() {
     }, debugger);
 
     if (!vulkan) {
-        printf("hellotriangle >>> Could not create renderer\n");
+        Print("Could not create renderer");
         return 0;
     }
 

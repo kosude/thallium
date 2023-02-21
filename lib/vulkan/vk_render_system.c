@@ -5,10 +5,30 @@
  *   Please see the LICENCE file for more information.
  */
 
+#include "thallium.h"
+
 #include "utils/log.h"
 #include "vk_instance.h"
 
 #include <stdlib.h>
+
+
+
+
+#include "thallium_vulkan.h"
+#include <stdio.h>
+
+
+
+
+
+#define FMT_VK_API_VERSION(vers) \
+    VK_MAKE_API_VERSION( \
+        0, \
+        vers.major, \
+        vers.minor, \
+        vers.patch \
+    )
 
 
 // ===========================================================================
@@ -22,12 +42,19 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_RendererConfig_Vulkan_t *c
         return NULL;
     }
 
+    r->apiVersion = FMT_VK_API_VERSION(apiVersion);
+
+    // debugger can be NULL
     r->debugger = debugger;
 
     // create Vulkan instance for render system
-    if (!thvk_CreateInstance(&(r->instance), config, apiVersion, debugger)) {
+    if (!thvk_CreateInstance(r, config)) {
         return NULL;
     }
+
+    unsigned int pdeviceCount = 0;
+    const VkPhysicalDevice *pdevices = thvk_GetAvailablePhysicalDevices(r, &pdeviceCount);
+    thvk_EnumerateRankedPhysicalDevices(r, pdevices, pdeviceCount);
 
     th_Note(debugger, "Created Vulkan render system at %p", r);
 

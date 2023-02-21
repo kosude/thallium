@@ -18,6 +18,12 @@
 #define LAYER_MAX_NAME_LEN 128
 #define EXTENSION_MAX_NAME_LEN 128
 
+#define DEFINE_REQUIRED_INSTANCE_EXTENSION(name) \
+{ \
+    count++; \
+    r[count - 1] = name; \
+}
+
 
 // ===========================================================================
 //                       THALLIUM PUBLIC API DEFINITIONS
@@ -35,31 +41,27 @@ char **thvk_GetRequiredInstanceExtensions(unsigned int *out_count, const int deb
     char **r = malloc(MAX_REQUIRED_INSTANCE_EXTENSION_COUNT * sizeof(char *));
     if (!r) {
         th_Fatal(debugger, "MALLOC fault in thvk_GetRequiredInstanceExtensions!");
-        return 0;
+        return NULL;
     }
+    memset(r, 0, MAX_REQUIRED_INSTANCE_EXTENSION_COUNT * sizeof(char *));
 
-    unsigned int count = 1; // starts at 1 as VK_KHR_surface is always required
+    unsigned int count = 0;
 
-    //
-    // forming a list of extensions based on compilation settings and renderer configuration...
+    // require platform-agnostic surface extension
+    DEFINE_REQUIRED_INSTANCE_EXTENSION("VK_KHR_surface");
 
-    // platform-agnostic surface extension
-    r[count - 1] = "VK_KHR_surface";
 #   if defined(_WIN32)
-        // windows-specific surfaces
-        count++;
-        r[count - 1] = "VK_KHR_win32_surface";
+        // require windows-specific surface extension
+        DEFINE_REQUIRED_INSTANCE_EXTENSION("VK_KHR_win32_surface");
 #   endif
 #if defined(__unix__) || defined(__unix)
-        // unix/linux-specific surfaces
-        count++;
-        r[count - 1] = "VK_KHR_xcb_surface";
+        // require unix/linux-specific surface extension
+        DEFINE_REQUIRED_INSTANCE_EXTENSION("VK_KHR_xcb_surface");
 #   endif
 
-    // debug utils
+    // require debug utils extension (if specified with `debugUtilsEnabled`)
     if (debugUtilsEnabled) {
-        count++;
-        r[count - 1] = "VK_EXT_debug_utils";
+        DEFINE_REQUIRED_INSTANCE_EXTENSION("VK_EXT_debug_utils");
     }
 
     // return required extension count
@@ -77,7 +79,7 @@ char **thvk_GetAvailableLayers(unsigned int *out_count, const th_Debugger_t *deb
     VkLayerProperties *layerProperties = malloc(layerPropertyCount * sizeof(VkLayerProperties));
     if (!layerProperties) {
         th_Fatal(debugger, "MALLOC fault in thvk_GetAvailableLayers!");
-        return 0;
+        return NULL;
     }
     vkEnumerateInstanceLayerProperties(&layerPropertyCount, layerProperties);
 
@@ -85,10 +87,12 @@ char **thvk_GetAvailableLayers(unsigned int *out_count, const th_Debugger_t *deb
     char **r = malloc(layerPropertyCount * sizeof(char *));
     if (!r) {
         th_Fatal(debugger, "MALLOC fault in thvk_GetAvailableLayers!");
-        return 0;
+        return NULL;
     }
     for (unsigned int i = 0; i < layerPropertyCount; i++) {
         r[i] = malloc(LAYER_MAX_NAME_LEN * sizeof(char));
+        memset(r[i], 0, LAYER_MAX_NAME_LEN);
+
         strncpy(r[i], layerProperties[i].layerName, LAYER_MAX_NAME_LEN);
     }
 
@@ -109,7 +113,7 @@ char **thvk_GetAvailableInstanceExtensions(unsigned int *out_count, const char *
     VkExtensionProperties *extensionProperties = malloc(extensionPropertyCount * sizeof(VkExtensionProperties));
     if (!extensionProperties) {
         th_Fatal(debugger, "MALLOC fault in thvk_GetAvailableInstanceExtensions!");
-        return 0;
+        return NULL;
     }
     vkEnumerateInstanceExtensionProperties(layerName, &extensionPropertyCount, extensionProperties);
 
@@ -117,10 +121,12 @@ char **thvk_GetAvailableInstanceExtensions(unsigned int *out_count, const char *
     char **r = malloc(extensionPropertyCount * sizeof(char *));
     if (!r) {
         th_Fatal(debugger, "MALLOC fault in thvk_GetAvailableLayers!");
-        return 0;
+        return NULL;
     }
     for (unsigned int i = 0; i < extensionPropertyCount; i++) {
         r[i] = malloc(EXTENSION_MAX_NAME_LEN * sizeof(char));
+        memset(r[i], 0, EXTENSION_MAX_NAME_LEN);
+
         strncpy(r[i], extensionProperties[i].extensionName, EXTENSION_MAX_NAME_LEN);
     }
 

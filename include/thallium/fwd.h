@@ -30,10 +30,6 @@ typedef struct th_RendererConfig_Vulkan_t th_RendererConfig_Vulkan_t;
 
 typedef struct th_Debugger_t th_Debugger_t;
 
-#if defined(_THALLIUM_FWD_H_VULKAN)
-    typedef struct thvk_RenderSystem_t thvk_RenderSystem_t;
-#endif
-
 /** @endcond */
 
 #ifdef __cplusplus
