@@ -59,6 +59,8 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
         return NULL;
     }
 
+    th_Note(debugger, "Successfully created renderer for API \"%s\" at %p", descriptor.apiName, r);
+
     return r;
 }
 

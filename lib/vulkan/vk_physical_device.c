@@ -37,7 +37,7 @@ static const int _ScorePhysicalDevice(const VkPhysicalDevice physicalDevice, con
     // increase score by (relative) memory size
     score += memorySize;
 
-    th_Log(debugger, "Given score %d to device \"%s\"", score, deviceProperties.deviceName);
+    th_Log(debugger, "Given score %d to Vulkan device \"%s\"", score, deviceProperties.deviceName);
 
     return score;
 }

@@ -19,15 +19,21 @@ void Print(Args... args) {
 int main() {
     Print("Thallium ", th_GetThalliumVersionString());
 
-    th_Debugger_t *debugger = th_CreateDebugger((th_DebugSeverity_t)
-        (
+    th_Debugger_t *debugger = th_CreateDebugger(
+        (th_DebugSeverity_t) (
             THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT |
             THALLIUM_DEBUG_SEVERITY_NOTIF_BIT |
             THALLIUM_DEBUG_SEVERITY_WARNING_BIT |
             THALLIUM_DEBUG_SEVERITY_ERROR_BIT |
             THALLIUM_DEBUG_SEVERITY_FATAL_BIT
+        ),
+        (th_DebugType_t) (
+            THALLIUM_DEBUG_TYPE_CORE_BIT |
+            THALLIUM_DEBUG_TYPE_VULKAN_BIT
         )
     );
+
+    th_TriggerSeverityMessages(debugger);
 
     const std::vector<const char *> vulkanLayers {
         "VK_LAYER_KHRONOS_validation"
@@ -50,6 +56,8 @@ int main() {
     if (!vulkan) {
         Print("Could not create renderer");
         return 0;
+    } else {
+        Print("Created and initialised renderer");
     }
 
     th_DestroyRenderer(vulkan);

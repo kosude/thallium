@@ -25,7 +25,7 @@
 // ===========================================================================
 
 /**
- * @ingroup debug
+ * @ingroup debugger
  * @brief Enumeration containing severities to describe debug messages.
  *
  * This enumeration contains severities to describe debug messages.
@@ -44,9 +44,27 @@ typedef enum th_DebugSeverity_t {
     THALLIUM_DEBUG_SEVERITY_ERROR_BIT =     0x02,
     /// @brief Includes fatal error output.
     THALLIUM_DEBUG_SEVERITY_FATAL_BIT =     0x01,
-    /// @brief Includes all debug messages.
+    /// @brief Includes all debug messages severities.
     THALLIUM_DEBUG_SEVERITY_ALL_BIT =       0x1F
 } th_DebugSeverity_t;
+
+/**
+ * @ingroup debugger
+ * @brief Enumeration containing types/sources to describe debug messages.
+ *
+ * This enumeration contains message types/sources to describe debug messages.
+ *
+ * @sa @ref th_Debugger_t
+ * @sa @ref th_CreateDebugger()
+ */
+typedef enum th_DebugType_t {
+    /// @brief Includes core library messages (prefixed by `(th)`)
+    THALLIUM_DEBUG_TYPE_CORE_BIT =      0x02,
+    /// @brief Includes Vulkan debug messages, sent by Vulkan renderers (prefixed by `(thvk)`)
+    THALLIUM_DEBUG_TYPE_VULKAN_BIT =    0x01,
+    /// @brief Includes all debug message types.
+    THALLIUM_DEBUG_TYPE_ALL_BIT =       0x1F
+} th_DebugType_t;
 
 #ifdef __cplusplus
     }

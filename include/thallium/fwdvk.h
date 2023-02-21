@@ -6,7 +6,7 @@
  */
 
 /**
- * @file fwd.h
+ * @file fwdvk.h
  * @brief Thallium library Vulkan structure forward declarations
  *
  * Include this file to recieve forward declarations of public Thallium types within the Vulkan library

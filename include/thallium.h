@@ -48,7 +48,7 @@
 
 #include "thallium/enums.h"
 
-#include "thallium/core/debug.h"
+#include "thallium/core/debugger.h"
 #include "thallium/core/renderer_config.h"
 #include "thallium/core/renderer.h"
 #include "thallium/core/version.h"

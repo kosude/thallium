@@ -4,7 +4,7 @@ set(SOURCES_CORE
     "utils/primitive.c"
     "utils/proc.c"
 
-    "debug.c"
+    "debugger.c"
     "renderer.c"
     "version.c"
 )

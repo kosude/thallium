@@ -50,6 +50,8 @@ typedef struct th_Renderer_t {
 typedef struct th_Debugger_t {
     /// @brief th_DebugSeverity_t bit-field holding severities of messages to display.
     int debugSeverityFilter;
+    /// @brief th_DebugType_t bit-field holding types of messages to display.
+    int debugTypeFilter;
 } th_Debugger_t;
 
 #ifdef __cplusplus

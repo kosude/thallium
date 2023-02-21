@@ -7,7 +7,7 @@
 
 #include "vk_instance.h"
 
-#include "thallium/core/debug.h"
+#include "thallium/core/debugger.h"
 #include "thallium/core/renderer_config.h"
 
 #include "thallium/vulkan/vk_extension.h"
@@ -55,13 +55,13 @@ static VKAPI_ATTR const VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDe
     // redirect to appropriate logging function based on severity
     switch (severity) {
         case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
-            th_Warn(userData, "%s: %s", typeStr, callbackData->pMessage);
+            th_Warn_Vk(userData, "%s: %s", typeStr, callbackData->pMessage);
             break;
         case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
-            th_Error(userData, "%s: %s", typeStr, callbackData->pMessage);
+            th_Error_Vk(userData, "%s: %s", typeStr, callbackData->pMessage);
             break;
         default:
-            th_Log(userData, "%s: %s", typeStr, callbackData->pMessage);
+            th_Log_Vk(userData, "%s: %s", typeStr, callbackData->pMessage);
             break;
     }
 
@@ -71,7 +71,7 @@ static VKAPI_ATTR const VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDe
 // Convert debug message severity flags from Thallium format to Vulkan format.
 static const VkDebugUtilsMessageSeverityFlagsEXT _ThalliumDebugSeveritiesToVulkanFlags(th_DebugSeverity_t severities) {
     // NOTIF severity is not considerered as the only appropriate Vulkan severities (VERBOSE and INFO) are
-    // output via th_Log(), which would not show if the VERBOSE severity is not enabled anyway.
+    // output via th_Log_*(), which would not show if the VERBOSE severity is not enabled anyway.
     // i.e., even when considering NOTIF, nothing different is output, so there's no point.
     return
           (severities & THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT) >> 4   // VERBOSE  --> VERBOSE
