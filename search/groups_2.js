@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['optional_20renderer_20configuration_0',['Optional renderer configuration',['../db/d3a/a00040.html',1,'']]]
+  ['managing_20renderer_20objects_0',['Managing renderer objects',['../d6/d97/a00045.html',1,'']]]
 ];

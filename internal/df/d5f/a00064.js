@@ -1,4 +1,4 @@
 var a00064 =
 [
-    [ "Vulkan instance functions", "d4/de8/a00061.html", "d4/de8/a00061" ]
+    [ "thvk_CreateInstance", "df/d5f/a00064.html#ga435305e6e02fa3017dcac15e1fcd645c", null ]
 ];

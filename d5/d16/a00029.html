@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/fwd.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_f7aba12 (2023-02-21)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,27 +112,26 @@ $(document).ready(function(){initNavTree('d5/d16/a00029.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a>  </div>
-  <div class="headertitle"><div class="title">thallium.h File Reference</div></div>
+  <div class="headertitle"><div class="title">fwd.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Public Thallium API header.  
+<p>Thallium library structure forward declarations.  
 <a href="#details">More...</a></p>
 
 <p><a href="../../d5/d16/a00029_source.html">Go to the source code of this file.</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Include this file to gain access to all public Thallium functions and types.</p>
-<p>Generally, you only need to include this header. However, if you want to access the more low-level Thallium abstractions of a certain graphics API, you may include the appropriate header, such as <code><a class="el" href="../../d6/d5b/a00026.html" title="Thallium Vulkan module header.">thallium_vulkan.h</a></code> for Vulkan. Again; this isn't required, but it is possible in case the surface-level API does not provide all the functionality you need.</p>
-<p>You can also directly include the graphics API's own headers, as their include directories are publicly included in each API module that is compiled.</p>
-<p>Thallium functions are prefixed with <code>th_</code>. </p>
+<div class="textblock"><p>Thallium library Vulkan structure forward declarations.</p>
+<p>Include this file to recieve forward declarations of public Thallium types. This may be useful if you want to avoid including <a class="el" href="../../d4/d8c/a00035.html">thallium.h</a> for whatever reason.</p>
+<p>Include this file to recieve forward declarations of public Thallium types within the Vulkan library module. This may be useful if you want to avoid including <a class="el" href="../../dc/d87/a00032.html">thallium_vulkan.h</a> for whatever reason. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../d5/d16/a00029.html">thallium.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../d5/d16/a00029.html">fwd.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_f7aba12 (2023-02-21) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

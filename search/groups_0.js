@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['library_20debugging_0',['Library debugging',['../d8/d41/a00038.html',1,'']]]
+  ['evaluating_20vulkan_20physical_20devices_0',['Evaluating Vulkan physical devices',['../d4/dca/a00048.html',1,'']]]
 ];

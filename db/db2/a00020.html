@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/vulkan/vk_extension.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/vulkan/vk_physical_device.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_f7aba12 (2023-02-21)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -113,29 +113,23 @@ $(document).ready(function(){initNavTree('db/db2/a00020.html','../../'); initRes
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">vk_extension.h File Reference</div></div>
+  <div class="headertitle"><div class="title">vk_physical_device.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Vulkan-specific extension management.  
+<p>Reading and picking from physical graphics devices based on Vulkan capabilities.  
 <a href="#details">More...</a></p>
 
 <p><a href="../../db/db2/a00020_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf5d6a815842cc3add28055676670367f"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d32/a00041.html#gaf5d6a815842cc3add28055676670367f">thvk_GetRequiredLayers</a> (unsigned int *out_count, const <a class="el" href="../../d1/d84/a00052.html">th_RendererConfig_Vulkan_t</a> *config)</td></tr>
-<tr class="memdesc:gaf5d6a815842cc3add28055676670367f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required layers from the given renderer configuration.  <br /></td></tr>
-<tr class="separator:gaf5d6a815842cc3add28055676670367f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa4c55549edc53bbc19ab12aa6a9c8202"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d32/a00041.html#gaa4c55549edc53bbc19ab12aa6a9c8202">thvk_GetRequiredInstanceExtensions</a> (unsigned int *out_count, const int debugUtilsEnabled, const <a class="el" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:gaa4c55549edc53bbc19ab12aa6a9c8202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required extensions for Vulkan instances.  <br /></td></tr>
-<tr class="separator:gaa4c55549edc53bbc19ab12aa6a9c8202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaaa3984cd640ab927c67e8d0a4c77b539"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d32/a00041.html#gaaa3984cd640ab927c67e8d0a4c77b539">thvk_GetAvailableLayers</a> (unsigned int *out_count, const <a class="el" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:gaaa3984cd640ab927c67e8d0a4c77b539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of available layers for Vulkan instances.  <br /></td></tr>
-<tr class="separator:gaaa3984cd640ab927c67e8d0a4c77b539"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga95572a61882d41f4f12780b75314a8f4"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d32/a00041.html#ga95572a61882d41f4f12780b75314a8f4">thvk_GetAvailableInstanceExtensions</a> (unsigned int *out_count, const char *const layerName, const <a class="el" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
-<tr class="memdesc:ga95572a61882d41f4f12780b75314a8f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of available extensions for Vulkan instances.  <br /></td></tr>
-<tr class="separator:ga95572a61882d41f4f12780b75314a8f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad48190296e52c7b2aaccf375d90e2140"><td class="memItemLeft" align="right" valign="top">const VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#gad48190296e52c7b2aaccf375d90e2140">thvk_GetAvailablePhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, unsigned int *out_count)</td></tr>
+<tr class="memdesc:gad48190296e52c7b2aaccf375d90e2140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of physical devices available to the specified Vulkan instance.  <br /></td></tr>
+<tr class="separator:gad48190296e52c7b2aaccf375d90e2140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="memItemLeft" align="right" valign="top">const VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga43e63e97c0a98a2eb85dd9d9241ff62d">thvk_EnumerateRankedPhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, const VkPhysicalDevice *physicalDevices, const unsigned int physicalDeviceCount)</td></tr>
+<tr class="memdesc:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array.  <br /></td></tr>
+<tr class="separator:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"></div></div><!-- contents -->
@@ -143,9 +137,9 @@ Functions</h2></td></tr>
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_1500ff34775cbad5418b92be88e6a332.html">vulkan</a></li><li class="navelem"><a class="el" href="../../db/db2/a00020.html">vk_extension.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_1500ff34775cbad5418b92be88e6a332.html">vulkan</a></li><li class="navelem"><a class="el" href="../../db/db2/a00020.html">vk_physical_device.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_f7aba12 (2023-02-21) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

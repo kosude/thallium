@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/fwd.h Source File - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/vulkan/vk_extension.h Source File - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_f7aba12 (2023-02-21)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('d3/d52/a00023_source.html','../../'); 
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">fwd.h</div></div>
+  <div class="headertitle"><div class="title">vk_extension.h</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="../../d3/d52/a00023.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
@@ -120,43 +120,62 @@ $(document).ready(function(){initNavTree('d3/d52/a00023_source.html','../../'); 
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *   Please see the LICENCE file for more information.</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifndef __thallium_fwd_h__</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define __thallium_fwd_h__</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="../../d9/d2e/a00056.html">th_Version_t</a> <a class="code hl_struct" href="../../d9/d2e/a00056.html">th_Version_t</a>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_typedef" href="../../d3/de7/a00039.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> <a class="code hl_typedef" href="../../d3/de7/a00039.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="../../d4/dca/a00048.html">th_RendererDescriptor_t</a> <a class="code hl_struct" href="../../d4/dca/a00048.html">th_RendererDescriptor_t</a>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="../../d1/d84/a00052.html">th_RendererConfig_Vulkan_t</a> <a class="code hl_struct" href="../../d1/d84/a00052.html">th_RendererConfig_Vulkan_t</a>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_typedef" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> <a class="code hl_typedef" href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#if defined(_THALLIUM_FWD_H_VULKAN)</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a> <a class="code hl_struct" href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#endif </span><span class="comment">// !__thallium_fwd_h__</span></div>
-<div class="ttc" id="aa00038_html_ga024bcefec03671b7056e182ce4fb19f6"><div class="ttname"><a href="../../d8/d41/a00038.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a></div><div class="ttdeci">struct th_Debugger_t th_Debugger_t</div><div class="ttdoc">A structure used to debug renderers.</div><div class="ttdef"><b>Definition:</b> debug.h:48</div></div>
-<div class="ttc" id="aa00039_html_ga49c612e4742d9a5b5decdc74bfe0c869"><div class="ttname"><a href="../../d3/de7/a00039.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a></div><div class="ttdeci">struct th_Renderer_t th_Renderer_t</div><div class="ttdoc">A structure to represent a graphics API.</div><div class="ttdef"><b>Definition:</b> renderer.h:52</div></div>
-<div class="ttc" id="aa00048_html"><div class="ttname"><a href="../../d4/dca/a00048.html">th_RendererDescriptor_t</a></div><div class="ttdoc">A structure describing a renderer to be created.</div><div class="ttdef"><b>Definition:</b> renderer.h:70</div></div>
-<div class="ttc" id="aa00052_html"><div class="ttname"><a href="../../d1/d84/a00052.html">th_RendererConfig_Vulkan_t</a></div><div class="ttdoc">Configuration structure specifically for Vulkan renderers.</div><div class="ttdef"><b>Definition:</b> renderer_config.h:45</div></div>
-<div class="ttc" id="aa00056_html"><div class="ttname"><a href="../../d9/d2e/a00056.html">th_Version_t</a></div><div class="ttdoc">A structure to describe a version.</div><div class="ttdef"><b>Definition:</b> version.h:31</div></div>
-<div class="ttc" id="aa00060_html"><div class="ttname"><a href="../../d9/d73/a00060.html">thvk_RenderSystem_t</a></div><div class="ttdoc">A render system to hold Vulkan-specific rendering data.</div><div class="ttdef"><b>Definition:</b> vk_render_system.h:47</div></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef __thallium_vk_extension_h__</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define __thallium_vk_extension_h__</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d16/a00029.html">thallium/fwd.h</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;thallium/fwdvk.h&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">//                           THALLIUM PUBLIC API</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#gaf5d6a815842cc3add28055676670367f">   49</a></span><span class="keywordtype">char</span> **<a class="code hl_function" href="../../d6/d2d/a00047.html#gaf5d6a815842cc3add28055676670367f">thvk_GetRequiredLayers</a>(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *out_count,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">const</span> <a class="code hl_struct" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a> *config</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#gaa4c55549edc53bbc19ab12aa6a9c8202">   69</a></span><span class="keywordtype">char</span> **<a class="code hl_function" href="../../d6/d2d/a00047.html#gaa4c55549edc53bbc19ab12aa6a9c8202">thvk_GetRequiredInstanceExtensions</a>(</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *out_count,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> debugUtilsEnabled,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#gaaa3984cd640ab927c67e8d0a4c77b539">   87</a></span><span class="keywordtype">char</span> **<a class="code hl_function" href="../../d6/d2d/a00047.html#gaaa3984cd640ab927c67e8d0a4c77b539">thvk_GetAvailableLayers</a>(</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *out_count,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#ga95572a61882d41f4f12780b75314a8f4">  108</a></span><span class="keywordtype">char</span> **<a class="code hl_function" href="../../d6/d2d/a00047.html#ga95572a61882d41f4f12780b75314a8f4">thvk_GetAvailableInstanceExtensions</a>(</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *out_count,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> layerName,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif </span><span class="comment">// !__thallium_vk_extension_h__</span></div>
+<div class="ttc" id="aa00029_html"><div class="ttname"><a href="../../d5/d16/a00029.html">fwd.h</a></div><div class="ttdoc">Thallium library structure forward declarations.</div></div>
+<div class="ttc" id="aa00044_html_ga024bcefec03671b7056e182ce4fb19f6"><div class="ttname"><a href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a></div><div class="ttdeci">struct th_Debugger_t th_Debugger_t</div><div class="ttdoc">A structure used to debug renderers.</div><div class="ttdef"><b>Definition:</b> debug.h:48</div></div>
+<div class="ttc" id="aa00047_html_ga95572a61882d41f4f12780b75314a8f4"><div class="ttname"><a href="../../d6/d2d/a00047.html#ga95572a61882d41f4f12780b75314a8f4">thvk_GetAvailableInstanceExtensions</a></div><div class="ttdeci">char ** thvk_GetAvailableInstanceExtensions(unsigned int *out_count, const char *const layerName, const th_Debugger_t *debugger)</div><div class="ttdoc">Get array of available extensions for Vulkan instances.</div></div>
+<div class="ttc" id="aa00047_html_gaa4c55549edc53bbc19ab12aa6a9c8202"><div class="ttname"><a href="../../d6/d2d/a00047.html#gaa4c55549edc53bbc19ab12aa6a9c8202">thvk_GetRequiredInstanceExtensions</a></div><div class="ttdeci">char ** thvk_GetRequiredInstanceExtensions(unsigned int *out_count, const int debugUtilsEnabled, const th_Debugger_t *debugger)</div><div class="ttdoc">Get array of required extensions for Vulkan instances.</div></div>
+<div class="ttc" id="aa00047_html_gaaa3984cd640ab927c67e8d0a4c77b539"><div class="ttname"><a href="../../d6/d2d/a00047.html#gaaa3984cd640ab927c67e8d0a4c77b539">thvk_GetAvailableLayers</a></div><div class="ttdeci">char ** thvk_GetAvailableLayers(unsigned int *out_count, const th_Debugger_t *debugger)</div><div class="ttdoc">Get array of available layers for Vulkan instances.</div></div>
+<div class="ttc" id="aa00047_html_gaf5d6a815842cc3add28055676670367f"><div class="ttname"><a href="../../d6/d2d/a00047.html#gaf5d6a815842cc3add28055676670367f">thvk_GetRequiredLayers</a></div><div class="ttdeci">char ** thvk_GetRequiredLayers(unsigned int *out_count, const th_RendererConfig_Vulkan_t *config)</div><div class="ttdoc">Get array of required layers from the given renderer configuration.</div></div>
+<div class="ttc" id="aa00059_html"><div class="ttname"><a href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a></div><div class="ttdoc">Configuration structure specifically for Vulkan renderers.</div><div class="ttdef"><b>Definition:</b> renderer_config.h:45</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../d3/d52/a00023.html">fwd.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_1500ff34775cbad5418b92be88e6a332.html">vulkan</a></li><li class="navelem"><a class="el" href="../../d3/d52/a00023.html">vk_extension.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_f7aba12 (2023-02-21) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>th_RendererDescriptor_t Struct Reference - Thallium</title>
+        <title>Evaluating Vulkan physical devices - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_aef287c (2023-02-20)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_f7aba12 (2023-02-21)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,42 +111,117 @@ $(document).ready(function(){initNavTree('d4/dca/a00048.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">th_RendererDescriptor_t Struct Reference<div class="ingroups"><a class="el" href="../../d3/de7/a00039.html">Managing renderer objects</a></div></div></div>
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Evaluating Vulkan physical devices<div class="ingroups"><a class="el" href="../../d2/d79/a00051.html">Vulkan</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A structure describing a renderer to be created.  
- <a href="../../d4/dca/a00048.html#details">More...</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="memItemLeft" align="right" valign="top"><a id="a2b5ff509d638705dadb1effb2ef0c2dc" name="a2b5ff509d638705dadb1effb2ef0c2dc"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>apiName</b></td></tr>
-<tr class="memdesc:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the API being represented. <br /></td></tr>
-<tr class="separator:a2b5ff509d638705dadb1effb2ef0c2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7558e2e44f28014e287b872cacfb1c95"><td class="memItemLeft" align="right" valign="top"><a id="a7558e2e44f28014e287b872cacfb1c95" name="a7558e2e44f28014e287b872cacfb1c95"></a>
-<a class="el" href="../../d9/d2e/a00056.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>apiVersion</b></td></tr>
-<tr class="memdesc:a7558e2e44f28014e287b872cacfb1c95"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version of the API being represented. <br /></td></tr>
-<tr class="separator:a7558e2e44f28014e287b872cacfb1c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="memItemLeft" align="right" valign="top"><a id="af9fd34a99180dcc7d1af2dbc65f4fe5f" name="af9fd34a99180dcc7d1af2dbc65f4fe5f"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>rendererConfig</b></td></tr>
-<tr class="memdesc:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional pointer to an API-specific configuration structure. <br /></td></tr>
-<tr class="separator:af9fd34a99180dcc7d1af2dbc65f4fe5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
+<p>Functions for choosing the most optimal Vulkan physical device(s)  
+<a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This structure describes a renderer to be created.</p>
-<p>Common practice is to set <code>rendererConfig</code> to NULL. However, it may be necessary to provide <a class="el" href="../../db/d3a/a00040.html">API-specific configuration</a>, which this parameter allows. See a Vulkan example below.</p>
-<dl class="section user"><dt>Renderer config example</dt><dd>Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a <code><a class="el" href="../../d1/d84/a00052.html" title="Configuration structure specifically for Vulkan renderers.">th_RendererConfig_Vulkan_t</a></code> structure with the relevant information, and pass a pointer to it via the <code>rendererConfig</code> parameter.</dd></dl>
-<p>For more, see the <a class="el" href="../../db/d3a/a00040.html">Optional renderer configuration</a> page. </p>
-</div></div><!-- contents -->
+<p>This group contains functions involving Vulkan physical devices. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gad48190296e52c7b2aaccf375d90e2140"><td class="memItemLeft" align="right" valign="top">const VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#gad48190296e52c7b2aaccf375d90e2140">thvk_GetAvailablePhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, unsigned int *out_count)</td></tr>
+<tr class="memdesc:gad48190296e52c7b2aaccf375d90e2140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of physical devices available to the specified Vulkan instance.  <br /></td></tr>
+<tr class="separator:gad48190296e52c7b2aaccf375d90e2140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="memItemLeft" align="right" valign="top">const VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga43e63e97c0a98a2eb85dd9d9241ff62d">thvk_EnumerateRankedPhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, const VkPhysicalDevice *physicalDevices, const unsigned int physicalDeviceCount)</td></tr>
+<tr class="memdesc:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array.  <br /></td></tr>
+<tr class="separator:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gad48190296e52c7b2aaccf375d90e2140" name="gad48190296e52c7b2aaccf375d90e2140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad48190296e52c7b2aaccf375d90e2140">&#9670;&#160;</a></span>thvk_GetAvailablePhysicalDevices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const VkPhysicalDevice * thvk_GetAvailablePhysicalDevices </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *&#160;</td>
+          <td class="paramname"><em>renderSystem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int *&#160;</td>
+          <td class="paramname"><em>out_count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function allocates and returns an array of physical devices available to Vulkan instance <code>instance</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>The returned array must be explicitly free'd.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderSystem</td><td>Render system for querying and debugging </td></tr>
+    <tr><td class="paramname">out_count</td><td>Location into which the amount of physical devices will be returned </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Heap-allocated array of Vulkan physical device structures. </dd></dl>
+
+</div>
+</div>
+<a id="ga43e63e97c0a98a2eb85dd9d9241ff62d" name="ga43e63e97c0a98a2eb85dd9d9241ff62d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga43e63e97c0a98a2eb85dd9d9241ff62d">&#9670;&#160;</a></span>thvk_EnumerateRankedPhysicalDevices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const VkPhysicalDevice * thvk_EnumerateRankedPhysicalDevices </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *&#160;</td>
+          <td class="paramname"><em>renderSystem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VkPhysicalDevice *&#160;</td>
+          <td class="paramname"><em>physicalDevices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>physicalDeviceCount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function sorts the given array of Vulkan physical devices in order of suitability, and returns the sorted array. <b>The item at index <code>0</code> is the most suitable, and the item at index <code>physicalDeviceCount - 1</code> is the least suitable.</b></p>
+<p>The length of the resultant array will be the same as the length of <code>physicalDevices</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>The returned array is allocated, and so must be explicitly free'd.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderSystem</td><td>Render system for querying </td></tr>
+    <tr><td class="paramname">physicalDevices</td><td>Array of physical devices to copy and sort </td></tr>
+    <tr><td class="paramname">physicalDeviceCount</td><td>Amount of items in array <code>physicalDevices</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Heap-allocated array of Vulkan physical device structures. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../d4/dca/a00048.html">th_RendererDescriptor_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_aef287c (2023-02-20) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_f7aba12 (2023-02-21) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

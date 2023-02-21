@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['utilities_0',['Utilities',['../d6/d42/a00043.html',1,'']]]
+  ['optional_20renderer_20configuration_0',['Optional renderer configuration',['../d3/dea/a00046.html',1,'']]]
 ];
