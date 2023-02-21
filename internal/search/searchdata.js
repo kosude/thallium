@@ -1,13 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "adgilmoprtuv",
+  0: "adgioprtuv",
   1: "t",
-  2: "ilptv",
+  2: "iptv",
   3: "t",
   4: "adr",
   5: "t",
   6: "t",
-  7: "gimopuv",
+  7: "giopuv",
   8: "i"
 };
 

@@ -1,4 +1,4 @@
 var a00063 =
 [
-    [ "th_KillProc", "d1/d6f/a00063.html#ga242bacdc20f9adc235a2a8020a576688", null ]
+    [ "thvk_CreateInstance", "d1/d6f/a00063.html#ga435305e6e02fa3017dcac15e1fcd645c", null ]
 ];

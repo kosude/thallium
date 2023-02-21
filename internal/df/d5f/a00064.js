@@ -1,4 +1,6 @@
 var a00064 =
 [
-    [ "thvk_CreateInstance", "df/d5f/a00064.html#ga435305e6e02fa3017dcac15e1fcd645c", null ]
+    [ "IO colours", "d9/d73/a00060.html", "d9/d73/a00060" ],
+    [ "Primitive helper functions", "d4/de8/a00061.html", "d4/de8/a00061" ],
+    [ "Process management", "df/d03/a00062.html", "df/d03/a00062" ]
 ];

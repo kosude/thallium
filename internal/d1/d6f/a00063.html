@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Process management - Thallium@v0.0.0dev_088c24a (2023-02-21)</title>
+        <title>Vulkan instance functions - Thallium@v0.0.0dev_8b4f9a9 (2023-02-21)</title>
         <link rel="shortcut icon" href="../../render.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Internal Codebase
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_088c24a (2023-02-21)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_8b4f9a9 (2023-02-21)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,39 +112,57 @@ $(document).ready(function(){initNavTree('d1/d6f/a00063.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">Process management<div class="ingroups"><a class="el" href="../../de/de1/a00065.html">Utilities</a></div></div></div>
+  <div class="headertitle"><div class="title">Vulkan instance functions<div class="ingroups"><a class="el" href="../../d9/db3/a00066.html">Internal Vulkan functions</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Managing process.  
+<p>Internally used functions for managing Vulkan instances.  
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Functions for managing the currently executing process. </p>
+<p>Some functions for creating and handling Vulkan instances. These are frequently used when managing Vulkan render systems. </p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga242bacdc20f9adc235a2a8020a576688"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6f/a00063.html#ga242bacdc20f9adc235a2a8020a576688">th_KillProc</a> ()</td></tr>
-<tr class="memdesc:ga242bacdc20f9adc235a2a8020a576688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kill the currently executing process.  <br /></td></tr>
-<tr class="separator:ga242bacdc20f9adc235a2a8020a576688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga435305e6e02fa3017dcac15e1fcd645c"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6f/a00063.html#ga435305e6e02fa3017dcac15e1fcd645c">thvk_CreateInstance</a> (thvk_RenderSystem_t *renderSystem, const th_RendererConfig_Vulkan_t *config)</td></tr>
+<tr class="memdesc:ga435305e6e02fa3017dcac15e1fcd645c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Vulkan instance.  <br /></td></tr>
+<tr class="separator:ga435305e6e02fa3017dcac15e1fcd645c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga242bacdc20f9adc235a2a8020a576688" name="ga242bacdc20f9adc235a2a8020a576688"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga242bacdc20f9adc235a2a8020a576688">&#9670;&#160;</a></span>th_KillProc()</h2>
+<a id="ga435305e6e02fa3017dcac15e1fcd645c" name="ga435305e6e02fa3017dcac15e1fcd645c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga435305e6e02fa3017dcac15e1fcd645c">&#9670;&#160;</a></span>thvk_CreateInstance()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int th_KillProc </td>
+          <td class="memname">const int thvk_CreateInstance </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">thvk_RenderSystem_t *&#160;</td>
+          <td class="paramname"><em>renderSystem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const th_RendererConfig_Vulkan_t *&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function kills the currently executing process. This may be useful for when a fatal error is thrown.</p>
-<dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd><em>This function will always return 1</em>. </dd></dl>
+<p>This function creates a Vulkan instance into the location <code>instance</code>.</p>
+<p>If <code>debugger</code> is not NULL, a debug messenger will be created alongside the instance for Vulkan debugging.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderSystem</td><td>Pointer to the render system into which the instance will be returned. </td></tr>
+    <tr><td class="paramname">config</td><td>Pointer to a Vulkan renderer configuration structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success. </dd></dl>
 
 </div>
 </div>
@@ -154,7 +172,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../../index.html">public api</a> » doxygen <b>1.9.6</b> » v0.0.0dev_088c24a (2023-02-21) »
+                    <a href="../../../index.html">public api</a> » doxygen <b>1.9.6</b> » v0.0.0dev_8b4f9a9 (2023-02-21) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Library debugging - Thallium</title>
+        <title>Library debuggers - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_088c24a (2023-02-21)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_8b4f9a9 (2023-02-21)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('d5/df9/a00044.html','../../'); initRes
 <a href="#typedef-members">Types</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">Library debugging</div></div>
+  <div class="headertitle"><div class="title">Library debuggers</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -135,15 +135,21 @@ Enumerations</h2></td></tr>
 <tr class="memitem:ga437ad5d0c16115fb79ecdcff529399e3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> </td></tr>
 <tr class="memdesc:ga437ad5d0c16115fb79ecdcff529399e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration containing severities to describe debug messages.  <a href="../../d5/df9/a00044.html#ga437ad5d0c16115fb79ecdcff529399e3">More...</a><br /></td></tr>
 <tr class="separator:ga437ad5d0c16115fb79ecdcff529399e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1e6e6868385cf31d4a2e614b69d4939e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#ga1e6e6868385cf31d4a2e614b69d4939e">th_DebugType_t</a> </td></tr>
+<tr class="memdesc:ga1e6e6868385cf31d4a2e614b69d4939e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration containing types/sources to describe debug messages.  <a href="../../d5/df9/a00044.html#ga1e6e6868385cf31d4a2e614b69d4939e">More...</a><br /></td></tr>
+<tr class="separator:ga1e6e6868385cf31d4a2e614b69d4939e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga88e81a6db13dd6cfb6ac08a45621c6ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">th_CreateDebugger</a> (const <a class="el" href="../../d5/df9/a00044.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> severities)</td></tr>
-<tr class="memdesc:ga88e81a6db13dd6cfb6ac08a45621c6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a debugger struct with the specified configuration options.  <br /></td></tr>
-<tr class="separator:ga88e81a6db13dd6cfb6ac08a45621c6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21a2b58b18f2fa61037b5051221ae581"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#ga21a2b58b18f2fa61037b5051221ae581">th_CreateDebugger</a> (const <a class="el" href="../../d5/df9/a00044.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> severities, const <a class="el" href="../../d5/df9/a00044.html#ga1e6e6868385cf31d4a2e614b69d4939e">th_DebugType_t</a> types)</td></tr>
+<tr class="memdesc:ga21a2b58b18f2fa61037b5051221ae581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a debugger struct with the specified configuration options.  <br /></td></tr>
+<tr class="separator:ga21a2b58b18f2fa61037b5051221ae581"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad4bacb24b41c355fdccbc0313940b2ce"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#gad4bacb24b41c355fdccbc0313940b2ce">th_DestroyDebugger</a> (<a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
 <tr class="memdesc:gad4bacb24b41c355fdccbc0313940b2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given debugger object.  <br /></td></tr>
 <tr class="separator:gad4bacb24b41c355fdccbc0313940b2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c947f1e8186653d42db375662dc1e46"><td class="memItemLeft" align="right" valign="top">const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#ga2c947f1e8186653d42db375662dc1e46">th_TriggerSeverityMessages</a> (const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:ga2c947f1e8186653d42db375662dc1e46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Post a debug message to the given debugger for each Thallium severity and message type.  <br /></td></tr>
+<tr class="separator:ga2c947f1e8186653d42db375662dc1e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Type Documentation</h2>
 <a id="ga024bcefec03671b7056e182ce4fb19f6" name="ga024bcefec03671b7056e182ce4fb19f6"></a>
@@ -160,7 +166,7 @@ Functions</h2></td></tr>
 <p>This structure can be created and passed to renderer creation to enable runtime debug messages - for instance, it is needed to recieve errors and warnings.</p>
 <p>Note that this is independent of API-specific debugging methods (such as OpenGL debug output).</p>
 <dl class="section warning"><dt>Warning</dt><dd>Debuggers will not be used if the Thallium debug layer was not enabled on compilation.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d5/df9/a00044.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">th_CreateDebugger()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d5/df9/a00044.html#ga21a2b58b18f2fa61037b5051221ae581">th_CreateDebugger()</a> </dd></dl>
 
 </div>
 </div>
@@ -179,7 +185,7 @@ Functions</h2></td></tr>
 <p>This enumeration contains severities to describe debug messages.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> </dd>
 <dd>
-<a class="el" href="../../d5/df9/a00044.html#ga88e81a6db13dd6cfb6ac08a45621c6ab">th_CreateDebugger()</a> </dd></dl>
+<a class="el" href="../../d5/df9/a00044.html#ga21a2b58b18f2fa61037b5051221ae581">th_CreateDebugger()</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga437ad5d0c16115fb79ecdcff529399e3a67e9eb97381e9ac6c7be9f39cca62ba9" name="gga437ad5d0c16115fb79ecdcff529399e3a67e9eb97381e9ac6c7be9f39cca62ba9"></a>THALLIUM_DEBUG_SEVERITY_VERBOSE_BIT&#160;</td><td class="fielddoc"><p>Includes log messages. </p>
 </td></tr>
@@ -191,15 +197,41 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gga437ad5d0c16115fb79ecdcff529399e3a81cc3ba862df633c2da0b173674fa5a5" name="gga437ad5d0c16115fb79ecdcff529399e3a81cc3ba862df633c2da0b173674fa5a5"></a>THALLIUM_DEBUG_SEVERITY_FATAL_BIT&#160;</td><td class="fielddoc"><p>Includes fatal error output. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309" name="gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309"></a>THALLIUM_DEBUG_SEVERITY_ALL_BIT&#160;</td><td class="fielddoc"><p>Includes all debug messages. </p>
+<tr><td class="fieldname"><a id="gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309" name="gga437ad5d0c16115fb79ecdcff529399e3aab89a0bcc7337a2f79fdda42102d9309"></a>THALLIUM_DEBUG_SEVERITY_ALL_BIT&#160;</td><td class="fielddoc"><p>Includes all debug messages severities. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga1e6e6868385cf31d4a2e614b69d4939e" name="ga1e6e6868385cf31d4a2e614b69d4939e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1e6e6868385cf31d4a2e614b69d4939e">&#9670;&#160;</a></span>th_DebugType_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d5/df9/a00044.html#ga1e6e6868385cf31d4a2e614b69d4939e">th_DebugType_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This enumeration contains message types/sources to describe debug messages.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> </dd>
+<dd>
+<a class="el" href="../../d5/df9/a00044.html#ga21a2b58b18f2fa61037b5051221ae581">th_CreateDebugger()</a> </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1e6e6868385cf31d4a2e614b69d4939eafbf017ad1d2c12e414fc82609340a13b" name="gga1e6e6868385cf31d4a2e614b69d4939eafbf017ad1d2c12e414fc82609340a13b"></a>THALLIUM_DEBUG_TYPE_CORE_BIT&#160;</td><td class="fielddoc"><p>Includes core library messages (prefixed by <code>(th)</code>) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1e6e6868385cf31d4a2e614b69d4939eada1e66d2de5b2e428f5f9823d3c7b511" name="gga1e6e6868385cf31d4a2e614b69d4939eada1e66d2de5b2e428f5f9823d3c7b511"></a>THALLIUM_DEBUG_TYPE_VULKAN_BIT&#160;</td><td class="fielddoc"><p>Includes Vulkan debug messages, sent by Vulkan renderers (prefixed by <code>(thvk)</code>) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1e6e6868385cf31d4a2e614b69d4939ea6078af61e64f9de38466a9d54df01b52" name="gga1e6e6868385cf31d4a2e614b69d4939ea6078af61e64f9de38466a9d54df01b52"></a>THALLIUM_DEBUG_TYPE_ALL_BIT&#160;</td><td class="fielddoc"><p>Includes all debug message types. </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga88e81a6db13dd6cfb6ac08a45621c6ab" name="ga88e81a6db13dd6cfb6ac08a45621c6ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga88e81a6db13dd6cfb6ac08a45621c6ab">&#9670;&#160;</a></span>th_CreateDebugger()</h2>
+<a id="ga21a2b58b18f2fa61037b5051221ae581" name="ga21a2b58b18f2fa61037b5051221ae581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga21a2b58b18f2fa61037b5051221ae581">&#9670;&#160;</a></span>th_CreateDebugger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,8 +240,18 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> * th_CreateDebugger </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../d5/df9/a00044.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a>&#160;</td>
-          <td class="paramname"><em>severities</em></td><td>)</td>
+          <td class="paramname"><em>severities</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="../../d5/df9/a00044.html#ga1e6e6868385cf31d4a2e614b69d4939e">th_DebugType_t</a>&#160;</td>
+          <td class="paramname"><em>types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -217,6 +259,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">severities</td><td>bit field of <a class="el" href="../../d5/df9/a00044.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> enumerator(s) - messages of these severities will be reported </td></tr>
+    <tr><td class="paramname">types</td><td>bit field of <a class="el" href="../../d5/df9/a00044.html#ga1e6e6868385cf31d4a2e614b69d4939e">th_DebugType_t</a> enumerator(s) - messages of these types will be reported. </td></tr>
   </table>
   </dd>
 </dl>
@@ -243,12 +286,38 @@ Functions</h2></td></tr>
 <p>This function frees the specified debugger object. You should set the pointer to NULL after calling this function, as you would normally when calling free().</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">debugger</td><td>Pointer to the debugger object to free. </td></tr>
+    <tr><td class="paramname">debugger</td><td>The debugger object to free. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd><em>This function will always return 1</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ga2c947f1e8186653d42db375662dc1e46" name="ga2c947f1e8186653d42db375662dc1e46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2c947f1e8186653d42db375662dc1e46">&#9670;&#160;</a></span>th_TriggerSeverityMessages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void th_TriggerSeverityMessages </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
+          <td class="paramname"><em>debugger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function posts a debug message to <code>debugger</code> for each Thallium severity and message type. This can be used to test the debugger's severity configuration.</p>
+<dl class="section warning"><dt>Warning</dt><dd>Because this function may output a fatal error (depending on the debug types filter), it <b>halts program execution!</b> It is only intended to be temporarily used in development!</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">debugger</td><td>Debugger object to which the messages will be posted. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -258,7 +327,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_088c24a (2023-02-21) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_8b4f9a9 (2023-02-21) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

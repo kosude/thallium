@@ -1,18 +1,19 @@
 var searchData=
 [
-  ['th_5fcreatedebugger_0',['th_CreateDebugger',['../d5/df9/a00044.html#ga88e81a6db13dd6cfb6ac08a45621c6ab',1,'debug.h']]],
+  ['th_5fcreatedebugger_0',['th_CreateDebugger',['../d5/df9/a00044.html#ga21a2b58b18f2fa61037b5051221ae581',1,'debugger.h']]],
   ['th_5fcreaterenderer_1',['th_CreateRenderer',['../d6/d97/a00045.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8',1,'renderer.h']]],
-  ['th_5fdestroydebugger_2',['th_DestroyDebugger',['../d5/df9/a00044.html#gad4bacb24b41c355fdccbc0313940b2ce',1,'debug.h']]],
+  ['th_5fdestroydebugger_2',['th_DestroyDebugger',['../d5/df9/a00044.html#gad4bacb24b41c355fdccbc0313940b2ce',1,'debugger.h']]],
   ['th_5fdestroyrenderer_3',['th_DestroyRenderer',['../d6/d97/a00045.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d',1,'renderer.h']]],
   ['th_5fgetrendererrendersystem_4',['th_GetRendererRenderSystem',['../d6/d97/a00045.html#ga0ce080d05a07073492125a60997274ca',1,'renderer.h']]],
   ['th_5fgetthalliumversionstring_5',['th_GetThalliumVersionString',['../d5/de0/a00050.html#gada9f24473c7f0d71d770557a08360502',1,'version.h']]],
-  ['th_5fversiontostring_6',['th_VersionToString',['../d5/de0/a00050.html#gab997b95b23c8cf033601fe5ebdffb4c4',1,'version.h']]],
-  ['thvk_5fcreaterendersystem_7',['thvk_CreateRenderSystem',['../d2/dee/a00049.html#ga7010868c053dab837d0ac4cc795fff85',1,'vk_render_system.h']]],
-  ['thvk_5fdestroyrendersystem_8',['thvk_DestroyRenderSystem',['../d2/dee/a00049.html#gae75b162f13fc63c0399afbb2c593e4ba',1,'vk_render_system.h']]],
-  ['thvk_5fenumeraterankedphysicaldevices_9',['thvk_EnumerateRankedPhysicalDevices',['../d4/dca/a00048.html#ga43e63e97c0a98a2eb85dd9d9241ff62d',1,'vk_physical_device.h']]],
-  ['thvk_5fgetavailableinstanceextensions_10',['thvk_GetAvailableInstanceExtensions',['../d6/d2d/a00047.html#ga95572a61882d41f4f12780b75314a8f4',1,'vk_extension.h']]],
-  ['thvk_5fgetavailablelayers_11',['thvk_GetAvailableLayers',['../d6/d2d/a00047.html#gaaa3984cd640ab927c67e8d0a4c77b539',1,'vk_extension.h']]],
-  ['thvk_5fgetavailablephysicaldevices_12',['thvk_GetAvailablePhysicalDevices',['../d4/dca/a00048.html#gad48190296e52c7b2aaccf375d90e2140',1,'vk_physical_device.h']]],
-  ['thvk_5fgetrequiredinstanceextensions_13',['thvk_GetRequiredInstanceExtensions',['../d6/d2d/a00047.html#gaa4c55549edc53bbc19ab12aa6a9c8202',1,'vk_extension.h']]],
-  ['thvk_5fgetrequiredlayers_14',['thvk_GetRequiredLayers',['../d6/d2d/a00047.html#gaf5d6a815842cc3add28055676670367f',1,'vk_extension.h']]]
+  ['th_5ftriggerseveritymessages_6',['th_TriggerSeverityMessages',['../d5/df9/a00044.html#ga2c947f1e8186653d42db375662dc1e46',1,'debugger.h']]],
+  ['th_5fversiontostring_7',['th_VersionToString',['../d5/de0/a00050.html#gab997b95b23c8cf033601fe5ebdffb4c4',1,'version.h']]],
+  ['thvk_5fcreaterendersystem_8',['thvk_CreateRenderSystem',['../d2/dee/a00049.html#ga7010868c053dab837d0ac4cc795fff85',1,'vk_render_system.h']]],
+  ['thvk_5fdestroyrendersystem_9',['thvk_DestroyRenderSystem',['../d2/dee/a00049.html#gae75b162f13fc63c0399afbb2c593e4ba',1,'vk_render_system.h']]],
+  ['thvk_5fenumeraterankedphysicaldevices_10',['thvk_EnumerateRankedPhysicalDevices',['../d4/dca/a00048.html#ga43e63e97c0a98a2eb85dd9d9241ff62d',1,'vk_physical_device.h']]],
+  ['thvk_5fgetavailableinstanceextensions_11',['thvk_GetAvailableInstanceExtensions',['../d6/d2d/a00047.html#ga95572a61882d41f4f12780b75314a8f4',1,'vk_extension.h']]],
+  ['thvk_5fgetavailablelayers_12',['thvk_GetAvailableLayers',['../d6/d2d/a00047.html#gaaa3984cd640ab927c67e8d0a4c77b539',1,'vk_extension.h']]],
+  ['thvk_5fgetavailablephysicaldevices_13',['thvk_GetAvailablePhysicalDevices',['../d4/dca/a00048.html#gad48190296e52c7b2aaccf375d90e2140',1,'vk_physical_device.h']]],
+  ['thvk_5fgetrequiredinstanceextensions_14',['thvk_GetRequiredInstanceExtensions',['../d6/d2d/a00047.html#gaa4c55549edc53bbc19ab12aa6a9c8202',1,'vk_extension.h']]],
+  ['thvk_5fgetrequiredlayers_15',['thvk_GetRequiredLayers',['../d6/d2d/a00047.html#gaf5d6a815842cc3add28055676670367f',1,'vk_extension.h']]]
 ];

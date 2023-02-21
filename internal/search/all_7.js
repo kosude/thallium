@@ -1,7 +1,28 @@
 var searchData=
 [
-  ['primitive_20helper_20functions_0',['Primitive helper functions',['../df/d03/a00062.html',1,'']]],
-  ['primitive_2eh_1',['primitive.h',['../da/d45/a00011.html',1,'']]],
-  ['proc_2eh_2',['proc.h',['../d4/dee/a00008.html',1,'']]],
-  ['process_20management_3',['Process management',['../d1/d6f/a00063.html',1,'']]]
+  ['th_5fdebugger_5ft_0',['th_Debugger_t',['../db/db6/a00074.html',1,'']]],
+  ['th_5fdefaultiocolour_1',['th_DefaultIOColour',['../d9/d73/a00060.html#gaca7052a28342e632a2ad281e5ee32eb6',1,'th_DefaultIOColour(FILE *stream):&#160;io_colour.c'],['../d9/d73/a00060.html#gaca7052a28342e632a2ad281e5ee32eb6',1,'th_DefaultIOColour(FILE *stream):&#160;io_colour.c']]],
+  ['th_5fiocolour_5ft_2',['th_IOColour_t',['../d9/d73/a00060.html#ga894ad24cab6ffa4029e5f0328c89aff3',1,'io_colour.h']]],
+  ['th_5fkillproc_3',['th_KillProc',['../df/d03/a00062.html#ga242bacdc20f9adc235a2a8020a576688',1,'th_KillProc():&#160;proc.c'],['../df/d03/a00062.html#ga242bacdc20f9adc235a2a8020a576688',1,'th_KillProc():&#160;proc.c']]],
+  ['th_5frenderer_5ft_4',['th_Renderer_t',['../d2/db1/a00070.html',1,'']]],
+  ['th_5fsetiocolour_5',['th_SetIOColour',['../d9/d73/a00060.html#ga7b53375e5916345961437d44e16a9bee',1,'th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *stream):&#160;io_colour.c'],['../d9/d73/a00060.html#ga7b53375e5916345961437d44e16a9bee',1,'th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *stream):&#160;io_colour.c']]],
+  ['th_5fstringvalueinarray_6',['th_StringValueInArray',['../d4/de8/a00061.html#ga55ebc2e2c6c2bac5434b4a2b30c8894d',1,'th_StringValueInArray(const char *const val, const char *const *arr, const unsigned int arrSize):&#160;primitive.c'],['../d4/de8/a00061.html#ga55ebc2e2c6c2bac5434b4a2b30c8894d',1,'th_StringValueInArray(const char *const val, const char *const *arr, const unsigned int arrSize):&#160;primitive.c']]],
+  ['thallium_5fio_5fcolour_5fblack_7',['THALLIUM_IO_COLOUR_BLACK',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a44f04bca6a5ca932ee47b302529c4754',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fblue_8',['THALLIUM_IO_COLOUR_BLUE',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3af30f0cb1d9f3ec6d95febe6712911c6b',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fcyan_9',['THALLIUM_IO_COLOUR_CYAN',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a7bc139647e2e6917d07e02b58c2b4954',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fdark_5fblue_10',['THALLIUM_IO_COLOUR_DARK_BLUE',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a10ac4714894809dea3e67d3de4430b21',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fdark_5fgreen_11',['THALLIUM_IO_COLOUR_DARK_GREEN',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3ae04715cc07e175098411de3754379714',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fdark_5fred_12',['THALLIUM_IO_COLOUR_DARK_RED',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a5901cd62fbf22717fcb146157a4234a9',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fgreen_13',['THALLIUM_IO_COLOUR_GREEN',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3abe34baaf9fd33a39716ae3305d2cb836',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fgrey_14',['THALLIUM_IO_COLOUR_GREY',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a54e78c758f549410874812e522cf3114',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5flight_5fblue_15',['THALLIUM_IO_COLOUR_LIGHT_BLUE',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a018829dd717d78fa2ce99a563a352ab6',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5flight_5fgrey_16',['THALLIUM_IO_COLOUR_LIGHT_GREY',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a96ce3580328770e5ecead86049ccaaad',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fmagenta_17',['THALLIUM_IO_COLOUR_MAGENTA',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3af4cad1309f0b17a6a8c907a3c7422fc7',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5forange_18',['THALLIUM_IO_COLOUR_ORANGE',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a555d37981732a719a45768e79b21b692',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fpink_19',['THALLIUM_IO_COLOUR_PINK',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3ae8f0927e1d43be6048499983a9bad97c',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fred_20',['THALLIUM_IO_COLOUR_RED',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a9ca31a2300b7ceeb2bf3af9bd3630f90',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fwhite_21',['THALLIUM_IO_COLOUR_WHITE',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a49ba7881bf99fec4e10ea3a867cbb268',1,'io_colour.h']]],
+  ['thallium_5fio_5fcolour_5fyellow_22',['THALLIUM_IO_COLOUR_YELLOW',['../d9/d73/a00060.html#gga894ad24cab6ffa4029e5f0328c89aff3a5ddb3cd9a455dfb707e5bb3f5e9b7081',1,'io_colour.h']]],
+  ['thvk_5fcreateinstance_23',['thvk_CreateInstance',['../d1/d6f/a00063.html#ga435305e6e02fa3017dcac15e1fcd645c',1,'thvk_CreateInstance(thvk_RenderSystem_t *renderSystem, const th_RendererConfig_Vulkan_t *config):&#160;vk_instance.c'],['../d1/d6f/a00063.html#ga435305e6e02fa3017dcac15e1fcd645c',1,'thvk_CreateInstance(thvk_RenderSystem_t *renderSystem, const th_RendererConfig_Vulkan_t *config):&#160;vk_instance.c']]],
+  ['types_2eh_24',['types.h',['../dd/dad/a00005.html',1,'']]]
 ];

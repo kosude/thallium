@@ -1,7 +1,7 @@
 var a00014 =
 [
-    [ "th_Renderer_t", "d6/d97/a00045.html#ga49c612e4742d9a5b5decdc74bfe0c869", null ],
-    [ "th_CreateRenderer", "d6/d97/a00045.html#gaf9d4bd5ba4a3ca004a2ea636015af9a8", null ],
-    [ "th_DestroyRenderer", "d6/d97/a00045.html#ga33cfd8bcc4b9d8236a2dfb4aae602e2d", null ],
-    [ "th_GetRendererRenderSystem", "d6/d97/a00045.html#ga0ce080d05a07073492125a60997274ca", null ]
+    [ "th_Debugger_t", "d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6", null ],
+    [ "th_CreateDebugger", "d5/df9/a00044.html#ga21a2b58b18f2fa61037b5051221ae581", null ],
+    [ "th_DestroyDebugger", "d5/df9/a00044.html#gad4bacb24b41c355fdccbc0313940b2ce", null ],
+    [ "th_TriggerSeverityMessages", "d5/df9/a00044.html#ga2c947f1e8186653d42db375662dc1e46", null ]
 ];
