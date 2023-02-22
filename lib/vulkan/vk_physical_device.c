@@ -66,7 +66,7 @@ static const int _PhysicalDeviceIsSuitable(const VkPhysicalDevice physicalDevice
     // TODO: allow user-specified configuration of physical device requirements
     _PhysicalDeviceRequirements_t requirements = { 0 };
     requirements.graphics = 1;
-    requirements.present = 1;
+    requirements.present = 0;
     requirements.transfer = 1;
     // NOTE: enable if compute will be needed
     // requirements.compute = 0;

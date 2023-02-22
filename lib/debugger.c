@@ -23,7 +23,7 @@ th_Debugger_t *th_CreateDebugger(const th_DebugSeverity_t severities, const th_D
     // don't yet have a debugger to pass as argument
 
 #   ifndef THALLIUM_DEBUG_LAYER
-        printf("THALLIUM PRE-DEBUGGER WARNING: Created debugger without enabling debug layer... no messages will be shown!\n");
+        return NULL;
 #   endif
 
     th_Debugger_t *r = malloc(sizeof(th_Debugger_t));

@@ -114,19 +114,26 @@
 }
 
 // Macro to define debug logging functions
-#define DEBUG_MSG_FUN(functionName, printFunction, prefix, killProc) \
-    const int functionName(const th_Debugger_t *debugger, const char *format, ...)  { \
-        /* If function contains _Vk then we are sending a Vulkan debug message. */ \
-        if (strstr(#functionName, "_Vk") != NULL) { ASSERT_TYPE_FILTER(debugger, THALLIUM_DEBUG_TYPE_VULKAN_BIT); } \
-        /* Otherwise we are sending a Thallium debug message */ \
-        else { ASSERT_TYPE_FILTER(debugger, THALLIUM_DEBUG_TYPE_CORE_BIT); } \
+#ifdef THALLIUM_DEBUG_LAYER
+#   define DEBUG_MSG_FUN(functionName, printFunction, prefix, killProc) \
+        const int functionName(const th_Debugger_t *debugger, const char *format, ...) { \
+            /* If function contains _Vk then we are sending a Vulkan debug message. */ \
+            if (strstr(#functionName, "_Vk") != NULL) { ASSERT_TYPE_FILTER(debugger, THALLIUM_DEBUG_TYPE_VULKAN_BIT); } \
+            /* Otherwise we are sending a Thallium debug message */ \
+            else { ASSERT_TYPE_FILTER(debugger, THALLIUM_DEBUG_TYPE_CORE_BIT); } \
 \
-        printFunction(debugger, format, prefix); \
+            printFunction(debugger, format, prefix); \
 \
-        if (killProc) th_KillProc(); \
+            if (killProc) th_KillProc(); \
 \
-        return 1; \
-    } \
+            return 1; \
+        }
+#else
+#   define DEBUG_MSG_FUN(functionName, printFunction, prefix, killProc) \
+        const int functionName(const th_Debugger_t *debugger, const char *format, ...) { \
+            return 1; \
+        }
+#endif
 
 //
 // DEFINE DEBUG MESSAGE LOGGING FUNCTIONS
