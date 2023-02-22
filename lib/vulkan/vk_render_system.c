@@ -15,9 +15,8 @@
 
 
 
+// TODO - just testing:
 #include "thallium_vulkan.h"
-#include <stdio.h>
-
 
 
 
@@ -52,9 +51,13 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_RendererConfig_Vulkan_t *c
         return NULL;
     }
 
-    unsigned int pdeviceCount = 0;
-    const VkPhysicalDevice *pdevices = thvk_GetAvailablePhysicalDevices(r, &pdeviceCount);
-    thvk_EnumerateRankedPhysicalDevices(r, pdevices, pdeviceCount);
+    // TODO - just testing:
+    unsigned int pdeviceCount = 0, rankedPDeviceCount = 0;
+    VkPhysicalDevice *pdevices = thvk_GetAvailablePhysicalDevices(r, &pdeviceCount);
+    VkPhysicalDevice *rankedPDevices = thvk_RankPhysicalDevices(r, pdevices, pdeviceCount, &rankedPDeviceCount);
+
+    free(pdevices);
+    free(rankedPDevices);
 
     th_Note(debugger, "Created Vulkan render system at %p", r);
 

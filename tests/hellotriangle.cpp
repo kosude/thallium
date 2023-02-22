@@ -33,8 +33,6 @@ int main() {
         )
     );
 
-    th_TriggerSeverityMessages(debugger);
-
     const std::vector<const char *> vulkanLayers {
         "VK_LAYER_KHRONOS_validation"
     };
