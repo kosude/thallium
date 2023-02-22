@@ -28,7 +28,13 @@ var menudata={children:[
 {text:"Index",url:"files.html",children:[
 {text:"Header List",url:"files.html"},
 {text:"Library Compounds",url:"globals.html",children:[
-{text:"All",url:"globals.html"},
+{text:"All",url:"globals.html",children:[
+{text:"c",url:"globals.html#index_c"},
+{text:"d",url:"globals.html#index_d"},
+{text:"g",url:"globals.html#index_g"},
+{text:"r",url:"globals.html#index_r"},
+{text:"t",url:"globals.html#index_t"},
+{text:"v",url:"globals.html#index_v"}]},
 {text:"Functions",url:"globals_func.html"},
 {text:"Typedefs",url:"globals_type.html"},
 {text:"Enumerations",url:"globals_enum.html"},

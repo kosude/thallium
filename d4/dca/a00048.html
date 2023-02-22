@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_3b2da7d (2023-02-22)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_37c0da7 (2023-02-22)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,6 +111,7 @@ $(document).ready(function(){initNavTree('d4/dca/a00048.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Evaluating Vulkan physical devices<div class="ingroups"><a class="el" href="../../d2/d79/a00051.html">Vulkan</a></div></div></div>
 </div><!--header-->
@@ -121,14 +122,23 @@ $(document).ready(function(){initNavTree('d4/dca/a00048.html','../../'); initRes
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This group contains functions involving Vulkan physical devices. </p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to contain indices for queue families.  <a href="../../dc/ddf/a00067.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gac315f94012cd4f3b7d861ae6b43a7592"><td class="memItemLeft" align="right" valign="top">VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#gac315f94012cd4f3b7d861ae6b43a7592">thvk_GetAvailablePhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, unsigned int *out_count)</td></tr>
+<tr class="memitem:gac315f94012cd4f3b7d861ae6b43a7592"><td class="memItemLeft" align="right" valign="top">VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#gac315f94012cd4f3b7d861ae6b43a7592">thvk_GetAvailablePhysicalDevices</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *renderSystem, unsigned int *out_count)</td></tr>
 <tr class="memdesc:gac315f94012cd4f3b7d861ae6b43a7592"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of physical devices available to the specified Vulkan instance.  <br /></td></tr>
 <tr class="separator:gac315f94012cd4f3b7d861ae6b43a7592"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6e815add0659cdf283af8c4c163fc72e"><td class="memItemLeft" align="right" valign="top">VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga6e815add0659cdf283af8c4c163fc72e">thvk_RankPhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, const VkPhysicalDevice *physicalDevices, const unsigned int physicalDeviceCount, unsigned int *out_count)</td></tr>
-<tr class="memdesc:ga6e815add0659cdf283af8c4c163fc72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array.  <br /></td></tr>
-<tr class="separator:ga6e815add0659cdf283af8c4c163fc72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga717d819eb4957143a651175361ac6890"><td class="memItemLeft" align="right" valign="top">VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga717d819eb4957143a651175361ac6890">thvk_RankPhysicalDevices</a> (const VkPhysicalDevice *physicalDevices, const unsigned int physicalDeviceCount, const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *renderSystem, unsigned int *out_count)</td></tr>
+<tr class="memdesc:ga717d819eb4957143a651175361ac6890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array.  <br /></td></tr>
+<tr class="separator:ga717d819eb4957143a651175361ac6890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7cbffcf84d37398003c2ed94bc93ad84"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga7cbffcf84d37398003c2ed94bc93ad84">thvk_GetQueueFamilyInfo</a> (const VkPhysicalDevice physicalDevice, const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:ga7cbffcf84d37398003c2ed94bc93ad84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the indices of all queue families within the given Vulkan physical device.  <br /></td></tr>
+<tr class="separator:ga7cbffcf84d37398003c2ed94bc93ad84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gac315f94012cd4f3b7d861ae6b43a7592" name="gac315f94012cd4f3b7d861ae6b43a7592"></a>
@@ -140,7 +150,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">VkPhysicalDevice * thvk_GetAvailablePhysicalDevices </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *&#160;</td>
           <td class="paramname"><em>renderSystem</em>, </td>
         </tr>
         <tr>
@@ -169,8 +179,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga6e815add0659cdf283af8c4c163fc72e" name="ga6e815add0659cdf283af8c4c163fc72e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6e815add0659cdf283af8c4c163fc72e">&#9670;&#160;</a></span>thvk_RankPhysicalDevices()</h2>
+<a id="ga717d819eb4957143a651175361ac6890" name="ga717d819eb4957143a651175361ac6890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga717d819eb4957143a651175361ac6890">&#9670;&#160;</a></span>thvk_RankPhysicalDevices()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,12 +188,6 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">VkPhysicalDevice * thvk_RankPhysicalDevices </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *&#160;</td>
-          <td class="paramname"><em>renderSystem</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const VkPhysicalDevice *&#160;</td>
           <td class="paramname"><em>physicalDevices</em>, </td>
         </tr>
@@ -192,6 +196,12 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">const unsigned int&#160;</td>
           <td class="paramname"><em>physicalDeviceCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *&#160;</td>
+          <td class="paramname"><em>renderSystem</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -212,14 +222,51 @@ Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>The returned array is allocated, and so must be explicitly free'd.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">renderSystem</td><td>Render system for querying </td></tr>
     <tr><td class="paramname">physicalDevices</td><td>Array of physical devices to copy and sort </td></tr>
     <tr><td class="paramname">physicalDeviceCount</td><td>Amount of items in array <code>physicalDevices</code>. </td></tr>
+    <tr><td class="paramname">renderSystem</td><td>Render system for querying </td></tr>
     <tr><td class="paramname">out_count</td><td>NULL or location into which the amount of suitable physical devices will be returned </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Heap-allocated array of Vulkan physical device structures. </dd></dl>
+
+</div>
+</div>
+<a id="ga7cbffcf84d37398003c2ed94bc93ad84" name="ga7cbffcf84d37398003c2ed94bc93ad84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7cbffcf84d37398003c2ed94bc93ad84">&#9670;&#160;</a></span>thvk_GetQueueFamilyInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a> thvk_GetQueueFamilyInfo </td>
+          <td>(</td>
+          <td class="paramtype">const VkPhysicalDevice&#160;</td>
+          <td class="paramname"><em>physicalDevice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
+          <td class="paramname"><em>debugger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function gets the indices of all queue families within the given physical device, and returns them in a <a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a> structure.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">physicalDevice</td><td>Physical device to query. </td></tr>
+    <tr><td class="paramname">debugger</td><td>NULL or a pointer to a Thallium debugger </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Struct containing queue family indices. </dd></dl>
 
 </div>
 </div>
@@ -229,7 +276,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_3b2da7d (2023-02-22) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_37c0da7 (2023-02-22) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

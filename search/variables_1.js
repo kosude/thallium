@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['debugger_0',['debugger',['../dc/ddf/a00067.html#a76b9aab3ede353409880f4daf7392e78',1,'thvk_RenderSystem_t']]]
+  ['computefamilyindex_0',['computeFamilyIndex',['../dc/ddf/a00067.html#a1994464e1f1fdbb3a90497525efdfbe0',1,'thvk_QueueFamilyInfo_t']]]
 ];
