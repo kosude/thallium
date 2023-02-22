@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_8b4f9a9 (2023-02-21)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_3b2da7d (2023-02-22)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -123,22 +123,22 @@ $(document).ready(function(){initNavTree('d4/dca/a00048.html','../../'); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gad48190296e52c7b2aaccf375d90e2140"><td class="memItemLeft" align="right" valign="top">const VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#gad48190296e52c7b2aaccf375d90e2140">thvk_GetAvailablePhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, unsigned int *out_count)</td></tr>
-<tr class="memdesc:gad48190296e52c7b2aaccf375d90e2140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of physical devices available to the specified Vulkan instance.  <br /></td></tr>
-<tr class="separator:gad48190296e52c7b2aaccf375d90e2140"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="memItemLeft" align="right" valign="top">const VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga43e63e97c0a98a2eb85dd9d9241ff62d">thvk_EnumerateRankedPhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, const VkPhysicalDevice *physicalDevices, const unsigned int physicalDeviceCount)</td></tr>
-<tr class="memdesc:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array.  <br /></td></tr>
-<tr class="separator:ga43e63e97c0a98a2eb85dd9d9241ff62d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac315f94012cd4f3b7d861ae6b43a7592"><td class="memItemLeft" align="right" valign="top">VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#gac315f94012cd4f3b7d861ae6b43a7592">thvk_GetAvailablePhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, unsigned int *out_count)</td></tr>
+<tr class="memdesc:gac315f94012cd4f3b7d861ae6b43a7592"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of physical devices available to the specified Vulkan instance.  <br /></td></tr>
+<tr class="separator:gac315f94012cd4f3b7d861ae6b43a7592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6e815add0659cdf283af8c4c163fc72e"><td class="memItemLeft" align="right" valign="top">VkPhysicalDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga6e815add0659cdf283af8c4c163fc72e">thvk_RankPhysicalDevices</a> (const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *renderSystem, const VkPhysicalDevice *physicalDevices, const unsigned int physicalDeviceCount, unsigned int *out_count)</td></tr>
+<tr class="memdesc:ga6e815add0659cdf283af8c4c163fc72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array.  <br /></td></tr>
+<tr class="separator:ga6e815add0659cdf283af8c4c163fc72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gad48190296e52c7b2aaccf375d90e2140" name="gad48190296e52c7b2aaccf375d90e2140"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad48190296e52c7b2aaccf375d90e2140">&#9670;&#160;</a></span>thvk_GetAvailablePhysicalDevices()</h2>
+<a id="gac315f94012cd4f3b7d861ae6b43a7592" name="gac315f94012cd4f3b7d861ae6b43a7592"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac315f94012cd4f3b7d861ae6b43a7592">&#9670;&#160;</a></span>thvk_GetAvailablePhysicalDevices()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const VkPhysicalDevice * thvk_GetAvailablePhysicalDevices </td>
+          <td class="memname">VkPhysicalDevice * thvk_GetAvailablePhysicalDevices </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *&#160;</td>
           <td class="paramname"><em>renderSystem</em>, </td>
@@ -169,14 +169,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga43e63e97c0a98a2eb85dd9d9241ff62d" name="ga43e63e97c0a98a2eb85dd9d9241ff62d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga43e63e97c0a98a2eb85dd9d9241ff62d">&#9670;&#160;</a></span>thvk_EnumerateRankedPhysicalDevices()</h2>
+<a id="ga6e815add0659cdf283af8c4c163fc72e" name="ga6e815add0659cdf283af8c4c163fc72e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6e815add0659cdf283af8c4c163fc72e">&#9670;&#160;</a></span>thvk_RankPhysicalDevices()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const VkPhysicalDevice * thvk_EnumerateRankedPhysicalDevices </td>
+          <td class="memname">VkPhysicalDevice * thvk_RankPhysicalDevices </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../dc/ddf/a00067.html">thvk_RenderSystem_t</a> *&#160;</td>
           <td class="paramname"><em>renderSystem</em>, </td>
@@ -191,7 +191,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const unsigned int&#160;</td>
-          <td class="paramname"><em>physicalDeviceCount</em>&#160;</td>
+          <td class="paramname"><em>physicalDeviceCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int *&#160;</td>
+          <td class="paramname"><em>out_count</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -200,14 +206,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function sorts the given array of Vulkan physical devices in order of suitability, and returns the sorted array. <b>The item at index <code>0</code> is the most suitable, and the item at index <code>physicalDeviceCount - 1</code> is the least suitable.</b></p>
-<p>The length of the resultant array will be the same as the length of <code>physicalDevices</code>.</p>
+<p>This function sorts the given array of Vulkan physical devices in order of suitability, and returns the sorted array. <b>The item at index <code>0</code> is the most suitable, and the item at index <code>\*out_count - 1</code> is the least suitable.</b></p>
+<p>The length of the resultant array may be different from the length of <code>physicalDevices</code>. This occurs when there are device(s) that do not support required extensions/features. Therefore, the length of the resultant array is returned into <code>out_count</code>.</p>
+<p><b>NULL will be returned if there are no suitable physical devices!</b></p>
 <dl class="section note"><dt>Note</dt><dd>The returned array is allocated, and so must be explicitly free'd.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">renderSystem</td><td>Render system for querying </td></tr>
     <tr><td class="paramname">physicalDevices</td><td>Array of physical devices to copy and sort </td></tr>
     <tr><td class="paramname">physicalDeviceCount</td><td>Amount of items in array <code>physicalDevices</code>. </td></tr>
+    <tr><td class="paramname">out_count</td><td>NULL or location into which the amount of suitable physical devices will be returned </td></tr>
   </table>
   </dd>
 </dl>
@@ -221,7 +229,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_8b4f9a9 (2023-02-21) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_3b2da7d (2023-02-22) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

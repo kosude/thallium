@@ -28,11 +28,11 @@ var searchData=
   ['thallium_5fvulkan_2eh_25',['thallium_vulkan.h',['../dc/d87/a00032.html',1,'']]],
   ['thvk_5fcreaterendersystem_26',['thvk_CreateRenderSystem',['../d2/dee/a00049.html#ga7010868c053dab837d0ac4cc795fff85',1,'vk_render_system.h']]],
   ['thvk_5fdestroyrendersystem_27',['thvk_DestroyRenderSystem',['../d2/dee/a00049.html#gae75b162f13fc63c0399afbb2c593e4ba',1,'vk_render_system.h']]],
-  ['thvk_5fenumeraterankedphysicaldevices_28',['thvk_EnumerateRankedPhysicalDevices',['../d4/dca/a00048.html#ga43e63e97c0a98a2eb85dd9d9241ff62d',1,'vk_physical_device.h']]],
-  ['thvk_5fgetavailableinstanceextensions_29',['thvk_GetAvailableInstanceExtensions',['../d6/d2d/a00047.html#ga95572a61882d41f4f12780b75314a8f4',1,'vk_extension.h']]],
-  ['thvk_5fgetavailablelayers_30',['thvk_GetAvailableLayers',['../d6/d2d/a00047.html#gaaa3984cd640ab927c67e8d0a4c77b539',1,'vk_extension.h']]],
-  ['thvk_5fgetavailablephysicaldevices_31',['thvk_GetAvailablePhysicalDevices',['../d4/dca/a00048.html#gad48190296e52c7b2aaccf375d90e2140',1,'vk_physical_device.h']]],
-  ['thvk_5fgetrequiredinstanceextensions_32',['thvk_GetRequiredInstanceExtensions',['../d6/d2d/a00047.html#gaa4c55549edc53bbc19ab12aa6a9c8202',1,'vk_extension.h']]],
-  ['thvk_5fgetrequiredlayers_33',['thvk_GetRequiredLayers',['../d6/d2d/a00047.html#gaf5d6a815842cc3add28055676670367f',1,'vk_extension.h']]],
+  ['thvk_5fgetavailableinstanceextensions_28',['thvk_GetAvailableInstanceExtensions',['../d6/d2d/a00047.html#ga95572a61882d41f4f12780b75314a8f4',1,'vk_extension.h']]],
+  ['thvk_5fgetavailablelayers_29',['thvk_GetAvailableLayers',['../d6/d2d/a00047.html#gaaa3984cd640ab927c67e8d0a4c77b539',1,'vk_extension.h']]],
+  ['thvk_5fgetavailablephysicaldevices_30',['thvk_GetAvailablePhysicalDevices',['../d4/dca/a00048.html#gac315f94012cd4f3b7d861ae6b43a7592',1,'vk_physical_device.h']]],
+  ['thvk_5fgetrequiredinstanceextensions_31',['thvk_GetRequiredInstanceExtensions',['../d6/d2d/a00047.html#gaa4c55549edc53bbc19ab12aa6a9c8202',1,'vk_extension.h']]],
+  ['thvk_5fgetrequiredlayers_32',['thvk_GetRequiredLayers',['../d6/d2d/a00047.html#gaf5d6a815842cc3add28055676670367f',1,'vk_extension.h']]],
+  ['thvk_5frankphysicaldevices_33',['thvk_RankPhysicalDevices',['../d4/dca/a00048.html#ga6e815add0659cdf283af8c4c163fc72e',1,'vk_physical_device.h']]],
   ['thvk_5frendersystem_5ft_34',['thvk_RenderSystem_t',['../dc/ddf/a00067.html',1,'']]]
 ];
