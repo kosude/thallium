@@ -58,9 +58,9 @@ int main() {
         Print("Created and initialised renderer");
     }
 
+    Print("Hello triangle!");
+
     th_DestroyRenderer(vulkan);
-
     th_DestroyDebugger(debugger);
-
     return 0;
 }

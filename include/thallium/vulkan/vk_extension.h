@@ -53,6 +53,23 @@ char **thvk_GetRequiredLayers(
 
 /**
  * @ingroup vk_extension
+ * @brief Get array of available layers for Vulkan instances.
+ *
+ * This functions gets an array of available layers for Vulkan instances.
+ *
+ * @note The returned array is heap-allocated, and so must be explicitly freed.
+ *
+ * @param out_count NULL or location to which the amount of layers will be returned
+ * @param debugger NULL or a pointer to a Thallium debugger
+ * @return Array of layer names (NULL if error)
+ */
+char **thvk_GetAvailableLayers(
+    unsigned int *out_count,
+    const th_Debugger_t *debugger
+);
+
+/**
+ * @ingroup vk_extension
  * @brief Get array of required extensions for Vulkan instances.
  *
  * This functions gets an array of required extensions for Vulkan instances.
@@ -69,23 +86,6 @@ char **thvk_GetRequiredLayers(
 char **thvk_GetRequiredInstanceExtensions(
     unsigned int *out_count,
     const int debugUtilsEnabled,
-    const th_Debugger_t *debugger
-);
-
-/**
- * @ingroup vk_extension
- * @brief Get array of available layers for Vulkan instances.
- *
- * This functions gets an array of available layers for Vulkan instances.
- *
- * @note The returned array is heap-allocated, and so must be explicitly freed.
- *
- * @param out_count NULL or location to which the amount of layers will be returned
- * @param debugger NULL or a pointer to a Thallium debugger
- * @return Array of layer names (NULL if error)
- */
-char **thvk_GetAvailableLayers(
-    unsigned int *out_count,
     const th_Debugger_t *debugger
 );
 
@@ -108,6 +108,26 @@ char **thvk_GetAvailableLayers(
 char **thvk_GetAvailableInstanceExtensions(
     unsigned int *out_count,
     const char *const layerName,
+    const th_Debugger_t *debugger
+);
+
+/**
+ * @ingroup vk_extension
+ * @brief Get array of required extensions for Vulkan devices.
+ *
+ * This functions gets an array of required extensions for Vulkan physical devices.
+ *
+ * The suitability of physical devices is partially based on these extensions. If a device does not support
+ * all of the required extensions, it will not be considered suitable for the program.
+ *
+ * @note The returned array is heap-allocated, and so must be explicitly freed.
+ *
+ * @param out_count NULL or location to which the amount of extensions will be returned
+ * @param debugger NULL or a pointer to a Thallium debugger
+ * @return Array of extension names (NULL if error)
+ */
+char **thvk_GetRequiredPhysicalDeviceExtensions(
+    unsigned int *out_count,
     const th_Debugger_t *debugger
 );
 

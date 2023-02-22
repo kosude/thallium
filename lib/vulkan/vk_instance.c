@@ -193,6 +193,8 @@ const int thvk_CreateInstance(thvk_RenderSystem_t *renderSystem, const th_Render
         return 0;
     }
 
+    th_Note(debugger, "Created Vulkan instance at %p", &(renderSystem->instance));
+
     // cleaning up local malloc'd stuff
 
     for (unsigned int i = 0; i < availableLayerCount; i++)

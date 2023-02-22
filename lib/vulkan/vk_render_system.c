@@ -54,12 +54,10 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_RendererConfig_Vulkan_t *c
     // TODO - just testing:
     unsigned int pdeviceCount = 0, rankedPDeviceCount = 0;
     VkPhysicalDevice *pdevices = thvk_GetAvailablePhysicalDevices(r, &pdeviceCount);
-    VkPhysicalDevice *rankedPDevices = thvk_RankPhysicalDevices(r, pdevices, pdeviceCount, &rankedPDeviceCount);
+    VkPhysicalDevice *rankedPDevices = thvk_RankPhysicalDevices(pdevices, pdeviceCount, r, &rankedPDeviceCount);
 
     free(pdevices);
     free(rankedPDevices);
-
-    th_Note(debugger, "Created Vulkan render system at %p", r);
 
     return r;
 }

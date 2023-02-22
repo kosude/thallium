@@ -14,11 +14,12 @@
 #include <string.h>
 
 #define MAX_REQUIRED_INSTANCE_EXTENSION_COUNT 128
+#define MAX_REQUIRED_PHYSICAL_DEVICE_EXTENSION_COUNT 128
 
 #define LAYER_MAX_NAME_LEN 128
 #define EXTENSION_MAX_NAME_LEN 128
 
-#define DEFINE_REQUIRED_INSTANCE_EXTENSION(name) \
+#define DEFINE_REQUIRED_EXTENSION(name) \
 { \
     count++; \
     r[count - 1] = name; \
@@ -35,41 +36,6 @@ char **thvk_GetRequiredLayers(unsigned int *out_count, const th_RendererConfig_V
     }
 
     return (char **) config->layerNames;
-}
-
-char **thvk_GetRequiredInstanceExtensions(unsigned int *out_count, const int debugUtilsEnabled, const th_Debugger_t *debugger) {
-    char **r = malloc(MAX_REQUIRED_INSTANCE_EXTENSION_COUNT * sizeof(char *));
-    if (!r) {
-        th_Fatal(debugger, "MALLOC fault in thvk_GetRequiredInstanceExtensions!");
-        return NULL;
-    }
-    memset(r, 0, MAX_REQUIRED_INSTANCE_EXTENSION_COUNT * sizeof(char *));
-
-    unsigned int count = 0;
-
-    // require platform-agnostic surface extension
-    DEFINE_REQUIRED_INSTANCE_EXTENSION("VK_KHR_surface");
-
-#   if defined(_WIN32)
-        // require windows-specific surface extension
-        DEFINE_REQUIRED_INSTANCE_EXTENSION("VK_KHR_win32_surface");
-#   endif
-#if defined(__unix__) || defined(__unix)
-        // require unix/linux-specific surface extension
-        DEFINE_REQUIRED_INSTANCE_EXTENSION("VK_KHR_xcb_surface");
-#   endif
-
-    // require debug utils extension (if specified with `debugUtilsEnabled`)
-    if (debugUtilsEnabled) {
-        DEFINE_REQUIRED_INSTANCE_EXTENSION("VK_EXT_debug_utils");
-    }
-
-    // return required extension count
-    if (out_count) {
-        *out_count = count;
-    }
-
-    return r;
 }
 
 char **thvk_GetAvailableLayers(unsigned int *out_count, const th_Debugger_t *debugger) {
@@ -106,6 +72,40 @@ char **thvk_GetAvailableLayers(unsigned int *out_count, const th_Debugger_t *deb
     return r;
 }
 
+char **thvk_GetRequiredInstanceExtensions(unsigned int *out_count, const int debugUtilsEnabled, const th_Debugger_t *debugger) {
+    char **r = malloc(MAX_REQUIRED_INSTANCE_EXTENSION_COUNT * sizeof(char *));
+    if (!r) {
+        th_Fatal(debugger, "MALLOC fault in thvk_GetRequiredInstanceExtensions!");
+        return NULL;
+    }
+
+    unsigned int count = 0;
+
+    // require platform-agnostic surface extension
+    DEFINE_REQUIRED_EXTENSION("VK_KHR_surface");
+
+#   if defined(_WIN32)
+        // require windows-specific surface extension
+        DEFINE_REQUIRED_EXTENSION("VK_KHR_win32_surface");
+#   endif
+#if defined(__unix__) || defined(__unix)
+        // require unix/linux-specific surface extension
+        DEFINE_REQUIRED_EXTENSION("VK_KHR_xcb_surface");
+#   endif
+
+    // require debug utils extension (if specified with `debugUtilsEnabled`)
+    if (debugUtilsEnabled) {
+        DEFINE_REQUIRED_EXTENSION("VK_EXT_debug_utils");
+    }
+
+    // return required extension count
+    if (out_count) {
+        *out_count = count;
+    }
+
+    return r;
+}
+
 char **thvk_GetAvailableInstanceExtensions(unsigned int *out_count, const char *const layerName, const th_Debugger_t *debugger) {
     unsigned int extensionPropertyCount = 0;
     vkEnumerateInstanceExtensionProperties(layerName, &extensionPropertyCount, NULL);
@@ -136,6 +136,26 @@ char **thvk_GetAvailableInstanceExtensions(unsigned int *out_count, const char *
     }
 
     free(extensionProperties);
+
+    return r;
+}
+
+char **thvk_GetRequiredPhysicalDeviceExtensions(unsigned int *out_count, const th_Debugger_t *debugger) {
+    char **r = malloc(MAX_REQUIRED_PHYSICAL_DEVICE_EXTENSION_COUNT * sizeof(char *));
+    if (!r) {
+        th_Fatal(debugger, "MALLOC fault in thvk_GetRequiredPhysicalDeviceExtensions!");
+        return NULL;
+    }
+
+    unsigned int count = 0;
+
+    // TODO: allow user-specified device extensions.
+    DEFINE_REQUIRED_EXTENSION("VK_KHR_swapchain");
+
+    // return required extension count
+    if (out_count) {
+        *out_count = count;
+    }
 
     return r;
 }

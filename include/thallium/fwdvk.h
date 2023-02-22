@@ -24,6 +24,8 @@
 
 typedef struct thvk_RenderSystem_t thvk_RenderSystem_t;
 
+typedef struct thvk_QueueFamilyInfo_t thvk_QueueFamilyInfo_t;
+
 /** @endcond */
 
 #ifdef __cplusplus
