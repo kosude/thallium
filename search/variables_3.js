@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['enginename_0',['engineName',['../d3/d8b/a00059.html#a4feba170d15dc4c3f38069d6df896a50',1,'th_RendererConfig_Vulkan_t']]],
-  ['engineversion_1',['engineVersion',['../d3/d8b/a00059.html#a9436dfcf817761cbd405e87380e88fe2',1,'th_RendererConfig_Vulkan_t']]]
+  ['engine_5fname_0',['engine_name',['../d3/d8b/a00059.html#a9612520de97e3e13110293994a4ccc38',1,'th_RendererConfig_Vulkan_t']]],
+  ['engine_5fversion_1',['engine_version',['../d3/d8b/a00059.html#a64b25b6cf7063cc384d16f5f026eea61',1,'th_RendererConfig_Vulkan_t']]]
 ];

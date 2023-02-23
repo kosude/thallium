@@ -1,12 +1,11 @@
 var a00048 =
 [
     [ "thvk_QueueFamilyInfo_t", "dc/ddf/a00067.html", [
-      [ "graphicsFamilyIndex", "dc/ddf/a00067.html#a9307156b15ac3a455bb16658c3053d8c", null ],
-      [ "presentFamilyIndex", "dc/ddf/a00067.html#a7cd584034c1df0a3505472cfdfc3e9bd", null ],
-      [ "computeFamilyIndex", "dc/ddf/a00067.html#a1994464e1f1fdbb3a90497525efdfbe0", null ],
-      [ "transferFamilyIndex", "dc/ddf/a00067.html#aea522d5fa2bdef6a8565744a247f5331", null ]
+      [ "graphics_family_index", "dc/ddf/a00067.html#af340bc432cc4a6c6463471d572e19b59", null ],
+      [ "present_family_index", "dc/ddf/a00067.html#a86cf099ef6e32c4c407c7e4481904796", null ],
+      [ "compute_family_index", "dc/ddf/a00067.html#a8a8230d028c3e16841ce24d6316e20ed", null ],
+      [ "transfer_family_index", "dc/ddf/a00067.html#afab9188747895f42f036099ea1ee1d5c", null ]
     ] ],
-    [ "thvk_GetAvailablePhysicalDevices", "d4/dca/a00048.html#gac315f94012cd4f3b7d861ae6b43a7592", null ],
-    [ "thvk_RankPhysicalDevices", "d4/dca/a00048.html#ga717d819eb4957143a651175361ac6890", null ],
-    [ "thvk_GetQueueFamilyInfo", "d4/dca/a00048.html#ga7cbffcf84d37398003c2ed94bc93ad84", null ]
+    [ "thvk_EnumerateRankedPhysicalDevices", "d4/dca/a00048.html#ga0c6fbd198fe7c736222ec3f0ce8ff76c", null ],
+    [ "thvk_GetQueueFamilyInfo", "d4/dca/a00048.html#gac26388f2276aa4aa45885c4839ec5efa", null ]
 ];

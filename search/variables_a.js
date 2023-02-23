@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['transferfamilyindex_0',['transferFamilyIndex',['../dc/ddf/a00067.html#aea522d5fa2bdef6a8565744a247f5331',1,'thvk_QueueFamilyInfo_t']]]
+  ['transfer_5ffamily_5findex_0',['transfer_family_index',['../dc/ddf/a00067.html#afab9188747895f42f036099ea1ee1d5c',1,'thvk_QueueFamilyInfo_t']]]
 ];
