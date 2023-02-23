@@ -44,18 +44,18 @@
  */
 typedef struct th_RendererConfig_Vulkan_t {
     /// @brief The name of the application
-    const char *applicationName;
+    const char *application_name;
     /// @brief The application's version
-    th_Version_t applicationVersion;
+    th_Version_t application_version;
     /// @brief The name of the engine being used, if applicable
-    const char *engineName;
+    const char *engine_name;
     /// @brief The version of the engine being used, if applicable
-    th_Version_t engineVersion;
+    th_Version_t engine_version;
 
     /// @brief An array of names of Vulkan layers to enable
-    const char **layerNames;
-    /// @brief The amount of elements in `layerNames`
-    int layerCount;
+    const char **layer_names;
+    /// @brief The amount of elements in `layer_names`
+    int layer_count;
 } th_RendererConfig_Vulkan_t;
 
 #ifdef __cplusplus

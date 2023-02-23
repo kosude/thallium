@@ -22,14 +22,12 @@ if (MSVC)
     add_compile_options(
         /W4 /WX
 
-        /wd4100 # unused parameters
         /wd4180 # ignored qualifiers on return type
     )
 else()
     add_compile_options(
         -Wall -Wextra -pedantic -Werror
 
-        -Wno-unused-parameter
         -Wno-ignored-qualifiers
     )
 endif()

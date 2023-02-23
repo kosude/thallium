@@ -69,12 +69,12 @@ typedef struct th_Renderer_t th_Renderer_t;
  */
 typedef struct th_RendererDescriptor_t {
     /// @brief The name of the API being represented
-    const char *apiName;
+    const char *api_name;
     /// @brief The version of the API being represented
-    th_Version_t apiVersion;
+    th_Version_t api_version;
 
     /// @brief Optional pointer to an API-specific configuration structure
-    void *rendererConfig;
+    const void *renderer_config;
 } th_RendererDescriptor_t;
 
 /**

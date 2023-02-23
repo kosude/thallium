@@ -33,22 +33,22 @@ int main() {
         )
     );
 
-    const std::vector<const char *> vulkanLayers {
+    const std::vector<const char *> vulkan_layers {
         "VK_LAYER_KHRONOS_validation"
     };
-    th_RendererConfig_Vulkan_t vulkanConfig = {
+    const th_RendererConfig_Vulkan_t vulkan_config = {
         "Hello triangle",                       // app name
         { 0, 1, 0 },                            // app version
         "No Engine",                            // engine name
         { 0, 0, 0, },                           // engine version
-        (const char **) vulkanLayers.data(),    // optional layers
-        (int) vulkanLayers.size()               // optional layer count
+        (const char **) vulkan_layers.data(),    // optional layers
+        (int) vulkan_layers.size()               // optional layer count
     };
 
     th_Renderer_t *vulkan = th_CreateRenderer({
         "vulkan",           // api name
         { 1, 3, 0 },        // api version
-        &vulkanConfig       // vulkan api configuration
+        &vulkan_config       // vulkan api configuration
     }, debugger);
 
     if (!vulkan) {

@@ -40,60 +40,48 @@
  */
 typedef struct thvk_QueueFamilyInfo_t {
     /// @brief Index of a queue family that supports graphics commands.
-    int graphicsFamilyIndex;
+    int graphics_family_index;
     /// @brief Index of a queue family that supports presentation commands - applicable when surfaces are enabled.
-    int presentFamilyIndex;
+    int present_family_index;
     /// @brief Index of a queue family that supports compute commands.
-    int computeFamilyIndex;
+    int compute_family_index;
     /// @brief Index of a queue family that supports transfer commands (will be a dedicated transfer queue family if available).
-    int transferFamilyIndex;
+    int transfer_family_index;
 } thvk_QueueFamilyInfo_t;
 
 /**
  * @ingroup vk_physical_device
- * @brief Get array of physical devices available to the specified Vulkan instance.
- *
- * This function allocates and returns an array of physical devices available to Vulkan instance
- * `instance`.
- *
- * @note The returned array must be explicitly free'd.
- *
- * @param renderSystem Render system for querying and debugging
- * @param out_count Location into which the amount of physical devices will be returned
- * @return Heap-allocated array of Vulkan physical device structures.
- */
-VkPhysicalDevice *thvk_GetAvailablePhysicalDevices(
-    const thvk_RenderSystem_t *renderSystem,
-    unsigned int *out_count
-);
-
-/**
- * @ingroup vk_physical_device
- * @brief Given an array of Vulkan physical devices, rank them and return the final sorted array.
+ * @brief Given an array of Vulkan physical devices, rank them and return the final sorted array (into `out_physical_devices`).
  *
  * This function sorts the given array of Vulkan physical devices in order of suitability, and returns the
  * sorted array. **The item at index `0` is the most suitable, and the item at index `\*out_count - 1` is
  * the least suitable.**
  *
- * The length of the resultant array may be different from the length of `physicalDevices`. This occurs when
+ * The length of the resultant array may be different from the length of `physical_devices`. This occurs when
  * there are device(s) that do not support required extensions/features. Therefore, the length of the resultant
  * array is returned into `out_count`.
  *
- * **NULL will be returned if there are no suitable physical devices!**
+ * The sorted array, that returned into `out_physical_devices`, contains *pointers* to the devices in `physical_devices`. The
+ * structures are not copied.
  *
- * @note The returned array is allocated, and so must be explicitly free'd.
+ * **0 will be returned if there are no suitable physical devices!**
  *
- * @param physicalDevices Array of physical devices to copy and sort
- * @param physicalDeviceCount Amount of items in array `physicalDevices`.
- * @param renderSystem Render system for querying
- * @param out_count NULL or location into which the amount of suitable physical devices will be returned
- * @return Heap-allocated array of Vulkan physical device structures.
+ * @note If `out_physical_devices` is NULL, no debug output will be reported to avoid duplicated debug output (as it is usually
+ * called twice to get count and data).
+ *
+ * @param render_system Render system for querying
+ * @param physical_devices Array of physical devices to copy and sort
+ * @param physical_device_count Amount of items in array `physical_devices`.
+ * @param out_count location into which the amount of suitable physical devices will be returned
+ * @param out_physical_devices NULL or the array to output ordered list of devices into.
+ * @return @returnstatus
  */
-VkPhysicalDevice *thvk_RankPhysicalDevices(
-    const VkPhysicalDevice *physicalDevices,
-    const unsigned int physicalDeviceCount,
-    const thvk_RenderSystem_t *renderSystem,
-    unsigned int *out_count
+const int thvk_EnumerateRankedPhysicalDevices(
+    const thvk_RenderSystem_t *render_system,
+    const VkPhysicalDevice *physical_devices,
+    const unsigned int physical_device_count,
+    unsigned int *const out_count,
+    const VkPhysicalDevice **const out_physical_devices
 );
 
 /**
@@ -103,13 +91,11 @@ VkPhysicalDevice *thvk_RankPhysicalDevices(
  * This function gets the indices of all queue families within the given physical device, and returns them in
  * a @ref thvk_QueueFamilyInfo_t structure.
  *
- * @param physicalDevice Physical device to query.
- * @param debugger NULL or a pointer to a Thallium debugger
+ * @param physical_device Physical device to query.
  * @return Struct containing queue family indices.
  */
 const thvk_QueueFamilyInfo_t thvk_GetQueueFamilyInfo(
-    const VkPhysicalDevice physicalDevice,
-    const th_Debugger_t *debugger
+    const VkPhysicalDevice physical_device
 );
 
 #ifdef __cplusplus

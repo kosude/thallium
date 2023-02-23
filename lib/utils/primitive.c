@@ -9,8 +9,8 @@
 
 #include <string.h>
 
-const int th_StringValueInArray(const char *const val, const char *const *arr, const unsigned int arrSize) {
-    for (unsigned int i = 0; i < arrSize; i++) {
+const int th_StringValueInArray(const char *const val, const char *const *arr, const unsigned int arr_size) {
+    for (unsigned int i = 0; i < arr_size; i++) {
         if (!strcmp(arr[i], val)) {
             return 1;
         }

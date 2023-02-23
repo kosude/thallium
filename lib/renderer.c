@@ -37,13 +37,13 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
     r->debugger = debugger;
 
     // vulkan renderers
-    if (!strcmp(descriptor.apiName, "vulkan")) {
+    if (!strcmp(descriptor.api_name, "vulkan")) {
 #       if defined(THALLIUM_VULKAN_INCL)
-            r->apiId = THALLIUM_API_ID_VULKAN;
+            r->api_id = THALLIUM_API_ID_VULKAN;
 
             // create the render system
-            r->renderSystem = thvk_CreateRenderSystem((th_RendererConfig_Vulkan_t *) descriptor.rendererConfig, descriptor.apiVersion, debugger);
-            if (!r->renderSystem) {
+            r->render_system = thvk_CreateRenderSystem(descriptor.api_version, debugger, (th_RendererConfig_Vulkan_t *) descriptor.renderer_config);
+            if (!r->render_system) {
                 th_Error(debugger, "Failed to create render system (th_CreateRenderer)");
                 return NULL;
             }
@@ -55,28 +55,27 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
     }
     // other/invalid renderers
     else {
-        th_Error(debugger, "Invalid graphics API \"%s\" specified in th_CreateRenderer", descriptor.apiName);
+        th_Error(debugger, "Invalid graphics API \"%s\" specified in th_CreateRenderer", descriptor.api_name);
         return NULL;
     }
 
-    th_Note(debugger, "Successfully created renderer for API \"%s\" at %p", descriptor.apiName, r);
+    th_Note(debugger, "Successfully created renderer for API \"%s\" at %p", descriptor.api_name, r);
 
     return r;
 }
 
 const int th_DestroyRenderer(th_Renderer_t *renderer) {
 #   if defined(THALLIUM_VULKAN_INCL)
-        if (renderer->apiId == THALLIUM_API_ID_VULKAN) {
-            thvk_DestroyRenderSystem(renderer->renderSystem);
+        if (renderer->api_id == THALLIUM_API_ID_VULKAN) {
+            thvk_DestroyRenderSystem(renderer->render_system);
         }
 #   endif // THALLIUM_VULKAN_INCL
 
-    free(renderer->renderSystem);
     free(renderer);
 
     return 1;
 }
 
 const void *th_GetRendererRenderSystem(const th_Renderer_t *renderer) {
-    return renderer->renderSystem;
+    return renderer->render_system;
 }

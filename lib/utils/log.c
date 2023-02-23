@@ -17,16 +17,13 @@
 #include <string.h>
 #include <stdarg.h>
 
-// String to add to Thallium debug messages as a prefix
-#define THALLIUM_DBGMSG_PREFIX "(thallium!)"
-
 // Maximum length of debug messages.
 #define MAX_DBGMSG_LEN 512
 
 // Return from the parent function if the given severity is not included in the debugger filter.
 #define ASSERT_SEV_FILTER(debugger, sev) \
 { \
-    if (!debugger || (debugger->debugSeverityFilter & sev) != sev) { \
+    if (!debugger || (debugger->debug_severity_filter & sev) != sev) { \
         return 1; \
     } \
 }
@@ -34,7 +31,7 @@
 // Return from the parent function if the given message type is not included in the debugger filter.
 #define ASSERT_TYPE_FILTER(debugger, sev) \
 { \
-    if (!debugger || (debugger->debugTypeFilter & sev) != sev) { \
+    if (!debugger || (debugger->debug_type_filter & sev) != sev) { \
         return 1; \
     } \
 }

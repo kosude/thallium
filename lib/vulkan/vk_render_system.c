@@ -34,14 +34,16 @@
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_RendererConfig_Vulkan_t *config, const th_Version_t apiVersion, const th_Debugger_t *debugger) {
+thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_Version_t api_version, const th_Debugger_t *debugger,
+    const th_RendererConfig_Vulkan_t *config)
+{
     thvk_RenderSystem_t *r = malloc(sizeof(thvk_RenderSystem_t));
     if (!r) {
         th_Fatal(debugger, "MALLOC fault in th_CreateRenderer!");
         return NULL;
     }
 
-    r->apiVersion = FMT_VK_API_VERSION(apiVersion);
+    r->api_version = FMT_VK_API_VERSION(api_version);
 
     // debugger can be NULL
     r->debugger = debugger;
@@ -52,18 +54,24 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_RendererConfig_Vulkan_t *c
     }
 
     // TODO - just testing:
-    unsigned int pdeviceCount = 0, rankedPDeviceCount = 0;
-    VkPhysicalDevice *pdevices = thvk_GetAvailablePhysicalDevices(r, &pdeviceCount);
-    VkPhysicalDevice *rankedPDevices = thvk_RankPhysicalDevices(pdevices, pdeviceCount, r, &rankedPDeviceCount);
 
-    free(pdevices);
-    free(rankedPDevices);
+    unsigned int p_device_count = 0, ranked_p_device_count = 0;
+
+    vkEnumeratePhysicalDevices(r->instance, &p_device_count, NULL);
+    VkPhysicalDevice p_devices[p_device_count];
+    vkEnumeratePhysicalDevices(r->instance, &p_device_count, p_devices);
+
+    thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, NULL);
+    const VkPhysicalDevice *ranked_p_devices[ranked_p_device_count];
+    thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, ranked_p_devices);
 
     return r;
 }
 
-const int thvk_DestroyRenderSystem(thvk_RenderSystem_t *renderSystem) {
-    vkDestroyInstance(renderSystem->instance, NULL);
+const int thvk_DestroyRenderSystem(thvk_RenderSystem_t *render_system) {
+    vkDestroyInstance(render_system->instance, NULL);
+
+    free(render_system);
 
     return 1;
 }

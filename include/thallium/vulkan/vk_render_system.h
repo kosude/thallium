@@ -53,7 +53,7 @@ typedef struct thvk_RenderSystem_t {
     /// @brief Vulkan instance
     VkInstance instance;
     /// @brief Vulkan API version (formatted with VK_MAKE_API_VERSION())
-    int apiVersion;
+    int api_version;
 } thvk_RenderSystem_t;
 
 /**
@@ -63,18 +63,18 @@ typedef struct thvk_RenderSystem_t {
  * This function creates a new Vulkan render system and returns it. If there were any errors in
  * creation, NULL will be returned instead.
  *
- * @param config Pointer to a Vulkan renderer configuration structure.
- * @param apiVersion Vulkan API version (as a Thallium @ref th_Version_t structure)
+ * @param api_version Vulkan API version (as a Thallium @ref th_Version_t structure)
  * @param debugger NULL or debugger to read configuration options from when posting debug messages
+ * @param config Pointer to a Vulkan renderer configuration structure.
  * @return The new render system
  *
  * @sa @ref thvk_RenderSystem_t
  * @sa @ref thvk_DestroyRenderSystem()
  */
 thvk_RenderSystem_t *thvk_CreateRenderSystem(
-    const th_RendererConfig_Vulkan_t *config,
-    const th_Version_t apiVersion,
-    const th_Debugger_t *debugger
+    const th_Version_t api_version,
+    const th_Debugger_t *debugger,
+    const th_RendererConfig_Vulkan_t *config
 );
 
 /**
@@ -84,7 +84,7 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(
  * This function frees the specified render system object. You should set the pointer to
  * NULL after calling this function, as you would normally when calling free().
  *
- * @param renderSystem Pointer to the Vulkan render system to free.
+ * @param render_system Pointer to the Vulkan render system to free.
  * @return @returnstatus
  *
  * @alwaysok
@@ -92,7 +92,7 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(
  * @sa @ref thvk_CreateRenderSystem()
  */
 const int thvk_DestroyRenderSystem(
-    thvk_RenderSystem_t *renderSystem
+    thvk_RenderSystem_t *render_system
 );
 
 #ifdef __cplusplus

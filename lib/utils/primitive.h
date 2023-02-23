@@ -31,14 +31,14 @@
  *
  * @param val Value to look for
  * @param arr Array to consider
- * @param arrSize Size of array `arr`
+ * @param arr_size Size of array `arr`
  * @return 0 if the value was not found in the array
  * @return 1 if the value was found in the array
  */
 const int th_StringValueInArray(
     const char *const val,
     const char *const *arr,
-    const unsigned int arrSize
+    const unsigned int arr_size
 );
 
 #ifdef __cplusplus

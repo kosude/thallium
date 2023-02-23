@@ -30,11 +30,11 @@
  */
 typedef struct th_Renderer_t {
     /// @brief The ID of the graphics API specified to the renderer.
-    int apiId;
+    int api_id;
 
     /// @brief Render system - the API-specific data held within the renderer.
     /// This structure is defined in the relevant module.
-    void *renderSystem;
+    void *render_system;
 
     /// @brief Debugger to read configuration from when reporting debug messages.
     /// (Can be NULL - this just means no debug messages)
@@ -49,9 +49,9 @@ typedef struct th_Renderer_t {
  */
 typedef struct th_Debugger_t {
     /// @brief th_DebugSeverity_t bit-field holding severities of messages to display.
-    int debugSeverityFilter;
+    int debug_severity_filter;
     /// @brief th_DebugType_t bit-field holding types of messages to display.
-    int debugTypeFilter;
+    int debug_type_filter;
 } th_Debugger_t;
 
 #ifdef __cplusplus

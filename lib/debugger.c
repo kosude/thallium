@@ -32,8 +32,8 @@ th_Debugger_t *th_CreateDebugger(const th_DebugSeverity_t severities, const th_D
         return NULL;
     }
 
-    r->debugSeverityFilter = severities;
-    r->debugTypeFilter = types;
+    r->debug_severity_filter = severities;
+    r->debug_type_filter = types;
 
     return r;
 }
