@@ -111,7 +111,7 @@ th_Renderer_t *th_CreateRenderer(
  *
  * @alwaysok
  */
-const int th_DestroyRenderer(
+int th_DestroyRenderer(
     th_Renderer_t *renderer
 );
 
@@ -125,7 +125,7 @@ const int th_DestroyRenderer(
  * @param renderer Pointer to the renderer to evaluate
  * @return The render system within the renderer. This should not be NULL!
  */
-const void *th_GetRendererRenderSystem(
+void *th_GetRendererRenderSystem(
     const th_Renderer_t *renderer
 );
 

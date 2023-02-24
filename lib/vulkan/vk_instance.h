@@ -39,7 +39,7 @@
  * @param config Pointer to a Vulkan renderer configuration structure.
  * @return @returnstatus
  */
-const int thvk_CreateInstance(
+int thvk_CreateInstance(
     thvk_RenderSystem_t *render_system,
     const th_RendererConfig_Vulkan_t *config
 );

@@ -78,7 +78,7 @@
     }
 #endif
 
-const int th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *stream) {
+int th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *stream) {
     if (fg == 0xFF && bg == 0xFF) {
         // no values given
         return 1;
@@ -117,7 +117,7 @@ const int th_SetIOColour(const th_IOColour_t fg, const th_IOColour_t bg, FILE *s
     return 1;
 }
 
-const int th_DefaultIOColour(FILE *stream) {
+int th_DefaultIOColour(FILE *stream) {
 #   if defined(_WIN32)
         // NOTE: this is yet to be tested
         static const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);

@@ -25,7 +25,7 @@ typedef struct _PhysicalDeviceScorePair_t {
 } _PhysicalDeviceScorePair_t;
 
 // Compare function for qsort (descending order).
-static const int _PhysicalDeviceScorePairSortCompareFun(const void *a, const void *b) {
+static int _PhysicalDeviceScorePairSortCompareFun(const void *a, const void *b) {
     _PhysicalDeviceScorePair_t *pair_a = (_PhysicalDeviceScorePair_t *) a;
     _PhysicalDeviceScorePair_t *pair_b = (_PhysicalDeviceScorePair_t *) b;
 
@@ -50,7 +50,7 @@ typedef struct _PhysicalDeviceRequirements_t {
 
 // Will return 1 if the given physical device is suitable for the application, 0 if not.
 // (make sure it supports required extensions for example)
-static const int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, const VkPhysicalDevice physical_device,
+static int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, const VkPhysicalDevice physical_device,
     thvk_QueueFamilyInfo_t *out_info
 ) {
     VkPhysicalDeviceProperties device_properties;
@@ -121,7 +121,7 @@ static const int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_sys
 }
 
 // Get score for the given physical device based on device type, memory size, etc.
-static const uint64_t _ScorePhysicalDevice(const VkPhysicalDevice physical_device, const th_Debugger_t *debugger) {
+static uint64_t _ScorePhysicalDevice(const VkPhysicalDevice physical_device, const th_Debugger_t *debugger) {
     unsigned long int score = 0;
 
     VkPhysicalDeviceProperties device_properties;
@@ -155,7 +155,7 @@ static const uint64_t _ScorePhysicalDevice(const VkPhysicalDevice physical_devic
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-const int thvk_EnumerateRankedPhysicalDevices(const thvk_RenderSystem_t *render_system, const VkPhysicalDevice *physical_devices,
+int thvk_EnumerateRankedPhysicalDevices(const thvk_RenderSystem_t *render_system, const VkPhysicalDevice *physical_devices,
     const unsigned int physical_device_count, unsigned int *const out_count, const VkPhysicalDevice **const out_physical_devices)
 {
     if (!out_count) {
@@ -234,7 +234,7 @@ const int thvk_EnumerateRankedPhysicalDevices(const thvk_RenderSystem_t *render_
     return 1;
 }
 
-const thvk_QueueFamilyInfo_t thvk_GetQueueFamilyInfo(const VkPhysicalDevice physical_device) {
+thvk_QueueFamilyInfo_t thvk_GetQueueFamilyInfo(const VkPhysicalDevice physical_device) {
     thvk_QueueFamilyInfo_t r;
 
     // -1 indicates not found

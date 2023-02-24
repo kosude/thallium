@@ -84,7 +84,7 @@ typedef enum th_IOColour_t {
  *
  * @alwaysok
  */
-const int th_SetIOColour(
+int th_SetIOColour(
     const th_IOColour_t fg,
     const th_IOColour_t bg,
     FILE *stream
@@ -101,7 +101,7 @@ const int th_SetIOColour(
  *
  * @alwaysok
  */
-const int th_DefaultIOColour(
+int th_DefaultIOColour(
     FILE *stream
 );
 

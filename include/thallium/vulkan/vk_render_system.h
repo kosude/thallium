@@ -91,7 +91,7 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(
  *
  * @sa @ref thvk_CreateRenderSystem()
  */
-const int thvk_DestroyRenderSystem(
+int thvk_DestroyRenderSystem(
     thvk_RenderSystem_t *render_system
 );
 

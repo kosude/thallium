@@ -24,7 +24,7 @@
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-const int thvk_GetRequiredLayers(const th_RendererConfig_Vulkan_t *config, unsigned int *const out_count, const char **out_layer_names) {
+int thvk_GetRequiredLayers(const th_RendererConfig_Vulkan_t *config, unsigned int *const out_count, const char **out_layer_names) {
     if (!out_count) {
         return 0;
     }
@@ -37,7 +37,7 @@ const int thvk_GetRequiredLayers(const th_RendererConfig_Vulkan_t *config, unsig
     return 1;
 }
 
-const int thvk_GetRequiredInstanceExtensions(const int debug_utils_enabled, unsigned int *const out_count, const char **const out_extension_names) {
+int thvk_GetRequiredInstanceExtensions(const int debug_utils_enabled, unsigned int *const out_count, const char **const out_extension_names) {
     if (!out_count) {
         return 0;
     }
@@ -67,7 +67,7 @@ const int thvk_GetRequiredInstanceExtensions(const int debug_utils_enabled, unsi
     return 1;
 }
 
-const int thvk_GetRequiredDeviceExtensions(unsigned int *const out_count, const char **const out_extension_names) {
+int thvk_GetRequiredDeviceExtensions(unsigned int *const out_count, const char **const out_extension_names) {
     if (!out_count) {
         return 0;
     }

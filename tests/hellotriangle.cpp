@@ -13,7 +13,7 @@
 // Print a formatted message to stdout.
 template <typename... Args>
 void Print(Args... args) {
-    (std::cout << "hellotriangle >>> " << ... << args) << std::endl;
+    ((std::cout << "hellotriangle >>> ") << ... << args) << std::endl;
 }
 
 int main() {

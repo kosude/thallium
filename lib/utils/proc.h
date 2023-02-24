@@ -34,7 +34,7 @@
  *
  * @alwaysok
  */
-const int th_KillProc();
+int th_KillProc(void);
 
 #ifdef __cplusplus
     }

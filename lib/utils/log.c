@@ -17,6 +17,9 @@
 #include <string.h>
 #include <stdarg.h>
 
+#define CORELIB_MSG_PREFIX "(th)"
+#define VULKAN_MSG_PREFIX "(thvk)"
+
 // Maximum length of debug messages.
 #define MAX_DBGMSG_LEN 512
 
@@ -113,7 +116,7 @@
 // Macro to define debug logging functions
 #ifdef THALLIUM_DEBUG_LAYER
 #   define DEBUG_MSG_FUN(functionName, printFunction, prefix, killProc) \
-        const int functionName(const th_Debugger_t *debugger, const char *format, ...) { \
+        int functionName(const th_Debugger_t *debugger, const char *format, ...) { \
             /* If function contains _Vk then we are sending a Vulkan debug message. */ \
             if (strstr(#functionName, "_Vk") != NULL) { ASSERT_TYPE_FILTER(debugger, THALLIUM_DEBUG_TYPE_VULKAN_BIT); } \
             /* Otherwise we are sending a Thallium debug message */ \
@@ -127,7 +130,7 @@
         }
 #else
 #   define DEBUG_MSG_FUN(functionName, printFunction, prefix, killProc) \
-        const int functionName(const th_Debugger_t *debugger, const char *format, ...) { \
+        int functionName(const th_Debugger_t *debugger, const char *format, ...) { \
             return 1; \
         }
 #endif
@@ -136,17 +139,17 @@
 // DEFINE DEBUG MESSAGE LOGGING FUNCTIONS
 //
 
-DEBUG_MSG_FUN(th_Log, PRINT_LOG_MSG, "(th)", 0)
-DEBUG_MSG_FUN(th_Log_Vk, PRINT_LOG_MSG, "(thvk)", 0)
+DEBUG_MSG_FUN(th_Log, PRINT_LOG_MSG, CORELIB_MSG_PREFIX, 0)
+DEBUG_MSG_FUN(th_Log_Vk, PRINT_LOG_MSG, VULKAN_MSG_PREFIX, 0)
 
-DEBUG_MSG_FUN(th_Note, PRINT_NOTE_MSG, "(th)", 0)
+DEBUG_MSG_FUN(th_Note, PRINT_NOTE_MSG, CORELIB_MSG_PREFIX, 0)
 
-DEBUG_MSG_FUN(th_Hint, PRINT_HINT_MSG, "(th)", 0)
+DEBUG_MSG_FUN(th_Hint, PRINT_HINT_MSG, CORELIB_MSG_PREFIX, 0)
 
-DEBUG_MSG_FUN(th_Warn, PRINT_WARNING_MSG, "(th)", 0)
-DEBUG_MSG_FUN(th_Warn_Vk, PRINT_WARNING_MSG, "(thvk)", 0)
+DEBUG_MSG_FUN(th_Warn, PRINT_WARNING_MSG, CORELIB_MSG_PREFIX, 0)
+DEBUG_MSG_FUN(th_Warn_Vk, PRINT_WARNING_MSG, VULKAN_MSG_PREFIX, 0)
 
-DEBUG_MSG_FUN(th_Error, PRINT_ERROR_MSG, "(th)", 0)
-DEBUG_MSG_FUN(th_Error_Vk, PRINT_ERROR_MSG, "(thvk)", 0)
+DEBUG_MSG_FUN(th_Error, PRINT_ERROR_MSG, CORELIB_MSG_PREFIX, 0)
+DEBUG_MSG_FUN(th_Error_Vk, PRINT_ERROR_MSG, VULKAN_MSG_PREFIX, 0)
 
-DEBUG_MSG_FUN(th_Fatal, PRINT_FATAL_MSG, "(th)", 1)
+DEBUG_MSG_FUN(th_Fatal, PRINT_FATAL_MSG, CORELIB_MSG_PREFIX, 1)

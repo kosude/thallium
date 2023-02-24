@@ -14,10 +14,10 @@
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-const void th_VersionToString(const th_Version_t version, char *out_string) {
+void th_VersionToString(const th_Version_t version, char *out_string) {
     snprintf(out_string, 256, "%d.%d.%d", version.major, version.minor, version.patch);
 }
 
-const char *const th_GetThalliumVersionString() {
+const char *th_GetThalliumVersionString(void) {
     return THALLIUM_VERSION;
 }

@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const int th_KillProc() {
+int th_KillProc(void) {
     fprintf(stderr, "HALT_AND_CATCH_FIRE ~libthallium\n");
     exit(EXIT_FAILURE);
 

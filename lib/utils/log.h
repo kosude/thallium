@@ -18,20 +18,20 @@
 // the file wayyy too big.
 /** @cond */
 
-const int th_Log(const th_Debugger_t *debugger, const char *format, ...);
-const int th_Log_Vk(const th_Debugger_t *debugger, const char *format, ...);
+int th_Log(const th_Debugger_t *debugger, const char *format, ...);
+int th_Log_Vk(const th_Debugger_t *debugger, const char *format, ...);
 
-const int th_Note(const th_Debugger_t *debugger, const char *format, ...);
+int th_Note(const th_Debugger_t *debugger, const char *format, ...);
 
-const int th_Hint(const th_Debugger_t *debugger, const char *format, ...);
+int th_Hint(const th_Debugger_t *debugger, const char *format, ...);
 
-const int th_Warn(const th_Debugger_t *debugger, const char *format, ...);
-const int th_Warn_Vk(const th_Debugger_t *debugger, const char *format, ...);
+int th_Warn(const th_Debugger_t *debugger, const char *format, ...);
+int th_Warn_Vk(const th_Debugger_t *debugger, const char *format, ...);
 
-const int th_Error(const th_Debugger_t *debugger, const char *format, ...);
-const int th_Error_Vk(const th_Debugger_t *debugger, const char *format, ...);
+int th_Error(const th_Debugger_t *debugger, const char *format, ...);
+int th_Error_Vk(const th_Debugger_t *debugger, const char *format, ...);
 
-const int th_Fatal(const th_Debugger_t *debugger, const char *format, ...);
+int th_Fatal(const th_Debugger_t *debugger, const char *format, ...);
 
 /** @endcond */
 

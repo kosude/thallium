@@ -76,24 +76,8 @@ th_Debugger_t *th_CreateDebugger(
  *
  * @alwaysok
  */
-const int th_DestroyDebugger(
+int th_DestroyDebugger(
     th_Debugger_t *debugger
-);
-
-/**
- * @ingroup debugger
- * @brief Post a debug message to the given debugger for each Thallium severity and message type.
- *
- * This function posts a debug message to `debugger` for each Thallium severity and message type.
- * This can be used to test the debugger's severity configuration.
- *
- * @warning Because this function may output a fatal error (depending on the debug types filter),
- * it **halts program execution!** It is only intended to be temporarily used in development!
- *
- * @param debugger Debugger object to which the messages will be posted.
- */
-const void th_TriggerSeverityMessages(
-    const th_Debugger_t *debugger
 );
 
 #ifdef __cplusplus

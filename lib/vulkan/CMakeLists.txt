@@ -21,5 +21,3 @@ target_include_directories(
         "${PROJECT_BINARY_DIR}/generated" # for generated resources and headers
 )
 target_link_libraries(${PROJECT_NAME}_vk ${PROJECT_NAME}_core ${Vulkan_LIBRARIES})
-
-target_compile_definitions(${PROJECT_NAME}_vk PRIVATE ${THALLIUM_LIBRARY_DEFS})

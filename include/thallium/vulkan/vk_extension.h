@@ -45,7 +45,7 @@
  * @param out_layer_names NULL or the array to output layer names into.
  * @return @returnstatus
  */
-const int thvk_GetRequiredLayers(
+int thvk_GetRequiredLayers(
     const th_RendererConfig_Vulkan_t *config,
     unsigned int *const out_count,
     const char **out_layer_names
@@ -64,7 +64,7 @@ const int thvk_GetRequiredLayers(
  * @param out_extension_names NULL or the array to output extension names into.
  * @return @returnstatus
  */
-const int thvk_GetRequiredInstanceExtensions(
+int thvk_GetRequiredInstanceExtensions(
     const int debug_utils_enabled,
     unsigned int *const out_count,
     const char **const out_extension_names
@@ -83,7 +83,7 @@ const int thvk_GetRequiredInstanceExtensions(
  * @param out_extension_names NULL or the array to output extension names into.
  * @return Array of extension names (NULL if error)
  */
-const int thvk_GetRequiredDeviceExtensions(
+int thvk_GetRequiredDeviceExtensions(
     unsigned int *const out_count,
     const char **const out_extension_names
 );

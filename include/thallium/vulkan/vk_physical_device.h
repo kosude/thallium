@@ -76,7 +76,7 @@ typedef struct thvk_QueueFamilyInfo_t {
  * @param out_physical_devices NULL or the array to output ordered list of devices into.
  * @return @returnstatus
  */
-const int thvk_EnumerateRankedPhysicalDevices(
+int thvk_EnumerateRankedPhysicalDevices(
     const thvk_RenderSystem_t *render_system,
     const VkPhysicalDevice *physical_devices,
     const unsigned int physical_device_count,
@@ -94,7 +94,7 @@ const int thvk_EnumerateRankedPhysicalDevices(
  * @param physical_device Physical device to query.
  * @return Struct containing queue family indices.
  */
-const thvk_QueueFamilyInfo_t thvk_GetQueueFamilyInfo(
+thvk_QueueFamilyInfo_t thvk_GetQueueFamilyInfo(
     const VkPhysicalDevice physical_device
 );
 

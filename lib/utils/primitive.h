@@ -35,7 +35,7 @@
  * @return 0 if the value was not found in the array
  * @return 1 if the value was found in the array
  */
-const int th_StringValueInArray(
+int th_StringValueInArray(
     const char *const val,
     const char *const *arr,
     const unsigned int arr_size

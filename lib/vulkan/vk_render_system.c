@@ -7,6 +7,7 @@
 
 #include "thallium.h"
 
+#include "assert.h"
 #include "utils/log.h"
 #include "vk_instance.h"
 
@@ -57,9 +58,9 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_Version_t api_version, con
 
     unsigned int p_device_count = 0, ranked_p_device_count = 0;
 
-    vkEnumeratePhysicalDevices(r->instance, &p_device_count, NULL);
+    TH_ASSERT_VK(vkEnumeratePhysicalDevices(r->instance, &p_device_count, NULL));
     VkPhysicalDevice p_devices[p_device_count];
-    vkEnumeratePhysicalDevices(r->instance, &p_device_count, p_devices);
+    TH_ASSERT_VK(vkEnumeratePhysicalDevices(r->instance, &p_device_count, p_devices));
 
     thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, NULL);
     const VkPhysicalDevice *ranked_p_devices[ranked_p_device_count];
@@ -68,7 +69,7 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_Version_t api_version, con
     return r;
 }
 
-const int thvk_DestroyRenderSystem(thvk_RenderSystem_t *render_system) {
+int thvk_DestroyRenderSystem(thvk_RenderSystem_t *render_system) {
     vkDestroyInstance(render_system->instance, NULL);
 
     free(render_system);

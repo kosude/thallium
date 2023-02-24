@@ -21,14 +21,10 @@ set(THALLIUM_LIBRARY_DEFS)
 if (MSVC)
     add_compile_options(
         /W4 /WX
-
-        /wd4180 # ignored qualifiers on return type
     )
 else()
     add_compile_options(
         -Wall -Wextra -pedantic -Werror
-
-        -Wno-ignored-qualifiers
     )
 endif()
 
@@ -76,6 +72,8 @@ set(CMAKE_CONFIGURATION_TYPES Debug Release)
 if (NOT CMAKE_BUILD_TYPE)
     message(FATAL_ERROR "Missing build configuration type! Reconfigure project with option -DCMAKE_BUILD_TYPE=(Debug|Release)")
 endif()
+
+set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "THALLIUM_BUILD_${CMAKE_BUILD_TYPE}")
 
 option(THALLIUM_SKIP_VERSION "Skip getting Thallium version dynamically" OFF)
 

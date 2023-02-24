@@ -40,11 +40,16 @@ endif()
 configure_file("${THALLIUM_CMAKE_DIR}/modules.h" "${PROJECT_BINARY_DIR}/generated/cmake_modules.h")
 
 # add compilation definitions AFTER subdirectories so module flags are included
-target_compile_definitions(${PROJECT_NAME}_core PRIVATE ${THALLIUM_LIBRARY_DEFS})
+foreach(lib ${THALLIUM_LIBRARIES})
+    target_compile_definitions(${lib} PRIVATE ${THALLIUM_LIBRARY_DEFS})
+endforeach()
+
+message(STATUS "thallium libraries define: ${THALLIUM_LIBRARY_DEFS}")
+
 
 # Interface library
 
 add_library(${PROJECT_NAME} INTERFACE)
 target_link_libraries(${PROJECT_NAME} INTERFACE ${THALLIUM_LIBRARIES})
 
-message(STATUS "libthallium includes: ${THALLIUM_LIBRARIES}")
+message(STATUS "thallium includes: ${THALLIUM_LIBRARIES}")

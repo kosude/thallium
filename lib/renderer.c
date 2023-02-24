@@ -64,7 +64,7 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_De
     return r;
 }
 
-const int th_DestroyRenderer(th_Renderer_t *renderer) {
+int th_DestroyRenderer(th_Renderer_t *renderer) {
 #   if defined(THALLIUM_VULKAN_INCL)
         if (renderer->api_id == THALLIUM_API_ID_VULKAN) {
             thvk_DestroyRenderSystem(renderer->render_system);
@@ -76,6 +76,6 @@ const int th_DestroyRenderer(th_Renderer_t *renderer) {
     return 1;
 }
 
-const void *th_GetRendererRenderSystem(const th_Renderer_t *renderer) {
+void *th_GetRendererRenderSystem(const th_Renderer_t *renderer) {
     return renderer->render_system;
 }

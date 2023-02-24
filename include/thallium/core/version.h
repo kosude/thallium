@@ -46,7 +46,7 @@ typedef struct th_Version_t {
  * @param version The version to stringify
  * @param out_string Pointer to the string to update
  */
-const void th_VersionToString(
+void th_VersionToString(
     const th_Version_t version,
     char *out_string
 );
@@ -59,7 +59,7 @@ const void th_VersionToString(
  *
  * @return Stringified Thallium version
  */
-const char *const th_GetThalliumVersionString();
+const char *th_GetThalliumVersionString(void);
 
 #ifdef __cplusplus
     }

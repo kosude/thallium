@@ -12,6 +12,7 @@
 
 #include "thallium/vulkan/vk_extension.h"
 
+#include "assert.h"
 #include "types.h"
 #include "utils/log.h"
 #include "utils/primitive.h"
@@ -31,7 +32,7 @@
 
 // Callback for instance debug messengers - redirects messages to Thallium debugger
 // userData is a pointer to the Thallium debugger struct
-static VKAPI_ATTR const VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
+static VKAPI_ATTR VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
     VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT *callback_data, void *user_data)
 {
     // convert the type to a string
@@ -69,7 +70,7 @@ static VKAPI_ATTR const VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDe
 }
 
 // Convert debug message severity flags from Thallium format to Vulkan format.
-static const VkDebugUtilsMessageSeverityFlagsEXT _ThalliumDebugSeveritiesToVulkanFlags(th_DebugSeverity_t severities) {
+static VkDebugUtilsMessageSeverityFlagsEXT _ThalliumDebugSeveritiesToVulkanFlags(th_DebugSeverity_t severities) {
     // NOTIF severity is not considerered as the only appropriate Vulkan severities (VERBOSE and INFO) are
     // output via th_Log_*(), which would not show if the VERBOSE severity is not enabled anyway.
     // i.e., even when considering NOTIF, nothing different is output, so there's no point.
@@ -82,7 +83,7 @@ static const VkDebugUtilsMessageSeverityFlagsEXT _ThalliumDebugSeveritiesToVulka
 }
 
 // Create a debug messenger (return its descriptor)
-static const VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_Debugger_t *debugger) {
+static VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_Debugger_t *debugger) {
     return (VkDebugUtilsMessengerCreateInfoEXT) {
         .sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
         .pNext = NULL,
@@ -98,7 +99,7 @@ static const VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_D
     };
 }
 
-const int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererConfig_Vulkan_t *config) {
+int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererConfig_Vulkan_t *config) {
     VkApplicationInfo app_info;
     VkInstanceCreateInfo instance_info;
     VkDebugUtilsMessengerCreateInfoEXT debug_messenger_info;
@@ -144,9 +145,9 @@ const int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_Rende
     unsigned int available_layer_count, required_layer_count;
 
     // get available layers
-    vkEnumerateInstanceLayerProperties(&available_layer_count, NULL);
+    TH_ASSERT_VK(vkEnumerateInstanceLayerProperties(&available_layer_count, NULL));
     VkLayerProperties available_layer_properties[available_layer_count];
-    vkEnumerateInstanceLayerProperties(&available_layer_count, available_layer_properties);
+    TH_ASSERT_VK(vkEnumerateInstanceLayerProperties(&available_layer_count, available_layer_properties));
 
     // + convert layer properties to layer names (strings)
     char *available_layer_names[available_layer_count];
@@ -182,9 +183,9 @@ const int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_Rende
     unsigned int required_extension_count, available_extension_count;
 
     // get available extensions
-    vkEnumerateInstanceExtensionProperties(NULL, &available_extension_count, NULL);
+    TH_ASSERT_VK(vkEnumerateInstanceExtensionProperties(NULL, &available_extension_count, NULL));
     VkExtensionProperties available_extension_properties[available_extension_count];
-    vkEnumerateInstanceExtensionProperties(NULL, &available_extension_count, available_extension_properties);
+    TH_ASSERT_VK(vkEnumerateInstanceExtensionProperties(NULL, &available_extension_count, available_extension_properties));
 
     // + convert extension properties to extension names (strings)
     char *available_extension_names[available_extension_count];
@@ -221,9 +222,7 @@ const int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_Rende
     instance_info.ppEnabledExtensionNames = extension_names;
 
     // then we create the instance
-    if (vkCreateInstance(&instance_info, NULL, &(render_system->instance))) {
-        return 0;
-    }
+    TH_ASSERT_VK(vkCreateInstance(&instance_info, NULL, &(render_system->instance)));
 
     th_Note(debugger, "Created Vulkan instance at %p", &(render_system->instance));
 
