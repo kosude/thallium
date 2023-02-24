@@ -1,6 +1,6 @@
 var a00023 =
 [
-    [ "thvk_GetRequiredLayers", "d6/d2d/a00047.html#gaefbce7a3643774a1f6194789086ee1ea", null ],
-    [ "thvk_GetRequiredInstanceExtensions", "d6/d2d/a00047.html#gae1b8088d2f32778c7893e12b3230db2d", null ],
-    [ "thvk_GetRequiredDeviceExtensions", "d6/d2d/a00047.html#ga398f974a571dba3a207e2298251383d8", null ]
+    [ "thvk_GetRequiredLayers", "d6/d2d/a00047.html#ga94ac0e622b6c897b760435291bb4ea3e", null ],
+    [ "thvk_GetRequiredInstanceExtensions", "d6/d2d/a00047.html#ga378348c43fb17397a643d57682da3aa6", null ],
+    [ "thvk_GetRequiredDeviceExtensions", "d6/d2d/a00047.html#ga21ce0427ead077ede28d2ed0ff459d87", null ]
 ];

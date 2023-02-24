@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_1cea86d (2023-02-23)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_fd1ae54 (2023-02-24)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -130,22 +130,22 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga0c6fbd198fe7c736222ec3f0ce8ff76c"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga0c6fbd198fe7c736222ec3f0ce8ff76c">thvk_EnumerateRankedPhysicalDevices</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *render_system, const VkPhysicalDevice *physical_devices, const unsigned int physical_device_count, unsigned int *const out_count, const VkPhysicalDevice **const out_physical_devices)</td></tr>
-<tr class="memdesc:ga0c6fbd198fe7c736222ec3f0ce8ff76c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array (into <code>out_physical_devices</code>).  <br /></td></tr>
-<tr class="separator:ga0c6fbd198fe7c736222ec3f0ce8ff76c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac26388f2276aa4aa45885c4839ec5efa"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#gac26388f2276aa4aa45885c4839ec5efa">thvk_GetQueueFamilyInfo</a> (const VkPhysicalDevice physical_device)</td></tr>
-<tr class="memdesc:gac26388f2276aa4aa45885c4839ec5efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the indices of all queue families within the given Vulkan physical device.  <br /></td></tr>
-<tr class="separator:gac26388f2276aa4aa45885c4839ec5efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga73b2e928c04672cf25ade1e62fff7ca8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#ga73b2e928c04672cf25ade1e62fff7ca8">thvk_EnumerateRankedPhysicalDevices</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *render_system, const VkPhysicalDevice *physical_devices, const unsigned int physical_device_count, unsigned int *const out_count, const VkPhysicalDevice **const out_physical_devices)</td></tr>
+<tr class="memdesc:ga73b2e928c04672cf25ade1e62fff7ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array (into <code>out_physical_devices</code>).  <br /></td></tr>
+<tr class="separator:ga73b2e928c04672cf25ade1e62fff7ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeee1115ca3073ddd6eaf61e97142aeea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dca/a00048.html#gaeee1115ca3073ddd6eaf61e97142aeea">thvk_GetQueueFamilyInfo</a> (const VkPhysicalDevice physical_device)</td></tr>
+<tr class="memdesc:gaeee1115ca3073ddd6eaf61e97142aeea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the indices of all queue families within the given Vulkan physical device.  <br /></td></tr>
+<tr class="separator:gaeee1115ca3073ddd6eaf61e97142aeea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga0c6fbd198fe7c736222ec3f0ce8ff76c" name="ga0c6fbd198fe7c736222ec3f0ce8ff76c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0c6fbd198fe7c736222ec3f0ce8ff76c">&#9670;&#160;</a></span>thvk_EnumerateRankedPhysicalDevices()</h2>
+<a id="ga73b2e928c04672cf25ade1e62fff7ca8" name="ga73b2e928c04672cf25ade1e62fff7ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga73b2e928c04672cf25ade1e62fff7ca8">&#9670;&#160;</a></span>thvk_EnumerateRankedPhysicalDevices()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int thvk_EnumerateRankedPhysicalDevices </td>
+          <td class="memname">int thvk_EnumerateRankedPhysicalDevices </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *&#160;</td>
           <td class="paramname"><em>render_system</em>, </td>
@@ -200,14 +200,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gac26388f2276aa4aa45885c4839ec5efa" name="gac26388f2276aa4aa45885c4839ec5efa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac26388f2276aa4aa45885c4839ec5efa">&#9670;&#160;</a></span>thvk_GetQueueFamilyInfo()</h2>
+<a id="gaeee1115ca3073ddd6eaf61e97142aeea" name="gaeee1115ca3073ddd6eaf61e97142aeea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeee1115ca3073ddd6eaf61e97142aeea">&#9670;&#160;</a></span>thvk_GetQueueFamilyInfo()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a> thvk_GetQueueFamilyInfo </td>
+          <td class="memname"><a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a> thvk_GetQueueFamilyInfo </td>
           <td>(</td>
           <td class="paramtype">const VkPhysicalDevice&#160;</td>
           <td class="paramname"><em>physical_device</em></td><td>)</td>
@@ -232,7 +232,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_1cea86d (2023-02-23) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_fd1ae54 (2023-02-24) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

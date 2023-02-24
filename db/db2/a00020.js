@@ -1,5 +1,5 @@
 var a00020 =
 [
-    [ "thvk_EnumerateRankedPhysicalDevices", "d4/dca/a00048.html#ga0c6fbd198fe7c736222ec3f0ce8ff76c", null ],
-    [ "thvk_GetQueueFamilyInfo", "d4/dca/a00048.html#gac26388f2276aa4aa45885c4839ec5efa", null ]
+    [ "thvk_EnumerateRankedPhysicalDevices", "d4/dca/a00048.html#ga73b2e928c04672cf25ade1e62fff7ca8", null ],
+    [ "thvk_GetQueueFamilyInfo", "d4/dca/a00048.html#gaeee1115ca3073ddd6eaf61e97142aeea", null ]
 ];

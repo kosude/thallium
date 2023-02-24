@@ -15,6 +15,5 @@ var a00044 =
       [ "THALLIUM_DEBUG_TYPE_ALL_BIT", "d5/df9/a00044.html#gga1e6e6868385cf31d4a2e614b69d4939ea6078af61e64f9de38466a9d54df01b52", null ]
     ] ],
     [ "th_CreateDebugger", "d5/df9/a00044.html#ga21a2b58b18f2fa61037b5051221ae581", null ],
-    [ "th_DestroyDebugger", "d5/df9/a00044.html#gad4bacb24b41c355fdccbc0313940b2ce", null ],
-    [ "th_TriggerSeverityMessages", "d5/df9/a00044.html#ga2c947f1e8186653d42db375662dc1e46", null ]
+    [ "th_DestroyDebugger", "d5/df9/a00044.html#gae9a85715f1d5ce019726fc4f0663f115", null ]
 ];

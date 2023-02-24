@@ -2,7 +2,7 @@ var indexSectionsWithContent =
 {
   0: "adgioprtuv",
   1: "t",
-  2: "iptv",
+  2: "aiptv",
   3: "t",
   4: "adr",
   5: "t",
