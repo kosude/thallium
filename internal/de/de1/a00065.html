@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Primitive helper functions - Thallium@v0.0.0dev_5a9adf8 (2023-02-25)</title>
+        <title>Utilities - Thallium@v0.0.0dev_4e80478 (2023-02-25)</title>
         <link rel="shortcut icon" href="../../render.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Internal Codebase
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_5a9adf8 (2023-02-25)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_4e80478 (2023-02-25)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,76 +111,34 @@ $(document).ready(function(){initNavTree('de/de1/a00065.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">Primitive helper functions<div class="ingroups"><a class="el" href="../../da/d24/a00068.html">Utilities</a></div></div></div>
+<a href="#groups">Subgroups</a>  </div>
+  <div class="headertitle"><div class="title">Utilities</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>General-use internal helper functions for primitive types.  
+<p>Utility functions and structures.  
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>General-use helper functions for handling primitive types. </p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ga64430b058289578897dde9e173750ff5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/de1/a00065.html#ga64430b058289578897dde9e173750ff5">th_StringValueInArray</a> (const char *const val, const char *const *arr, const unsigned int arr_size)</td></tr>
-<tr class="memdesc:ga64430b058289578897dde9e173750ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a string value is in the given array.  <br /></td></tr>
-<tr class="separator:ga64430b058289578897dde9e173750ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
+Subgroups</h2></td></tr>
+<tr class="memitem:d4/de8/a00061"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/de8/a00061.html">IO colours</a></td></tr>
+<tr class="memdesc:d4/de8/a00061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting stream input/output colours. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:df/d03/a00062"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d03/a00062.html">Primitive helper functions</a></td></tr>
+<tr class="memdesc:df/d03/a00062"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-use internal helper functions for primitive types. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:d1/d6f/a00063"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6f/a00063.html">Process management</a></td></tr>
+<tr class="memdesc:d1/d6f/a00063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Managing process. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ga64430b058289578897dde9e173750ff5" name="ga64430b058289578897dde9e173750ff5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga64430b058289578897dde9e173750ff5">&#9670;&#160;</a></span>th_StringValueInArray()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int th_StringValueInArray </td>
-          <td>(</td>
-          <td class="paramtype">const char *const&#160;</td>
-          <td class="paramname"><em>val</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *const *&#160;</td>
-          <td class="paramname"><em>arr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned int&#160;</td>
-          <td class="paramname"><em>arr_size</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This function looks for the specified value in the given array.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">val</td><td>Value to look for </td></tr>
-    <tr><td class="paramname">arr</td><td>Array to consider </td></tr>
-    <tr><td class="paramname">arr_size</td><td>Size of array <code>arr</code> </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if the value was not found in the array </dd>
-<dd>
-1 if the value was found in the array </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../../index.html">public api</a> » doxygen <b>1.9.6</b> » v0.0.0dev_5a9adf8 (2023-02-25) »
+                    <a href="../../../index.html">public api</a> » doxygen <b>1.9.6</b> » v0.0.0dev_4e80478 (2023-02-25) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

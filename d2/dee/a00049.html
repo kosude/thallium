@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_5a9adf8 (2023-02-25)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_4e80478 (2023-02-25)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -130,16 +130,16 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga7c3536533250f91d4380f6d4d869a7ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dee/a00049.html#ga7c3536533250f91d4380f6d4d869a7ad">thvk_CreateRenderSystem</a> (const <a class="el" href="../../d1/d6f/a00063.html">th_Version_t</a> api_version, const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger, const <a class="el" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a> *config)</td></tr>
-<tr class="memdesc:ga7c3536533250f91d4380f6d4d869a7ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and return a heap-allocated Vulkan render system.  <br /></td></tr>
-<tr class="separator:ga7c3536533250f91d4380f6d4d869a7ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9672f79882aadd88367bd2d3cb4f2731"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dee/a00049.html#ga9672f79882aadd88367bd2d3cb4f2731">thvk_CreateRenderSystem</a> (const <a class="el" href="../../d1/d6f/a00063.html">th_Version_t</a> api_version, const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *const debugger, const <a class="el" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a> *const config)</td></tr>
+<tr class="memdesc:ga9672f79882aadd88367bd2d3cb4f2731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and return a heap-allocated Vulkan render system.  <br /></td></tr>
+<tr class="separator:ga9672f79882aadd88367bd2d3cb4f2731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga657190268708ccfd517d1762a477bde8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dee/a00049.html#ga657190268708ccfd517d1762a477bde8">thvk_DestroyRenderSystem</a> (<a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *render_system)</td></tr>
 <tr class="memdesc:ga657190268708ccfd517d1762a477bde8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given Vulkan render system object.  <br /></td></tr>
 <tr class="separator:ga657190268708ccfd517d1762a477bde8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga7c3536533250f91d4380f6d4d869a7ad" name="ga7c3536533250f91d4380f6d4d869a7ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7c3536533250f91d4380f6d4d869a7ad">&#9670;&#160;</a></span>thvk_CreateRenderSystem()</h2>
+<a id="ga9672f79882aadd88367bd2d3cb4f2731" name="ga9672f79882aadd88367bd2d3cb4f2731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9672f79882aadd88367bd2d3cb4f2731">&#9670;&#160;</a></span>thvk_CreateRenderSystem()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,13 +153,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *const&#160;</td>
           <td class="paramname"><em>debugger</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a> *const&#160;</td>
           <td class="paramname"><em>config</em>&#160;</td>
         </tr>
         <tr>
@@ -209,7 +209,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd><em>This function will always return 1</em>.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d2/dee/a00049.html#ga7c3536533250f91d4380f6d4d869a7ad">thvk_CreateRenderSystem()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d2/dee/a00049.html#ga9672f79882aadd88367bd2d3cb4f2731">thvk_CreateRenderSystem()</a> </dd></dl>
 
 </div>
 </div>
@@ -219,7 +219,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_5a9adf8 (2023-02-25) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_4e80478 (2023-02-25) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>
