@@ -23,6 +23,6 @@ var searchData=
   ['thallium_5fio_5fcolour_5fred_20',['THALLIUM_IO_COLOUR_RED',['../df/d5f/a00064.html#gga894ad24cab6ffa4029e5f0328c89aff3a9ca31a2300b7ceeb2bf3af9bd3630f90',1,'io_colour.h']]],
   ['thallium_5fio_5fcolour_5fwhite_21',['THALLIUM_IO_COLOUR_WHITE',['../df/d5f/a00064.html#gga894ad24cab6ffa4029e5f0328c89aff3a49ba7881bf99fec4e10ea3a867cbb268',1,'io_colour.h']]],
   ['thallium_5fio_5fcolour_5fyellow_22',['THALLIUM_IO_COLOUR_YELLOW',['../df/d5f/a00064.html#gga894ad24cab6ffa4029e5f0328c89aff3a5ddb3cd9a455dfb707e5bb3f5e9b7081',1,'io_colour.h']]],
-  ['thvk_5fcreateinstance_23',['thvk_CreateInstance',['../dc/ddf/a00067.html#gaaa35758ff280b249858a598789867ee5',1,'thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererConfig_Vulkan_t *config):&#160;vk_instance.c'],['../dc/ddf/a00067.html#gaaa35758ff280b249858a598789867ee5',1,'thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererConfig_Vulkan_t *config):&#160;vk_instance.c']]],
+  ['thvk_5fcreateinstance_23',['thvk_CreateInstance',['../dc/ddf/a00067.html#gaed984b4f9fdc8cc42eebd6be18f0fc22',1,'thvk_CreateInstance(thvk_RenderSystem_t *render_system):&#160;vk_instance.c'],['../dc/ddf/a00067.html#gaed984b4f9fdc8cc42eebd6be18f0fc22',1,'thvk_CreateInstance(thvk_RenderSystem_t *render_system):&#160;vk_instance.c']]],
   ['types_2eh_24',['types.h',['../dd/dad/a00005.html',1,'']]]
 ];

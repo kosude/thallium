@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_fd1ae54 (2023-02-24)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_2c52826 (2023-02-25)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -123,19 +123,19 @@ $(document).ready(function(){initNavTree('d6/d2d/a00047.html','../../'); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga94ac0e622b6c897b760435291bb4ea3e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga94ac0e622b6c897b760435291bb4ea3e">thvk_GetRequiredLayers</a> (const <a class="el" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a> *config, unsigned int *const out_count, const char **out_layer_names)</td></tr>
-<tr class="memdesc:ga94ac0e622b6c897b760435291bb4ea3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required layers from the given renderer configuration.  <br /></td></tr>
-<tr class="separator:ga94ac0e622b6c897b760435291bb4ea3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga378348c43fb17397a643d57682da3aa6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga378348c43fb17397a643d57682da3aa6">thvk_GetRequiredInstanceExtensions</a> (const int debug_utils_enabled, unsigned int *const out_count, const char **const out_extension_names)</td></tr>
-<tr class="memdesc:ga378348c43fb17397a643d57682da3aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required extensions for Vulkan instances.  <br /></td></tr>
-<tr class="separator:ga378348c43fb17397a643d57682da3aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga21ce0427ead077ede28d2ed0ff459d87"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga21ce0427ead077ede28d2ed0ff459d87">thvk_GetRequiredDeviceExtensions</a> (unsigned int *const out_count, const char **const out_extension_names)</td></tr>
-<tr class="memdesc:ga21ce0427ead077ede28d2ed0ff459d87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required extensions for Vulkan devices.  <br /></td></tr>
-<tr class="separator:ga21ce0427ead077ede28d2ed0ff459d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14e76a531a6270ec0bc4295cde764b28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga14e76a531a6270ec0bc4295cde764b28">thvk_GetRequiredLayers</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const render_system, unsigned int *const out_count, const char **out_layer_names)</td></tr>
+<tr class="memdesc:ga14e76a531a6270ec0bc4295cde764b28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required layers for the given render system.  <br /></td></tr>
+<tr class="separator:ga14e76a531a6270ec0bc4295cde764b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f5b6a32354a78526e930186502cdc41"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga4f5b6a32354a78526e930186502cdc41">thvk_GetRequiredInstanceExtensions</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const render_system, const int debug_utils_enabled, unsigned int *const out_count, const char **const out_extension_names)</td></tr>
+<tr class="memdesc:ga4f5b6a32354a78526e930186502cdc41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required extensions for Vulkan instances.  <br /></td></tr>
+<tr class="separator:ga4f5b6a32354a78526e930186502cdc41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea6a18d31c2fd5f70e65c96c6c0a741d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#gaea6a18d31c2fd5f70e65c96c6c0a741d">thvk_GetRequiredDeviceExtensions</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const render_system, unsigned int *const out_count, const char **const out_extension_names)</td></tr>
+<tr class="memdesc:gaea6a18d31c2fd5f70e65c96c6c0a741d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required extensions for Vulkan devices.  <br /></td></tr>
+<tr class="separator:gaea6a18d31c2fd5f70e65c96c6c0a741d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga94ac0e622b6c897b760435291bb4ea3e" name="ga94ac0e622b6c897b760435291bb4ea3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga94ac0e622b6c897b760435291bb4ea3e">&#9670;&#160;</a></span>thvk_GetRequiredLayers()</h2>
+<a id="ga14e76a531a6270ec0bc4295cde764b28" name="ga14e76a531a6270ec0bc4295cde764b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga14e76a531a6270ec0bc4295cde764b28">&#9670;&#160;</a></span>thvk_GetRequiredLayers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,8 +143,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int thvk_GetRequiredLayers </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a> *&#160;</td>
-          <td class="paramname"><em>config</em>, </td>
+          <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const&#160;</td>
+          <td class="paramname"><em>render_system</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -165,11 +165,11 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This functions gets an array of required layers for Vulkan instances, from the information provided through the given <code>config</code> structure.</p>
+<p>This functions gets an array of required layers for Vulkan instances, from the information provided through the given render system <code>render_system</code>.</p>
 <p>These layers are enabled on all Vulkan instances created with (internal function) thvk_CreateInstance().</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">config</td><td>Pointer to a Vulkan renderer configuration </td></tr>
+    <tr><td class="paramname">render_system</td><td>Render system for querying </td></tr>
     <tr><td class="paramname">out_count</td><td>location to which the amount of layers will be returned </td></tr>
     <tr><td class="paramname">out_layer_names</td><td>NULL or the array to output layer names into. </td></tr>
   </table>
@@ -179,8 +179,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga378348c43fb17397a643d57682da3aa6" name="ga378348c43fb17397a643d57682da3aa6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga378348c43fb17397a643d57682da3aa6">&#9670;&#160;</a></span>thvk_GetRequiredInstanceExtensions()</h2>
+<a id="ga4f5b6a32354a78526e930186502cdc41" name="ga4f5b6a32354a78526e930186502cdc41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4f5b6a32354a78526e930186502cdc41">&#9670;&#160;</a></span>thvk_GetRequiredInstanceExtensions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,6 +188,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int thvk_GetRequiredInstanceExtensions </td>
           <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const&#160;</td>
+          <td class="paramname"><em>render_system</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>debug_utils_enabled</em>, </td>
         </tr>
@@ -214,6 +220,7 @@ Functions</h2></td></tr>
 <p>These extensions are enabled on all Vulkan instances created with (internal function) thvk_CreateInstance().</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">render_system</td><td>Render system for querying </td></tr>
     <tr><td class="paramname">debug_utils_enabled</td><td>Boolean - are debug utils enabled for the renderer? </td></tr>
     <tr><td class="paramname">out_count</td><td>location to which the amount of extensions will be returned </td></tr>
     <tr><td class="paramname">out_extension_names</td><td>NULL or the array to output extension names into. </td></tr>
@@ -224,8 +231,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga21ce0427ead077ede28d2ed0ff459d87" name="ga21ce0427ead077ede28d2ed0ff459d87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga21ce0427ead077ede28d2ed0ff459d87">&#9670;&#160;</a></span>thvk_GetRequiredDeviceExtensions()</h2>
+<a id="gaea6a18d31c2fd5f70e65c96c6c0a741d" name="gaea6a18d31c2fd5f70e65c96c6c0a741d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaea6a18d31c2fd5f70e65c96c6c0a741d">&#9670;&#160;</a></span>thvk_GetRequiredDeviceExtensions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -233,6 +240,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int thvk_GetRequiredDeviceExtensions </td>
           <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const&#160;</td>
+          <td class="paramname"><em>render_system</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">unsigned int *const&#160;</td>
           <td class="paramname"><em>out_count</em>, </td>
         </tr>
@@ -253,6 +266,7 @@ Functions</h2></td></tr>
 <p>The suitability of physical devices is partially based on these extensions. If a device does not support all of the required extensions, it will not be considered suitable for the program.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">render_system</td><td>Render system for querying </td></tr>
     <tr><td class="paramname">out_count</td><td>location to which the amount of extensions will be returned </td></tr>
     <tr><td class="paramname">out_extension_names</td><td>NULL or the array to output extension names into. </td></tr>
   </table>
@@ -268,7 +282,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_fd1ae54 (2023-02-24) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_2c52826 (2023-02-25) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

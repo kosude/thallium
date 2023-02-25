@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_fd1ae54 (2023-02-24)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_2c52826 (2023-02-25)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -135,33 +135,35 @@ $(document).ready(function(){initNavTree('d3/d52/a00023_source.html','../../'); 
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">//                           THALLIUM PUBLIC API</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// ===========================================================================</span></div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#ga94ac0e622b6c897b760435291bb4ea3e">   48</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d6/d2d/a00047.html#ga94ac0e622b6c897b760435291bb4ea3e">thvk_GetRequiredLayers</a>(</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">const</span> <a class="code hl_struct" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a> *config,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#ga14e76a531a6270ec0bc4295cde764b28">   48</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d6/d2d/a00047.html#ga14e76a531a6270ec0bc4295cde764b28">thvk_GetRequiredLayers</a>(</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">const</span> <a class="code hl_struct" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *<span class="keyword">const</span> render_system,</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<span class="keyword">const</span> out_count,</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> **out_layer_names</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#ga378348c43fb17397a643d57682da3aa6">   67</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d6/d2d/a00047.html#ga378348c43fb17397a643d57682da3aa6">thvk_GetRequiredInstanceExtensions</a>(</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> debug_utils_enabled,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<span class="keyword">const</span> out_count,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> **<span class="keyword">const</span> out_extension_names</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#ga21ce0427ead077ede28d2ed0ff459d87">   86</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d6/d2d/a00047.html#ga21ce0427ead077ede28d2ed0ff459d87">thvk_GetRequiredDeviceExtensions</a>(</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<span class="keyword">const</span> out_count,</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> **<span class="keyword">const</span> out_extension_names</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif </span><span class="comment">// !__thallium_vk_extension_h__</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#ga4f5b6a32354a78526e930186502cdc41">   68</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d6/d2d/a00047.html#ga4f5b6a32354a78526e930186502cdc41">thvk_GetRequiredInstanceExtensions</a>(</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">const</span> <a class="code hl_struct" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *<span class="keyword">const</span> render_system,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> debug_utils_enabled,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<span class="keyword">const</span> out_count,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> **<span class="keyword">const</span> out_extension_names</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="../../d6/d2d/a00047.html#gaea6a18d31c2fd5f70e65c96c6c0a741d">   89</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d6/d2d/a00047.html#gaea6a18d31c2fd5f70e65c96c6c0a741d">thvk_GetRequiredDeviceExtensions</a>(</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">const</span> <a class="code hl_struct" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *<span class="keyword">const</span> render_system,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<span class="keyword">const</span> out_count,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> **<span class="keyword">const</span> out_extension_names</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#endif </span><span class="comment">// !__thallium_vk_extension_h__</span></div>
 <div class="ttc" id="aa00026_html"><div class="ttname"><a href="../../d6/d5b/a00026.html">fwdvk.h</a></div><div class="ttdoc">Thallium library Vulkan structure forward declarations.</div></div>
 <div class="ttc" id="aa00029_html"><div class="ttname"><a href="../../d5/d16/a00029.html">fwd.h</a></div><div class="ttdoc">Thallium library structure forward declarations.</div></div>
-<div class="ttc" id="aa00047_html_ga21ce0427ead077ede28d2ed0ff459d87"><div class="ttname"><a href="../../d6/d2d/a00047.html#ga21ce0427ead077ede28d2ed0ff459d87">thvk_GetRequiredDeviceExtensions</a></div><div class="ttdeci">int thvk_GetRequiredDeviceExtensions(unsigned int *const out_count, const char **const out_extension_names)</div><div class="ttdoc">Get array of required extensions for Vulkan devices.</div></div>
-<div class="ttc" id="aa00047_html_ga378348c43fb17397a643d57682da3aa6"><div class="ttname"><a href="../../d6/d2d/a00047.html#ga378348c43fb17397a643d57682da3aa6">thvk_GetRequiredInstanceExtensions</a></div><div class="ttdeci">int thvk_GetRequiredInstanceExtensions(const int debug_utils_enabled, unsigned int *const out_count, const char **const out_extension_names)</div><div class="ttdoc">Get array of required extensions for Vulkan instances.</div></div>
-<div class="ttc" id="aa00047_html_ga94ac0e622b6c897b760435291bb4ea3e"><div class="ttname"><a href="../../d6/d2d/a00047.html#ga94ac0e622b6c897b760435291bb4ea3e">thvk_GetRequiredLayers</a></div><div class="ttdeci">int thvk_GetRequiredLayers(const th_RendererConfig_Vulkan_t *config, unsigned int *const out_count, const char **out_layer_names)</div><div class="ttdoc">Get array of required layers from the given renderer configuration.</div></div>
-<div class="ttc" id="aa00059_html"><div class="ttname"><a href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a></div><div class="ttdoc">Configuration structure specifically for Vulkan renderers.</div><div class="ttdef"><b>Definition:</b> renderer_config.h:45</div></div>
+<div class="ttc" id="aa00047_html_ga14e76a531a6270ec0bc4295cde764b28"><div class="ttname"><a href="../../d6/d2d/a00047.html#ga14e76a531a6270ec0bc4295cde764b28">thvk_GetRequiredLayers</a></div><div class="ttdeci">int thvk_GetRequiredLayers(const thvk_RenderSystem_t *const render_system, unsigned int *const out_count, const char **out_layer_names)</div><div class="ttdoc">Get array of required layers for the given render system.</div></div>
+<div class="ttc" id="aa00047_html_ga4f5b6a32354a78526e930186502cdc41"><div class="ttname"><a href="../../d6/d2d/a00047.html#ga4f5b6a32354a78526e930186502cdc41">thvk_GetRequiredInstanceExtensions</a></div><div class="ttdeci">int thvk_GetRequiredInstanceExtensions(const thvk_RenderSystem_t *const render_system, const int debug_utils_enabled, unsigned int *const out_count, const char **const out_extension_names)</div><div class="ttdoc">Get array of required extensions for Vulkan instances.</div></div>
+<div class="ttc" id="aa00047_html_gaea6a18d31c2fd5f70e65c96c6c0a741d"><div class="ttname"><a href="../../d6/d2d/a00047.html#gaea6a18d31c2fd5f70e65c96c6c0a741d">thvk_GetRequiredDeviceExtensions</a></div><div class="ttdeci">int thvk_GetRequiredDeviceExtensions(const thvk_RenderSystem_t *const render_system, unsigned int *const out_count, const char **const out_extension_names)</div><div class="ttdoc">Get array of required extensions for Vulkan devices.</div></div>
+<div class="ttc" id="aa00071_html"><div class="ttname"><a href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a></div><div class="ttdoc">A render system to hold Vulkan-specific rendering data.</div><div class="ttdef"><b>Definition:</b> vk_render_system.h:49</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
@@ -169,7 +171,7 @@ $(document).ready(function(){initNavTree('d3/d52/a00023_source.html','../../'); 
             <ul>
                 <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_1500ff34775cbad5418b92be88e6a332.html">vulkan</a></li><li class="navelem"><a class="el" href="../../d3/d52/a00023.html">vk_extension.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_fd1ae54 (2023-02-24) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_2c52826 (2023-02-25) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>
