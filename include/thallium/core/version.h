@@ -30,11 +30,11 @@
  */
 typedef struct th_Version_t {
     /// @brief Major version number
-    const int major;
+    int major;
     /// @brief Minor version number
-    const int minor;
+    int minor;
     /// @brief Patch/build number
-    const int patch;
+    int patch;
 } th_Version_t;
 
 /**

@@ -33,20 +33,20 @@
 
 /**
  * @ingroup vk_extension
- * @brief Get array of required layers from the given renderer configuration.
+ * @brief Get array of required layers for the given render system.
  *
  * This functions gets an array of required layers for Vulkan instances, from the information provided
- * through the given `config` structure.
+ * through the given render system `render_system`.
  *
  * These layers are enabled on all Vulkan instances created with (internal function) thvk_CreateInstance().
  *
- * @param config Pointer to a Vulkan renderer configuration
+ * @param render_system Render system for querying
  * @param out_count location to which the amount of layers will be returned
  * @param out_layer_names NULL or the array to output layer names into.
  * @return @returnstatus
  */
 int thvk_GetRequiredLayers(
-    const th_RendererConfig_Vulkan_t *config,
+    const thvk_RenderSystem_t *const render_system,
     unsigned int *const out_count,
     const char **out_layer_names
 );
@@ -59,12 +59,14 @@ int thvk_GetRequiredLayers(
  *
  * These extensions are enabled on all Vulkan instances created with (internal function) thvk_CreateInstance().
  *
+ * @param render_system Render system for querying
  * @param debug_utils_enabled Boolean - are debug utils enabled for the renderer?
  * @param out_count location to which the amount of extensions will be returned
  * @param out_extension_names NULL or the array to output extension names into.
  * @return @returnstatus
  */
 int thvk_GetRequiredInstanceExtensions(
+    const thvk_RenderSystem_t *const render_system,
     const int debug_utils_enabled,
     unsigned int *const out_count,
     const char **const out_extension_names
@@ -79,11 +81,13 @@ int thvk_GetRequiredInstanceExtensions(
  * The suitability of physical devices is partially based on these extensions. If a device does not support
  * all of the required extensions, it will not be considered suitable for the program.
  *
+ * @param render_system Render system for querying
  * @param out_count location to which the amount of extensions will be returned
  * @param out_extension_names NULL or the array to output extension names into.
  * @return Array of extension names (NULL if error)
  */
 int thvk_GetRequiredDeviceExtensions(
+    const thvk_RenderSystem_t *const render_system,
     unsigned int *const out_count,
     const char **const out_extension_names
 );

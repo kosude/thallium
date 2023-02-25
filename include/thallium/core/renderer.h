@@ -89,7 +89,7 @@ typedef struct th_RendererDescriptor_t {
  * For information on the `descriptor.rendererConfig` parameter, see the @ref th_RendererDescriptor_t documentation.
  *
  * @param descriptor creation description for the renderer
- * @param debugger Debugger to read configuration from when debugging (or NULL for no debugging)
+ * @param debugger NULL or debugger to read configuration from when debugging
  * @return Pointer to the new renderer object
  *
  * @sa @ref th_RendererDescriptor_t

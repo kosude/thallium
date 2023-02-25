@@ -7,7 +7,9 @@
 
 #include "thallium_vulkan.h"
 
+#include "assert.h"
 #include "utils/log.h"
+#include "utils/primitive.h"
 
 #include <stdlib.h>
 
@@ -15,8 +17,7 @@
 // Source repository can be found at https://github.com/travisvroman/kohi.
 // Original code is licensed under the Apache License 2.0.
 
-#define MAX_PHYSICAL_DEVICE_PAIRS_COUNT 128
-#define MAX_PHYSICAL_DEVICE_EXTENSION_NAME_COUNT 128
+#define MAX_PHYSICAL_DEVICE_PAIRS_COUNT 32
 
 // A struct used for sorting list of physical devices by their score.
 typedef struct _PhysicalDeviceScorePair_t {
@@ -41,6 +42,9 @@ typedef struct _PhysicalDeviceRequirements_t {
     int transfer;
 
     // array of names of extensions to be required
+    // TODO: when enabling: this array will contain some NULL elements, which must be filtered out before enabling.
+    //       these are (were) extensions that are intended for use by VkInstances, not VkDevices. All of the remaining extensions are
+    //       supported; this was ensured in _PhysicalDeviceIsSuitable()!
     const char **extension_names;
     unsigned int extension_count;
 
@@ -50,16 +54,11 @@ typedef struct _PhysicalDeviceRequirements_t {
 
 // Will return 1 if the given physical device is suitable for the application, 0 if not.
 // (make sure it supports required extensions for example)
-static int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, const VkPhysicalDevice physical_device,
-    thvk_QueueFamilyInfo_t *out_info
-) {
+static int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, const VkPhysicalDevice physical_device, int reportDebug) {
     VkPhysicalDeviceProperties device_properties;
     VkPhysicalDeviceFeatures device_features;
-    VkPhysicalDeviceMemoryProperties memory_properties;
-
     vkGetPhysicalDeviceProperties(physical_device, &device_properties);
     vkGetPhysicalDeviceFeatures(physical_device, &device_features);
-    vkGetPhysicalDeviceMemoryProperties(physical_device, &memory_properties);
 
     // TODO: checking if physical device supports everything needed.
     // TODO2: set up a system where device extensions and properties can be specified!!
@@ -73,19 +72,65 @@ static int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, c
     // requirements.compute = 0;
     requirements.type = VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU;
 
-    // get globally required device extensions
-    thvk_GetRequiredDeviceExtensions(&requirements.extension_count, NULL);
+    // get required/specified device extensions
+    TH_ASSERT(thvk_GetRequiredDeviceExtensions(render_system, &requirements.extension_count, NULL));
     requirements.extension_names = malloc(requirements.extension_count * sizeof(char *));
-    thvk_GetRequiredDeviceExtensions(&requirements.extension_count, requirements.extension_names);
+    TH_ASSERT(thvk_GetRequiredDeviceExtensions(render_system, &requirements.extension_count, requirements.extension_names));
 
     // check if the device meets requirements...
 
     // assert type meets requirement
     if (requirements.type != -1) {
         if ((int) device_properties.deviceType != requirements.type) {
-            th_Warn(render_system->debugger, "Vulkan device determined unsuitable (device type mismatch)");
-            th_Hint(render_system->debugger, "Required type %d, found type %d instead", requirements.type, device_properties.deviceType);
+            if (reportDebug) { // we use reportDebug to avoid duplicate message outputs
+                th_Warn(render_system->debugger, "Vulkan device determined unsuitable (device type mismatch)");
+                th_Hint(render_system->debugger, "Required type %d, found type %d instead", requirements.type, device_properties.deviceType);
+            }
+            return 0;
+        }
+    }
 
+    // get available device extensions
+    unsigned int available_extension_count;
+    TH_ASSERT_VK(vkEnumerateDeviceExtensionProperties(physical_device, NULL, &available_extension_count, NULL));
+    VkExtensionProperties available_extension_properties[available_extension_count];
+    TH_ASSERT_VK(vkEnumerateDeviceExtensionProperties(physical_device, NULL, &available_extension_count, available_extension_properties));
+
+    // convert available extension properties to their extracted names
+    char *available_extension_names[available_extension_count];
+    for (unsigned int i = 0; i < available_extension_count; i++) {
+        available_extension_names[i] = available_extension_properties[i].extensionName;
+    }
+
+    // also get available INSTANCE extensions so as to filter them out of the extensions list
+    unsigned int available_instance_extension_count;
+    TH_ASSERT_VK(vkEnumerateInstanceExtensionProperties(NULL, &available_instance_extension_count, NULL));
+    VkExtensionProperties available_instance_extension_properties[available_instance_extension_count];
+    TH_ASSERT_VK(vkEnumerateInstanceExtensionProperties(NULL, &available_instance_extension_count, available_instance_extension_properties));
+
+    // convert available INSTANCE extension properties to their extracted names
+    char *available_instance_extension_names[available_instance_extension_count];
+    for (unsigned int i = 0; i < available_instance_extension_count; i++) {
+        available_instance_extension_names[i] = available_instance_extension_properties[i].extensionName;
+    }
+
+    // assert all required extensions are available to the device
+    for (unsigned int i = 0; i < requirements.extension_count; i++) {
+        // ensure the extension is not intended for instances
+        if (th_StringValueInArray(requirements.extension_names[i], (const char *const *) available_instance_extension_names,
+            available_instance_extension_count))
+        {
+            // set the extension name to NULL so it is not picked up when the extensions are parsed later on when we enable them
+            requirements.extension_names[i] = NULL;
+            continue;
+        }
+
+        // if required extension is not available
+        if (!th_StringValueInArray(requirements.extension_names[i], (const char *const *) available_extension_names, available_extension_count)) {
+            if (reportDebug) {
+                th_Warn(render_system->debugger, "Vulkan device \"%s\" doesn't meet requirements (missing extension \"%s\")",
+                    device_properties.deviceName, requirements.extension_names[i]);
+            }
             return 0;
         }
     }
@@ -109,10 +154,6 @@ static int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, c
     if (requirements.transfer && queue_family_info.transfer_family_index <= -1) {
         th_Warn(render_system->debugger, "Vulkan device \"%s\" doesn't meet requirements (missing TRANSFER queue family)", device_properties.deviceName);
         return 0;
-    }
-
-    if (out_info) {
-        *out_info = queue_family_info;
     }
 
     free(requirements.extension_names);
@@ -171,10 +212,8 @@ int thvk_EnumerateRankedPhysicalDevices(const thvk_RenderSystem_t *render_system
     // convert list of devices to list of scored pairs...
 
     for (unsigned int i = 0; i < physical_device_count; i++) {
-        thvk_QueueFamilyInfo_t queue_family_info;
-
         // assert device is considerable
-        if (!_PhysicalDeviceIsSuitable(render_system, physical_devices[i], &queue_family_info)) {
+        if (!_PhysicalDeviceIsSuitable(render_system, physical_devices[i], out_physical_devices != NULL)) {
             continue;
         }
 
@@ -187,27 +226,6 @@ int thvk_EnumerateRankedPhysicalDevices(const thvk_RenderSystem_t *render_system
         };
 
         real_count++;
-
-        // print queue information (we only do this when out_physical_devices is not NULL so as to avoid duplicate messages)
-        // this is also wrapped in a THALLIUM_DEBUG_LAYER condition to otherwise avoid the vkGet call.
-#       ifdef THALLIUM_DEBUG_LAYER
-            if (out_physical_devices) {
-                VkPhysicalDeviceProperties props;
-                vkGetPhysicalDeviceProperties(physical_devices[i], &props);
-
-                // print queue family info
-                th_Log(render_system->debugger,
-                    "Queue family indices for \"%s\"...\n"
-                    "     GRAPHICS PRESENT COMPUTE TRANSFER (-1 means not found)\n"
-                    "         %d       %d       %d        %d",
-                    props.deviceName,
-                    queue_family_info.graphics_family_index,
-                    queue_family_info.present_family_index,
-                    queue_family_info.compute_family_index,
-                    queue_family_info.transfer_family_index
-                );
-            }
-#       endif
     }
 
     // sort filtered device-score pair array

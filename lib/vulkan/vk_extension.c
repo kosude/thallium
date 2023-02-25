@@ -24,25 +24,30 @@
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-int thvk_GetRequiredLayers(const th_RendererConfig_Vulkan_t *config, unsigned int *const out_count, const char **out_layer_names) {
+int thvk_GetRequiredLayers(const thvk_RenderSystem_t *const render_system, unsigned int *const out_count, const char **out_layer_names) {
     if (!out_count) {
         return 0;
     }
 
     if (out_layer_names) {
-        memcpy(out_layer_names, config->layer_names, config->layer_count * sizeof(char *));
+        memcpy(out_layer_names, render_system->config.layer_names, render_system->config.layer_count * sizeof(char *));
     }
-    *out_count = config->layer_count;
+    *out_count = render_system->config.layer_count;
 
     return 1;
 }
 
-int thvk_GetRequiredInstanceExtensions(const int debug_utils_enabled, unsigned int *const out_count, const char **const out_extension_names) {
+int thvk_GetRequiredInstanceExtensions(const thvk_RenderSystem_t *const render_system, const int debug_utils_enabled, unsigned int *const out_count,
+    const char **const out_extension_names)
+{
     if (!out_count) {
         return 0;
     }
 
     unsigned int count = 0;
+
+    // constant required extensions:
+    // ----
 
     // require platform-agnostic surface extension
     DEFINE_REQUIRED_EXTENSION("VK_KHR_surface");
@@ -61,21 +66,41 @@ int thvk_GetRequiredInstanceExtensions(const int debug_utils_enabled, unsigned i
         DEFINE_REQUIRED_EXTENSION("VK_EXT_debug_utils");
     }
 
+    // user-specified required extensions:
+    // ----
+
+    // this array also contains device extensions but these should be filtered out separately from this function.
+    for (unsigned int i = 0; i < (unsigned int) render_system->config.extension_count; i++) {
+        DEFINE_REQUIRED_EXTENSION(render_system->config.extension_names[i]);
+    }
+
     // return required extension count
     *out_count = count;
 
     return 1;
 }
 
-int thvk_GetRequiredDeviceExtensions(unsigned int *const out_count, const char **const out_extension_names) {
+int thvk_GetRequiredDeviceExtensions(const thvk_RenderSystem_t *const render_system, unsigned int *const out_count,
+    const char **const out_extension_names)
+{
     if (!out_count) {
         return 0;
     }
 
     unsigned int count = 0;
 
-    // TODO: allow user-specified device extensions.
+    // constant required extensions:
+    // ----
+
     DEFINE_REQUIRED_EXTENSION("VK_KHR_swapchain");
+
+    // user-specified required extensions:
+    // ----
+
+    // this array also contains instance extensions but these should be filtered out separately from this function.
+    for (unsigned int i = 0; i < (unsigned int) render_system->config.extension_count; i++) {
+        DEFINE_REQUIRED_EXTENSION(render_system->config.extension_names[i]);
+    }
 
     // return required extension count
     *out_count = count;

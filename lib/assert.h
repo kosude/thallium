@@ -24,9 +24,9 @@
 
 /** @cond */
 
-#ifdef THALLIUM_BUILD_Debug
+// #ifdef THALLIUM_BUILD_Debug
 #   define THALLIUM_ASSERTIONS_ENABLED
-#endif
+// #endif
 
 #ifdef THALLIUM_ASSERTIONS_ENABLED
 #   include <stdio.h>

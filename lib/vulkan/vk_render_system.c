@@ -12,6 +12,7 @@
 #include "vk_instance.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 
 
@@ -44,33 +45,76 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_Version_t api_version, con
         return NULL;
     }
 
+    r->debugger = debugger; // (the debugger can be NULL)
     r->api_version = FMT_VK_API_VERSION(api_version);
+    r->config_specified = config != NULL;
 
-    // debugger can be NULL
-    r->debugger = debugger;
+    if (config) {
+        // copy the given config onto the heap within the render system's own config struct
+        r->config.application_name = malloc(strlen(config->application_name) * sizeof(char));
+        TH_ASSERT(r->config.application_name);
+        strcpy(r->config.application_name, config->application_name);
+        r->config.application_version = config->application_version;
+
+        r->config.engine_name = malloc(strlen(config->engine_name) * sizeof(char));
+        TH_ASSERT(r->config.engine_name);
+        strcpy(r->config.engine_name, config->engine_name);
+        r->config.engine_version = config->engine_version;
+
+        // first we copy the layer names onto the heap
+        r->config.layer_names = malloc(config->layer_count * sizeof(const char *));
+        TH_ASSERT(r->config.layer_names);
+        for (unsigned int i = 0; i < (unsigned int) config->layer_count; i++) {
+            r->config.layer_names[i] = malloc(strlen(config->layer_names[i]) * sizeof(char));
+            TH_ASSERT(r->config.layer_names[i]);
+            strcpy(r->config.layer_names[i], config->layer_names[i]);
+        }
+        r->config.layer_count = config->layer_count;
+
+        // then repeat for the extension names
+        r->config.extension_names = malloc(config->extension_count * sizeof(const char *));
+        TH_ASSERT(r->config.extension_names);
+        for (unsigned int i = 0; i < (unsigned int) config->extension_count; i++) {
+            r->config.extension_names[i] = malloc(strlen(config->extension_names[i]) * sizeof(char));
+            TH_ASSERT(r->config.extension_names[i]);
+            strcpy(r->config.extension_names[i], config->extension_names[i]);
+        }
+        r->config.extension_count = config->extension_count;
+    }
 
     // create Vulkan instance for render system
-    if (!thvk_CreateInstance(r, config)) {
-        return NULL;
-    }
+    TH_ASSERT(thvk_CreateInstance(r));
 
     // TODO - just testing:
 
-    unsigned int p_device_count = 0, ranked_p_device_count = 0;
+    unsigned int p_device_count, ranked_p_device_count;
 
     TH_ASSERT_VK(vkEnumeratePhysicalDevices(r->instance, &p_device_count, NULL));
     VkPhysicalDevice p_devices[p_device_count];
     TH_ASSERT_VK(vkEnumeratePhysicalDevices(r->instance, &p_device_count, p_devices));
 
-    thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, NULL);
+    TH_ASSERT(thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, NULL));
     const VkPhysicalDevice *ranked_p_devices[ranked_p_device_count];
-    thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, ranked_p_devices);
+    TH_ASSERT(thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, ranked_p_devices));
 
     return r;
 }
 
 int thvk_DestroyRenderSystem(thvk_RenderSystem_t *render_system) {
     vkDestroyInstance(render_system->instance, NULL);
+
+    free(render_system->config.application_name);
+    free(render_system->config.engine_name);
+
+    for (unsigned int i = 0; i < (unsigned int) render_system->config.layer_count; i++) {
+        free(render_system->config.layer_names[i]);
+    }
+    free(render_system->config.layer_names);
+
+    for (unsigned int i = 0; i < (unsigned int) render_system->config.extension_count; i++) {
+        free(render_system->config.extension_names[i]);
+    }
+    free(render_system->config.extension_names);
 
     free(render_system);
 

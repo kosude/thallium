@@ -19,6 +19,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define FMT_VK_VERSION(vers) \
     VK_MAKE_VERSION( \
@@ -28,7 +29,7 @@
     )
 
 #define MAX_INSTANCE_LAYER_NAME_COUNT 128
-#define MAX_INSTANCE_EXTENSION_NAME_COUNT 128
+#define MAX_INSTANCE_EXTENSION_NAME_COUNT 256
 
 // Callback for instance debug messengers - redirects messages to Thallium debugger
 // userData is a pointer to the Thallium debugger struct
@@ -99,7 +100,7 @@ static VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_Debugge
     };
 }
 
-int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererConfig_Vulkan_t *config) {
+int thvk_CreateInstance(thvk_RenderSystem_t *render_system) {
     VkApplicationInfo app_info;
     VkInstanceCreateInfo instance_info;
     VkDebugUtilsMessengerCreateInfoEXT debug_messenger_info;
@@ -110,13 +111,13 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererCon
     instance_info.flags = 0;
 
     // populate application info based on config if it was given
-    if (config) {
+    if (render_system->config_specified) {
         app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
         app_info.pNext = NULL;
-        app_info.pApplicationName = config->application_name;
-        app_info.applicationVersion = FMT_VK_VERSION(config->application_version);
-        app_info.pEngineName = config->engine_name;
-        app_info.engineVersion = FMT_VK_VERSION(config->engine_version);
+        app_info.pApplicationName = render_system->config.application_name;
+        app_info.applicationVersion = FMT_VK_VERSION(render_system->config.application_version);
+        app_info.pEngineName = render_system->config.engine_name;
+        app_info.engineVersion = FMT_VK_VERSION(render_system->config.engine_version);
         app_info.apiVersion = render_system->api_version;
 
         instance_info.pApplicationInfo = &app_info;
@@ -156,24 +157,22 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererCon
     }
 
     // get required layers
-    thvk_GetRequiredLayers(config, &required_layer_count, NULL);
+    thvk_GetRequiredLayers(render_system, &required_layer_count, NULL);
     const char *required_layer_names[required_layer_count];
-    thvk_GetRequiredLayers(config, &required_layer_count, required_layer_names);
+    thvk_GetRequiredLayers(render_system, &required_layer_count, required_layer_names);
 
     // filter supported layers against required ones
     for (unsigned int i = 0; i < required_layer_count; i++) {
         // if required layer is available
         if (th_StringValueInArray(required_layer_names[i], (const char *const *) available_layer_names, available_layer_count)) {
             if (layer_count++ > MAX_INSTANCE_LAYER_NAME_COUNT) {
-                th_Warn(debugger, "Count of specified layer names for VkInstance exceeds max (%d)", MAX_INSTANCE_LAYER_NAME_COUNT);
+                th_Error(debugger, "Count of enabled layer names for VkInstance exceeds max (%d)", MAX_INSTANCE_LAYER_NAME_COUNT);
+                break;
             }
 
-            layer_names[i] = required_layer_names[i];
-        }
-        // otherwise print msg
-        else {
-            th_Warn(debugger, "Required or specified layer \"%s\" not available or supported by the installed Vulkan implementation. "
-                "(from thvk_CreateInstance)", required_layer_names[i]);
+            layer_names[layer_count - 1] = required_layer_names[i];
+        } else {
+            th_Warn(debugger, "Could not find required or specified layer \"%s\"", required_layer_names[i]);
         }
     }
 
@@ -194,24 +193,22 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererCon
     }
 
     // get required extensions
-    thvk_GetRequiredInstanceExtensions(debugger != NULL, &required_extension_count, NULL);
+    thvk_GetRequiredInstanceExtensions(render_system, debugger != NULL, &required_extension_count, NULL);
     const char *required_extension_names[required_extension_count];
-    thvk_GetRequiredInstanceExtensions(debugger != NULL, &required_extension_count, required_extension_names);
+    thvk_GetRequiredInstanceExtensions(render_system, debugger != NULL, &required_extension_count, required_extension_names);
 
     // filter supported extensions against required ones
     for (unsigned int i = 0; i < required_extension_count; i++) {
         // if required extension is available
         if (th_StringValueInArray(required_extension_names[i], (const char *const *) available_extension_names, available_extension_count)) {
             if (extension_count++ > MAX_INSTANCE_EXTENSION_NAME_COUNT) {
-                th_Warn(debugger, "Count of specified extension names for VkInstance exceeds max (%d)", MAX_INSTANCE_EXTENSION_NAME_COUNT);
+                th_Error(debugger, "Count of enabled Vulkan extension names exceeds max (%d)", MAX_INSTANCE_EXTENSION_NAME_COUNT);
+                break;
             }
 
-            extension_names[i] = required_extension_names[i];
-        }
-        // otherwise print msg
-        else {
-            th_Warn(debugger, "Required or specified extension \"%s\" not available or supported by the installed Vulkan implementation. "
-                "(from thvk_CreateInstance)", required_extension_names[i]);
+            extension_names[extension_count - 1] = required_extension_names[i];
+        } else {
+            th_Note(debugger, "Specified extension \"%s\" might not be valid, or it could be a device extension.", required_extension_names[i]);
         }
     }
 
@@ -225,6 +222,28 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system, const th_RendererCon
     TH_ASSERT_VK(vkCreateInstance(&instance_info, NULL, &(render_system->instance)));
 
     th_Note(debugger, "Created Vulkan instance at %p", &(render_system->instance));
+
+#   ifdef THALLIUM_DEBUG_LAYER
+        char debug_str[1024];
+        snprintf(debug_str, 1024, "==== INSTANCE INFO ====\n     Enabled layers (%d):\t\t\tEnabled extensions (%d):\n", layer_count, extension_count);
+
+        unsigned int max_count = (layer_count > extension_count) ? layer_count : extension_count;
+        for (unsigned int i = 0; i < max_count; i++) {
+            char current_line[256];
+            snprintf(current_line, 256, "     %s%s%s",
+                (i < layer_count) ? layer_names[i] : "",
+                (i < layer_count) ? "\t\t" : "\t\t\t\t\t\t",
+                (i < extension_count) ? extension_names[i] : "");
+
+            if (i < max_count - 1) {
+                strncat(current_line, "\n", 256);
+            }
+
+            strncat(debug_str, current_line, 1024);
+        }
+
+        th_Log(debugger, debug_str);
+#   endif
 
     return 1;
 }

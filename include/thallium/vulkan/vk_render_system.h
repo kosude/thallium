@@ -25,7 +25,7 @@
 
 #include "thallium/fwd.h"
 #include "thallium/fwdvk.h"
-
+#include "thallium/core/renderer_config.h"
 #include "thallium/core/version.h"
 
 #include <vulkan/vulkan.h>
@@ -54,6 +54,11 @@ typedef struct thvk_RenderSystem_t {
     VkInstance instance;
     /// @brief Vulkan API version (formatted with VK_MAKE_API_VERSION())
     int api_version;
+
+    /// @brief Vulkan renderer (thus render system) configuration options
+    th_RendererConfig_Vulkan_t config;
+    /// @brief 1 if a config struct was specified in thvk_CreateRenderSystem(); 0 if not.
+    int config_specified;
 } thvk_RenderSystem_t;
 
 /**
@@ -65,7 +70,7 @@ typedef struct thvk_RenderSystem_t {
  *
  * @param api_version Vulkan API version (as a Thallium @ref th_Version_t structure)
  * @param debugger NULL or debugger to read configuration options from when posting debug messages
- * @param config Pointer to a Vulkan renderer configuration structure.
+ * @param config A Vulkan renderer configuration structure.
  * @return The new render system
  *
  * @sa @ref thvk_RenderSystem_t

@@ -36,12 +36,10 @@
  * If `debugger` is not NULL, a debug messenger will be created alongside the instance for Vulkan debugging.
  *
  * @param render_system Pointer to the render system into which the instance will be returned.
- * @param config Pointer to a Vulkan renderer configuration structure.
  * @return @returnstatus
  */
 int thvk_CreateInstance(
-    thvk_RenderSystem_t *render_system,
-    const th_RendererConfig_Vulkan_t *config
+    thvk_RenderSystem_t *render_system
 );
 
 #ifdef __cplusplus
