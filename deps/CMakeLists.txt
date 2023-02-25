@@ -1,0 +1,15 @@
+# ---
+# building and linking volk
+
+if (THALLIUM_BUILD_MODULE_VULKAN)
+    if (WIN32)
+        set(VOLK_STATIC_DEFINES VK_USE_PLATFORM_WIN32_KHR)
+    elseif (UNIX)
+        set(VOLK_STATIC_DEFINES VK_USE_PLATFORM_XCB_KHR)
+    elseif (APPLE)
+        set(VOLK_STATIC_DEFINES VK_USE_PLATFORM_MACOS_MVK)
+    endif()
+
+    add_subdirectory("${THALLIUM_DEPS_DIR}/volk")
+    set(THALLIUM_VULKAN_DEPENDENCIES ${THALLIUM_VULKAN_DEPENDENCIES} volk PARENT_SCOPE)
+endif()

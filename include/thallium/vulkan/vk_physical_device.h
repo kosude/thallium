@@ -25,7 +25,7 @@
 
 #include "thallium/fwdvk.h"
 
-#include <vulkan/vulkan.h>
+#include <volk/volk.h>
 
 
 // ===========================================================================
@@ -77,11 +77,11 @@ typedef struct thvk_QueueFamilyInfo_t {
  * @return @returnstatus
  */
 int thvk_EnumerateRankedPhysicalDevices(
-    const thvk_RenderSystem_t *render_system,
-    const VkPhysicalDevice *physical_devices,
+    const thvk_RenderSystem_t *const render_system,
+    const VkPhysicalDevice *const physical_devices,
     const unsigned int physical_device_count,
-    unsigned int *const out_count,
-    const VkPhysicalDevice **const out_physical_devices
+    unsigned int *out_count,
+    const VkPhysicalDevice **out_physical_devices
 );
 
 /**

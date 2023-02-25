@@ -96,7 +96,7 @@ typedef struct th_RendererDescriptor_t {
  */
 th_Renderer_t *th_CreateRenderer(
     const th_RendererDescriptor_t descriptor,
-    th_Debugger_t *debugger
+    const th_Debugger_t *const debugger
 );
 
 /**
@@ -126,7 +126,7 @@ int th_DestroyRenderer(
  * @return The render system within the renderer. This should not be NULL!
  */
 void *th_GetRendererRenderSystem(
-    const th_Renderer_t *renderer
+    const th_Renderer_t *const renderer
 );
 
 #ifdef __cplusplus

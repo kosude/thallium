@@ -24,7 +24,7 @@
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-int thvk_GetRequiredLayers(const thvk_RenderSystem_t *const render_system, unsigned int *const out_count, const char **out_layer_names) {
+int thvk_GetRequiredLayers(const thvk_RenderSystem_t *const render_system, unsigned int *out_count, const char **out_layer_names) {
     if (!out_count) {
         return 0;
     }
@@ -37,8 +37,8 @@ int thvk_GetRequiredLayers(const thvk_RenderSystem_t *const render_system, unsig
     return 1;
 }
 
-int thvk_GetRequiredInstanceExtensions(const thvk_RenderSystem_t *const render_system, const int debug_utils_enabled, unsigned int *const out_count,
-    const char **const out_extension_names)
+int thvk_GetRequiredInstanceExtensions(const thvk_RenderSystem_t *const render_system, const int debug_utils_enabled, unsigned int *out_count,
+    const char **out_extension_names)
 {
     if (!out_count) {
         return 0;
@@ -80,9 +80,7 @@ int thvk_GetRequiredInstanceExtensions(const thvk_RenderSystem_t *const render_s
     return 1;
 }
 
-int thvk_GetRequiredDeviceExtensions(const thvk_RenderSystem_t *const render_system, unsigned int *const out_count,
-    const char **const out_extension_names)
-{
+int thvk_GetRequiredDeviceExtensions(const thvk_RenderSystem_t *const render_system, unsigned int *out_count, const char **out_extension_names) {
     if (!out_count) {
         return 0;
     }

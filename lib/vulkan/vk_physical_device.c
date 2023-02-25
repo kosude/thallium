@@ -73,9 +73,9 @@ static int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, c
     requirements.type = VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU;
 
     // get required/specified device extensions
-    TH_ASSERT(thvk_GetRequiredDeviceExtensions(render_system, &requirements.extension_count, NULL));
+    thassert(thvk_GetRequiredDeviceExtensions(render_system, &requirements.extension_count, NULL));
     requirements.extension_names = malloc(requirements.extension_count * sizeof(char *));
-    TH_ASSERT(thvk_GetRequiredDeviceExtensions(render_system, &requirements.extension_count, requirements.extension_names));
+    thassert(thvk_GetRequiredDeviceExtensions(render_system, &requirements.extension_count, requirements.extension_names));
 
     // check if the device meets requirements...
 
@@ -92,9 +92,9 @@ static int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, c
 
     // get available device extensions
     unsigned int available_extension_count;
-    TH_ASSERT_VK(vkEnumerateDeviceExtensionProperties(physical_device, NULL, &available_extension_count, NULL));
+    thassert_vk(vkEnumerateDeviceExtensionProperties(physical_device, NULL, &available_extension_count, NULL));
     VkExtensionProperties available_extension_properties[available_extension_count];
-    TH_ASSERT_VK(vkEnumerateDeviceExtensionProperties(physical_device, NULL, &available_extension_count, available_extension_properties));
+    thassert_vk(vkEnumerateDeviceExtensionProperties(physical_device, NULL, &available_extension_count, available_extension_properties));
 
     // convert available extension properties to their extracted names
     char *available_extension_names[available_extension_count];
@@ -104,9 +104,9 @@ static int _PhysicalDeviceIsSuitable(const thvk_RenderSystem_t *render_system, c
 
     // also get available INSTANCE extensions so as to filter them out of the extensions list
     unsigned int available_instance_extension_count;
-    TH_ASSERT_VK(vkEnumerateInstanceExtensionProperties(NULL, &available_instance_extension_count, NULL));
+    thassert_vk(vkEnumerateInstanceExtensionProperties(NULL, &available_instance_extension_count, NULL));
     VkExtensionProperties available_instance_extension_properties[available_instance_extension_count];
-    TH_ASSERT_VK(vkEnumerateInstanceExtensionProperties(NULL, &available_instance_extension_count, available_instance_extension_properties));
+    thassert_vk(vkEnumerateInstanceExtensionProperties(NULL, &available_instance_extension_count, available_instance_extension_properties));
 
     // convert available INSTANCE extension properties to their extracted names
     char *available_instance_extension_names[available_instance_extension_count];
@@ -197,7 +197,7 @@ static uint64_t _ScorePhysicalDevice(const VkPhysicalDevice physical_device, con
 // ===========================================================================
 
 int thvk_EnumerateRankedPhysicalDevices(const thvk_RenderSystem_t *render_system, const VkPhysicalDevice *physical_devices,
-    const unsigned int physical_device_count, unsigned int *const out_count, const VkPhysicalDevice **const out_physical_devices)
+    const unsigned int physical_device_count, unsigned int *out_count, const VkPhysicalDevice **out_physical_devices)
 {
     if (!out_count) {
         return 0;

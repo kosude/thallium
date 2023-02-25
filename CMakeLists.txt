@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(THALLIUM_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake")
+set(THALLIUM_DEPS_DIR "${CMAKE_CURRENT_LIST_DIR}/deps")
 set(THALLIUM_DOCS_DIR "${CMAKE_CURRENT_LIST_DIR}/docs")
 set(THALLIUM_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/include")
 set(THALLIUM_LIB_DIR "${CMAKE_CURRENT_LIST_DIR}/lib")
@@ -18,6 +19,8 @@ set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}")
 set(THALLIUM_LIBRARIES)
 set(THALLIUM_LIBRARY_DEFS)
 
+set(THALLIUM_VULKAN_DEPENDENCIES)
+
 if (MSVC)
     add_compile_options(
         /W4 /WX
@@ -25,6 +28,7 @@ if (MSVC)
 else()
     add_compile_options(
         -Wall -Wextra -pedantic -Werror
+        -Wno-strict-prototypes
     )
 endif()
 
@@ -89,9 +93,8 @@ else()
     set(THALLIUM_VERSION "unknown_version")
 endif()
 
-set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "THALLIUM_VERSION=\"${THALLIUM_VERSION}\"")
-
 if (THALLIUM_BUILD_LIB)
+    add_subdirectory("${THALLIUM_DEPS_DIR}/")
     add_subdirectory("${THALLIUM_LIB_DIR}/")
 endif()
 

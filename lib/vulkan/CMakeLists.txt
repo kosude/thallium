@@ -6,6 +6,7 @@ set(SOURCES_VULKAN
 )
 
 find_package("Vulkan" REQUIRED)
+set(THALLIUM_VULKAN_DEPENDENCIES ${THALLIUM_VULKAN_DEPENDENCIES} ${Vulkan_LIBRARIES} PARENT_SCOPE)
 
 add_library(${PROJECT_NAME}_vk ${LIB_BUILD_TYPE} ${SOURCES_VULKAN})
 
@@ -19,5 +20,6 @@ target_include_directories(
     PRIVATE
         "${THALLIUM_LIB_DIR}" # this directory for internal headers
         "${PROJECT_BINARY_DIR}/generated" # for generated resources and headers
+        "${THALLIUM_DEPS_DIR}" # dependencies
 )
-target_link_libraries(${PROJECT_NAME}_vk ${PROJECT_NAME}_core ${Vulkan_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_vk ${PROJECT_NAME}_core ${THALLIUM_VULKAN_DEPENDENCIES})

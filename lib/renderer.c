@@ -27,14 +27,14 @@ typedef enum ApiId_t {
 //                       THALLIUM PUBLIC API DEFINITIONS
 // ===========================================================================
 
-th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, th_Debugger_t *debugger) {
+th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, const th_Debugger_t *const debugger) {
     th_Renderer_t *r = malloc(sizeof(th_Renderer_t));
     if (!r) {
         th_Fatal(debugger, "MALLOC fault in th_CreateRenderer!");
         return NULL;
     }
 
-    r->debugger = debugger;
+    r->debugger = (th_Debugger_t *) debugger;
 
     // vulkan renderers
     if (!strcmp(descriptor.api_name, "vulkan")) {

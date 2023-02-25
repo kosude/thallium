@@ -47,7 +47,7 @@
  */
 int thvk_GetRequiredLayers(
     const thvk_RenderSystem_t *const render_system,
-    unsigned int *const out_count,
+    unsigned int *out_count,
     const char **out_layer_names
 );
 
@@ -68,8 +68,8 @@ int thvk_GetRequiredLayers(
 int thvk_GetRequiredInstanceExtensions(
     const thvk_RenderSystem_t *const render_system,
     const int debug_utils_enabled,
-    unsigned int *const out_count,
-    const char **const out_extension_names
+    unsigned int *out_count,
+    const char **out_extension_names
 );
 
 /**
@@ -88,8 +88,8 @@ int thvk_GetRequiredInstanceExtensions(
  */
 int thvk_GetRequiredDeviceExtensions(
     const thvk_RenderSystem_t *const render_system,
-    unsigned int *const out_count,
-    const char **const out_extension_names
+    unsigned int *out_count,
+    const char **out_extension_names
 );
 
 #ifdef __cplusplus

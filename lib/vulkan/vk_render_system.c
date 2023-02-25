@@ -39,6 +39,13 @@
 thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_Version_t api_version, const th_Debugger_t *debugger,
     const th_RendererConfig_Vulkan_t *config)
 {
+    // load Vulkan pre-instance functions
+    // if this assertion fails then Vulkan is not available/installed on the system (or at least the Vulkan libraries could not be found)
+
+    // NOTE: volk's README says to avoid linking to vulkan-1 elsewhere (i.e. CMake) and this has not been considered - but no problems have been
+    //       encountered as of writing.
+    thassert_vk(volkInitialize());
+
     thvk_RenderSystem_t *r = malloc(sizeof(thvk_RenderSystem_t));
     if (!r) {
         th_Fatal(debugger, "MALLOC fault in th_CreateRenderer!");
@@ -52,55 +59,60 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_Version_t api_version, con
     if (config) {
         // copy the given config onto the heap within the render system's own config struct
         r->config.application_name = malloc(strlen(config->application_name) * sizeof(char));
-        TH_ASSERT(r->config.application_name);
+        thassert(r->config.application_name);
         strcpy(r->config.application_name, config->application_name);
         r->config.application_version = config->application_version;
 
         r->config.engine_name = malloc(strlen(config->engine_name) * sizeof(char));
-        TH_ASSERT(r->config.engine_name);
+        thassert(r->config.engine_name);
         strcpy(r->config.engine_name, config->engine_name);
         r->config.engine_version = config->engine_version;
 
         // first we copy the layer names onto the heap
         r->config.layer_names = malloc(config->layer_count * sizeof(const char *));
-        TH_ASSERT(r->config.layer_names);
+        thassert(r->config.layer_names);
         for (unsigned int i = 0; i < (unsigned int) config->layer_count; i++) {
             r->config.layer_names[i] = malloc(strlen(config->layer_names[i]) * sizeof(char));
-            TH_ASSERT(r->config.layer_names[i]);
+            thassert(r->config.layer_names[i]);
             strcpy(r->config.layer_names[i], config->layer_names[i]);
         }
         r->config.layer_count = config->layer_count;
 
         // then repeat for the extension names
         r->config.extension_names = malloc(config->extension_count * sizeof(const char *));
-        TH_ASSERT(r->config.extension_names);
+        thassert(r->config.extension_names);
         for (unsigned int i = 0; i < (unsigned int) config->extension_count; i++) {
             r->config.extension_names[i] = malloc(strlen(config->extension_names[i]) * sizeof(char));
-            TH_ASSERT(r->config.extension_names[i]);
+            thassert(r->config.extension_names[i]);
             strcpy(r->config.extension_names[i], config->extension_names[i]);
         }
         r->config.extension_count = config->extension_count;
     }
 
     // create Vulkan instance for render system
-    TH_ASSERT(thvk_CreateInstance(r));
+    thassert(thvk_CreateInstance(r));
 
     // TODO - just testing:
 
     unsigned int p_device_count, ranked_p_device_count;
 
-    TH_ASSERT_VK(vkEnumeratePhysicalDevices(r->instance, &p_device_count, NULL));
+    thassert_vk(vkEnumeratePhysicalDevices(r->instance, &p_device_count, NULL));
     VkPhysicalDevice p_devices[p_device_count];
-    TH_ASSERT_VK(vkEnumeratePhysicalDevices(r->instance, &p_device_count, p_devices));
+    thassert_vk(vkEnumeratePhysicalDevices(r->instance, &p_device_count, p_devices));
 
-    TH_ASSERT(thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, NULL));
+    thassert(thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, NULL));
     const VkPhysicalDevice *ranked_p_devices[ranked_p_device_count];
-    TH_ASSERT(thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, ranked_p_devices));
+    thassert(thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, ranked_p_devices));
 
     return r;
 }
 
 int thvk_DestroyRenderSystem(thvk_RenderSystem_t *render_system) {
+    // this debug messenger was only created if debugger was present.
+    if (render_system->debugger) {
+        vkDestroyDebugUtilsMessengerEXT(render_system->instance, render_system->debug_messenger, NULL);
+    }
+
     vkDestroyInstance(render_system->instance, NULL);
 
     free(render_system->config.application_name);

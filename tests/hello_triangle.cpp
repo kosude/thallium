@@ -17,7 +17,7 @@ void Print(Args... args) {
 }
 
 int main() {
-    Print("Thallium ", th_GetThalliumVersionString());
+    Print("Thallium ", THALLIUM_VERSION);
 
     th_Debugger_t *debugger = th_CreateDebugger(
         (th_DebugSeverity_t) (
@@ -36,21 +36,6 @@ int main() {
     const std::vector<const char *> vulkan_layers {
         "VK_LAYER_KHRONOS_validation"
     };
-    const std::vector<const char *> vulkan_extensions {
-        "VK_KHR_external_fence",
-        "VK_EXT_debug_report",
-        "VK_KHR_display",
-        "VK_EXT_acquire_drm_display",
-        "VK_KHR_surface_protected_capabilities",
-        "VK_KHR_xlib_surface",
-        "VK_KHR_external_fence_capabilities",
-        "VK_GOOGLE_hlsl_functionality1",
-        "VK_GOOGLE_decorate_string",
-        "VK_AMD_shader_core_properties2",
-        "VK_VALVE_mutable_descriptor_type",
-        "VK_EXT_direct_mode_display",
-        "VK_KHR_get_surface_capabilities2"
-    };
     const th_RendererConfig_Vulkan_t vulkan_config = {
         (char *) "Hello triangle",          // app name
         { 0, 1, 0 },                        // app version
@@ -58,8 +43,8 @@ int main() {
         { 0, 0, 0, },                       // engine version
         (char **) vulkan_layers.data(),     // specified layers
         (int) vulkan_layers.size(),         // specified layer count
-        (char **) vulkan_extensions.data(), // specified extensions
-        (int) vulkan_extensions.size()      // specified extension count
+        NULL,                               // specified extensions
+        0                                   // specified extension count
     };
 
     th_Renderer_t *vulkan = th_CreateRenderer({

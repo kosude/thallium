@@ -6,7 +6,6 @@ set(SOURCES_CORE
 
     "debugger.c"
     "renderer.c"
-    "version.c"
 )
 
 
@@ -23,6 +22,7 @@ target_include_directories(
     PRIVATE
         "${THALLIUM_LIB_DIR}" # this directory for internal headers
         "${PROJECT_BINARY_DIR}/generated" # for generated resources and headers
+        "${THALLIUM_DEPS_DIR}" # dependencies
 )
 
 
@@ -32,7 +32,7 @@ target_include_directories(
 set(THALLIUM_MODULE_INCLUDES)
 
 if (THALLIUM_BUILD_MODULE_VULKAN)
-    add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/vulkan")
+    add_subdirectory("${THALLIUM_LIB_DIR}/vulkan")
 
     set(THALLIUM_MODULE_INCLUDES "${THALLIUM_MODULE_INCLUDES}\n#include \"thallium_vulkan.h\"")
 endif()
@@ -41,7 +41,7 @@ configure_file("${THALLIUM_CMAKE_DIR}/modules.h" "${PROJECT_BINARY_DIR}/generate
 
 # add compilation definitions AFTER subdirectories so module flags are included
 foreach(lib ${THALLIUM_LIBRARIES})
-    target_compile_definitions(${lib} PRIVATE ${THALLIUM_LIBRARY_DEFS})
+    target_compile_definitions(${lib} PUBLIC "THALLIUM_VERSION=\"${THALLIUM_VERSION}\"" PRIVATE ${THALLIUM_LIBRARY_DEFS})
 endforeach()
 
 message(STATUS "thallium libraries define: ${THALLIUM_LIBRARY_DEFS}")

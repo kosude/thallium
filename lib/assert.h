@@ -45,7 +45,7 @@
 #       endif
 #   endif
 
-#   define TH_ASSERT(expr) \
+#   define thassert(expr) \
     { \
         if (!(expr)) { \
             fprintf(stderr, \
@@ -57,15 +57,15 @@
     }
 
 #   ifdef THALLIUM_VULKAN_INCL
-#       define TH_ASSERT_VK(expr) \
+#       define thassert_vk(expr) \
         { \
-           TH_ASSERT(expr == VK_SUCCESS); \
+           thassert(expr == VK_SUCCESS); \
         }
 #   endif
 #else
-#   define TH_ASSERT(expr) expr
+#   define thassert(expr) expr
 #   ifdef THALLIUM_VULKAN_INCL
-#       define TH_ASSERT_VK(expr) expr
+#       define thassert_vk(expr) expr
 #   endif
 #endif
 

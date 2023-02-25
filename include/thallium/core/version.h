@@ -37,30 +37,6 @@ typedef struct th_Version_t {
     int patch;
 } th_Version_t;
 
-/**
- * @ingroup utils
- * @brief Convert the given version to a string and return it.
- *
- * Convert the given version to a string and return it into `out_string`.
- *
- * @param version The version to stringify
- * @param out_string Pointer to the string to update
- */
-void th_VersionToString(
-    const th_Version_t version,
-    char *out_string
-);
-
-/**
- * @ingroup utils
- * @brief Retrieve, as a human-readable string, the version of Thallium that was compiled.
- *
- * This function returns the version of Thallium that was compiled in the format of a human-readable string.
- *
- * @return Stringified Thallium version
- */
-const char *th_GetThalliumVersionString(void);
-
 #ifdef __cplusplus
     }
 #endif // __cplusplus

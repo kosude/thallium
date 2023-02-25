@@ -31,11 +31,13 @@
 #define MAX_INSTANCE_LAYER_NAME_COUNT 128
 #define MAX_INSTANCE_EXTENSION_NAME_COUNT 256
 
-// Callback for instance debug messengers - redirects messages to Thallium debugger
-// userData is a pointer to the Thallium debugger struct
-static VKAPI_ATTR VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
+// Callback for debug messengers - redirects messages to Thallium debugger
+static VKAPI_ATTR VkBool32 VKAPI_CALL _DebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
     VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT *callback_data, void *user_data)
 {
+    // userData is guaranteed to be a pointer to the Thallium debugger struct
+    th_Debugger_t *debugger = (th_Debugger_t *) user_data;
+
     // convert the type to a string
     char type_str[32];
     switch (type) {
@@ -57,13 +59,13 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL _InstanceDebugMessengerCallback(VkDebugUti
     // redirect to appropriate logging function based on severity
     switch (severity) {
         case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
-            th_Warn_Vk(user_data, "%s: %s", type_str, callback_data->pMessage);
+            th_Warn_Vk(debugger, "%s: %s", type_str, callback_data->pMessage);
             break;
         case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
-            th_Error_Vk(user_data, "%s: %s", type_str, callback_data->pMessage);
+            th_Error_Vk(debugger, "%s: %s", type_str, callback_data->pMessage);
             break;
         default:
-            th_Log_Vk(user_data, "%s: %s", type_str, callback_data->pMessage);
+            th_Log_Vk(debugger, "%s: %s", type_str, callback_data->pMessage);
             break;
     }
 
@@ -88,17 +90,58 @@ static VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_Debugge
     return (VkDebugUtilsMessengerCreateInfoEXT) {
         .sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
         .pNext = NULL,
-        .flags = 0, // NOTE: "reserved for future use"
+        .flags = 0,
         .messageSeverity = _ThalliumDebugSeveritiesToVulkanFlags(debugger->debug_severity_filter),
         .messageType =
             VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT
             | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT
             | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT
             | VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT,
-        .pfnUserCallback = _InstanceDebugMessengerCallback,
+        .pfnUserCallback = _DebugMessengerCallback,
         .pUserData = (void *) debugger
     };
 }
+
+#ifdef THALLIUM_DEBUG_LAYER
+    // Function print given information in a formatted log message
+    // not included with debug layer disabled due to frequent string operations
+    static void _PrintInstanceInfo(const th_Debugger_t *dbg, const unsigned int lc, const char **ln, const unsigned int ec, const char **en) {
+        unsigned int instance_version_bit = VK_API_VERSION_1_0;
+
+        if (vkEnumerateInstanceVersion) {
+            vkEnumerateInstanceVersion(&instance_version_bit);
+        }
+
+        th_Version_t instance_version_struct = {
+            VK_VERSION_MAJOR(instance_version_bit),
+            VK_VERSION_MINOR(instance_version_bit),
+            VK_VERSION_PATCH(instance_version_bit),
+        };
+
+        char debug_str[1024];
+        snprintf(debug_str, 1024, "==== VULKAN INSTANCE INFO ====\n"
+            "     Supported instance version: %d.%d.%d\n"
+            "     Enabled layers (%d):\t\t\tEnabled extensions (%d):\n",
+            instance_version_struct.major, instance_version_struct.minor, instance_version_struct.patch, lc, ec);
+
+        unsigned int max_count = (lc > ec) ? lc : ec;
+        for (unsigned int i = 0; i < max_count; i++) {
+            char current_line[256];
+            snprintf(current_line, 256, "     %s%s%s",
+                (i < lc) ? ln[i] : "",
+                (i < lc) ? "\t\t" : "\t\t\t\t\t\t",
+                (i < ec) ? en[i] : "");
+
+            if (i < max_count - 1) {
+                strncat(current_line, "\n", 256);
+            }
+
+            strncat(debug_str, current_line, 1024);
+        }
+
+        th_Log(dbg, debug_str);
+    }
+#endif
 
 int thvk_CreateInstance(thvk_RenderSystem_t *render_system) {
     VkApplicationInfo app_info;
@@ -146,9 +189,9 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system) {
     unsigned int available_layer_count, required_layer_count;
 
     // get available layers
-    TH_ASSERT_VK(vkEnumerateInstanceLayerProperties(&available_layer_count, NULL));
+    thassert_vk(vkEnumerateInstanceLayerProperties(&available_layer_count, NULL));
     VkLayerProperties available_layer_properties[available_layer_count];
-    TH_ASSERT_VK(vkEnumerateInstanceLayerProperties(&available_layer_count, available_layer_properties));
+    thassert_vk(vkEnumerateInstanceLayerProperties(&available_layer_count, available_layer_properties));
 
     // + convert layer properties to layer names (strings)
     char *available_layer_names[available_layer_count];
@@ -182,9 +225,9 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system) {
     unsigned int required_extension_count, available_extension_count;
 
     // get available extensions
-    TH_ASSERT_VK(vkEnumerateInstanceExtensionProperties(NULL, &available_extension_count, NULL));
+    thassert_vk(vkEnumerateInstanceExtensionProperties(NULL, &available_extension_count, NULL));
     VkExtensionProperties available_extension_properties[available_extension_count];
-    TH_ASSERT_VK(vkEnumerateInstanceExtensionProperties(NULL, &available_extension_count, available_extension_properties));
+    thassert_vk(vkEnumerateInstanceExtensionProperties(NULL, &available_extension_count, available_extension_properties));
 
     // + convert extension properties to extension names (strings)
     char *available_extension_names[available_extension_count];
@@ -219,31 +262,23 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system) {
     instance_info.ppEnabledExtensionNames = extension_names;
 
     // then we create the instance
-    TH_ASSERT_VK(vkCreateInstance(&instance_info, NULL, &(render_system->instance)));
-
+    thassert_vk(vkCreateInstance(&instance_info, NULL, &(render_system->instance)));
     th_Note(debugger, "Created Vulkan instance at %p", &(render_system->instance));
 
 #   ifdef THALLIUM_DEBUG_LAYER
-        char debug_str[1024];
-        snprintf(debug_str, 1024, "==== INSTANCE INFO ====\n     Enabled layers (%d):\t\t\tEnabled extensions (%d):\n", layer_count, extension_count);
-
-        unsigned int max_count = (layer_count > extension_count) ? layer_count : extension_count;
-        for (unsigned int i = 0; i < max_count; i++) {
-            char current_line[256];
-            snprintf(current_line, 256, "     %s%s%s",
-                (i < layer_count) ? layer_names[i] : "",
-                (i < layer_count) ? "\t\t" : "\t\t\t\t\t\t",
-                (i < extension_count) ? extension_names[i] : "");
-
-            if (i < max_count - 1) {
-                strncat(current_line, "\n", 256);
-            }
-
-            strncat(debug_str, current_line, 1024);
-        }
-
-        th_Log(debugger, debug_str);
+        _PrintInstanceInfo(debugger, layer_count, layer_names, extension_count, extension_names);
 #   endif
+
+    // then load functions from instance proc
+    volkLoadInstance(render_system->instance);
+
+    // now we have created the instance and loaded functions, we can create a full debug messenger
+    // (only if debugger is passed, same criteria + properties as the instance debug messenger created earlier.)
+    if (debugger) {
+        // debug_messenger_info will already have been populated earlier
+        thassert_vk(vkCreateDebugUtilsMessengerEXT(render_system->instance, &debug_messenger_info, NULL, &(render_system->debug_messenger)));
+        th_Note(debugger, "Created debug messenger at %p", &(render_system->debug_messenger));
+    }
 
     return 1;
 }

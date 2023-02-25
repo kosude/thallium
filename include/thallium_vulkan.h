@@ -26,7 +26,7 @@
     extern "C" {
 #endif // __cplusplus
 
-#include <vulkan/vulkan.h>
+#include <volk/volk.h>
 
 #include "thallium/vulkan/vk_extension.h"
 #include "thallium/vulkan/vk_physical_device.h"

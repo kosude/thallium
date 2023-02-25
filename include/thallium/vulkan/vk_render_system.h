@@ -28,7 +28,7 @@
 #include "thallium/core/renderer_config.h"
 #include "thallium/core/version.h"
 
-#include <vulkan/vulkan.h>
+#include <volk/volk.h>
 
 
 // ===========================================================================
@@ -52,9 +52,11 @@ typedef struct thvk_RenderSystem_t {
 
     /// @brief Vulkan instance
     VkInstance instance;
+    /// @brief Full debug messenger (created immediately after instance creation, in thvk_CreateInstance().)
+    VkDebugUtilsMessengerEXT debug_messenger;
+
     /// @brief Vulkan API version (formatted with VK_MAKE_API_VERSION())
     int api_version;
-
     /// @brief Vulkan renderer (thus render system) configuration options
     th_RendererConfig_Vulkan_t config;
     /// @brief 1 if a config struct was specified in thvk_CreateRenderSystem(); 0 if not.
@@ -78,8 +80,8 @@ typedef struct thvk_RenderSystem_t {
  */
 thvk_RenderSystem_t *thvk_CreateRenderSystem(
     const th_Version_t api_version,
-    const th_Debugger_t *debugger,
-    const th_RendererConfig_Vulkan_t *config
+    const th_Debugger_t *const debugger,
+    const th_RendererConfig_Vulkan_t *const config
 );
 
 /**
