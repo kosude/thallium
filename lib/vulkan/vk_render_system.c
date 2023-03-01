@@ -14,15 +14,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
-
-// TODO - just testing:
-#include "thallium_vulkan.h"
-
-
-
-
 #define FMT_VK_API_VERSION(vers) \
     VK_MAKE_API_VERSION( \
         0, \
@@ -91,18 +82,6 @@ thvk_RenderSystem_t *thvk_CreateRenderSystem(const th_Version_t api_version, con
 
     // create Vulkan instance for render system
     thassert(thvk_CreateInstance(r));
-
-    // TODO - just testing:
-
-    unsigned int p_device_count, ranked_p_device_count;
-
-    thassert_vk(vkEnumeratePhysicalDevices(r->instance, &p_device_count, NULL));
-    VkPhysicalDevice p_devices[p_device_count];
-    thassert_vk(vkEnumeratePhysicalDevices(r->instance, &p_device_count, p_devices));
-
-    thassert(thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, NULL));
-    const VkPhysicalDevice *ranked_p_devices[ranked_p_device_count];
-    thassert(thvk_EnumerateRankedPhysicalDevices(r, p_devices, p_device_count, &ranked_p_device_count, ranked_p_devices));
 
     return r;
 }

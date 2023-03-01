@@ -18,24 +18,18 @@ set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}")
 
 set(THALLIUM_LIBRARIES)
 set(THALLIUM_LIBRARY_DEFS)
-
-set(THALLIUM_VULKAN_DEPENDENCIES)
+set(THALLIUM_COMPILE_OPTIONS)
 
 if (MSVC)
-    add_compile_options(
+    set(THALLIUM_COMPILE_OPTIONS
         /W4 /WX
     )
 else()
-    add_compile_options(
+    set(THALLIUM_COMPILE_OPTIONS
         -Wall -Wextra -pedantic -Werror
         -Wno-strict-prototypes
     )
 endif()
-
-macro(ADD_TEST_PROJECT TEST_NAME TEST_FILES LIB_FILES)
-    add_executable(${TEST_NAME} ${TEST_FILES})
-    target_link_libraries(${TEST_NAME} ${LIB_FILES})
-endmacro()
 
 set(SUMMARY_TARGET_PLATFORM "Unknown")
 set(SUMMARY_TARGET_ARCH "Unknown")
@@ -94,7 +88,6 @@ else()
 endif()
 
 if (THALLIUM_BUILD_LIB)
-    add_subdirectory("${THALLIUM_DEPS_DIR}/")
     add_subdirectory("${THALLIUM_LIB_DIR}/")
 endif()
 
