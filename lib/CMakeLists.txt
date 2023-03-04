@@ -40,11 +40,18 @@ endif()
 configure_file("${THALLIUM_CMAKE_DIR}/modules.h" "${PROJECT_BINARY_DIR}/generated/cmake_modules.h")
 
 foreach(lib ${THALLIUM_LIBRARIES})
-    target_compile_definitions(${lib} PUBLIC "THALLIUM_VERSION=\"${THALLIUM_VERSION}\"" PRIVATE ${THALLIUM_LIBRARY_DEFS})
+    target_compile_definitions(${lib}
+        PUBLIC
+            "THALLIUM_VERSION=\"${THALLIUM_VERSION}\""
+            ${THALLIUM_PUBLIC_LIBRARY_DEFS}
+        PRIVATE
+            ${THALLIUM_LIBRARY_DEFS})
+
     target_compile_options(${lib} PRIVATE ${THALLIUM_COMPILE_OPTIONS})
 endforeach()
 
 message(STATUS "thallium libraries define: ${THALLIUM_LIBRARY_DEFS}")
+message(STATUS "thallium libraries publicly define: ${THALLIUM_PUBLIC_LIBRARY_DEFS}")
 
 
 # Interface library

@@ -28,16 +28,20 @@
 static void _CopyConfig(thvk_VulkanRendererConfig_t *dest, const thvk_VulkanRendererConfig_t src) {
     // copy application version and name str
 
-    dest->application_config.application_name = malloc(strlen(src.application_config.application_name) * sizeof(char) + 1); // + 1 for null term
-    thassert(dest->application_config.application_name);
-    strcpy(dest->application_config.application_name, src.application_config.application_name);
+    if (src.application_config.application_name) {
+        dest->application_config.application_name = malloc(strlen(src.application_config.application_name) * sizeof(char) + 1); // + 1 for null term
+        thassert(dest->application_config.application_name);
+        strcpy(dest->application_config.application_name, src.application_config.application_name);
+    }
     dest->application_config.application_version = src.application_config.application_version;
 
     // copy engine version and name str
 
-    dest->application_config.engine_name = malloc(strlen(src.application_config.engine_name) * sizeof(char) + 1);
-    thassert(dest->application_config.engine_name);
-    strcpy(dest->application_config.engine_name, src.application_config.engine_name);
+    if (src.application_config.engine_name) {
+        dest->application_config.engine_name = malloc(strlen(src.application_config.engine_name) * sizeof(char) + 1);
+        thassert(dest->application_config.engine_name);
+        strcpy(dest->application_config.engine_name, src.application_config.engine_name);
+    }
     dest->application_config.engine_version = src.application_config.engine_version;
 
     // copy layer name str array and count

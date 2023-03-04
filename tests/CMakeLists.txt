@@ -1,5 +1,5 @@
 macro(ADD_TEST_PROJECT TEST_NAME TEST_FILES LIB_FILES)
-    add_executable(${TEST_NAME} ${TEST_FILES})
+    add_executable(${TEST_NAME} "test_base/test_base.cpp" ${TEST_FILES})
     target_link_libraries(${TEST_NAME} ${LIB_FILES})
 endmacro()
 
