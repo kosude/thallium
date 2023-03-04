@@ -20,6 +20,9 @@
 # To skip all suppressions, append 'all' onto the end of the ./ValgrindMemCheck.sh
 # command, after the input file.
 
+# KNOWN ERROR: valgrind may not work if the project was compiled using Clang!
+#              please use GCC if there are any problems.
+
 # dependencies:
 # valgrind (https://valgrind.org)
 

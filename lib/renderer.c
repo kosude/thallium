@@ -42,7 +42,7 @@ th_Renderer_t *th_CreateRenderer(const th_RendererDescriptor_t descriptor, const
             r->api_id = THALLIUM_API_ID_VULKAN;
 
             // create the render system
-            r->render_system = thvk_CreateRenderSystem(descriptor.api_version, debugger, (th_RendererConfig_Vulkan_t *) descriptor.renderer_config);
+            r->render_system = thvk_CreateRenderSystem(descriptor.api_version, debugger, (thvk_VulkanRendererConfig_t *) descriptor.renderer_config);
             if (!r->render_system) {
                 th_Error(debugger, "Failed to create render system (th_CreateRenderer)");
                 return NULL;

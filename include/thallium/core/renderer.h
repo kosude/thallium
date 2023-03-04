@@ -62,10 +62,8 @@ typedef struct th_Renderer_t th_Renderer_t;
  *
  * @par Renderer config example
  * Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a
- * `th_RendererConfig_Vulkan_t` structure with the relevant information, and pass a pointer to it via the `rendererConfig`
- * parameter.
- *
- * For more, see the @ref renderer_config page.
+ * `thvk_VulkanRendererConfig_t` structure with the relevant information, and pass a pointer to it via the `renderer_config`
+ * parameter. This of course requires including `<thallium_vulkan.h>`.
  */
 typedef struct th_RendererDescriptor_t {
     /// @brief The name of the API being represented

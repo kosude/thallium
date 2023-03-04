@@ -6,7 +6,6 @@
  */
 
 /*
-//
 //          88
 //   ,d     88
 //   88     88
@@ -54,7 +53,6 @@
 #include "thallium/enums.h"
 
 #include "thallium/core/debugger.h"
-#include "thallium/core/renderer_config.h"
 #include "thallium/core/renderer.h"
 #include "thallium/core/version.h"
 

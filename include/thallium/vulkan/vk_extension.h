@@ -38,8 +38,6 @@
  * This functions gets an array of required layers for Vulkan instances, from the information provided
  * through the given render system `render_system`.
  *
- * These layers are enabled on all Vulkan instances created with (internal function) thvk_CreateInstance().
- *
  * @param render_system Render system for querying
  * @param out_count location to which the amount of layers will be returned
  * @param out_layer_names NULL or the array to output layer names into.
@@ -56,8 +54,6 @@ int thvk_GetRequiredLayers(
  * @brief Get array of required extensions for Vulkan instances.
  *
  * This functions populates an array of required extensions for Vulkan instances.
- *
- * These extensions are enabled on all Vulkan instances created with (internal function) thvk_CreateInstance().
  *
  * @param render_system Render system for querying
  * @param debug_utils_enabled Boolean - are debug utils enabled for the renderer?
@@ -84,12 +80,28 @@ int thvk_GetRequiredInstanceExtensions(
  * @param render_system Render system for querying
  * @param out_count location to which the amount of extensions will be returned
  * @param out_extension_names NULL or the array to output extension names into.
- * @return Array of extension names (NULL if error)
+ * @return @returnstatus
  */
 int thvk_GetRequiredDeviceExtensions(
     const thvk_RenderSystem_t *const render_system,
     unsigned int *out_count,
     const char **out_extension_names
+);
+
+/**
+ * @ingroup vk_extension
+ * @brief Get struct of required features for Vulkan devices.
+ *
+ * This function populates a VkPhysicalDeviceFeatures struct from the information provided through the given
+ * render system `render_system`.
+ *
+ * @param render_system Render system for querying
+ * @param out_features Pointer to struct to which the features will be output
+ * @return @returnstatus
+ */
+int thvk_GetRequiredDeviceFeatures(
+    const thvk_RenderSystem_t *const render_system,
+    VkPhysicalDeviceFeatures *out_features
 );
 
 #ifdef __cplusplus

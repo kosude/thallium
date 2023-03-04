@@ -26,7 +26,6 @@ typedef struct th_Version_t th_Version_t;
 
 typedef struct th_Renderer_t th_Renderer_t;
 typedef struct th_RendererDescriptor_t th_RendererDescriptor_t;
-typedef struct th_RendererConfig_Vulkan_t th_RendererConfig_Vulkan_t;
 
 typedef struct th_Debugger_t th_Debugger_t;
 

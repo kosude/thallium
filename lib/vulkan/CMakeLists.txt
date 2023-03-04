@@ -1,7 +1,9 @@
 set(SOURCES_VULKAN
-    "vk_extension.c"
     "vk_instance.c"
-    "vk_physical_device.c"
+    "vk_log.c"
+
+    "vk_extension.c"
+    "vk_device.c"
     "vk_render_system.c"
 )
 
@@ -31,9 +33,9 @@ target_include_directories(
     ${PROJECT_NAME}_vk
     PUBLIC
         "${Vulkan_INCLUDE_DIRS}"
+        "${THALLIUM_DEPS_DIR}" # dependencies
     PRIVATE
         "${THALLIUM_LIB_DIR}" # this directory for internal headers
         "${PROJECT_BINARY_DIR}/generated" # for generated resources and headers
-        "${THALLIUM_DEPS_DIR}" # dependencies
 )
 target_link_libraries(${PROJECT_NAME}_vk ${PROJECT_NAME}_core volk ${Vulkan_LIBRARIES})

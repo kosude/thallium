@@ -6,6 +6,7 @@
  */
 
 #include "thallium.h"
+#include "thallium_vulkan.h"
 
 #include <iostream>
 #include <vector>
@@ -33,18 +34,26 @@ int main() {
         )
     );
 
+    // creating renderer
+
     const std::vector<const char *> vulkan_layers {
         "VK_LAYER_KHRONOS_validation"
     };
-    const th_RendererConfig_Vulkan_t vulkan_config = {
-        (char *) "Hello triangle",          // app name
-        { 0, 1, 0 },                        // app version
-        (char *) "No Engine",               // engine name
-        { 0, 0, 0, },                       // engine version
-        (char **) vulkan_layers.data(),     // specified layers
-        (int) vulkan_layers.size(),         // specified layer count
-        NULL,                               // specified extensions
-        0                                   // specified extension count
+
+    const thvk_VulkanRendererConfig_t vulkan_config = {
+        { // application config
+            (char *) "Hello triangle",          // app name
+            { 0, 1, 0 },                        // app version
+            (char *) "No Engine",               // engine name
+            { 0, 0, 0, }                        // engine version
+        },
+        { // extension config
+            (char **) vulkan_layers.data(),     // specified layers
+            (int) vulkan_layers.size(),         // specified layer count
+            NULL,                               // specified extensions
+            0                                   // specified extension count
+        },
+        {} // device config
     };
 
     th_Renderer_t *vulkan = th_CreateRenderer({
@@ -59,8 +68,6 @@ int main() {
     } else {
         Print("Created and initialised renderer");
     }
-
-    Print("Hello triangle!");
 
     th_DestroyRenderer(vulkan);
     th_DestroyDebugger(debugger);

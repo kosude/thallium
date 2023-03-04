@@ -25,8 +25,9 @@
 
 #include "thallium/fwd.h"
 #include "thallium/fwdvk.h"
-#include "thallium/core/renderer_config.h"
 #include "thallium/core/version.h"
+
+#include "thallium/vulkan/vk_config.h"
 
 #include <volk/volk.h>
 
@@ -52,13 +53,16 @@ typedef struct thvk_RenderSystem_t {
 
     /// @brief Vulkan instance
     VkInstance instance;
-    /// @brief Full debug messenger (created immediately after instance creation, in thvk_CreateInstance().)
+    /// @brief Full debug messenger (created immediately after instance creation, in thvk_CreateInstance(), if `debugger` is not NULL)
     VkDebugUtilsMessengerEXT debug_messenger;
+
+    /// @brief Device handle
+    VkDevice device;
 
     /// @brief Vulkan API version (formatted with VK_MAKE_API_VERSION())
     int api_version;
     /// @brief Vulkan renderer (thus render system) configuration options
-    th_RendererConfig_Vulkan_t config;
+    thvk_VulkanRendererConfig_t config;
     /// @brief 1 if a config struct was specified in thvk_CreateRenderSystem(); 0 if not.
     int config_specified;
 } thvk_RenderSystem_t;
@@ -81,7 +85,7 @@ typedef struct thvk_RenderSystem_t {
 thvk_RenderSystem_t *thvk_CreateRenderSystem(
     const th_Version_t api_version,
     const th_Debugger_t *const debugger,
-    const th_RendererConfig_Vulkan_t *const config
+    const thvk_VulkanRendererConfig_t *const config
 );
 
 /**

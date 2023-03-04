@@ -13,8 +13,7 @@
  * @brief Internally used functions for managing Vulkan instances.
  * @ingroup vulkan
  *
- * Some functions for creating and handling Vulkan instances. These are frequently used when managing
- * Vulkan render systems.
+ * Some functions for creating and handling Vulkan instances.
  */
 
 #pragma once
@@ -31,9 +30,9 @@
  * @ingroup vk_instance
  * @brief Create a Vulkan instance.
  *
- * This function creates a Vulkan instance into the location `instance`.
+ * This function creates a Vulkan instance into the render system `render_system`.
  *
- * If `debugger` is not NULL, a debug messenger will be created alongside the instance for Vulkan debugging.
+ * If `render_system` includes a debugger, a debug messenger will also be created for it.
  *
  * @param render_system Pointer to the render system into which the instance will be returned.
  * @return @returnstatus

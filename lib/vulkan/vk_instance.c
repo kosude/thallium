@@ -8,18 +8,17 @@
 #include "vk_instance.h"
 
 #include "thallium/core/debugger.h"
-#include "thallium/core/renderer_config.h"
 
+#include "thallium/vulkan/vk_config.h"
 #include "thallium/vulkan/vk_extension.h"
 
 #include "assert.h"
 #include "types.h"
 #include "utils/log.h"
+#include "vk_log.h"
 #include "utils/primitive.h"
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define FMT_VK_VERSION(vers) \
     VK_MAKE_VERSION( \
@@ -28,7 +27,7 @@
         vers.patch \
     )
 
-#define MAX_INSTANCE_LAYER_NAME_COUNT 128
+#define MAX_INSTANCE_LAYER_NAME_COUNT 64
 #define MAX_INSTANCE_EXTENSION_NAME_COUNT 256
 
 // Callback for debug messengers - redirects messages to Thallium debugger
@@ -102,47 +101,6 @@ static VkDebugUtilsMessengerCreateInfoEXT _CreateDebugMessenger(const th_Debugge
     };
 }
 
-#ifdef THALLIUM_DEBUG_LAYER
-    // Function print given information in a formatted log message
-    // not included with debug layer disabled due to frequent string operations
-    static void _PrintInstanceInfo(const th_Debugger_t *dbg, const unsigned int lc, const char **ln, const unsigned int ec, const char **en) {
-        unsigned int instance_version_bit = VK_API_VERSION_1_0;
-
-        if (vkEnumerateInstanceVersion) {
-            vkEnumerateInstanceVersion(&instance_version_bit);
-        }
-
-        th_Version_t instance_version_struct = {
-            VK_VERSION_MAJOR(instance_version_bit),
-            VK_VERSION_MINOR(instance_version_bit),
-            VK_VERSION_PATCH(instance_version_bit),
-        };
-
-        char debug_str[1024];
-        snprintf(debug_str, 1024, "==== VULKAN INSTANCE INFO ====\n"
-            "     Supported instance version: %d.%d.%d\n"
-            "     Enabled layers (%d):\t\t\tEnabled extensions (%d):\n",
-            instance_version_struct.major, instance_version_struct.minor, instance_version_struct.patch, lc, ec);
-
-        unsigned int max_count = (lc > ec) ? lc : ec;
-        for (unsigned int i = 0; i < max_count; i++) {
-            char current_line[256];
-            snprintf(current_line, 256, "     %s%s%s",
-                (i < lc) ? ln[i] : "",
-                (i < lc) ? "\t\t" : "\t\t\t\t\t\t",
-                (i < ec) ? en[i] : "");
-
-            if (i < max_count - 1) {
-                strncat(current_line, "\n", 256);
-            }
-
-            strncat(debug_str, current_line, 1024);
-        }
-
-        th_Log(dbg, debug_str);
-    }
-#endif
-
 int thvk_CreateInstance(thvk_RenderSystem_t *render_system) {
     VkApplicationInfo app_info;
     VkInstanceCreateInfo instance_info;
@@ -157,10 +115,10 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system) {
     if (render_system->config_specified) {
         app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
         app_info.pNext = NULL;
-        app_info.pApplicationName = render_system->config.application_name;
-        app_info.applicationVersion = FMT_VK_VERSION(render_system->config.application_version);
-        app_info.pEngineName = render_system->config.engine_name;
-        app_info.engineVersion = FMT_VK_VERSION(render_system->config.engine_version);
+        app_info.pApplicationName = render_system->config.application_config.application_name;
+        app_info.applicationVersion = FMT_VK_VERSION(render_system->config.application_config.application_version);
+        app_info.pEngineName = render_system->config.application_config.engine_name;
+        app_info.engineVersion = FMT_VK_VERSION(render_system->config.application_config.engine_version);
         app_info.apiVersion = render_system->api_version;
 
         instance_info.pApplicationInfo = &app_info;
@@ -266,7 +224,8 @@ int thvk_CreateInstance(thvk_RenderSystem_t *render_system) {
     th_Note(debugger, "Created Vulkan instance at %p", &(render_system->instance));
 
 #   ifdef THALLIUM_DEBUG_LAYER
-        _PrintInstanceInfo(debugger, layer_count, layer_names, extension_count, extension_names);
+        // print info to stdout
+        thvk_PrintVkInstanceInfo(debugger, layer_count, layer_names, extension_count, extension_names);
 #   endif
 
     // then load functions from instance proc

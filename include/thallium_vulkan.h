@@ -5,6 +5,18 @@
  *   Please see the LICENCE file for more information.
  */
 
+/*
+//          88                        88
+//   ,d     88                        88
+//   88     88                        88
+// MM88MMM  88,dPPYba,   8b       d8  88   ,d8
+//   88     88P'    "8a  `8b     d8'  88 ,a8"
+//   88     88       88   `8b   d8'   8888[
+//   88,    88       88    `8b,d8'    88`"Yba,
+//   "Y888  88       88      "8"      88   `Y8a  888888888
+//
+*/
+
 /**
  * @file thallium_vulkan.h
  * @brief Thallium Vulkan module header
@@ -28,8 +40,9 @@
 
 #include <volk/volk.h>
 
+#include "thallium/vulkan/vk_config.h"
+#include "thallium/vulkan/vk_device.h"
 #include "thallium/vulkan/vk_extension.h"
-#include "thallium/vulkan/vk_physical_device.h"
 #include "thallium/vulkan/vk_render_system.h"
 
 #ifdef __cplusplus

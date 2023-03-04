@@ -108,7 +108,7 @@
     ASSERT_SEV_FILTER(debugger, THALLIUM_DEBUG_SEVERITY_FATAL_BIT); \
     char msg[MAX_DBGMSG_LEN]; \
     FORMAT_STR(format); \
-    th_SetIOColour(THALLIUM_IO_COLOUR_RED, THALLIUM_IO_COLOUR_YELLOW, stderr); \
+    th_SetIOColour(THALLIUM_IO_COLOUR_RED, 0xFF, stderr); \
     fprintf(stderr, "%s FATAL: %s\n", prefix, msg); \
     th_DefaultIOColour(stderr); \
 }

@@ -22,9 +22,12 @@
 
 /** @cond */
 
-typedef struct thvk_RenderSystem_t thvk_RenderSystem_t;
+typedef struct thvk_VulkanRendererConfig_t thvk_VulkanRendererConfig_t;
+typedef struct thvk_VulkanRendererApplicationConfig_t thvk_VulkanRendererApplicationConfig_t;
+typedef struct thvk_VulkanRendererExtensionConfig_t thvk_VulkanRendererExtensionConfig_t;
+typedef struct thvk_VulkanRendererDeviceConfig_t thvk_VulkanRendererDeviceConfig_t;
 
-typedef struct thvk_QueueFamilyInfo_t thvk_QueueFamilyInfo_t;
+typedef struct thvk_RenderSystem_t thvk_RenderSystem_t;
 
 /** @endcond */
 
