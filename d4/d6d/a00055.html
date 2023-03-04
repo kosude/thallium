@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_0eb83bb (2023-03-01)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_7a07f41 (2023-03-04)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -126,7 +126,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>api_name</b><
 <tr class="memdesc:ac25d4d01520e8517c3db50b38cd9f20a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the API being represented. <br /></td></tr>
 <tr class="separator:ac25d4d01520e8517c3db50b38cd9f20a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2a926008c6aeb2af4bf544f66d0b6c9"><td class="memItemLeft" align="right" valign="top"><a id="ae2a926008c6aeb2af4bf544f66d0b6c9" name="ae2a926008c6aeb2af4bf544f66d0b6c9"></a>
-<a class="el" href="../../d1/d6f/a00063.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>api_version</b></td></tr>
+<a class="el" href="../../d3/d8b/a00059.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>api_version</b></td></tr>
 <tr class="memdesc:ae2a926008c6aeb2af4bf544f66d0b6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version of the API being represented. <br /></td></tr>
 <tr class="separator:ae2a926008c6aeb2af4bf544f66d0b6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6148ebc3b8774cad60aa69df05c88f0"><td class="memItemLeft" align="right" valign="top"><a id="af6148ebc3b8774cad60aa69df05c88f0" name="af6148ebc3b8774cad60aa69df05c88f0"></a>
@@ -136,9 +136,8 @@ const void *&#160;</td><td class="memItemRight" valign="bottom"><b>renderer_conf
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This structure describes a renderer to be created.</p>
-<p>Common practice is to set <code>rendererConfig</code> to NULL. However, it may be necessary to provide <a class="el" href="../../d3/dea/a00046.html">API-specific configuration</a>, which this parameter allows. See a Vulkan example below.</p>
-<dl class="section user"><dt>Renderer config example</dt><dd>Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a <code><a class="el" href="../../d3/d8b/a00059.html" title="Configuration structure specifically for Vulkan renderers.">th_RendererConfig_Vulkan_t</a></code> structure with the relevant information, and pass a pointer to it via the <code>rendererConfig</code> parameter.</dd></dl>
-<p>For more, see the <a class="el" href="../../d3/dea/a00046.html">Optional renderer configuration</a> page. </p>
+<p>Common practice is to set <code>rendererConfig</code> to NULL. However, it may be necessary to provide <a class="el" href="../../d4/d6d/a00055.html#af6148ebc3b8774cad60aa69df05c88f0">API-specific configuration</a>, which this parameter allows. See a Vulkan example below.</p>
+<dl class="section user"><dt>Renderer config example</dt><dd>Say you are creating a Vulkan renderer, and want to enable additional layers: simply create a <code><a class="el" href="../../d9/da5/a00075.html" title="Configuration structure specifically for Vulkan renderers.">thvk_VulkanRendererConfig_t</a></code> structure with the relevant information, and pass a pointer to it via the <code>renderer_config</code> parameter. This of course requires including <code>&lt;<a class="el" href="../../dc/d87/a00032.html" title="Thallium Vulkan module header.">thallium_vulkan.h</a>&gt;</code>. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
@@ -146,7 +145,7 @@ const void *&#160;</td><td class="memItemRight" valign="bottom"><b>renderer_conf
             <ul>
                 <li class="navelem"><a class="el" href="../../d4/d6d/a00055.html">th_RendererDescriptor_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_0eb83bb (2023-03-01) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_7a07f41 (2023-03-04) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

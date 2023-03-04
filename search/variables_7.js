@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['major_0',['major',['../d1/d6f/a00063.html#a30f77f3545270b58a55dc63ecf53e50a',1,'th_Version_t']]],
-  ['minor_1',['minor',['../d1/d6f/a00063.html#aff464e0eea03c7edf3a86c0a15f54cbc',1,'th_Version_t']]]
+  ['layer_5fcount_0',['layer_count',['../dc/ddf/a00067.html#a04446442819dedbd58676a915eb87f4f',1,'thvk_VulkanRendererExtensionConfig_t']]],
+  ['layer_5fnames_1',['layer_names',['../dc/ddf/a00067.html#a0b67da3f0264a44982e3ddac7c93d900',1,'thvk_VulkanRendererExtensionConfig_t']]]
 ];

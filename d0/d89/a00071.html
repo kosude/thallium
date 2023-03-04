@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>thvk_RenderSystem_t Struct Reference - Thallium</title>
+        <title>thvk_VulkanRendererDeviceConfig_t Struct Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_0eb83bb (2023-03-01)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_7a07f41 (2023-03-04)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,52 +112,43 @@ $(document).ready(function(){initNavTree('d0/d89/a00071.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">thvk_RenderSystem_t Struct Reference<div class="ingroups"><a class="el" href="../../d2/d79/a00051.html">Vulkan</a> &raquo; <a class="el" href="../../d2/dee/a00049.html">Vulkan render systems</a></div></div></div>
+  <div class="headertitle"><div class="title">thvk_VulkanRendererDeviceConfig_t Struct Reference<div class="ingroups"><a class="el" href="../../d6/d97/a00045.html">Managing renderer objects</a> &raquo; <a class="el" href="../../d3/dea/a00046.html">Optional Vulkan renderer configuration</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A render system to hold Vulkan-specific rendering data.  
+<p>Extra device configuration struct for Vulkan configs.  
  <a href="../../d0/d89/a00071.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a76b9aab3ede353409880f4daf7392e78"><td class="memItemLeft" align="right" valign="top"><a id="a76b9aab3ede353409880f4daf7392e78" name="a76b9aab3ede353409880f4daf7392e78"></a>
-const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>debugger</b></td></tr>
-<tr class="memdesc:a76b9aab3ede353409880f4daf7392e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to Thallium debugger config struct. <br /></td></tr>
-<tr class="separator:a76b9aab3ede353409880f4daf7392e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adac49d039637bd33afde650f823cf282"><td class="memItemLeft" align="right" valign="top"><a id="adac49d039637bd33afde650f823cf282" name="adac49d039637bd33afde650f823cf282"></a>
-VkInstance&#160;</td><td class="memItemRight" valign="bottom"><b>instance</b></td></tr>
-<tr class="memdesc:adac49d039637bd33afde650f823cf282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vulkan instance. <br /></td></tr>
-<tr class="separator:adac49d039637bd33afde650f823cf282"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af60697ba2d7923b03b5be87b97c3fb76"><td class="memItemLeft" align="right" valign="top"><a id="af60697ba2d7923b03b5be87b97c3fb76" name="af60697ba2d7923b03b5be87b97c3fb76"></a>
-VkDebugUtilsMessengerEXT&#160;</td><td class="memItemRight" valign="bottom"><b>debug_messenger</b></td></tr>
-<tr class="memdesc:af60697ba2d7923b03b5be87b97c3fb76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full debug messenger (created immediately after instance creation, in thvk_CreateInstance().) <br /></td></tr>
-<tr class="separator:af60697ba2d7923b03b5be87b97c3fb76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05e73aa54d7552c66df362ff1fc51ba5"><td class="memItemLeft" align="right" valign="top"><a id="a05e73aa54d7552c66df362ff1fc51ba5" name="a05e73aa54d7552c66df362ff1fc51ba5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>api_version</b></td></tr>
-<tr class="memdesc:a05e73aa54d7552c66df362ff1fc51ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vulkan API version (formatted with VK_MAKE_API_VERSION()) <br /></td></tr>
-<tr class="separator:a05e73aa54d7552c66df362ff1fc51ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82e346ccd3170703025bda19f915bdfc"><td class="memItemLeft" align="right" valign="top"><a id="a82e346ccd3170703025bda19f915bdfc" name="a82e346ccd3170703025bda19f915bdfc"></a>
-<a class="el" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>config</b></td></tr>
-<tr class="memdesc:a82e346ccd3170703025bda19f915bdfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vulkan renderer (thus render system) configuration options. <br /></td></tr>
-<tr class="separator:a82e346ccd3170703025bda19f915bdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fecafa0644caf600a0de4d298082fcc"><td class="memItemLeft" align="right" valign="top"><a id="a8fecafa0644caf600a0de4d298082fcc" name="a8fecafa0644caf600a0de4d298082fcc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>config_specified</b></td></tr>
-<tr class="memdesc:a8fecafa0644caf600a0de4d298082fcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 if a config struct was specified in <a class="el" href="../../d2/dee/a00049.html#ga9672f79882aadd88367bd2d3cb4f2731" title="Create and return a heap-allocated Vulkan render system.">thvk_CreateRenderSystem()</a>; 0 if not. <br /></td></tr>
-<tr class="separator:a8fecafa0644caf600a0de4d298082fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae465374b1d0a0f182f2ec6dc3602a42c"><td class="memItemLeft" align="right" valign="top"><a id="ae465374b1d0a0f182f2ec6dc3602a42c" name="ae465374b1d0a0f182f2ec6dc3602a42c"></a>
+VkPhysicalDeviceFeatures&#160;</td><td class="memItemRight" valign="bottom"><b>features</b></td></tr>
+<tr class="memdesc:ae465374b1d0a0f182f2ec6dc3602a42c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional features to require on Vulkan devices. <br /></td></tr>
+<tr class="separator:ae465374b1d0a0f182f2ec6dc3602a42c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1a2c2fa282722550ba3007f9e13fa73"><td class="memItemLeft" align="right" valign="top"><a id="af1a2c2fa282722550ba3007f9e13fa73" name="af1a2c2fa282722550ba3007f9e13fa73"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>graphics_queue_exists</b></td></tr>
+<tr class="memdesc:af1a2c2fa282722550ba3007f9e13fa73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to 1 to require a graphics queue family. <br /></td></tr>
+<tr class="separator:af1a2c2fa282722550ba3007f9e13fa73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec599e063374a918dec7671805c30958"><td class="memItemLeft" align="right" valign="top"><a id="aec599e063374a918dec7671805c30958" name="aec599e063374a918dec7671805c30958"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>compute_queue_exists</b></td></tr>
+<tr class="memdesc:aec599e063374a918dec7671805c30958"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to 1 to require a compute queue family. <br /></td></tr>
+<tr class="separator:aec599e063374a918dec7671805c30958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29a0a4dba6a2156b97ebbca24576ea3b"><td class="memItemLeft" align="right" valign="top"><a id="a29a0a4dba6a2156b97ebbca24576ea3b" name="a29a0a4dba6a2156b97ebbca24576ea3b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>transfer_queue_exists</b></td></tr>
+<tr class="memdesc:a29a0a4dba6a2156b97ebbca24576ea3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to 1 to require a transfer queue family. <br /></td></tr>
+<tr class="separator:a29a0a4dba6a2156b97ebbca24576ea3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This structure holds renderer data for rendering with Vulkan.</p>
-<p>For example, each Vulkan render system holds one Vulkan <a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkInstance.html">instance</a>.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d2/dee/a00049.html#ga9672f79882aadd88367bd2d3cb4f2731">thvk_CreateRenderSystem()</a> </dd></dl>
+<div class="textblock"><p>This structure contains extra device requirement options for <a class="el" href="../../d9/da5/a00075.html">thvk_VulkanRendererConfig_t</a> structs.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d9/da5/a00075.html">thvk_VulkanRendererConfig_t</a> </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a></li>
+                <li class="navelem"><a class="el" href="../../d0/d89/a00071.html">thvk_VulkanRendererDeviceConfig_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_0eb83bb (2023-03-01) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_7a07f41 (2023-03-04) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Optional renderer configuration - Thallium</title>
+        <title>Optional Vulkan renderer configuration - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_0eb83bb (2023-03-01)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_7a07f41 (2023-03-04)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,19 +112,28 @@ $(document).ready(function(){initNavTree('d3/dea/a00046.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a>  </div>
-  <div class="headertitle"><div class="title">Optional renderer configuration<div class="ingroups"><a class="el" href="../../d6/d97/a00045.html">Managing renderer objects</a></div></div></div>
+  <div class="headertitle"><div class="title">Optional Vulkan renderer configuration<div class="ingroups"><a class="el" href="../../d6/d97/a00045.html">Managing renderer objects</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Further configuring renderers for certain graphics APIs.  
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Descriptor structures for extra (mostly API-specific) configuration of <a class="el" href="../../d6/d97/a00045.html">renderers</a>. </p>
+<p>Descriptor structures for extra configuration of Vulkan <a class="el" href="../../d6/d97/a00045.html">renderers</a>. </p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html">th_RendererConfig_Vulkan_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure specifically for Vulkan renderers.  <a href="../../d3/d8b/a00059.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6f/a00063.html">thvk_VulkanRendererApplicationConfig_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application information configuration struct for Vulkan configs.  <a href="../../d1/d6f/a00063.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/ddf/a00067.html">thvk_VulkanRendererExtensionConfig_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extra extension configuration struct for Vulkan configs.  <a href="../../dc/ddf/a00067.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d89/a00071.html">thvk_VulkanRendererDeviceConfig_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extra device configuration struct for Vulkan configs.  <a href="../../d0/d89/a00071.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html">thvk_VulkanRendererConfig_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure specifically for Vulkan renderers.  <a href="../../d9/da5/a00075.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -133,7 +142,7 @@ Data Structures</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_0eb83bb (2023-03-01) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_7a07f41 (2023-03-04) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

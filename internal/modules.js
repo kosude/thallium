@@ -1,8 +1,8 @@
 var modules =
 [
-    [ "Internal-use assertion macros", "d3/d8b/a00059.html", null ],
-    [ "Opaque type definitions", "d9/d73/a00060.html", "d9/d73/a00060" ],
-    [ "Utilities", "de/de1/a00065.html", "de/de1/a00065" ],
-    [ "Global state", "d9/db3/a00066.html", null ],
-    [ "Internal Vulkan functions", "dc/ddf/a00067.html", "dc/ddf/a00067" ]
+    [ "Internal-use assertion macros", "de/de1/a00065.html", null ],
+    [ "Opaque type definitions", "d9/db3/a00066.html", "d9/db3/a00066" ],
+    [ "Utilities", "d6/d2c/a00072.html", "d6/d2c/a00072" ],
+    [ "Global state", "d1/d6e/a00073.html", null ],
+    [ "Internal Vulkan functions", "db/db6/a00074.html", "db/db6/a00074" ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['graphics_5ffamily_5findex_0',['graphics_family_index',['../dc/ddf/a00067.html#af340bc432cc4a6c6463471d572e19b59',1,'thvk_QueueFamilyInfo_t']]]
+  ['features_0',['features',['../d0/d89/a00071.html#ae465374b1d0a0f182f2ec6dc3602a42c',1,'thvk_VulkanRendererDeviceConfig_t']]]
 ];

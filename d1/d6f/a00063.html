@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>th_Version_t Struct Reference - Thallium</title>
+        <title>thvk_VulkanRendererApplicationConfig_t Struct Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_0eb83bb (2023-03-01)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_7a07f41 (2023-03-04)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,38 +112,43 @@ $(document).ready(function(){initNavTree('d1/d6f/a00063.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">th_Version_t Struct Reference<div class="ingroups"><a class="el" href="../../d5/de0/a00050.html">Utilities</a></div></div></div>
+  <div class="headertitle"><div class="title">thvk_VulkanRendererApplicationConfig_t Struct Reference<div class="ingroups"><a class="el" href="../../d6/d97/a00045.html">Managing renderer objects</a> &raquo; <a class="el" href="../../d3/dea/a00046.html">Optional Vulkan renderer configuration</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A structure to describe a version.  
+<p>Application information configuration struct for Vulkan configs.  
  <a href="../../d1/d6f/a00063.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a30f77f3545270b58a55dc63ecf53e50a"><td class="memItemLeft" align="right" valign="top"><a id="a30f77f3545270b58a55dc63ecf53e50a" name="a30f77f3545270b58a55dc63ecf53e50a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>major</b></td></tr>
-<tr class="memdesc:a30f77f3545270b58a55dc63ecf53e50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Major version number. <br /></td></tr>
-<tr class="separator:a30f77f3545270b58a55dc63ecf53e50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff464e0eea03c7edf3a86c0a15f54cbc"><td class="memItemLeft" align="right" valign="top"><a id="aff464e0eea03c7edf3a86c0a15f54cbc" name="aff464e0eea03c7edf3a86c0a15f54cbc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>minor</b></td></tr>
-<tr class="memdesc:aff464e0eea03c7edf3a86c0a15f54cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minor version number. <br /></td></tr>
-<tr class="separator:aff464e0eea03c7edf3a86c0a15f54cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afad9777915edacacc007bda2eac672c5"><td class="memItemLeft" align="right" valign="top"><a id="afad9777915edacacc007bda2eac672c5" name="afad9777915edacacc007bda2eac672c5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>patch</b></td></tr>
-<tr class="memdesc:afad9777915edacacc007bda2eac672c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Patch/build number. <br /></td></tr>
-<tr class="separator:afad9777915edacacc007bda2eac672c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bc48234689b6e0604a813b13b4ca0ae"><td class="memItemLeft" align="right" valign="top"><a id="a4bc48234689b6e0604a813b13b4ca0ae" name="a4bc48234689b6e0604a813b13b4ca0ae"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>application_name</b></td></tr>
+<tr class="memdesc:a4bc48234689b6e0604a813b13b4ca0ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the application. <br /></td></tr>
+<tr class="separator:a4bc48234689b6e0604a813b13b4ca0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addc2ca64860963c4f7e6d22fbf02de45"><td class="memItemLeft" align="right" valign="top"><a id="addc2ca64860963c4f7e6d22fbf02de45" name="addc2ca64860963c4f7e6d22fbf02de45"></a>
+<a class="el" href="../../d3/d8b/a00059.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>application_version</b></td></tr>
+<tr class="memdesc:addc2ca64860963c4f7e6d22fbf02de45"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's version. <br /></td></tr>
+<tr class="separator:addc2ca64860963c4f7e6d22fbf02de45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dce799fcbcf522e841edf11681dbf13"><td class="memItemLeft" align="right" valign="top"><a id="a5dce799fcbcf522e841edf11681dbf13" name="a5dce799fcbcf522e841edf11681dbf13"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>engine_name</b></td></tr>
+<tr class="memdesc:a5dce799fcbcf522e841edf11681dbf13"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the engine being used, if applicable. <br /></td></tr>
+<tr class="separator:a5dce799fcbcf522e841edf11681dbf13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a6503c18801ab269266a65e734b0e88"><td class="memItemLeft" align="right" valign="top"><a id="a6a6503c18801ab269266a65e734b0e88" name="a6a6503c18801ab269266a65e734b0e88"></a>
+<a class="el" href="../../d3/d8b/a00059.html">th_Version_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>engine_version</b></td></tr>
+<tr class="memdesc:a6a6503c18801ab269266a65e734b0e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version of the engine being used, if applicable. <br /></td></tr>
+<tr class="separator:a6a6503c18801ab269266a65e734b0e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This structure describes a version with major, minor, and patch values. </p>
+<div class="textblock"><p>This structure contains application info options for <a class="el" href="../../d9/da5/a00075.html">thvk_VulkanRendererConfig_t</a> structs.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d9/da5/a00075.html">thvk_VulkanRendererConfig_t</a> </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../d1/d6f/a00063.html">th_Version_t</a></li>
+                <li class="navelem"><a class="el" href="../../d1/d6f/a00063.html">thvk_VulkanRendererApplicationConfig_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_0eb83bb (2023-03-01) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_7a07f41 (2023-03-04) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

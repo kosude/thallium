@@ -1,6 +1,6 @@
 var a00045 =
 [
-    [ "Optional renderer configuration", "d3/dea/a00046.html", "d3/dea/a00046" ],
+    [ "Optional Vulkan renderer configuration", "d3/dea/a00046.html", "d3/dea/a00046" ],
     [ "th_RendererDescriptor_t", "d4/d6d/a00055.html", [
       [ "api_name", "d4/d6d/a00055.html#ac25d4d01520e8517c3db50b38cd9f20a", null ],
       [ "api_version", "d4/d6d/a00055.html#ae2a926008c6aeb2af4bf544f66d0b6c9", null ],

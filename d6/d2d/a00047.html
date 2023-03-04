@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Vulkan extensions and layers - Thallium</title>
+        <title>Creating Vulkan device handles - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_0eb83bb (2023-03-01)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_7a07f41 (2023-03-04)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,51 +112,54 @@ $(document).ready(function(){initNavTree('d6/d2d/a00047.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">Vulkan extensions and layers<div class="ingroups"><a class="el" href="../../d2/d79/a00051.html">Vulkan</a></div></div></div>
+  <div class="headertitle"><div class="title">Creating Vulkan device handles<div class="ingroups"><a class="el" href="../../d2/d79/a00051.html">Vulkan</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Handling Vulkan-specific extensions.  
+<p>Functions for creating Vulkan devices to interface with the most optimal physical device(s)  
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>This group involves types and functions specific to handling Vulkan extensions and layers. </p>
+<p>This group contains functions involving Vulkan devices. </p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga2afe19c0c5a34175bf2492acfa6a7ced"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga2afe19c0c5a34175bf2492acfa6a7ced">thvk_GetRequiredLayers</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const render_system, unsigned int *out_count, const char **out_layer_names)</td></tr>
-<tr class="memdesc:ga2afe19c0c5a34175bf2492acfa6a7ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required layers for the given render system.  <br /></td></tr>
-<tr class="separator:ga2afe19c0c5a34175bf2492acfa6a7ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga85f0de01d72d3b2343c750fb9e762743"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga85f0de01d72d3b2343c750fb9e762743">thvk_GetRequiredInstanceExtensions</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const render_system, const int debug_utils_enabled, unsigned int *out_count, const char **out_extension_names)</td></tr>
-<tr class="memdesc:ga85f0de01d72d3b2343c750fb9e762743"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required extensions for Vulkan instances.  <br /></td></tr>
-<tr class="separator:ga85f0de01d72d3b2343c750fb9e762743"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga767a763491fc7391cda0e310038c03a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga767a763491fc7391cda0e310038c03a4">thvk_GetRequiredDeviceExtensions</a> (const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const render_system, unsigned int *out_count, const char **out_extension_names)</td></tr>
-<tr class="memdesc:ga767a763491fc7391cda0e310038c03a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get array of required extensions for Vulkan devices.  <br /></td></tr>
-<tr class="separator:ga767a763491fc7391cda0e310038c03a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14a6dbf3d2fcf76845fa8d757df64d3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#ga14a6dbf3d2fcf76845fa8d757df64d3d">thvk_EnumerateRankedPhysicalDevices</a> (const <a class="el" href="../../d1/d51/a00079.html">thvk_RenderSystem_t</a> *const render_system, const VkPhysicalDevice *const physical_devices, const unsigned int physical_device_count, const VkPhysicalDevice **out_physical_devices)</td></tr>
+<tr class="memdesc:ga14a6dbf3d2fcf76845fa8d757df64d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of Vulkan physical devices, rank them and return the final sorted array (into <code>out_physical_devices</code>).  <br /></td></tr>
+<tr class="separator:ga14a6dbf3d2fcf76845fa8d757df64d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacbee6cad28b29277d436ade3b6f05cef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2d/a00047.html#gacbee6cad28b29277d436ade3b6f05cef">thvk_CreateLogicalDevice</a> (<a class="el" href="../../d1/d51/a00079.html">thvk_RenderSystem_t</a> *render_system, const VkPhysicalDevice physical_device)</td></tr>
+<tr class="memdesc:gacbee6cad28b29277d436ade3b6f05cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Vulkan logical device handle.  <br /></td></tr>
+<tr class="separator:gacbee6cad28b29277d436ade3b6f05cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga2afe19c0c5a34175bf2492acfa6a7ced" name="ga2afe19c0c5a34175bf2492acfa6a7ced"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2afe19c0c5a34175bf2492acfa6a7ced">&#9670;&#160;</a></span>thvk_GetRequiredLayers()</h2>
+<a id="ga14a6dbf3d2fcf76845fa8d757df64d3d" name="ga14a6dbf3d2fcf76845fa8d757df64d3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga14a6dbf3d2fcf76845fa8d757df64d3d">&#9670;&#160;</a></span>thvk_EnumerateRankedPhysicalDevices()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int thvk_GetRequiredLayers </td>
+          <td class="memname">int thvk_EnumerateRankedPhysicalDevices </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d1/d51/a00079.html">thvk_RenderSystem_t</a> *const&#160;</td>
           <td class="paramname"><em>render_system</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int *&#160;</td>
-          <td class="paramname"><em>out_count</em>, </td>
+          <td class="paramtype">const VkPhysicalDevice *const&#160;</td>
+          <td class="paramname"><em>physical_devices</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char **&#160;</td>
-          <td class="paramname"><em>out_layer_names</em>&#160;</td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>physical_device_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VkPhysicalDevice **&#160;</td>
+          <td class="paramname"><em>out_physical_devices</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -165,13 +168,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This functions gets an array of required layers for Vulkan instances, from the information provided through the given render system <code>render_system</code>.</p>
-<p>These layers are enabled on all Vulkan instances created with (internal function) thvk_CreateInstance().</p>
+<p>This function sorts the given array of Vulkan physical devices in order of suitability, and returns the sorted array. <b>The item at index <code>0</code> is the most suitable, and the item at index <code>\*physical_device_count - 1</code> is the least suitable.</b></p>
+<p>The length of the resultant array is the same as <code>physical_device_count</code>.</p>
+<p>The sorted array, that returned into <code>out_physical_devices</code>, contains <em>pointers</em> to the devices in <code>physical_devices</code>. The structures are not copied.</p>
+<p><b>0 will be returned if there are no suitable physical devices!</b></p>
+<dl class="section note"><dt>Note</dt><dd>If <code>out_physical_devices</code> is NULL, no debug output will be reported to avoid duplicated debug output (as it is usually called twice to get count and data).</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">render_system</td><td>Render system for querying </td></tr>
-    <tr><td class="paramname">out_count</td><td>location to which the amount of layers will be returned </td></tr>
-    <tr><td class="paramname">out_layer_names</td><td>NULL or the array to output layer names into. </td></tr>
+    <tr><td class="paramname">physical_devices</td><td>Array of physical devices to copy and sort </td></tr>
+    <tr><td class="paramname">physical_device_count</td><td>Amount of items in array <code>physical_devices</code>. </td></tr>
+    <tr><td class="paramname">out_physical_devices</td><td>NULL or the array to output ordered list of devices into. </td></tr>
   </table>
   </dd>
 </dl>
@@ -179,35 +186,23 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga85f0de01d72d3b2343c750fb9e762743" name="ga85f0de01d72d3b2343c750fb9e762743"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga85f0de01d72d3b2343c750fb9e762743">&#9670;&#160;</a></span>thvk_GetRequiredInstanceExtensions()</h2>
+<a id="gacbee6cad28b29277d436ade3b6f05cef" name="gacbee6cad28b29277d436ade3b6f05cef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacbee6cad28b29277d436ade3b6f05cef">&#9670;&#160;</a></span>thvk_CreateLogicalDevice()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int thvk_GetRequiredInstanceExtensions </td>
+          <td class="memname">int thvk_CreateLogicalDevice </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d1/d51/a00079.html">thvk_RenderSystem_t</a> *&#160;</td>
           <td class="paramname"><em>render_system</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>debug_utils_enabled</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int *&#160;</td>
-          <td class="paramname"><em>out_count</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char **&#160;</td>
-          <td class="paramname"><em>out_extension_names</em>&#160;</td>
+          <td class="paramtype">const VkPhysicalDevice&#160;</td>
+          <td class="paramname"><em>physical_device</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -216,63 +211,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This functions populates an array of required extensions for Vulkan instances.</p>
-<p>These extensions are enabled on all Vulkan instances created with (internal function) thvk_CreateInstance().</p>
+<p>This function creates a logical device handle structure into the render system <code>render_system</code>.</p>
+<p>The resultant device interfaces with <code>physical_device</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>This function does not check the suitability of <code>physical_device</code>. You should do this with <a class="el" href="../../d6/d2d/a00047.html#ga14a6dbf3d2fcf76845fa8d757df64d3d">thvk_EnumerateRankedPhysicalDevices()</a> first.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">render_system</td><td>Render system for querying </td></tr>
-    <tr><td class="paramname">debug_utils_enabled</td><td>Boolean - are debug utils enabled for the renderer? </td></tr>
-    <tr><td class="paramname">out_count</td><td>location to which the amount of extensions will be returned </td></tr>
-    <tr><td class="paramname">out_extension_names</td><td>NULL or the array to output extension names into. </td></tr>
+    <tr><td class="paramname">render_system</td><td>Pointer to the render system into which the device will be returned. </td></tr>
+    <tr><td class="paramname">physical_device</td><td>Vulkan physical device structure for the logical device to represent </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><b>Return status</b> of the function. 0 indicates an error, and 1 indicates success. </dd></dl>
-
-</div>
-</div>
-<a id="ga767a763491fc7391cda0e310038c03a4" name="ga767a763491fc7391cda0e310038c03a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga767a763491fc7391cda0e310038c03a4">&#9670;&#160;</a></span>thvk_GetRequiredDeviceExtensions()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int thvk_GetRequiredDeviceExtensions </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../d0/d89/a00071.html">thvk_RenderSystem_t</a> *const&#160;</td>
-          <td class="paramname"><em>render_system</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int *&#160;</td>
-          <td class="paramname"><em>out_count</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char **&#160;</td>
-          <td class="paramname"><em>out_extension_names</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This functions populates an array of required extensions for Vulkan physical devices.</p>
-<p>The suitability of physical devices is partially based on these extensions. If a device does not support all of the required extensions, it will not be considered suitable for the program.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">render_system</td><td>Render system for querying </td></tr>
-    <tr><td class="paramname">out_count</td><td>location to which the amount of extensions will be returned </td></tr>
-    <tr><td class="paramname">out_extension_names</td><td>NULL or the array to output extension names into. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Array of extension names (NULL if error) </dd></dl>
 
 </div>
 </div>
@@ -282,7 +231,7 @@ Functions</h2></td></tr>
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_0eb83bb (2023-03-01) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_7a07f41 (2023-03-04) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

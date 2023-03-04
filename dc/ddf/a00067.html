@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>thvk_QueueFamilyInfo_t Struct Reference - Thallium</title>
+        <title>thvk_VulkanRendererExtensionConfig_t Struct Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_0eb83bb (2023-03-01)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_7a07f41 (2023-03-04)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -112,42 +112,45 @@ $(document).ready(function(){initNavTree('dc/ddf/a00067.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">thvk_QueueFamilyInfo_t Struct Reference<div class="ingroups"><a class="el" href="../../d2/d79/a00051.html">Vulkan</a> &raquo; <a class="el" href="../../d4/dca/a00048.html">Evaluating Vulkan physical devices</a></div></div></div>
+  <div class="headertitle"><div class="title">thvk_VulkanRendererExtensionConfig_t Struct Reference<div class="ingroups"><a class="el" href="../../d6/d97/a00045.html">Managing renderer objects</a> &raquo; <a class="el" href="../../d3/dea/a00046.html">Optional Vulkan renderer configuration</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Structure to contain indices for queue families.  
+<p>Extra extension configuration struct for Vulkan configs.  
  <a href="../../dc/ddf/a00067.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:af340bc432cc4a6c6463471d572e19b59"><td class="memItemLeft" align="right" valign="top"><a id="af340bc432cc4a6c6463471d572e19b59" name="af340bc432cc4a6c6463471d572e19b59"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>graphics_family_index</b></td></tr>
-<tr class="memdesc:af340bc432cc4a6c6463471d572e19b59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of a queue family that supports graphics commands. <br /></td></tr>
-<tr class="separator:af340bc432cc4a6c6463471d572e19b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86cf099ef6e32c4c407c7e4481904796"><td class="memItemLeft" align="right" valign="top"><a id="a86cf099ef6e32c4c407c7e4481904796" name="a86cf099ef6e32c4c407c7e4481904796"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>present_family_index</b></td></tr>
-<tr class="memdesc:a86cf099ef6e32c4c407c7e4481904796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of a queue family that supports presentation commands - applicable when surfaces are enabled. <br /></td></tr>
-<tr class="separator:a86cf099ef6e32c4c407c7e4481904796"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a8230d028c3e16841ce24d6316e20ed"><td class="memItemLeft" align="right" valign="top"><a id="a8a8230d028c3e16841ce24d6316e20ed" name="a8a8230d028c3e16841ce24d6316e20ed"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>compute_family_index</b></td></tr>
-<tr class="memdesc:a8a8230d028c3e16841ce24d6316e20ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of a queue family that supports compute commands. <br /></td></tr>
-<tr class="separator:a8a8230d028c3e16841ce24d6316e20ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afab9188747895f42f036099ea1ee1d5c"><td class="memItemLeft" align="right" valign="top"><a id="afab9188747895f42f036099ea1ee1d5c" name="afab9188747895f42f036099ea1ee1d5c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>transfer_family_index</b></td></tr>
-<tr class="memdesc:afab9188747895f42f036099ea1ee1d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of a queue family that supports transfer commands (will be a dedicated transfer queue family if available). <br /></td></tr>
-<tr class="separator:afab9188747895f42f036099ea1ee1d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b67da3f0264a44982e3ddac7c93d900"><td class="memItemLeft" align="right" valign="top"><a id="a0b67da3f0264a44982e3ddac7c93d900" name="a0b67da3f0264a44982e3ddac7c93d900"></a>
+char **&#160;</td><td class="memItemRight" valign="bottom"><b>layer_names</b></td></tr>
+<tr class="memdesc:a0b67da3f0264a44982e3ddac7c93d900"><td class="mdescLeft">&#160;</td><td class="mdescRight">An optional array of names of Vulkan layers to enable. <br /></td></tr>
+<tr class="separator:a0b67da3f0264a44982e3ddac7c93d900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04446442819dedbd58676a915eb87f4f"><td class="memItemLeft" align="right" valign="top"><a id="a04446442819dedbd58676a915eb87f4f" name="a04446442819dedbd58676a915eb87f4f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>layer_count</b></td></tr>
+<tr class="memdesc:a04446442819dedbd58676a915eb87f4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>layer_names</code> <br /></td></tr>
+<tr class="separator:a04446442819dedbd58676a915eb87f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51d3f071db2174296317d4ed396417c2"><td class="memItemLeft" align="right" valign="top"><a id="a51d3f071db2174296317d4ed396417c2" name="a51d3f071db2174296317d4ed396417c2"></a>
+char **&#160;</td><td class="memItemRight" valign="bottom"><b>extension_names</b></td></tr>
+<tr class="memdesc:a51d3f071db2174296317d4ed396417c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">An optional array of names of extra extensions to enable on Vulkan instances/devices. <br /></td></tr>
+<tr class="separator:a51d3f071db2174296317d4ed396417c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d76296ecac88dfb59e6525c983147bb"><td class="memItemLeft" align="right" valign="top"><a id="a2d76296ecac88dfb59e6525c983147bb" name="a2d76296ecac88dfb59e6525c983147bb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>extension_count</b></td></tr>
+<tr class="memdesc:a2d76296ecac88dfb59e6525c983147bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of elements in <code>extension_names</code>. <br /></td></tr>
+<tr class="separator:a2d76296ecac88dfb59e6525c983147bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This structure contains indices of queue families. It is returned by <a class="el" href="../../d4/dca/a00048.html#gaeee1115ca3073ddd6eaf61e97142aeea">thvk_GetQueueFamilyInfo()</a>. </p>
+<div class="textblock"><p>This structure contains extra extension options for <a class="el" href="../../d9/da5/a00075.html">thvk_VulkanRendererConfig_t</a> structs.</p>
+<p>Note that layers and extensions specified in this struct will be appended to the list of automatically required ones defined by Thallium (see <a class="el" href="../../d4/dca/a00048.html#ga2afe19c0c5a34175bf2492acfa6a7ced">thvk_GetRequiredLayers()</a>, <a class="el" href="../../d4/dca/a00048.html#ga85f0de01d72d3b2343c750fb9e762743">thvk_GetRequiredInstanceExtensions()</a>, etc).</p>
+<p>The <code>extension_names</code> array is to contain both instance and device extension names to be enabled.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d9/da5/a00075.html">thvk_VulkanRendererConfig_t</a> </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dc/ddf/a00067.html">thvk_QueueFamilyInfo_t</a></li>
+                <li class="navelem"><a class="el" href="../../dc/ddf/a00067.html">thvk_VulkanRendererExtensionConfig_t</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_0eb83bb (2023-03-01) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_7a07f41 (2023-03-04) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>

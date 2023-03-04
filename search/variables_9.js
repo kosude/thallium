@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['renderer_5fconfig_0',['renderer_config',['../d4/d6d/a00055.html#af6148ebc3b8774cad60aa69df05c88f0',1,'th_RendererDescriptor_t']]]
+  ['patch_0',['patch',['../d3/d8b/a00059.html#afad9777915edacacc007bda2eac672c5',1,'th_Version_t']]]
 ];

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=11"/>
         <meta name="generator" content="Doxygen 1.9.6"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>/home/runner/work/thallium/thallium/include/thallium/core/renderer.h File Reference - Thallium</title>
+        <title>/home/runner/work/thallium/thallium/include/thallium/core/debugger.h File Reference - Thallium</title>
         <link rel="shortcut icon" href="../../vector.png">
         <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="../../jquery.js"></script>
@@ -46,7 +46,7 @@
                             <div id="projectname">
                                 Thallium Documentation
                                 <br>
-                                <span id="projectnumber"><em>v0.0.0dev_0eb83bb (2023-03-01)</em></span>
+                                <span id="projectnumber"><em>v0.0.0dev_7a07f41 (2023-03-04)</em></span>
                             </div>
                         </td>
                     </tr>
@@ -111,42 +111,32 @@ $(document).ready(function(){initNavTree('da/d45/a00011.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Types</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">renderer.h File Reference</div></div>
+  <div class="headertitle"><div class="title">debugger.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Renderer structure(s) and related functions.  
+<p>Library compounds for configuring Thallium debug output.  
 <a href="#details">More...</a></p>
 
 <p><a href="../../da/d45/a00011_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d6d/a00055.html">th_RendererDescriptor_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure describing a renderer to be created.  <a href="../../d4/d6d/a00055.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Types</h2></td></tr>
-<tr class="memitem:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d6/d97/a00045.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d97/a00045.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a></td></tr>
-<tr class="memdesc:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure to represent a graphics API.  <br /></td></tr>
-<tr class="separator:ga49c612e4742d9a5b5decdc74bfe0c869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga024bcefec03671b7056e182ce4fb19f6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a></td></tr>
+<tr class="memdesc:ga024bcefec03671b7056e182ce4fb19f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure used to debug renderers.  <br /></td></tr>
+<tr class="separator:ga024bcefec03671b7056e182ce4fb19f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gab523c16bcff393c640f553015b9683ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d97/a00045.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d97/a00045.html#gab523c16bcff393c640f553015b9683ca">th_CreateRenderer</a> (const <a class="el" href="../../d4/d6d/a00055.html">th_RendererDescriptor_t</a> descriptor, const <a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *const debugger)</td></tr>
-<tr class="memdesc:gab523c16bcff393c640f553015b9683ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create, populate, and return a new renderer struct.  <br /></td></tr>
-<tr class="separator:gab523c16bcff393c640f553015b9683ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga252d1161358c053b60b47e539a0f81d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d97/a00045.html#ga252d1161358c053b60b47e539a0f81d6">th_DestroyRenderer</a> (<a class="el" href="../../d6/d97/a00045.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *renderer)</td></tr>
-<tr class="memdesc:ga252d1161358c053b60b47e539a0f81d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given renderer object.  <br /></td></tr>
-<tr class="separator:ga252d1161358c053b60b47e539a0f81d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga58ba8ee576ff5ac20c53513dee447f80"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d97/a00045.html#ga58ba8ee576ff5ac20c53513dee447f80">th_GetRendererRenderSystem</a> (const <a class="el" href="../../d6/d97/a00045.html#ga49c612e4742d9a5b5decdc74bfe0c869">th_Renderer_t</a> *const renderer)</td></tr>
-<tr class="memdesc:ga58ba8ee576ff5ac20c53513dee447f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to the render system within the given renderer.  <br /></td></tr>
-<tr class="separator:ga58ba8ee576ff5ac20c53513dee447f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21a2b58b18f2fa61037b5051221ae581"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#ga21a2b58b18f2fa61037b5051221ae581">th_CreateDebugger</a> (const <a class="el" href="../../d5/df9/a00044.html#ga437ad5d0c16115fb79ecdcff529399e3">th_DebugSeverity_t</a> severities, const <a class="el" href="../../d5/df9/a00044.html#ga1e6e6868385cf31d4a2e614b69d4939e">th_DebugType_t</a> types)</td></tr>
+<tr class="memdesc:ga21a2b58b18f2fa61037b5051221ae581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a debugger struct with the specified configuration options.  <br /></td></tr>
+<tr class="separator:ga21a2b58b18f2fa61037b5051221ae581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9a85715f1d5ce019726fc4f0663f115"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/df9/a00044.html#gae9a85715f1d5ce019726fc4f0663f115">th_DestroyDebugger</a> (<a class="el" href="../../d5/df9/a00044.html#ga024bcefec03671b7056e182ce4fb19f6">th_Debugger_t</a> *debugger)</td></tr>
+<tr class="memdesc:gae9a85715f1d5ce019726fc4f0663f115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the given debugger object.  <br /></td></tr>
+<tr class="separator:gae9a85715f1d5ce019726fc4f0663f115"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"></div></div><!-- contents -->
@@ -154,9 +144,9 @@ Functions</h2></td></tr>
 <!-- start footer part -->
         <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
             <ul>
-                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_9176111427d15f0d8e7373d493508e43.html">core</a></li><li class="navelem"><a class="el" href="../../da/d45/a00011.html">renderer.h</a></li>
+                <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../dir_b58fff4977fae2e0be1af83eea3862b9.html">thallium</a></li><li class="navelem"><a class="el" href="../../dir_9176111427d15f0d8e7373d493508e43.html">core</a></li><li class="navelem"><a class="el" href="../../da/d45/a00011.html">debugger.h</a></li>
                 <li class="footer">
-                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_0eb83bb (2023-03-01) »
+                    <a href="../../internal/index.html">internal docs</a> » doxygen <b>1.9.6</b> » v0.0.0dev_7a07f41 (2023-03-04) »
                     <a href="https://github.com/kosude/thallium">upstream url</a>
                 </li>
             </ul>
