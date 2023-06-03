@@ -1,0 +1,49 @@
+{
+    "inputs": [
+        {
+            "id": "testExec",
+            "type": "pickString",
+            "description": "Thallium test executable",
+            "options": [
+                "hellotriangle",
+            ],
+            "default": "hellotriangle"
+        }
+    ],
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "(lldb) Launch",
+            "program": "${workspaceFolder}/build/tests/${input:testExec}",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build project"
+        },
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/tests/${input:testExec}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build project"
+        }
+    ],
+    "version": "2.0.0"
+}

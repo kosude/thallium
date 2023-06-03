@@ -1,0 +1,10 @@
+build/
+deps/
+
+*.md
+*.svg
+
+*.sh
+
+CMakeLists.txt
+*.cmake
