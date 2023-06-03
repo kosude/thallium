@@ -6,17 +6,15 @@
  */
 
 #pragma once
-#ifndef __TL__core__placeholder_h__
-#define __TL__core__placeholder_h__
+#ifndef __TL__core__fwd_h__
+#define __TL__core__fwd_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include <stdint.h>
+typedef struct TL_Debugger_t TL_Debugger_t;
 
-uint32_t PlaceholderFunction(
-    const uint32_t val
-);
+typedef struct TL_Context_t TL_Context_t;
 
 #ifdef __cplusplus
     }

@@ -6,17 +6,14 @@
  */
 
 #pragma once
-#ifndef __TL__thallium_h__
-#define __TL__thallium_h__
+#ifndef __TL__utils__utils_h__
+#define __TL__utils__utils_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/enums.h"
-#include "thallium/platform.h"
-
-#include "thallium/core/context.h"
-#include "thallium/core/debugger.h"
+#include "log.h"
+#include "proc.h"
 
 #ifdef __cplusplus
     }

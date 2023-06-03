@@ -4,7 +4,11 @@ set(CUTILS_CLIST OFF CACHE BOOL "Build clist library" FORCE)
 add_subdirectory("${THALLIUM_DEPS_DIR}/cutils" "${CMAKE_BINARY_DIR}/deps/cutils")
 
 set(THALLIUM_SOURCES ${THALLIUM_SOURCES}
-    "core/placeholder.c"
+    "core/utils/log.c"
+    "core/utils/proc.c"
+
+    "core/context.c"
+    "core/debugger.c"
 
     PARENT_SCOPE
 )
