@@ -1,0 +1,25 @@
+{
+    radeon-vkcreateinstance-malloc
+    Memcheck:Leak
+    match-leak-kinds: possible
+    ...
+    fun:vkCreateInstance
+    ...
+}
+
+{
+    radeon-vk_common_enumeratephysicaldevices-malloc
+    Memcheck:Leak
+    match-leak-kinds: possible
+    ...
+    fun:vk_common_EnumeratePhysicalDevices
+    ...
+}
+
+{
+    amdvlkpro64
+    Memcheck:Leak
+    match-leak-kinds: possible
+    ...
+    obj:/usr/lib/amdvlkpro64.so
+}
