@@ -1,0 +1,5 @@
+add_executable(hellotriangle "hello_triangle.cpp")
+target_link_libraries(hellotriangle ${PROJECT_NAME})
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_definitions(hellotriangle PUBLIC "DEBUG")
+endif()
