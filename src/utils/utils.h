@@ -6,14 +6,14 @@
  */
 
 #pragma once
-#ifndef __TL__utils__utils_h__
-#define __TL__utils__utils_h__
+#ifndef __TL__internal__utils__utils_h__
+#define __TL__internal__utils__utils_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "log.h"
-#include "proc.h"
+#include "io/log.h"
+#include "io/proc.h"
 
 #ifdef __cplusplus
     }

@@ -3,7 +3,7 @@ set(THALLIUM_SOURCES)
 set(THALLIUM_LIBRARY_LINKS)
 
 set(THALLIUM_INCLUDE_DIRS
-    "${THALLIUM_LIB_DIR}"
+    "${THALLIUM_SRC_DIR}"
     "${PROJECT_BINARY_DIR}/generated"
     "${THALLIUM_DEPS_DIR}"
 )
@@ -16,11 +16,12 @@ set(THALLIUM_PUBLIC_LIBRARY_DEFS)
 set(THALLIUM_MODULE_HEADER_CONTENTS)
 
 # core library
-add_subdirectory("core")
+add_subdirectory("${THALLIUM_SRC_DIR}/lib/core")
+add_subdirectory("${THALLIUM_SRC_DIR}/utils")
 
 # vulkan library
 if (THALLIUM_BUILD_MODULE_VULKAN)
-    add_subdirectory("${THALLIUM_LIB_DIR}/vulkan")
+    add_subdirectory("${THALLIUM_SRC_DIR}/lib/vulkan")
 endif()
 
 # api_modules.h config

@@ -6,14 +6,13 @@
  */
 
 #pragma once
-#ifndef __TL__core__types_h__
-#define __TL__core__types_h__
+#ifndef __TL__internal__core__debugger_h__
+#define __TL__internal__core__debugger_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/enums.h"
-#include "thallium/platform.h"
+#include "thallium/core/debugger.h"
 
 typedef struct TL_Debugger_t {
     /// @brief Bit field of severity flags - messages of these severities will be reported
@@ -21,16 +20,6 @@ typedef struct TL_Debugger_t {
     /// @brief Bit field of source flags - messages from these sources will be reported
     TL_DebugSourceFlags_t sources;
 } TL_Debugger_t;
-
-typedef struct TL_Context_t {
-    /// @brief Memory offset from the .data pointer to the Vulkan-specific block of data
-    size_t vulkan_offset;
-
-    /// @brief The size of the memory allocated at the .data pointer
-    size_t data_size;
-    /// @brief Context API-aware data
-    void *data;
-} TL_Context_t;
 
 #ifdef __cplusplus
     }

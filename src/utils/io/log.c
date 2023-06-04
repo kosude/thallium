@@ -8,10 +8,9 @@
 #include "log.h"
 
 #include "thallium/platform.h"
-#include "thallium/core/debugger.h"
 
-#include "core/utils/proc.h"
-#include "types_core.h"
+#include "utils/io/proc.h"
+#include "types/core/debugger.h"
 
 #include <cutils/cio/cio.h>
 #include <cutils/cio/cioenum.h>
@@ -20,11 +19,11 @@
 #include <string.h>
 #include <stdarg.h>
 
-#define CORELIB_MSG_PREFIX "(TL)"
-#define VULKAN_MSG_PREFIX "(TLVK)"
+#define __CORELIB_MSG_PREFIX "(TL)"
+#define __VULKAN_MSG_PREFIX "(TLVK)"
 
 // Maximum length of debug messages.
-#define MAX_DBGMSG_LEN 1024
+#define __MAX_DBGMSG_LEN 1024
 
 // Return from the parent function if the given severity is not included in the debugger filter.
 #define ASSERT_SEV_FILTER(debugger, sev)                                    \
@@ -48,7 +47,7 @@
     va_list varargs;                                                        \
     va_start(varargs, format);                                              \
     /* format message string with given format + variadic arguments */      \
-    vsnprintf(msg, MAX_DBGMSG_LEN, format, varargs);                        \
+    vsnprintf(msg, __MAX_DBGMSG_LEN, format, varargs);                      \
     va_end(varargs);                                                        \
 }
 
@@ -56,7 +55,7 @@
 #define PRINT_LOG_MSG(debugger, format, prefix)                             \
 {                                                                           \
     ASSERT_SEV_FILTER(debugger, TL_DEBUG_SEVERITY_VERBOSE_BIT);             \
-    char msg[MAX_DBGMSG_LEN];                                               \
+    char msg[__MAX_DBGMSG_LEN];                                             \
     FORMAT_STR(format);                                                     \
     printf("%s %s\n", prefix, msg);                                         \
 }
@@ -65,7 +64,7 @@
 #define PRINT_NOTE_MSG(debugger, format, prefix)                            \
 {                                                                           \
     ASSERT_SEV_FILTER(debugger, TL_DEBUG_SEVERITY_NOTIF_BIT);               \
-    char msg[MAX_DBGMSG_LEN];                                               \
+    char msg[__MAX_DBGMSG_LEN];                                             \
     FORMAT_STR(format);                                                     \
     ciocolstateset(CIOCOL_BLUE, 0xFF, stdout);                              \
     printf("%s %s\n", prefix, msg);                                         \
@@ -76,7 +75,7 @@
 #define PRINT_HINT_MSG(debugger, format, prefix)                            \
 {                                                                           \
     ASSERT_SEV_FILTER(debugger, TL_DEBUG_SEVERITY_NOTIF_BIT);               \
-    char msg[MAX_DBGMSG_LEN];                                               \
+    char msg[__MAX_DBGMSG_LEN];                                             \
     FORMAT_STR(format);                                                     \
     ciocolstateset(CIOCOL_GREY, 0xFF, stdout);                              \
     printf("%s Hint: %s\n", prefix, msg);                                   \
@@ -87,7 +86,7 @@
 #define PRINT_WARNING_MSG(debugger, format, prefix)                         \
 {                                                                           \
     ASSERT_SEV_FILTER(debugger, TL_DEBUG_SEVERITY_WARNING_BIT);             \
-    char msg[MAX_DBGMSG_LEN];                                               \
+    char msg[__MAX_DBGMSG_LEN];                                             \
     FORMAT_STR(format);                                                     \
     ciocolstateset(CIOCOL_YELLOW, 0xFF, stdout);                            \
     printf("%s WARN: %s\n", prefix, msg);                                   \
@@ -98,7 +97,7 @@
 #define PRINT_ERROR_MSG(debugger, format, prefix)                           \
 {                                                                           \
     ASSERT_SEV_FILTER(debugger, TL_DEBUG_SEVERITY_ERROR_BIT);               \
-    char msg[MAX_DBGMSG_LEN];                                               \
+    char msg[__MAX_DBGMSG_LEN];                                             \
     FORMAT_STR(format);                                                     \
     ciocolstateset(CIOCOL_RED, 0xFF, stderr);                               \
     fprintf(stderr, "%s ERROR: %s\n", prefix, msg);                         \
@@ -109,7 +108,7 @@
 #define PRINT_FATAL_MSG(debugger, format, prefix)                           \
 {                                                                           \
     ASSERT_SEV_FILTER(debugger, TL_DEBUG_SEVERITY_FATAL_BIT);               \
-    char msg[MAX_DBGMSG_LEN];                                               \
+    char msg[__MAX_DBGMSG_LEN];                                             \
     FORMAT_STR(format);                                                     \
     ciocolstateset(CIOCOL_RED, 0xFF, stderr);                               \
     fprintf(stderr, "%s FATAL: %s\n", prefix, msg);                         \
@@ -132,17 +131,17 @@
         if (killProc) TL_KillProc();                                                                                        \
     }
 
-DEBUG_MSG_FUN   (TL_Log,           PRINT_LOG_MSG,      CORELIB_MSG_PREFIX,     false)
-DEBUG_MSG_FUN_VK(TL_Log_Vk,        PRINT_LOG_MSG,      VULKAN_MSG_PREFIX,      false)
+DEBUG_MSG_FUN   (TL_Log,           PRINT_LOG_MSG,      __CORELIB_MSG_PREFIX,     false)
+DEBUG_MSG_FUN_VK(TL_Log_Vk,        PRINT_LOG_MSG,      __VULKAN_MSG_PREFIX,      false)
 
-DEBUG_MSG_FUN   (TL_Note,          PRINT_NOTE_MSG,     CORELIB_MSG_PREFIX,     false)
+DEBUG_MSG_FUN   (TL_Note,          PRINT_NOTE_MSG,     __CORELIB_MSG_PREFIX,     false)
 
-DEBUG_MSG_FUN   (TL_Hint,          PRINT_HINT_MSG,     CORELIB_MSG_PREFIX,     false)
+DEBUG_MSG_FUN   (TL_Hint,          PRINT_HINT_MSG,     __CORELIB_MSG_PREFIX,     false)
 
-DEBUG_MSG_FUN   (TL_Warn,          PRINT_WARNING_MSG,  CORELIB_MSG_PREFIX,     false)
-DEBUG_MSG_FUN_VK(TL_Warn_Vk,       PRINT_WARNING_MSG,  VULKAN_MSG_PREFIX,      false)
+DEBUG_MSG_FUN   (TL_Warn,          PRINT_WARNING_MSG,  __CORELIB_MSG_PREFIX,     false)
+DEBUG_MSG_FUN_VK(TL_Warn_Vk,       PRINT_WARNING_MSG,  __VULKAN_MSG_PREFIX,      false)
 
-DEBUG_MSG_FUN   (TL_Error,         PRINT_ERROR_MSG,    CORELIB_MSG_PREFIX,     false)
-DEBUG_MSG_FUN_VK(TL_Error_Vk,      PRINT_ERROR_MSG,    VULKAN_MSG_PREFIX,      false)
+DEBUG_MSG_FUN   (TL_Error,         PRINT_ERROR_MSG,    __CORELIB_MSG_PREFIX,     false)
+DEBUG_MSG_FUN_VK(TL_Error_Vk,      PRINT_ERROR_MSG,    __VULKAN_MSG_PREFIX,      false)
 
-DEBUG_MSG_FUN   (TL_Fatal,         PRINT_FATAL_MSG,    CORELIB_MSG_PREFIX,     true)
+DEBUG_MSG_FUN   (TL_Fatal,         PRINT_FATAL_MSG,    __CORELIB_MSG_PREFIX,     true)

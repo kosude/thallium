@@ -6,7 +6,7 @@ set(THALLIUM_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake")
 set(THALLIUM_DEPS_DIR "${CMAKE_CURRENT_LIST_DIR}/deps")
 set(THALLIUM_DOCS_DIR "${CMAKE_CURRENT_LIST_DIR}/docs")
 set(THALLIUM_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/include")
-set(THALLIUM_LIB_DIR "${CMAKE_CURRENT_LIST_DIR}/lib")
+set(THALLIUM_SRC_DIR "${CMAKE_CURRENT_LIST_DIR}/src")
 set(THALLIUM_TESTS_DIR "${CMAKE_CURRENT_LIST_DIR}/tests")
 set(THALLIUM_UTILS_DIR "${CMAKE_CURRENT_LIST_DIR}/utils")
 
@@ -64,7 +64,7 @@ option(THALLIUM_BUILD_DOCS "Build Thallium HTML documentation" OFF)
 
 option(THALLIUM_BUILD_MODULE_VULKAN "Include the Vulkan module in the compilation" OFF)
 
-add_subdirectory("${THALLIUM_LIB_DIR}")
+add_subdirectory("${THALLIUM_SRC_DIR}")
 
 if (THALLIUM_BUILD_TESTS)
     add_subdirectory("${THALLIUM_TESTS_DIR}")
