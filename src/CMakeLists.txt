@@ -15,6 +15,9 @@ set(THALLIUM_PUBLIC_LIBRARY_DEFS)
 
 set(THALLIUM_MODULE_HEADER_CONTENTS)
 
+# dependencies
+add_subdirectory("${THALLIUM_DEPS_DIR}" "${PROJECT_BINARY_DIR}/deps")
+
 # core library
 add_subdirectory("${THALLIUM_SRC_DIR}/lib/core")
 add_subdirectory("${THALLIUM_SRC_DIR}/utils")

@@ -6,19 +6,18 @@
  */
 
 #pragma once
-#ifndef __TL__thallium_h__
-#define __TL__thallium_h__
+#ifndef __TL__internal__core__renderer_h__
+#define __TL__internal__core__renderer_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/enums.h"
-#include "thallium/platform.h"
-
-#include "thallium/core/context.h"
-#include "thallium/core/debugger.h"
 #include "thallium/core/renderer.h"
-#include "thallium/core/version.h"
+
+typedef struct TL_Renderer_t {
+    /// @brief Renderer API enumeration.
+    TL_RendererAPIFlags_t api;
+} TL_Renderer_t;
 
 #ifdef __cplusplus
     }

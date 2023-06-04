@@ -19,6 +19,9 @@
  *
  * This opaque struct holds context state for the application. There can only be one context per program.
  *
+ * 'Context state' refers to any single API-specific objects, such as Vulkan instances. As having multiple of these objects in an application is
+ * messy, it is avoided by restricting the creation of a Thallium context to only one.
+ *
  * @sa @ref TL_CreateContext()
  * @sa @ref TL_DestroyContext()
  */

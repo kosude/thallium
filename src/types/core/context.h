@@ -17,7 +17,13 @@
 #include "thallium/platform.h"
 
 typedef struct TL_Context_t {
-    /// @brief Memory offset from the .data pointer to the Vulkan-specific block of data
+    /// @brief Has TL_CreateContextAPIObjects() been called on this context object?
+    bool api_objects_init;
+    /// @brief Has TL_CreateRenderers() been called on this context object?
+    bool renderers_init;
+
+    /// @brief Memory offset from the .data member to the Vulkan-specific block of data
+    /// @note If this value is SIZE_MAX, then the Vulkan block has not been initialised
     size_t vulkan_offset;
 
     /// @brief The size of the memory allocated at the .data pointer

@@ -18,12 +18,13 @@
  * This enumeration contains all graphics APIs for renderers. Not all enumerations will necessarily be accepted by renderers on creation; ensure
  * that the appropriate module or modules were added to the build process when compiling the Thallium library.
  */
-typedef enum TL_RendererAPI_t {
-    /// @brief Null API. Not to be used in valid Thallium applications.
-    TL_RENDERER_API_NULL =      0x00,
+typedef enum TL_RendererAPIFlags_t {
     /// @brief [Vulkan GPU API](https://www.vulkan.org/)
-    TL_RENDERER_API_VULKAN =    0x01
-} TL_RendererAPI_t;
+    TL_RENDERER_API_VULKAN_BIT =    0x10,
+
+    /// @brief Null API. Not to be used in valid Thallium applications.
+    TL_RENDERER_API_NULL_BIT =      0x00,
+} TL_RendererAPIFlags_t;
 
 /**
  * @brief Enumeration containing severities to describe debug messages.

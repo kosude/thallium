@@ -13,7 +13,6 @@
 #endif // __cplusplus
 
 #include "thallium/enums.h"
-#include "thallium/fwd.h"
 
 /**
  * @brief A structure used to debug Thallium operations.

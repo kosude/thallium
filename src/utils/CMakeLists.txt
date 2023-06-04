@@ -8,6 +8,12 @@ set(SOURCES
     "io/proc.c"
 )
 
+if (THALLIUM_BUILD_MODULE_VULKAN)
+    set(SOURCES ${SOURCES}
+        "vulkan/vk_pnext_append.c"
+    )
+endif()
+
 # add path prefix to each filename in sources
 list(TRANSFORM SOURCES PREPEND "${CMAKE_CURRENT_LIST_DIR}/")
 
