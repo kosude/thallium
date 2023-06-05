@@ -41,18 +41,20 @@ int main() {
 
     // ..:: Create the renderer(s) ::..
 
+    TL_DebuggerAttachmentDescriptor_t debugger_attachment_descriptor = {};
+    debugger_attachment_descriptor.debugger = DEBUGGER;
+
     TL_RendererDescriptor_t vulkan_renderer_descriptor = {};
     vulkan_renderer_descriptor.api = TL_RENDERER_API_VULKAN_BIT;
     vulkan_renderer_descriptor.api_version = { 1, 2, 0 };
-    // vulkan_renderer_descriptor.debugger_attach = DEBUGGER;
+    vulkan_renderer_descriptor.debugger_attachment_descriptor = &debugger_attachment_descriptor;
 
     TL_Renderer_t *extra_vulkan_renderer = nullptr;
 
     TL_RendererDescriptor_t extra_vulkan_renderer_descriptor = {};
     extra_vulkan_renderer_descriptor.api = TL_RENDERER_API_VULKAN_BIT;
     extra_vulkan_renderer_descriptor.api_version = { 1, 3, 0 };
-    // extra_vulkan_renderer_descriptor.debugger_attach = DEBUGGER;
-
+    extra_vulkan_renderer_descriptor.debugger_attachment_descriptor = &debugger_attachment_descriptor;
     extra_vulkan_renderer_descriptor.requirements.placeholder = true;
 
     std::vector<TL_RendererDescriptor_t> renderer_descriptors = {
@@ -71,9 +73,13 @@ int main() {
 
     // ..:: Termination ::..
 
-    TL_DestroyDebugger(DEBUGGER);
+    TL_DestroyRenderer(VULKAN_RENDERER);
+    TL_DestroyRenderer(extra_vulkan_renderer);
 
     TL_DestroyContext(CONTEXT);
+
+    // make sure to destroy the debugger AFTER destroying the context
+    TL_DestroyDebugger(DEBUGGER);
 
     return 0;
 }

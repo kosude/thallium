@@ -69,7 +69,8 @@ void TL_DestroyContext(TL_Context_t *const context) {
 }
 
 bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAPIFlags_t apis, const TL_ContextAPIVersions_t versions,
-    const TL_RendererFeatures_t features, const TL_Debugger_t *const debugger)
+    const TL_RendererFeatures_t features, const TL_DebuggerAttachmentDescriptor_t *const attached_debug_descriptor,
+    const TL_Debugger_t *const debugger)
 {
     if (context->api_objects_init) {
         TL_Warn(debugger, "Attempted to create context API objects multiple times on the same context, which is illegal behaviour");
@@ -115,7 +116,7 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
             TL_Note(debugger, "Requesting the Vulkan API at version %d.%d.%d", versions.vulkan_version.major, versions.vulkan_version.minor,
                 versions.vulkan_version.patch);
 
-            if (!TLVK_CreateContextVulkanBlock(context, versions.vulkan_version, features, debugger)) {
+            if (!TLVK_CreateContextVulkanBlock(context, versions.vulkan_version, features, attached_debug_descriptor, debugger)) {
                 TL_Error(debugger, "Failed to populate Vulkan-specific context data block (%p + offset %d)", context->data, context->vulkan_offset);
                 return false;
             }

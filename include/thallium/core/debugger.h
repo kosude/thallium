@@ -36,7 +36,26 @@ typedef struct TL_DebuggerDescriptor_t {
     TL_DebugSeverityFlags_t severities;
     /// @brief Bit field of source flags - messages from these sources will be reported
     TL_DebugSourceFlags_t sources;
+
+    // TODO: add a callback
 } TL_DebuggerDescriptor_t;
+
+/**
+ * @brief A structure describing a Thallium debugger attachment.
+ *
+ * This structure describes a debugger attachment.
+ *
+ * A debug attachment refers to the idea of immutably 'attaching' a debugger to a renderer at create-time, allowing for more detailed debug output.
+ * More specifically, this enables API-specific debug functionality. For example, Vulkan
+ * [debug utils](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_utils.html) are enabled for Vulkan renderers.
+ */
+typedef struct TL_DebuggerAttachmentDescriptor_t {
+    /// @brief Debugger to link the attachment to
+    const TL_Debugger_t *debugger;
+
+    // TODO: maybe I should add a void ptr that can be an API-specific debug attachment (previously debug system) descriptor so that things like the
+    // Vulkan debug utils severities and types can be controlled
+} TL_DebuggerAttachmentDescriptor_t;
 
 /**
  * @brief Create a debugger with the specified configuration options.

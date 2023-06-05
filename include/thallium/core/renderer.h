@@ -57,11 +57,11 @@ typedef struct TL_RendererDescriptor_t {
     /// @brief Renderer features to require
     TL_RendererFeatures_t requirements;
 
-    // NOT_IMPLEMENTED
-    /// @brief NULL or a debugger to attach to the renderer
-    // TL_Debugger_t *debugger_attach;
-    /// @brief NULL or a pointer to an API-specific debugger attachment configuration structure to configure the API debugger attachment.
-    // void *debugger_attachment_descriptor;
+    /// @brief NULL or a pointer to a debugger attachment configuration structure to configure the optional debugger attachment.
+    /// Note that in an application with multiple renderers each with debug attachments pointing to different debuggers with differing message
+    /// filters, the filters of the last specified debugger will be used for graphics API output. Core library messages output (`(TL)`) from
+    /// the renderers **will** still be filtered using the separate debuggers.
+    const TL_DebuggerAttachmentDescriptor_t *debugger_attachment_descriptor;
 } TL_RendererDescriptor_t;
 
 /**

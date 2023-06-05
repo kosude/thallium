@@ -11,7 +11,7 @@
 
 #include <volk/volk.h>
 
-void TLVK_AppendPNext(const void **const p_next, void *const obj) {
+void TLVK_AppendPNext(const void **const p_next, const void *const obj) {
     const void *next_obj = *p_next;
 
     if (!next_obj) {

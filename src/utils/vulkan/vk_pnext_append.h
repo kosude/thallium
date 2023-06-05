@@ -28,7 +28,7 @@
  */
 void TLVK_AppendPNext(
     const void **const p_next,
-    void *const obj
+    const void *const obj
 );
 
 #ifdef __cplusplus

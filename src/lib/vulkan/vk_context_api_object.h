@@ -31,6 +31,10 @@ typedef struct TLVK_ContextVulkanBlock_t {
     /// @brief Vulkan instance object:
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkInstance.html
     VkInstance vk_instance;
+    /// @brief Vulkan debug messenger object:
+    /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessengerEXT.html
+    /// This object is only initialised if a debugger was 'attached' to the context
+    VkDebugUtilsMessengerEXT vk_debug_messenger;
 
     /// @brief Array of enabled instance layers
     carray_t instance_layers;
@@ -54,6 +58,7 @@ bool TLVK_CreateContextVulkanBlock(
     TL_Context_t *const context,
     const TL_Version_t api_version,
     const TL_RendererFeatures_t features,
+    const TL_DebuggerAttachmentDescriptor_t *const attached_debug_descriptor,
     const TL_Debugger_t *const debugger
 );
 

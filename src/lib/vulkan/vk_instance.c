@@ -136,8 +136,8 @@ static VkInstanceCreateFlags __GetRequiredInstanceFlags(const TL_RendererFeature
 }
 
 // Get the instance layers required to support the given features
-static void __EnumerateRequiredInstanceLayers(const TL_RendererFeatures_t requirements, const TL_Debugger_t *const debugger,
-    uint32_t *const out_layer_count, const char **out_layer_names)
+static void __EnumerateRequiredInstanceLayers(const TL_RendererFeatures_t requirements, const bool debug_utils, uint32_t *const out_layer_count,
+    const char **out_layer_names)
 {
     if (!out_layer_count) {
         return;
@@ -145,13 +145,16 @@ static void __EnumerateRequiredInstanceLayers(const TL_RendererFeatures_t requir
 
     uint32_t count_ret = 0;
 
-    // TODO: define validation layers under some condition to do with debugger and debug attachment
+    // we automatically enable validation layers if debug utils are enabled
+    if (debug_utils) {
+        __DEFINE_REQUIRED_LAYER("VK_LAYER_KHRONOS_validation")
+    }
 
     *out_layer_count = count_ret;
 }
 
 // Get the instance extensions required to support the given features
-static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t requirements, const TL_Debugger_t *const debugger,
+static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t requirements, const bool debug_utils,
     uint32_t *const out_extension_count, const char **out_extension_names)
 {
     if (!out_extension_count) {
@@ -165,8 +168,12 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
         __DEFINE_REQUIRED_EXTENSION(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
 #   endif
 
-    // TODO: define debug utils and validation features under some condition to do with debugger and debug attachment. Debug utils are present on
-    // ~47% of devices. On those where it is not present, debug report (on ~89% devices) should be attempted to be used instead.
+    // TODO: Debug utils are present on ~47% of devices. On those where it is not present, debug report (on ~89% devices) should be attempted to be
+    // used instead.
+    if (debug_utils) {
+        __DEFINE_REQUIRED_EXTENSION(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+        __DEFINE_REQUIRED_EXTENSION(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME);
+    }
 
     *out_extension_count = count_ret;
 }
@@ -179,8 +186,9 @@ for (uint32_t i = 0; i < extensions.size; i++) {            \
     }                                                       \
 }
 
-VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const TL_RendererFeatures_t requirements, carray_t *const out_layer_names,
-    carray_t *const out_extension_names, const TL_Debugger_t *const debugger)
+VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const VkDebugUtilsMessengerCreateInfoEXT debug_messenger_info,
+    const TL_RendererFeatures_t requirements, carray_t *const out_layer_names, carray_t *const out_extension_names,
+    const TL_Debugger_t *const debugger)
 {
     VkInstanceCreateInfo instance_create_info;
     instance_create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -189,11 +197,13 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const T
 
     instance_create_info.flags = __GetRequiredInstanceFlags(requirements);
 
+    bool debug_utils = (debug_messenger_info.sType != 0);
+
     // validate required layers...
     uint32_t required_layer_count = 0;
-    __EnumerateRequiredInstanceLayers(requirements, debugger, &required_layer_count, NULL);
+    __EnumerateRequiredInstanceLayers(requirements, debug_utils, &required_layer_count, NULL);
     const char *required_layers[required_layer_count];
-    __EnumerateRequiredInstanceLayers(requirements, debugger, &required_layer_count, required_layers);
+    __EnumerateRequiredInstanceLayers(requirements, debug_utils, &required_layer_count, required_layers);
 
     bool is_missing_layers = false;
     carray_t layers = __ValidateInstanceLayers(required_layer_count, required_layers, debugger, &is_missing_layers);
@@ -203,9 +213,9 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const T
 
     // validate required extensions...
     uint32_t required_extension_count = 0;
-    __EnumerateRequiredInstanceExtensions(requirements, debugger, &required_extension_count, NULL);
+    __EnumerateRequiredInstanceExtensions(requirements, debug_utils, &required_extension_count, NULL);
     const char *required_extensions[required_extension_count];
-    __EnumerateRequiredInstanceExtensions(requirements, debugger, &required_extension_count, required_extensions);
+    __EnumerateRequiredInstanceExtensions(requirements, debug_utils, &required_extension_count, required_extensions);
 
     bool is_missing_extensions = false;
     carray_t extensions = __ValidateInstanceExtensions(required_extension_count, required_extensions, layers.size, (const char **) layers.data,
@@ -220,7 +230,19 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const T
     instance_create_info.enabledExtensionCount = extensions.size;
     instance_create_info.ppEnabledExtensionNames = (const char **) extensions.data;
 
-    // TODO: define validation feature enableds and validation features struct
+    // validation features (will be populated if the extension was enabled)
+    VkValidationFeatureEnableEXT validation_features_enabled[2] = {
+        VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT,
+        VK_VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT
+    };
+    VkValidationFeaturesEXT validation_features = {
+        .sType = VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT,
+        .pNext = NULL,
+        .enabledValidationFeatureCount = 2,
+        .pEnabledValidationFeatures = validation_features_enabled,
+        .disabledValidationFeatureCount = 0,
+        .pDisabledValidationFeatures = NULL
+    };
 
     // returning enabled layer names
     if (out_layer_names) {
@@ -248,17 +270,23 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const T
         }
     }
 
-    // TODO: append validation features struct to create info pNext if its extension is enabled
-    // TODO: append debug utils messenger create info to create info pNext if its extension is enabled
+    // if validation features are available...
+    __IF_EXTENSION_ENABLED(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME,
+        // append the validation features description onto the pNext chain
+        TLVK_AppendPNext(&instance_create_info.pNext, &validation_features);
+    );
+
+    // // if debug utils are available...
+    __IF_EXTENSION_ENABLED(VK_EXT_DEBUG_UTILS_EXTENSION_NAME,
+        // append debug messenger info to the pNext chain
+        TLVK_AppendPNext(&instance_create_info.pNext, &debug_messenger_info);
+    );
 
     // create instance
     VkInstance instance;
     if (vkCreateInstance(&instance_create_info, NULL, &instance)) {
         return VK_NULL_HANDLE;
     }
-
-    // load vulkan functions
-    volkLoadInstance(instance);
 
     carrayfree(&layers);
     carrayfree(&extensions);

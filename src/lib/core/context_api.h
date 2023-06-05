@@ -45,6 +45,7 @@ typedef struct TL_ContextAPIVersions_t {
  * @param apis Bit field of all APIs to support
  * @param versions Minimum versions to request for each API
  * @param features Struct of combined renderer features to support
+ * @param attached_debug_descriptor Debug output control descriptor for debug API objects such as VkDebugUtilsMessengerEXT
  * @param debugger NULL or Thallium debugger object
  *
  * @return False if error
@@ -54,6 +55,7 @@ bool TL_CreateContextAPIObjects(
     const TL_RendererAPIFlags_t apis,
     const TL_ContextAPIVersions_t versions,
     const TL_RendererFeatures_t features,
+    const TL_DebuggerAttachmentDescriptor_t *const attached_debug_descriptor,
     const TL_Debugger_t *const debugger
 );
 

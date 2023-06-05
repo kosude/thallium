@@ -39,7 +39,7 @@ static void __AddToCombinedFeatures(TL_RendererFeatures_t *const base, const TL_
 }
 
 static void __AddToCombinedAPIs(TL_RendererAPIFlags_t *const base, const TL_RendererAPIFlags_t api) {
-    (*base) |= api;
+    *base |= api;
 }
 
 static void __ConsiderAPIVersion(TL_ContextAPIVersions_t *const base, const TL_RendererAPIFlags_t api, const TL_Version_t version) {
@@ -92,23 +92,28 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
 
     TL_RendererAPIFlags_t combined_apis = TL_RENDERER_API_NULL_BIT;
     TL_RendererFeatures_t combined_features = { 0 };
-
     // hopefully the abstracted APIs are backwards compatible as we only request the highest version specified :)
     TL_ContextAPIVersions_t highest_api_versions = { 0 };
+
+    const TL_DebuggerAttachmentDescriptor_t *debug_descriptor_ptr = NULL;
 
     // combine all renderer information into single variables declared above
     for (uint32_t i = 0; i < count ; i++) {
         TL_RendererDescriptor_t descriptor = descriptors[i];
 
-        __AddToCombinedFeatures(&combined_features, descriptor.requirements);
+        // combine info
         __AddToCombinedAPIs(&combined_apis, descriptor.api);
+        __AddToCombinedFeatures(&combined_features, descriptor.requirements);
         __ConsiderAPIVersion(&highest_api_versions, descriptor.api, descriptor.api_version);
 
         TL_Log(debugger, "Context %p: renderer #%d - API id %d, version %d.%d.%d", context, i, descriptor.api, descriptor.api_version.major,
             descriptor.api_version.minor, descriptor.api_version.patch);
+
+        // we use last debugger attachment specified
+        debug_descriptor_ptr = descriptor.debugger_attachment_descriptor;
     }
 
-    if (!TL_CreateContextAPIObjects(context, combined_apis, highest_api_versions, combined_features, debugger)) {
+    if (!TL_CreateContextAPIObjects(context, combined_apis, highest_api_versions, combined_features, debug_descriptor_ptr, debugger)) {
         TL_Error(debugger, "Failed to create API objects for context at %p in call to TL_CreateRenderers", context);
         return false;
     }
