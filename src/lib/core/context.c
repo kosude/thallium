@@ -128,6 +128,10 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
 #       endif
     }
 
+    if (attached_debug_descriptor && attached_debug_descriptor->debugger) {
+        TL_Note(debugger, "Attached debugger %p to context %p", attached_debug_descriptor->debugger, context);
+    }
+
     context->api_objects_init = true;
 
     return true;

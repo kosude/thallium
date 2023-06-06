@@ -6,8 +6,8 @@
  */
 
 #pragma once
-#ifndef __TL__core__enums_h__
-#define __TL__core__enums_h__
+#ifndef __TL__thallium__enums_h__
+#define __TL__thallium__enums_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus

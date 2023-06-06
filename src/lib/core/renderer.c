@@ -6,6 +6,7 @@
  */
 
 #include "thallium.h"
+#include "api_modules.h"
 
 #include "types/core/context.h"
 #include "types/core/renderer.h"
@@ -13,6 +14,7 @@
 #include "utils/utils.h"
 #include "lib/core/context_api.h"
 
+#include <stdlib.h>
 #include <string.h>
 
 static bool __ValidateAPI(const TL_RendererAPIFlags_t api, const TL_Debugger_t *const debugger) {
@@ -67,10 +69,59 @@ static void __ConsiderAPIVersion(TL_ContextAPIVersions_t *const base, const TL_R
     }
 }
 
+static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_RendererDescriptor_t descriptor, const TL_Debugger_t *const debugger) {
+    if (!context) {
+        return NULL;
+    }
+
+    TL_Renderer_t *renderer = malloc(sizeof(TL_Renderer_t));
+    if (!renderer) {
+        TL_Fatal(debugger, "MALLOC fault in call to __CreateRenderer");
+        return NULL;
+    }
+
+    TL_Note(debugger, "Allocated renderer at %p", renderer);
+
+    renderer->api = descriptor.api;
+    renderer->context = context;
+    renderer->debugger = descriptor.debugger_attachment_descriptor->debugger;
+
+    // creating API-appropriate render system
+    switch (descriptor.api) {
+
+        // create a Vulkan render system...
+        case TL_RENDERER_API_VULKAN_BIT:; // the semicolon somehow fixes variable declaration errors, fml
+#           if defined(THALLIUM_VULKAN_INCL)
+
+                TLVK_RenderSystemDescriptor_t render_system_descriptor = {
+                    .placeholder = 5
+                };
+
+                renderer->render_system = (void *) TLVK_CreateRenderSystem(renderer, render_system_descriptor);
+                if (!renderer->render_system) {
+                    TL_Error(debugger, "Failed to create Vulkan render system for new renderer at %p", renderer);
+                    return NULL;
+                }
+
+#           endif
+            break;
+
+        case TL_RENDERER_API_NULL_BIT:
+        default:
+            return NULL;
+
+    }
+
+    TL_Note(debugger, "Renderer %p created for API id %d, top-level information:", renderer, descriptor.api);
+    TL_Log(debugger, "  Child render system: %p", renderer->render_system);
+
+    return renderer;
+}
+
 bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const TL_RendererDescriptor_t *const descriptors,
     TL_Renderer_t **renderers, const TL_Debugger_t *const debugger)
 {
-    if (!context || !descriptors || !renderers || count < 1) {
+    if (!context || !descriptors || !renderers || count <= 0) {
         return false;
     }
 
@@ -98,7 +149,7 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
     const TL_DebuggerAttachmentDescriptor_t *debug_descriptor_ptr = NULL;
 
     // combine all renderer information into single variables declared above
-    for (uint32_t i = 0; i < count ; i++) {
+    for (uint32_t i = 0; i < count; i++) {
         TL_RendererDescriptor_t descriptor = descriptors[i];
 
         // combine info
@@ -120,8 +171,17 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
 
     TL_Note(debugger, "Allocated and populated context data for %d renderers", count);
 
-    // TODO: create each renderer
-    //  ...
+    // create each renderer object
+    for (uint32_t i = 0; i < count; i++) {
+        TL_Renderer_t *ret = __CreateRenderer(context, descriptors[i], debugger);
+        if (!ret) {
+            TL_Error(debugger, "TL_CreateRenderers failed to create renderer index %d", i);
+            continue;
+        }
+
+        // update pointer in given array
+        renderers[i] = ret;
+    }
 
     context->renderers_init = true;
 
@@ -136,5 +196,24 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
  * @param renderer Pointer to the renderer object to free.
  */
 void TL_DestroyRenderer(TL_Renderer_t *const renderer) {
-    // TODO: destroy renderer
+    if (!renderer) {
+        return;
+    }
+
+    switch (renderer->api) {
+
+        // destroy Vulkan render system
+        case TL_RENDERER_API_VULKAN_BIT:
+#           if defined(THALLIUM_VULKAN_INCL)
+                TLVK_DestroyRenderSystem(renderer->render_system);
+#           endif
+
+            break;
+
+        case TL_RENDERER_API_NULL_BIT:
+        default:
+            break;
+    }
+
+    free(renderer);
 }

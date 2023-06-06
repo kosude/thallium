@@ -1,6 +1,7 @@
 set(SOURCES
     "vk_context_api_object.c"
     "vk_instance.c"
+    "vk_render_system.c"
 )
 
 # add path prefix to each filename in sources
