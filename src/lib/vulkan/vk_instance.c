@@ -249,7 +249,7 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const V
         for (uint32_t i = 0; i < layers.size; i++) {
             // allocate layer name in heap
             size_t len = strlen((char *) layers.data[i]);
-            char *str = malloc(sizeof(char) * len);
+            char *str = malloc(sizeof(char) * (len + 1));
             strcpy(str, (char *) layers.data[i]);
 
             // append layer name into render system store
@@ -262,7 +262,7 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const V
         for (uint32_t i = 0; i < extensions.size; i++) {
             // allocate extension name in heap
             size_t len = strlen((char *) extensions.data[i]);
-            char *str = malloc(sizeof(char) * len);
+            char *str = malloc(sizeof(char) * (len + 1));
             strcpy(str, (char *) extensions.data[i]);
 
             // append extension name into render system store

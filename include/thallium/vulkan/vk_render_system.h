@@ -15,9 +15,6 @@
 #include "thallium/fwd.h"
 #include "thallium/platform.h"
 
-#define VK_NO_PROTOTYPES
-#include <vulkan/vulkan.h>
-
 /**
  * @brief A render system to hold Vulkan-specific rendering data.
  *
@@ -28,17 +25,7 @@
  *
  * @sa @ref TLVK_CreateRenderSystem()
  */
-typedef struct TLVK_RenderSystem_t {
-    // TODO: set these properties in TLVK_CreateRenderSystem()...
-
-    /// @brief The parent API-agnostic renderer object.
-    const TL_Renderer_t *renderer;
-    /// @brief The parent context object.
-    const TL_Context_t *context;
-
-    /// @brief Pointer (Vulkan handle) to the instance contained in `context`.
-    VkInstance instance_ptr;
-} TLVK_RenderSystem_t;
+typedef struct TLVK_RenderSystem_t TLVK_RenderSystem_t;
 
 /**
  * @brief Descriptor struct to configure the creation of a Thallium render system for Vulkan.
@@ -46,6 +33,7 @@ typedef struct TLVK_RenderSystem_t {
  * This descriptor structure provides options for the creation of Thallium render systems.
  */
 typedef struct TLVK_RenderSystemDescriptor_t {
+    // TODO: vulkan render system descriptor
     uint32_t placeholder;
 } TLVK_RenderSystemDescriptor_t;
 

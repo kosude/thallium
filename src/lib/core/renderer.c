@@ -36,6 +36,18 @@ static bool __ValidateAPI(const TL_RendererAPIFlags_t api, const TL_Debugger_t *
     return false;
 }
 
+static const char *__StringifyAPI(const TL_RendererAPIFlags_t api) {
+    switch (api) {
+        case TL_RENDERER_API_VULKAN_BIT:
+            return "Vulkan";
+        case TL_RENDERER_API_NULL_BIT:
+        default:
+            return "Unknown";
+    }
+
+    return "Unknown";
+}
+
 static void __AddToCombinedFeatures(TL_RendererFeatures_t *const base, const TL_RendererFeatures_t features) {
     base->placeholder = features.placeholder;
 }
@@ -112,14 +124,22 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
 
     }
 
-    TL_Note(debugger, "Renderer %p created for API id %d, top-level information:", renderer, descriptor.api);
-    TL_Log(debugger, "  Child render system: %p", renderer->render_system);
+    // printing debug information...
+
+    TL_Note(debugger, "Renderer %p created, top-level information:", renderer);
+
+    // enclosing if statement to avoid extra debug processing if its not necessary
+    if (debugger) {
+        TL_Note(debugger, "  API: %s (id %d)", __StringifyAPI(descriptor.api), descriptor.api);
+    }
+
+    TL_Note(debugger, "  Child render system: %p", renderer->render_system);
 
     return renderer;
 }
 
 bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const TL_RendererDescriptor_t *const descriptors,
-    TL_Renderer_t **renderers, const TL_Debugger_t *const debugger)
+    TL_Renderer_t **const *const renderers, const TL_Debugger_t *const debugger)
 {
     if (!context || !descriptors || !renderers || count <= 0) {
         return false;
@@ -180,7 +200,7 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
         }
 
         // update pointer in given array
-        renderers[i] = ret;
+        *(renderers[i]) = ret;
     }
 
     context->renderers_init = true;

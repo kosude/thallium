@@ -61,9 +61,9 @@ int main() {
         vulkan_renderer_descriptor,
         extra_vulkan_renderer_descriptor,
     };
-    std::vector<TL_Renderer_t *> renderer_ptrs = {
-        VULKAN_RENDERER,
-        extra_vulkan_renderer
+    std::vector<TL_Renderer_t **> renderer_ptrs = {
+        &VULKAN_RENDERER,
+        &extra_vulkan_renderer
     };
 
     if (!TL_CreateRenderers(CONTEXT, renderer_ptrs.size(), renderer_descriptors.data(), renderer_ptrs.data(), DEBUGGER)) {

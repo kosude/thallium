@@ -95,7 +95,7 @@ bool TL_CreateRenderers(
     TL_Context_t *const context,
     const uint32_t count,
     const TL_RendererDescriptor_t *const descriptors,
-    TL_Renderer_t **renderers,
+    TL_Renderer_t **const *const renderers,
     const TL_Debugger_t *const debugger
 );
 
