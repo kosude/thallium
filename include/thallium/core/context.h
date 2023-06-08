@@ -24,8 +24,23 @@
  *
  * @sa @ref TL_CreateContext()
  * @sa @ref TL_DestroyContext()
+ * @sa @ref TL_ContextDescriptor_t
  */
 typedef struct TL_Context_t TL_Context_t;
+
+/**
+ * @brief A structure describing a Thallium context object to be created with @ref TL_CreateContext().
+ *
+ * This structure describes a [context object](@ref TL_Context_t) to be created.
+ *
+ * @sa @ref TL_Context_t
+ * @sa @ref TL_CreateContext()
+ * @sa @ref TL_DestroyContext()
+ */
+typedef struct TL_ContextDescriptor_t {
+    /// @brief NULL or a descriptor describing a debug attachment for the context.
+    const TL_DebuggerAttachmentDescriptor_t *debug_attachment_descriptor;
+} TL_ContextDescriptor_t;
 
 /**
  * @brief Allocate space for and create a Thallium context object.
@@ -40,6 +55,7 @@ typedef struct TL_Context_t TL_Context_t;
  * @sa @ref TL_DestroyContext()
  */
 TL_Context_t *TL_CreateContext(
+    const TL_ContextDescriptor_t context_descriptor,
     const TL_Debugger_t *const debugger
 );
 

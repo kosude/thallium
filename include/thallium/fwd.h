@@ -13,6 +13,7 @@
 #endif // __cplusplus
 
 typedef struct TL_Context_t TL_Context_t;
+typedef struct TL_ContextDescriptor_t TL_ContextDescriptor_t;
 
 typedef struct TL_Debugger_t TL_Debugger_t;
 typedef struct TL_DebuggerDescriptor_t TL_DebuggerDescriptor_t;

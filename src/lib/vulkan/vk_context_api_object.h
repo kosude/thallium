@@ -58,7 +58,6 @@ bool TLVK_CreateContextVulkanBlock(
     TL_Context_t *const context,
     const TL_Version_t api_version,
     const TL_RendererFeatures_t features,
-    const TL_DebuggerAttachmentDescriptor_t *const attached_debug_descriptor,
     const TL_Debugger_t *const debugger
 );
 

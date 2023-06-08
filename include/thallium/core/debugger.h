@@ -13,6 +13,7 @@
 #endif // __cplusplus
 
 #include "thallium/enums.h"
+#include "thallium/fwd.h"
 
 /**
  * @brief A structure used to debug Thallium operations.
@@ -45,9 +46,9 @@ typedef struct TL_DebuggerDescriptor_t {
  *
  * This structure describes a debugger attachment.
  *
- * A debug attachment refers to the idea of immutably 'attaching' a debugger to a renderer at create-time, allowing for more detailed debug output.
+ * A debug attachment refers to the idea of immutably 'attaching' a debugger to a context at creation time, allowing for more detailed debug output.
  * More specifically, this enables API-specific debug functionality. For example, Vulkan
- * [debug utils](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_utils.html) are enabled for Vulkan renderers.
+ * [debug utils](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_utils.html) are enabled for use by Vulkan renderers.
  */
 typedef struct TL_DebuggerAttachmentDescriptor_t {
     /// @brief Debugger to link the attachment to
@@ -55,6 +56,7 @@ typedef struct TL_DebuggerAttachmentDescriptor_t {
 
     // TODO: maybe I should add a void ptr that can be an API-specific debug attachment (previously debug system) descriptor so that things like the
     // Vulkan debug utils severities and types can be controlled
+    // Note that this would have to support multiple APIs as only one debugger attachment exists per context.
 } TL_DebuggerAttachmentDescriptor_t;
 
 /**

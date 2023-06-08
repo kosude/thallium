@@ -33,7 +33,13 @@ int main() {
 
     // ..:: Create the Thallium context ::..
 
-    CONTEXT = TL_CreateContext(DEBUGGER);
+    TL_DebuggerAttachmentDescriptor_t debugger_attachment_descriptor = {};
+    debugger_attachment_descriptor.debugger = DEBUGGER;
+
+    TL_ContextDescriptor_t context_descriptor = {};
+    context_descriptor.debug_attachment_descriptor = &debugger_attachment_descriptor;
+
+    CONTEXT = TL_CreateContext(context_descriptor, DEBUGGER);
     if (!CONTEXT) {
         throw std::runtime_error("Failed to create Thallium context");
     }
@@ -41,20 +47,15 @@ int main() {
 
     // ..:: Create the renderer(s) ::..
 
-    TL_DebuggerAttachmentDescriptor_t debugger_attachment_descriptor = {};
-    debugger_attachment_descriptor.debugger = DEBUGGER;
-
     TL_RendererDescriptor_t vulkan_renderer_descriptor = {};
     vulkan_renderer_descriptor.api = TL_RENDERER_API_VULKAN_BIT;
     vulkan_renderer_descriptor.api_version = { 1, 2, 0 };
-    vulkan_renderer_descriptor.debugger_attachment_descriptor = &debugger_attachment_descriptor;
 
     TL_Renderer_t *extra_vulkan_renderer = nullptr;
 
     TL_RendererDescriptor_t extra_vulkan_renderer_descriptor = {};
     extra_vulkan_renderer_descriptor.api = TL_RENDERER_API_VULKAN_BIT;
     extra_vulkan_renderer_descriptor.api_version = { 1, 3, 0 };
-    extra_vulkan_renderer_descriptor.debugger_attachment_descriptor = &debugger_attachment_descriptor;
     extra_vulkan_renderer_descriptor.requirements.placeholder = true;
 
     std::vector<TL_RendererDescriptor_t> renderer_descriptors = {

@@ -22,7 +22,7 @@
 // static context pointer singleton
 static TL_Context_t *__CONTEXT_PTR = NULL;
 
-TL_Context_t *TL_CreateContext(const TL_Debugger_t *const debugger) {
+TL_Context_t *TL_CreateContext(const TL_ContextDescriptor_t context_descriptor, const TL_Debugger_t *const debugger) {
     if (__CONTEXT_PTR) {
         TL_Warn(debugger, "Attempted to create context (one already exists at %p) - creating multiple contexts is illegal. Existing context was "
             "returned", __CONTEXT_PTR);
@@ -36,10 +36,19 @@ TL_Context_t *TL_CreateContext(const TL_Debugger_t *const debugger) {
         return NULL;
     }
 
-    TL_Note(debugger, "Allocated blank context at %p", context);
+    TL_Log(debugger, "Allocated blank context at %p", context);
 
     context->api_objects_init = false;
     context->renderers_init = false;
+
+    // attach debugger if specified in descriptor
+    if (context_descriptor.debug_attachment_descriptor) {
+        context->attached_debugger = context_descriptor.debug_attachment_descriptor->debugger;
+
+        TL_Log(debugger, "  Attached debugger %p", context->attached_debugger);
+    } else {
+        context->attached_debugger = NULL;
+    }
 
     // the handles of any data blocks that are initialised will be set accordingly in TL_CreateContextAPIObjects
     context->vulkan_offset = TL_CONTEXT_API_OBJECT_UNINITIALISED;
@@ -69,8 +78,7 @@ void TL_DestroyContext(TL_Context_t *const context) {
 }
 
 bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAPIFlags_t apis, const TL_ContextAPIVersions_t versions,
-    const TL_RendererFeatures_t features, const TL_DebuggerAttachmentDescriptor_t *const attached_debug_descriptor,
-    const TL_Debugger_t *const debugger)
+    const TL_RendererFeatures_t features, const TL_Debugger_t *const debugger)
 {
     if (context->api_objects_init) {
         TL_Warn(debugger, "Attempted to create context API objects multiple times on the same context, which is illegal behaviour");
@@ -107,7 +115,7 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
     // populating this data blocks.
     memset(context->data, 0, data_size);
 
-    TL_Note(debugger, "Allocated %d bytes of space for data blocks in Thallium context %p", data_size, context);
+    TL_Log(debugger, "Allocated %d bytes of space for data blocks in Thallium context %p", data_size, context);
     TL_Log(debugger, "  Pointer to allocated data space is at %p", context->data);
 
     // supporting Vulkan renderers
@@ -116,7 +124,7 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
             TL_Note(debugger, "Requesting the Vulkan API at version %d.%d.%d", versions.vulkan_version.major, versions.vulkan_version.minor,
                 versions.vulkan_version.patch);
 
-            if (!TLVK_CreateContextVulkanBlock(context, versions.vulkan_version, features, attached_debug_descriptor, debugger)) {
+            if (!TLVK_CreateContextVulkanBlock(context, versions.vulkan_version, features, debugger)) {
                 TL_Error(debugger, "Failed to populate Vulkan-specific context data block (%p + offset %d)", context->data, context->vulkan_offset);
                 return false;
             }
@@ -126,10 +134,6 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
 #       else
             return false;
 #       endif
-    }
-
-    if (attached_debug_descriptor && attached_debug_descriptor->debugger) {
-        TL_Note(debugger, "Attached debugger %p to context %p", attached_debug_descriptor->debugger, context);
     }
 
     context->api_objects_init = true;

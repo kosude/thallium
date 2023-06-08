@@ -99,7 +99,7 @@ for (uint32_t i = 0; i < block->instance_extensions.size; i++) {            \
 static bool __VOLK_INITIALISED = false;
 
 bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version_t api_version, const TL_RendererFeatures_t features,
-    const TL_DebuggerAttachmentDescriptor_t *const attached_debug_descriptor, const TL_Debugger_t *const debugger)
+    const TL_Debugger_t *const debugger)
 {
     if (!context) {
         return false;
@@ -142,18 +142,18 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
     // (if a debug descriptor was specified to be attached)
     VkDebugUtilsMessengerCreateInfoEXT debug_utils_create_info = { 0 };
 
-    if (attached_debug_descriptor) {
+    if (context->attached_debugger) {
         debug_utils_create_info.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
         debug_utils_create_info.pNext = NULL;
         debug_utils_create_info.flags = 0;
-        debug_utils_create_info.messageSeverity = __ThalliumDebugSeveritiesToVulkanFlags(attached_debug_descriptor->debugger->severities);
+        debug_utils_create_info.messageSeverity = __ThalliumDebugSeveritiesToVulkanFlags(context->attached_debugger->severities);
         debug_utils_create_info.messageType =       // all vulkan message types enabled
             VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT
             | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT
             | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT
             | VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT;
         debug_utils_create_info.pfnUserCallback = __DebugMessengerCallback;
-        debug_utils_create_info.pUserData = (void *) attached_debug_descriptor->debugger;
+        debug_utils_create_info.pUserData = (void *) context->attached_debugger;
     }
 
     block->vk_instance = TLVK_CreateInstance(app_info, debug_utils_create_info, features, &block->instance_layers, &block->instance_extensions,
@@ -190,7 +190,7 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
         }
 
         TL_Log(debugger, "Created Vulkan debug messenger at %p in Thallium context %p", block->vk_debug_messenger, context);
-        TL_Log(debugger, "  Following filter configuration from debugger at location %p (via attachment)", attached_debug_descriptor->debugger);
+        TL_Log(debugger, "  Following filter configuration from debugger at location %p (via attachment to context)", context->attached_debugger);
     );
 
     block->initialised = true;

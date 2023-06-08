@@ -30,7 +30,7 @@ TLVK_RenderSystem_t *TLVK_CreateRenderSystem(const TL_Renderer_t *const renderer
     // stored on stack for less derefs
     const TL_Debugger_t *debugger = renderer->debugger;
 
-    TL_Note(debugger, "Allocated memory for Vulkan render system at %p", render_system);
+    TL_Log(debugger, "Allocated memory for Vulkan render system at %p", render_system);
 
     render_system->renderer = renderer;
     render_system->vk_context = (TLVK_ContextVulkanBlock_t *) ((char *) renderer->context->data + renderer->context->vulkan_offset);

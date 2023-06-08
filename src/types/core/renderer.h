@@ -20,7 +20,7 @@ typedef struct TL_Renderer_t {
 
     /// @brief Pointer to the parent context object.
     const TL_Context_t *context;
-    /// @brief NULL or attached debugger object.
+    /// @brief NULL or attached context debugger object.
     const TL_Debugger_t *debugger;
 
     /// @brief Internal API-aware render system.

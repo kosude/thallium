@@ -17,10 +17,14 @@
 #include "thallium/platform.h"
 
 typedef struct TL_Context_t {
+    // TODO: put these bools in an inline struct
     /// @brief Has TL_CreateContextAPIObjects() been called on this context object?
     bool api_objects_init;
     /// @brief Has TL_CreateRenderers() been called on this context object?
     bool renderers_init;
+
+    /// @brief Debugger pointer of context debugger attachment (may be NULL)
+    const TL_Debugger_t *attached_debugger;
 
     /// @brief Memory offset from the .data member to the Vulkan-specific block of data
     /// @note If this value is SIZE_MAX, then the Vulkan block has not been initialised

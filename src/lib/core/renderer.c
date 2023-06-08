@@ -92,11 +92,11 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
         return NULL;
     }
 
-    TL_Note(debugger, "Allocated renderer at %p", renderer);
+    TL_Log(debugger, "Allocated renderer at %p", renderer);
 
     renderer->api = descriptor.api;
     renderer->context = context;
-    renderer->debugger = descriptor.debugger_attachment_descriptor->debugger;
+    renderer->debugger = context->attached_debugger;
 
     // creating API-appropriate render system
     switch (descriptor.api) {
@@ -166,8 +166,6 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
     // hopefully the abstracted APIs are backwards compatible as we only request the highest version specified :)
     TL_ContextAPIVersions_t highest_api_versions = { 0 };
 
-    const TL_DebuggerAttachmentDescriptor_t *debug_descriptor_ptr = NULL;
-
     // combine all renderer information into single variables declared above
     for (uint32_t i = 0; i < count; i++) {
         TL_RendererDescriptor_t descriptor = descriptors[i];
@@ -179,17 +177,14 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
 
         TL_Log(debugger, "Context %p: renderer #%d - API id %d, version %d.%d.%d", context, i, descriptor.api, descriptor.api_version.major,
             descriptor.api_version.minor, descriptor.api_version.patch);
-
-        // we use last debugger attachment specified
-        debug_descriptor_ptr = descriptor.debugger_attachment_descriptor;
     }
 
-    if (!TL_CreateContextAPIObjects(context, combined_apis, highest_api_versions, combined_features, debug_descriptor_ptr, debugger)) {
+    if (!TL_CreateContextAPIObjects(context, combined_apis, highest_api_versions, combined_features, debugger)) {
         TL_Error(debugger, "Failed to create API objects for context at %p in call to TL_CreateRenderers", context);
         return false;
     }
 
-    TL_Note(debugger, "Allocated and populated context data for %d renderers", count);
+    TL_Log(debugger, "Allocated and populated context data for %d renderers", count);
 
     // create each renderer object
     for (uint32_t i = 0; i < count; i++) {
@@ -202,6 +197,8 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
         // update pointer in given array
         *(renderers[i]) = ret;
     }
+
+    TL_Note(debugger, "Renderer creation for context %p done, output %d renderers", context, count);
 
     context->renderers_init = true;
 

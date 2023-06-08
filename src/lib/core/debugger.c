@@ -22,7 +22,7 @@ TL_Debugger_t *TL_CreateDebugger(const TL_DebuggerDescriptor_t descriptor) {
     debugger->severities = descriptor.severities;
     debugger->sources = descriptor.sources;
 
-    TL_Note(debugger, "Allocated debugger at %p", debugger);
+    TL_Log(debugger, "Allocated debugger at %p", debugger);
 
     return debugger;
 }
