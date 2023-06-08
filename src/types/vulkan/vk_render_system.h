@@ -20,12 +20,13 @@
 #include <vulkan/vulkan.h>
 
 typedef struct TLVK_RenderSystem_t {
-    // TODO: set these properties in TLVK_CreateRenderSystem()...
-
     /// @brief The parent API-agnostic renderer object.
     const TL_Renderer_t *renderer;
     /// @brief Vulkan context data block pointer.
     const TLVK_ContextVulkanBlock_t *vk_context;
+
+    /// @brief Device manager object (contains Vulkan logical and physical device interface(s))
+    TLVK_DeviceManager_t *device_manager;
 } TLVK_RenderSystem_t;
 
 #ifdef __cplusplus

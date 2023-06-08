@@ -21,21 +21,33 @@ TLVK_RenderSystem_t *TLVK_CreateRenderSystem(const TL_Renderer_t *const renderer
         return NULL;
     }
 
+    const TL_Debugger_t *debugger = renderer->debugger;
+
     TLVK_RenderSystem_t *render_system = malloc(sizeof(TLVK_RenderSystem_t));
     if (!render_system) {
-        TL_Fatal(renderer->debugger, "MALLOC fault in call to TLVK_CreateRenderSystem");
+        TL_Fatal(debugger, "MALLOC fault in call to TLVK_CreateRenderSystem");
         return NULL;
     }
-
-    // stored on stack for less derefs
-    const TL_Debugger_t *debugger = renderer->debugger;
 
     TL_Log(debugger, "Allocated memory for Vulkan render system at %p", render_system);
 
     render_system->renderer = renderer;
     render_system->vk_context = (TLVK_ContextVulkanBlock_t *) ((char *) renderer->context->data + renderer->context->vulkan_offset);
 
-    // TODO: create device manager for Vulkan devices (descriptor should have a device manager descriptor)
+    // populate descriptor for device manager
+    TLVK_DeviceManagerDescriptor_t device_manager_descriptor;
+    if (descriptor.device_manager_descriptor) {
+        device_manager_descriptor = *descriptor.device_manager_descriptor;
+    } else {
+        // default device manager descriptor configuration (used if no user-given descriptor was specified)...
+
+        device_manager_descriptor.placeholder = 5;
+    }
+
+    render_system->device_manager = TLVK_CreateDeviceManager(renderer, device_manager_descriptor);
+    if (!render_system->device_manager) {
+        TL_Error(debugger, "Failed to create Vulkan device manager for render system at %p", render_system);
+    }
 
     return render_system;
 }
@@ -44,6 +56,8 @@ void TLVK_DestroyRenderSystem(TLVK_RenderSystem_t *const render_system) {
     if (!render_system) {
         return;
     }
+
+    TLVK_DestroyDeviceManager(render_system->device_manager);
 
     free(render_system);
 }

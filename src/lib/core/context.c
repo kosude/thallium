@@ -38,8 +38,8 @@ TL_Context_t *TL_CreateContext(const TL_ContextDescriptor_t context_descriptor, 
 
     TL_Log(debugger, "Allocated blank context at %p", context);
 
-    context->api_objects_init = false;
-    context->renderers_init = false;
+    context->state.api_objects_init = false;
+    context->state.renderers_init = false;
 
     // attach debugger if specified in descriptor
     if (context_descriptor.debug_attachment_descriptor) {
@@ -80,7 +80,7 @@ void TL_DestroyContext(TL_Context_t *const context) {
 bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAPIFlags_t apis, const TL_ContextAPIVersions_t versions,
     const TL_RendererFeatures_t features, const TL_Debugger_t *const debugger)
 {
-    if (context->api_objects_init) {
+    if (context->state.api_objects_init) {
         TL_Warn(debugger, "Attempted to create context API objects multiple times on the same context, which is illegal behaviour");
         return true;
     }
@@ -136,7 +136,7 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
 #       endif
     }
 
-    context->api_objects_init = true;
+    context->state.api_objects_init = true;
 
     return true;
 }

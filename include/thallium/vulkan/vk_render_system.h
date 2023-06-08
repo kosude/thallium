@@ -13,6 +13,7 @@
 #endif // __cplusplus
 
 #include "thallium/fwd.h"
+#include "thallium/fwdvk.h"
 #include "thallium/platform.h"
 
 /**
@@ -33,8 +34,8 @@ typedef struct TLVK_RenderSystem_t TLVK_RenderSystem_t;
  * This descriptor structure provides options for the creation of Thallium render systems.
  */
 typedef struct TLVK_RenderSystemDescriptor_t {
-    // TODO: vulkan render system descriptor
-    uint32_t placeholder;
+    /// @brief Descriptor for the render system [device manager object](@ref TLVK_DeviceManagerDescriptor_t)
+    TLVK_DeviceManagerDescriptor_t *device_manager_descriptor;
 } TLVK_RenderSystemDescriptor_t;
 
 /**

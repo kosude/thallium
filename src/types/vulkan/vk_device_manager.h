@@ -6,14 +6,22 @@
  */
 
 #pragma once
-#ifndef __TL__thallium_vulkan_h__
-#define __TL__thallium_vulkan_h__
+#ifndef __TL__internal__vulkan__vk_device_manager_h__
+#define __TL__internal__vulkan__vk_device_manager_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
 #include "thallium/vulkan/vk_device_manager.h"
-#include "thallium/vulkan/vk_render_system.h"
+
+#define VK_NO_PROTOTYPES
+#include <vulkan/vulkan.h>
+
+typedef struct TLVK_DeviceManager_t {
+    // TODO: vulkan device manager
+
+    uint32_t placeholder;
+} TLVK_DeviceManager_t;
 
 #ifdef __cplusplus
     }

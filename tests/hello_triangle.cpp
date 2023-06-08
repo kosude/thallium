@@ -79,7 +79,6 @@ int main() {
 
     TL_DestroyContext(CONTEXT);
 
-    // make sure to destroy the debugger AFTER destroying the context
     TL_DestroyDebugger(DEBUGGER);
 
     return 0;

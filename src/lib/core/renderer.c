@@ -102,14 +102,20 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
     switch (descriptor.api) {
 
         // create a Vulkan render system...
-        case TL_RENDERER_API_VULKAN_BIT:; // the semicolon somehow fixes variable declaration errors, fml
+        case TL_RENDERER_API_VULKAN_BIT:; // the semicolon somehow fixes variable declaration errors (fml)
 #           if defined(THALLIUM_VULKAN_INCL)
 
-                TLVK_RenderSystemDescriptor_t render_system_descriptor = {
-                    .placeholder = 5
-                };
+                TLVK_RenderSystemDescriptor_t rsdescr;
 
-                renderer->render_system = (void *) TLVK_CreateRenderSystem(renderer, render_system_descriptor);
+                if (descriptor.render_system_descriptor) {
+                    rsdescr = *((TLVK_RenderSystemDescriptor_t *) descriptor.render_system_descriptor);
+                } else {
+                    // default render system descriptor configuration (used if no user-given descriptor was specified)...
+
+                    rsdescr.device_manager_descriptor = NULL;
+                }
+
+                renderer->render_system = (void *) TLVK_CreateRenderSystem(renderer, rsdescr);
                 if (!renderer->render_system) {
                     TL_Error(debugger, "Failed to create Vulkan render system for new renderer at %p", renderer);
                     return NULL;
@@ -146,7 +152,7 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
     }
 
     // function has already been called once on this context
-    if (context->renderers_init) {
+    if (context->state.renderers_init) {
         TL_Warn(debugger, "Attempted to invoke TL_CreateRenderers multiple times on the same context, which is illegal behaviour");
         return true;
     }
@@ -198,9 +204,9 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
         *(renderers[i]) = ret;
     }
 
-    TL_Note(debugger, "Renderer creation for context %p done, output %d renderers", context, count);
+    TL_Note(debugger, "Renderer creation for context %p done --> %d renderers were output", context, count);
 
-    context->renderers_init = true;
+    context->state.renderers_init = true;
 
     return true;
 }

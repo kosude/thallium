@@ -22,6 +22,7 @@
 // search would be better after alphabetically sorting the available layers/extensions. This doesn't need too
 // much priority as it's not like it's being done every frame, but it should probably be looked into at some
 // point.
+// NOTE: the __ValidateInstanceExtensions function is very slow! (as it is also checking for extensions provied by layers)
 
 // validate given layers and return an array of the layers that are deemed valid (which can be enabled)
 static carray_t __ValidateInstanceLayers(const uint32_t count, const char *const *const names, const TL_Debugger_t *const debugger,
@@ -205,6 +206,8 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const V
     const char *required_layers[required_layer_count];
     __EnumerateRequiredInstanceLayers(requirements, debug_utils, &required_layer_count, required_layers);
 
+    TL_Log(debugger, "Validating Vulkan layers...");
+
     bool is_missing_layers = false;
     carray_t layers = __ValidateInstanceLayers(required_layer_count, required_layers, debugger, &is_missing_layers);
     if (is_missing_layers) {
@@ -216,6 +219,8 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const V
     __EnumerateRequiredInstanceExtensions(requirements, debug_utils, &required_extension_count, NULL);
     const char *required_extensions[required_extension_count];
     __EnumerateRequiredInstanceExtensions(requirements, debug_utils, &required_extension_count, required_extensions);
+
+    TL_Log(debugger, "Validating Vulkan instance-level extensions...");
 
     bool is_missing_extensions = false;
     carray_t extensions = __ValidateInstanceExtensions(required_extension_count, required_extensions, layers.size, (const char **) layers.data,

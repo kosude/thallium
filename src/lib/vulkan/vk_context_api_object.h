@@ -25,8 +25,11 @@
  * This struct describes the block of data stored in a Thallium context object referenced by Vulkan renderers.
  */
 typedef struct TLVK_ContextVulkanBlock_t {
-    /// @brief Has the Vulkan block already been initialised? Here to avoid overwriting existing handle to stuff like the Vulkan instance.
-    bool initialised;
+    /// @brief Meta object state
+    struct {
+        /// @brief Has the Vulkan block already been initialised? Here to avoid overwriting existing handle to stuff like the Vulkan instance.
+        bool initialised;
+    } state;
 
     /// @brief Vulkan instance object:
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkInstance.html

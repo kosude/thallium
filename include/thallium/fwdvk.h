@@ -12,6 +12,9 @@
     extern "C" {
 #endif // __cplusplus
 
+typedef struct TLVK_DeviceManager_t TLVK_DeviceManager_t;
+typedef struct TLVK_DeviceManagerDescriptor_t TLVK_DeviceManagerDescriptor_t;
+
 typedef struct TLVK_RenderSystem_t TLVK_RenderSystem_t;
 typedef struct TLVK_RenderSystemDescriptor_t TLVK_RenderSystemDescriptor_t;
 

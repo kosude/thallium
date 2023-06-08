@@ -17,11 +17,13 @@
 #include "thallium/platform.h"
 
 typedef struct TL_Context_t {
-    // TODO: put these bools in an inline struct
-    /// @brief Has TL_CreateContextAPIObjects() been called on this context object?
-    bool api_objects_init;
-    /// @brief Has TL_CreateRenderers() been called on this context object?
-    bool renderers_init;
+    /// @brief Meta object state
+    struct {
+        /// @brief Has TL_CreateContextAPIObjects() been called on this context object?
+        bool api_objects_init;
+        /// @brief Has TL_CreateRenderers() been called on this context object?
+        bool renderers_init;
+    } state;
 
     /// @brief Debugger pointer of context debugger attachment (may be NULL)
     const TL_Debugger_t *attached_debugger;

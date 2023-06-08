@@ -114,7 +114,7 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
 
     // block has already been initialised, so we return early.
     // we don't want to overwrite data in this block as we need to make sure not to lose e.g. the Vulkan instance handle.
-    if (block->initialised) {
+    if (block->state.initialised) {
         return true;
     }
 
@@ -193,7 +193,7 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
         TL_Log(debugger, "  Following filter configuration from debugger at location %p (via attachment to context)", context->attached_debugger);
     );
 
-    block->initialised = true;
+    block->state.initialised = true;
 
     return true;
 }
