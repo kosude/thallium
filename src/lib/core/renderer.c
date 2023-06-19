@@ -71,9 +71,9 @@ static void __ConsiderAPIVersion(TL_ContextAPIVersions_t *const base, const TL_R
 
     // check if any version values are higher than the base version
     bool is_greater =
-        version.major > base_version->major
-        | version.minor > base_version->minor
-        | version.patch > base_version->patch;
+        (version.major > base_version->major) |
+        (version.minor > base_version->minor) |
+        (version.patch > base_version->patch);
 
     // update base version if the specified one is greater
     if (is_greater) {
