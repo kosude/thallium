@@ -59,6 +59,11 @@ else()
     set(THALLIUM_LIB_TYPE STATIC)
 endif()
 
+option(THALLIUM_DEBUGGER_TIMESTAMPS "Add timestamps to debugger output messages" ON)
+if (THALLIUM_DEBUGGER_TIMESTAMPS)
+    set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "THALLIUM_DEBUGGER_TIMESTAMPS")
+endif()
+
 option(THALLIUM_BUILD_TESTS "Build Thallium tests" OFF)
 option(THALLIUM_BUILD_DOCS "Build Thallium HTML documentation" OFF)
 

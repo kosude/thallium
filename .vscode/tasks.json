@@ -14,6 +14,7 @@
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/cmake/linux/x86_64-linux-clang.cmake",
 
+                "-DTHALLIUM_DEBUGGER_TIMESTAMPS=ON",
                 "-DTHALLIUM_BUILD_DOCS=ON",
                 "-DTHALLIUM_BUILD_TESTS=ON",
                 "-DTHALLIUM_BUILD_MODULE_VULKAN=ON"

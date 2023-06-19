@@ -36,7 +36,9 @@
 
 #include <stdio.h>
 #include <stdarg.h>
-#include <time.h>
+#if defined(THALLIUM_DEBUGGER_TIMESTAMPS)
+#   include <time.h>
+#endif
 
 // TODO: needs testing on Windows, as the colour output might not work properly. If it doesn't then libcio can be used instead of the current colours
 // setup.
@@ -44,9 +46,12 @@
 typedef struct {
     va_list ap;
     const char *fmt;
-    struct tm *time;
     void *udata;
     int level;
+
+#   if defined(THALLIUM_DEBUGGER_TIMESTAMPS)
+        struct tm *time;
+#   endif
 } __log_Event;
 
 typedef void (*__log_LogFn)(__log_Event *ev);
@@ -86,12 +91,18 @@ static const char *level_colours[] = {
 };
 
 static void __stdout_callback(__log_Event *ev) {
-    char buf[16];
-    buf[strftime(buf, sizeof(buf), "%H:%M:%S", ev->time)] = '\0';
+#   if defined(THALLIUM_DEBUGGER_TIMESTAMPS)
+        char buf[16];
+        buf[strftime(buf, sizeof(buf), "%H:%M:%S", ev->time)] = '\0';
 
-    fprintf(
-        ev->udata, "%s %s%-5s\x1b[0m ",
-        buf, level_colours[ev->level], level_strings[ev->level]);
+        fprintf(
+            ev->udata, "%s %s%-5s\x1b[0m ",
+            buf, level_colours[ev->level], level_strings[ev->level]);
+#   else
+        fprintf(
+            ev->udata, "%s%-5s\x1b[0m ",
+            level_colours[ev->level], level_strings[ev->level]);
+#   endif
 
     vfprintf(ev->udata, ev->fmt, ev->ap);
     fflush(ev->udata);
@@ -110,10 +121,12 @@ static void __unlock(void) {
 }
 
 static void __init_event(__log_Event *ev, void *udata) {
-    if (!ev->time) {
-        time_t t = time(NULL);
-        ev->time = localtime(&t);
-    }
+#   if defined(THALLIUM_DEBUGGER_TIMESTAMPS)
+        if (!ev->time) {
+            time_t t = time(NULL);
+            ev->time = localtime(&t);
+        }
+#   endif
     ev->udata = udata;
 }
 

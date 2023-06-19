@@ -16,6 +16,17 @@
 #include "thallium/fwd.h"
 #include "thallium/platform.h"
 
+/**
+ * @brief Report a message to stdout/stderr according to the configured debugger and specifies severity and source.
+ *
+ * This function reports a message to stdout/stderr according to the configured debugger and specifies severity and source.
+ *
+ * @param debugger A valid Thallium debugger object.
+ * @param severity The message severity level to display.
+ * @param source The source of the message.
+ * @param format String format
+ * @param ... Variadic formatted values
+ */
 void TL_ReportMessage(
     const TL_Debugger_t *const debugger,
     const TL_DebugSeverityFlags_t severity,
