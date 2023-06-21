@@ -6,6 +6,7 @@
  */
 
 #include "thallium.h"
+#include "thallium_vulkan.h"
 
 #include <iostream>
 #include <vector>
@@ -17,7 +18,7 @@ TL_Debugger_t *DEBUGGER = nullptr;
 TL_Renderer_t *VULKAN_RENDERER = nullptr;
 
 int main() {
-// #   if defined(DEBUG)
+#   if defined(DEBUG)
         // ..:: Create a debugger ::..
 
         TL_DebuggerDescriptor_t debugger_descriptor = {};
@@ -28,7 +29,7 @@ int main() {
         if (!DEBUGGER) {
             throw std::runtime_error("Failed to create debugger");
         }
-// #   endif
+#   endif
 
 
     // ..:: Create the Thallium context ::..
@@ -47,9 +48,12 @@ int main() {
 
     // ..:: Create the renderer(s) ::..
 
+    TLVK_RenderSystemDescriptor_t render_system_descriptor = {};
+
     TL_RendererDescriptor_t vulkan_renderer_descriptor = {};
     vulkan_renderer_descriptor.api = TL_RENDERER_API_VULKAN_BIT;
     vulkan_renderer_descriptor.api_version = { 1, 2, 0 };
+    vulkan_renderer_descriptor.render_system_descriptor = &render_system_descriptor;
 
     TL_Renderer_t *extra_vulkan_renderer = nullptr;
 
@@ -60,11 +64,11 @@ int main() {
 
     std::vector<TL_RendererDescriptor_t> renderer_descriptors = {
         vulkan_renderer_descriptor,
-        extra_vulkan_renderer_descriptor,
+        // extra_vulkan_renderer_descriptor,
     };
     std::vector<TL_Renderer_t **> renderer_ptrs = {
         &VULKAN_RENDERER,
-        &extra_vulkan_renderer
+        // &extra_vulkan_renderer
     };
 
     if (!TL_CreateRenderers(CONTEXT, renderer_ptrs.size(), renderer_descriptors.data(), renderer_ptrs.data(), DEBUGGER)) {

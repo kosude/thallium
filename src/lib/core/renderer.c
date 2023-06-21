@@ -22,8 +22,8 @@ static bool __ValidateAPI(const TL_RendererAPIFlags_t api, const TL_Debugger_t *
         case TL_RENDERER_API_VULKAN_BIT:
             // test if Vulkan module was compiled
 #           if !defined(THALLIUM_VULKAN_INCL)
-                TL_Error(debugger, "TL_CreateRenderers attempted to create renderer for API which was not compiled (TL_RENDERER_API_VULKAN_BIT)");
-                TL_Hint(debugger, "Recompile Thallium with the -DTHALLIUM_BUILD_MODULE_VULKAN=ON flag!");
+                TL_Error(debugger, "TL_CreateRenderers attempted to create renderer for API which was not compiled (TL_RENDERER_API_VULKAN_BIT); "
+                    "Recompile Thallium with the -DTHALLIUM_BUILD_MODULE_VULKAN=ON flag!");
                 return false;
 #           else
                 return true;
@@ -97,6 +97,7 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
     renderer->api = descriptor.api;
     renderer->context = context;
     renderer->debugger = context->attached_debugger;
+    renderer->features = descriptor.requirements;
 
     // creating API-appropriate render system
     switch (descriptor.api) {
@@ -193,10 +194,13 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
     TL_Log(debugger, "Allocated and populated context data for %d renderers", count);
 
     // create each renderer object
+    uint32_t fail_renderer_count = 0;
+
     for (uint32_t i = 0; i < count; i++) {
         TL_Renderer_t *ret = __CreateRenderer(context, descriptors[i], debugger);
         if (!ret) {
             TL_Error(debugger, "TL_CreateRenderers failed to create renderer index %d", i);
+            fail_renderer_count++;
             continue;
         }
 
@@ -204,7 +208,18 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
         *(renderers[i]) = ret;
     }
 
-    TL_Note(debugger, "Renderer creation for context %p done --> %d renderers were output", context, count);
+    if (fail_renderer_count != count) {
+        TL_Note(debugger, "Successfully created %d renderer(s) with context %p", count - fail_renderer_count, context);
+    }
+    if (fail_renderer_count > 0) {
+        TL_Warn(debugger, "Call to TL_CreateRenderers failed to create %d out of %d renderer(s) with context %p", fail_renderer_count, count,
+            context);
+    }
+
+    // no renderers were created
+    if (fail_renderer_count == count) {
+        return false;
+    }
 
     context->state.renderers_init = true;
 

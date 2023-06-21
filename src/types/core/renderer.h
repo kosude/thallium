@@ -25,6 +25,9 @@ typedef struct TL_Renderer_t {
 
     /// @brief Internal API-aware render system.
     void *render_system;
+
+    /// @brief Features requested from the renderer at creation time
+    TL_RendererFeatures_t features;
 } TL_Renderer_t;
 
 #ifdef __cplusplus

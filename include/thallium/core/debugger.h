@@ -53,10 +53,6 @@ typedef struct TL_DebuggerDescriptor_t {
 typedef struct TL_DebuggerAttachmentDescriptor_t {
     /// @brief Debugger to link the attachment to
     const TL_Debugger_t *debugger;
-
-    // TODO: maybe I should add a void ptr that can be an API-specific debug attachment (previously debug system) descriptor so that things like the
-    // Vulkan debug utils severities and types can be controlled
-    // Note that this would have to support multiple APIs as only one debugger attachment exists per context.
 } TL_DebuggerAttachmentDescriptor_t;
 
 /**

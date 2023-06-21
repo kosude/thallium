@@ -14,6 +14,7 @@
 
 #include "thallium/vulkan/vk_render_system.h"
 
+#include "thallium/core/renderer.h"
 #include "lib/vulkan/vk_context_api_object.h"
 
 #define VK_NO_PROTOTYPES
@@ -24,6 +25,8 @@ typedef struct TLVK_RenderSystem_t {
     const TL_Renderer_t *renderer;
     /// @brief Vulkan context data block pointer.
     const TLVK_ContextVulkanBlock_t *vk_context;
+    /// @brief Stack copy of renderer features in `renderer` (used for less derefs)
+    TL_RendererFeatures_t features;
 
     /// @brief Device manager object (contains Vulkan logical and physical device interface(s))
     TLVK_DeviceManager_t *device_manager;

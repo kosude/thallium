@@ -29,6 +29,7 @@
  * @sa @ref TL_Renderer_t
  */
 typedef struct TL_RendererFeatures_t {
+    // TODO: renderer feature - surfaces and presentation
     bool placeholder;
 } TL_RendererFeatures_t;
 

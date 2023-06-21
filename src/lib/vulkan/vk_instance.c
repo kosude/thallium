@@ -25,8 +25,8 @@
 // NOTE: the __ValidateInstanceExtensions function is very slow! (as it is also checking for extensions provied by layers)
 
 // validate given layers and return an array of the layers that are deemed valid (which can be enabled)
-static carray_t __ValidateInstanceLayers(const uint32_t count, const char *const *const names, const TL_Debugger_t *const debugger,
-    bool *const out_missing_flag)
+static carray_t __ValidateInstanceLayers(const uint32_t count, const char *const *const names, bool *const out_missing_flag,
+    const TL_Debugger_t *const debugger)
 {
     // get available layers
     uint32_t available_count;
@@ -52,7 +52,6 @@ static carray_t __ValidateInstanceLayers(const uint32_t count, const char *const
         // layer not found
         if (!found) {
             TL_Warn(debugger, "Could not find layer \"%s\"", names[i]);
-
             *out_missing_flag = true;
         }
     }
@@ -62,7 +61,7 @@ static carray_t __ValidateInstanceLayers(const uint32_t count, const char *const
 
 // validate given extensions and return an array of the extensions that are deemed valid (which can be enabled)
 static carray_t __ValidateInstanceExtensions(const uint32_t count, const char *const *const names, const uint32_t lcount,
-    const char *const *const lnames, const TL_Debugger_t *const debugger, bool *const out_missing_flag)
+    const char *const *const lnames, bool *const out_missing_flag, const TL_Debugger_t *const debugger)
 {
     // get available extensions
     uint32_t available_count;
@@ -120,9 +119,9 @@ static carray_t __ValidateInstanceExtensions(const uint32_t count, const char *c
     return ret;
 }
 
-#define __DEFINE_REQUIRED_FLAG(flag) ret |= flag;
-#define __DEFINE_REQUIRED_LAYER(name) if (out_layer_names) { out_layer_names[count_ret] = name; } count_ret++;
-#define __DEFINE_REQUIRED_EXTENSION(name) if (out_extension_names) { out_extension_names[count_ret] = name; } count_ret++;
+#define __DEFINE_REQUIRED_FLAG(flag) ret |= flag
+#define __DEFINE_REQUIRED_LAYER(name) if (out_layer_names) { out_layer_names[count_ret] = name; } count_ret++
+#define __DEFINE_REQUIRED_EXTENSION(name) if (out_extension_names) { out_extension_names[count_ret] = name; } count_ret++
 
 // Get the instance create flags required to support the given features
 static VkInstanceCreateFlags __GetRequiredInstanceFlags(const TL_RendererFeatures_t requirements) {
@@ -148,7 +147,7 @@ static void __EnumerateRequiredInstanceLayers(const TL_RendererFeatures_t requir
 
     // we automatically enable validation layers if debug utils are enabled
     if (debug_utils) {
-        __DEFINE_REQUIRED_LAYER("VK_LAYER_KHRONOS_validation")
+        __DEFINE_REQUIRED_LAYER("VK_LAYER_KHRONOS_validation");
     }
 
     *out_layer_count = count_ret;
@@ -209,7 +208,7 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const V
     TL_Log(debugger, "Validating Vulkan layers...");
 
     bool is_missing_layers = false;
-    carray_t layers = __ValidateInstanceLayers(required_layer_count, required_layers, debugger, &is_missing_layers);
+    carray_t layers = __ValidateInstanceLayers(required_layer_count, required_layers, &is_missing_layers, debugger);
     if (is_missing_layers) {
         TL_Warn(debugger, "Missing layers for Vulkan instance, some features may not be available");
     }
@@ -224,7 +223,7 @@ VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const V
 
     bool is_missing_extensions = false;
     carray_t extensions = __ValidateInstanceExtensions(required_extension_count, required_extensions, layers.size, (const char **) layers.data,
-        debugger, &is_missing_extensions);
+        &is_missing_extensions, debugger);
     if (is_missing_extensions) {
         TL_Warn(debugger, "Missing extensions for Vulkan instance, some features may not be available");
     }

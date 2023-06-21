@@ -12,15 +12,16 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/fwd.h"
+#include "thallium/fwdvk.h"
 #include "thallium/platform.h"
 
 /**
- * @brief An object to store handles to Vulkan physical and logical devices.
+ * @brief An object to store handles to a Vulkan physical and logical device.
  *
- * A Thallium Vulkan device manager stores handles to Vulkan physical and logical devices for use in Vulkan render systems.
+ * A Thallium Vulkan device manager stores handles to a Vulkan physical and logical device for use in Vulkan render systems.
  *
  * @sa @ref TLVK_CreateDeviceManager()
+ * @sa @ref TLVK_DeviceData_t
  */
 typedef struct TLVK_DeviceManager_t TLVK_DeviceManager_t;
 
@@ -31,6 +32,7 @@ typedef struct TLVK_DeviceManager_t TLVK_DeviceManager_t;
  */
 typedef struct TLVK_DeviceManagerDescriptor_t {
     // TODO device manager descriptor
+    // TODO - some way of overriding physical device selection and directly choosing the physical device (e.g. by name? index? idk ;-;)
     uint32_t placeholder;
 } TLVK_DeviceManagerDescriptor_t;
 
@@ -40,7 +42,7 @@ typedef struct TLVK_DeviceManagerDescriptor_t {
  * This function creates a new Vulkan device manager, choosing and interfacing with GPU device(s) based on configuration given in `descriptor`. If
  * there were any errors during creation, NULL will be returned instead of the device manager object.
  *
- * @param renderer pointer to the parent renderer object
+ * @param render_system pointer to the parent render system object
  * @param descriptor Thallium Vulkan device manager descriptor
  * @return The new device manager
  *
@@ -48,7 +50,7 @@ typedef struct TLVK_DeviceManagerDescriptor_t {
  * @sa @ref TLVK_DestroyDeviceManager()
  */
 TLVK_DeviceManager_t *TLVK_CreateDeviceManager(
-    const TL_Renderer_t *const renderer,
+    const TLVK_RenderSystem_t *const render_system,
     const TLVK_DeviceManagerDescriptor_t descriptor
 );
 

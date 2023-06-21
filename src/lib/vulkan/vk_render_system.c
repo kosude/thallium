@@ -33,20 +33,23 @@ TLVK_RenderSystem_t *TLVK_CreateRenderSystem(const TL_Renderer_t *const renderer
 
     render_system->renderer = renderer;
     render_system->vk_context = (TLVK_ContextVulkanBlock_t *) ((char *) renderer->context->data + renderer->context->vulkan_offset);
+    render_system->features = renderer->features;
 
     // populate descriptor for device manager
     TLVK_DeviceManagerDescriptor_t device_manager_descriptor;
     if (descriptor.device_manager_descriptor) {
-        device_manager_descriptor = *descriptor.device_manager_descriptor;
+        device_manager_descriptor = *(descriptor.device_manager_descriptor);
     } else {
         // default device manager descriptor configuration (used if no user-given descriptor was specified)...
 
+        // TODO device manager descriptor
         device_manager_descriptor.placeholder = 5;
     }
 
-    render_system->device_manager = TLVK_CreateDeviceManager(renderer, device_manager_descriptor);
+    render_system->device_manager = TLVK_CreateDeviceManager(render_system, device_manager_descriptor);
     if (!render_system->device_manager) {
         TL_Error(debugger, "Failed to create Vulkan device manager for render system at %p", render_system);
+        return NULL;
     }
 
     return render_system;
