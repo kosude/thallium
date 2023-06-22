@@ -232,10 +232,18 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     // further increase score if all features supported
     score += !is_missing_features * 250;
 
-    // increase score for typically discrete GPUs
-    // (significant performance advantage over integrated ofc)
-    if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
-        score += 1000;
+    switch (props.deviceType) {
+        case VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU:
+            // increase score for typically discrete GPUs
+            // (significant performance advantage over integrated ofc)
+            score += 1000;
+            break;
+        case VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU:
+            score += 200;
+            break;
+        default:
+            score += 0;
+            break;
     }
 
     // get memory size
@@ -334,7 +342,7 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
         TL_Log(debugger, "  Supports Vulkan API version %d.%d.%d", VK_API_VERSION_MAJOR(props.apiVersion), VK_API_VERSION_MINOR(props.apiVersion),
             VK_API_VERSION_PATCH(props.apiVersion));
         TL_Log(debugger, "  VkPhysicalDevice handle at %p", device_manager->vk_physical_device);
-        TL_Log(debugger, "  Device ID: %d", props.deviceID);
+        TL_Log(debugger, "  Device ID: 0x%04hhx", props.deviceID);
 
         // printing device vendor from known PCI IDs
         switch (props.vendorID) {
@@ -360,6 +368,7 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
                 TL_Log(debugger, "  Device vendor: unknown");
                 break;
         }
+        TL_Log(debugger, "    (Vendor id = 0x%04hhx)", props.vendorID);
     }
 
     // TODO: create device manager's logical device using the selected physical device
