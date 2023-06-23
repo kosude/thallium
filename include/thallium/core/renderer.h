@@ -29,8 +29,8 @@
  * @sa @ref TL_Renderer_t
  */
 typedef struct TL_RendererFeatures_t {
-    // TODO: renderer feature - surfaces and presentation
-    bool placeholder;
+    /// @brief The renderer can present images to a swapchain.
+    bool presentation;
 } TL_RendererFeatures_t;
 
 /**

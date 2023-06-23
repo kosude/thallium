@@ -49,7 +49,7 @@ static const char *__StringifyAPI(const TL_RendererAPIFlags_t api) {
 }
 
 static void __AddToCombinedFeatures(TL_RendererFeatures_t *const base, const TL_RendererFeatures_t features) {
-    base->placeholder = features.placeholder;
+    base->presentation = features.presentation;
 }
 
 static void __AddToCombinedAPIs(TL_RendererAPIFlags_t *const base, const TL_RendererAPIFlags_t api) {

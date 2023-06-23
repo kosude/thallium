@@ -146,8 +146,6 @@ static VkPhysicalDeviceFeatures __ValidateDeviceFeatures(const VkPhysicalDevice 
 static VkPhysicalDeviceFeatures __EnumerateRequiredDeviceFeatures(const TL_RendererFeatures_t requirements) {
     VkPhysicalDeviceFeatures feat = { 0 };
 
-    // TODO required device features...
-
     return feat;
 }
 
@@ -161,7 +159,11 @@ static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requiremen
 
     uint32_t count_ret = 0;
 
-    // TODO required extensions...
+    // renderers that can present images
+    if (requirements.presentation) {
+        // swapchain creation
+        __DEFINE_REQUIRED_EXTENSION(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+    }
 
     *out_extension_count = count_ret;
 }

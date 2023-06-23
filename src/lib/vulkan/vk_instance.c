@@ -175,6 +175,23 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
         __DEFINE_REQUIRED_EXTENSION(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME);
     }
 
+    // renderers that can present images
+    if (requirements.presentation) {
+        // implementation-independent surface extension
+        __DEFINE_REQUIRED_EXTENSION(VK_KHR_SURFACE_EXTENSION_NAME);
+
+#       if defined(WIN32)
+            // windows surface extension
+            __DEFINE_REQUIRED_EXTENSION(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
+#       elif defined(UNIX)
+            // unix surface extension (assume linux and X)
+            __DEFINE_REQUIRED_EXTENSION(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
+#       elif defined(APPLE)
+            // macos (metal through moltenvk) surface extension
+            __DEFINE_REQUIRED_EXTENSION(VK_EXT_METAL_SURFACE_EXTENSION_NAME);
+#       endif
+    }
+
     *out_extension_count = count_ret;
 }
 
