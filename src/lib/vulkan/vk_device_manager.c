@@ -18,6 +18,106 @@
 
 #include <volk/volk.h>
 
+typedef struct __QueueFamilyIndices_t {
+    int32_t graphics;
+    int32_t compute;
+    int32_t transfer;
+    int32_t present;
+} __QueueFamilyIndices_t;
+
+#define CHECK_REQUIRED_PHYSICAL_DEVICE_FEATURE(name)                                                        \
+{                                                                                                           \
+    if (features.name && !available.name) {                                                                 \
+        TL_Warn(debugger, "Graphics device \"%s\" missing feature: \"%s\"", props.deviceName, #name);       \
+        supported.name = VK_FALSE;                                                                          \
+        *out_missing_flag = true;                                                                           \
+    }                                                                                                       \
+}
+
+#define __DEFINE_REQUIRED_EXTENSION(name) if (out_extension_names) { out_extension_names[count_ret] = name; } count_ret++
+#define __DEFINE_REQUIRED_DEVICE_FEATURE(name) out_features.name = VK_TRUE
+
+// out_queue_score will be higher if, say, the transfer queue is independent/dedicated
+static __QueueFamilyIndices_t __GetDeviceQueueFamilyIndices(const VkPhysicalDevice physical_device, uint64_t *out_queue_score) {
+    __QueueFamilyIndices_t indices;
+
+    // -1 indicates not found
+    indices.graphics = -1;
+    indices.compute = -1;
+    indices.transfer = -1;
+    indices.present = -1;
+
+    if (!out_queue_score) {
+        return indices;
+    }
+
+    uint64_t queue_score = 0;
+
+    // get queue families
+    uint32_t fam_count = 0;
+    vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &fam_count, NULL);
+    VkQueueFamilyProperties fams[fam_count];
+    vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &fam_count, fams);
+
+    // this score is reset after each queue family, and is incremented each time one has a flag other than
+    // VK_QUEUE_TRANSFER_BIT. finally, the family with the lowest score is identified as the transfer queue family,
+    // as it is the most likely one to be a dedicated transfer queue.
+    uint8_t min_trans_score = -1;
+
+    for (uint32_t i = 0; i < fam_count; i++) {
+        uint8_t cur_trans_score = 0;
+
+        if (fams[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+            // use any family that supports graphics operations as a graphics family
+            indices.graphics = i;
+
+            cur_trans_score++;
+        }
+
+        if (fams[i].queueFlags & VK_QUEUE_COMPUTE_BIT) {
+            // use any family that supports compute operations as a compute family
+            indices.compute = i;
+
+            cur_trans_score++;
+        }
+
+        if (fams[i].queueFlags & VK_QUEUE_TRANSFER_BIT) {
+            if (cur_trans_score <= min_trans_score) {
+                indices.transfer = i;
+
+                // aim for dedicated transfer queue on next iteration
+                min_trans_score = cur_trans_score;
+            }
+        }
+
+        // TODO: check for present queue
+        indices.present = i;
+
+        queue_score += fams[i].queueCount;
+    }
+
+    queue_score += min_trans_score;
+    *out_queue_score = queue_score;
+
+    return indices;
+}
+
+// Get the queue family types required to support the given features
+// Members of the returned __QueueFamilyIndices_t struct will be set to 1 if required, 0 if not.
+static __QueueFamilyIndices_t __GetRequiredQueueFamilies(const TL_RendererFeatures_t requirements) {
+    __QueueFamilyIndices_t required = { false };
+
+    required.graphics = true; // always require graphics queue
+
+    if (requirements.presentation) {
+        required.present = true;
+    }
+
+    // TODO: conditions to require transfer families (and maybe compute)
+
+    return required;
+}
+
 static carray_t __ValidateExtensions(const VkPhysicalDevice physical_device, const uint32_t count, const char *const *const names,
     bool *const out_missing_flag, const TL_Debugger_t *const debugger)
 {
@@ -55,13 +155,23 @@ static carray_t __ValidateExtensions(const VkPhysicalDevice physical_device, con
     return ret;
 }
 
-#define CHECK_REQUIRED_PHYSICAL_DEVICE_FEATURE(name)                                                        \
-{                                                                                                           \
-    if (features.name && !available.name) {                                                                 \
-        TL_Warn(debugger, "Graphics device \"%s\" missing feature: \"%s\"", props.deviceName, #name);       \
-        supported.name = VK_FALSE;                                                                          \
-        *out_missing_flag = true;                                                                           \
-    }                                                                                                       \
+// Get the extensions required to support the given features
+static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requirements, uint32_t *const out_extension_count,
+    const char **out_extension_names)
+{
+    if (!out_extension_count) {
+        return;
+    }
+
+    uint32_t count_ret = 0;
+
+    // renderers that can present images
+    if (requirements.presentation) {
+        // swapchain creation
+        __DEFINE_REQUIRED_EXTENSION(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+    }
+
+    *out_extension_count = count_ret;
 }
 
 static VkPhysicalDeviceFeatures __ValidateDeviceFeatures(const VkPhysicalDevice physical_device, VkPhysicalDeviceFeatures features,
@@ -139,9 +249,6 @@ static VkPhysicalDeviceFeatures __ValidateDeviceFeatures(const VkPhysicalDevice 
     return supported;
 }
 
-#define __DEFINE_REQUIRED_DEVICE_FEATURE(name) out_features.name = VK_TRUE
-#define __DEFINE_REQUIRED_EXTENSION(name) if (out_extension_names) { out_extension_names[count_ret] = name; } count_ret++
-
 // Get the device features required to support the given renderer features
 static VkPhysicalDeviceFeatures __EnumerateRequiredDeviceFeatures(const TL_RendererFeatures_t requirements) {
     VkPhysicalDeviceFeatures feat = { 0 };
@@ -149,36 +256,18 @@ static VkPhysicalDeviceFeatures __EnumerateRequiredDeviceFeatures(const TL_Rende
     return feat;
 }
 
-// Get the extensions required to support the given features
-static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requirements, uint32_t *const out_extension_count,
-    const char **out_extension_names)
-{
-    if (!out_extension_count) {
-        return;
-    }
-
-    uint32_t count_ret = 0;
-
-    // renderers that can present images
-    if (requirements.presentation) {
-        // swapchain creation
-        __DEFINE_REQUIRED_EXTENSION(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
-    }
-
-    *out_extension_count = count_ret;
-}
-
 // If 0 is returned then the device is unsuitable.
 // Return required extensions and features that can be safely requested from the device.
 // score is based on:
+//    - supported queue families
 //    - supported extensions
 //    - supported features
 //    - device type (discrete, integrated, etc)
 //    - available VRAM
 static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, const TL_RendererFeatures_t requirements,
-    carray_t *out_exts, VkPhysicalDeviceFeatures *out_features, const TL_Debugger_t *debugger)
+    carray_t *out_exts, VkPhysicalDeviceFeatures *out_features, __QueueFamilyIndices_t *out_families, const TL_Debugger_t *debugger)
 {
-    if (!out_exts || !out_features) {
+    if (!out_exts || !out_features || !out_families) {
         return 0;
     }
 
@@ -190,13 +279,56 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
 
     uint64_t score = 0;
 
+    TL_Log(debugger, "Scoring suitability of device \"%s\"", props.deviceName);
+
+    TL_Log(debugger, "  %s: Validating Vulkan queue families...", props.deviceName);
+
+    uint64_t queue_fam_score;
+
+    // get available and required queue families
+    __QueueFamilyIndices_t required_fams = __GetRequiredQueueFamilies(requirements);
+    __QueueFamilyIndices_t available_fams = __GetDeviceQueueFamilyIndices(physical_device, &queue_fam_score);
+
+    TL_Log(debugger, "    Scored queue family score of %lu", queue_fam_score);
+
+    // validate queue families...
+    // as it is difficult to keep a program running without the required queue families, we return early.
+    if (required_fams.graphics && available_fams.graphics <= -1) {
+        TL_Warn(debugger, "Device \"%s\" is missing a graphics-supporting queue family, which the application requires; this device cannot be used.",
+            props.deviceName);
+        return 0;
+    }
+    if (required_fams.compute && available_fams.compute <= -1) {
+        TL_Warn(debugger, "Device \"%s\" is missing a compute-supporting queue family, which the application requires; this device cannot be used.",
+            props.deviceName);
+        return 0;
+    }
+    if (required_fams.transfer && available_fams.transfer <= -1) {
+        TL_Warn(debugger, "Device \"%s\" is missing a transfer-supporting queue family, which the application requires; this device cannot be used.",
+            props.deviceName);
+        return 0;
+    }
+    if (required_fams.present && available_fams.present <= -1) {
+        TL_Warn(debugger, "Device \"%s\" is missing a present-supporting queue family, which the application requires; this device cannot be used.",
+            props.deviceName);
+        return 0;
+    }
+
+    // when returning family indices to use, -1 is used to indicate that no queues need to be created from a certain queue family.
+    out_families->graphics = (required_fams.graphics) ? available_fams.graphics : -1;
+    out_families->compute  = (required_fams.compute ) ? available_fams.compute  : -1;
+    out_families->transfer = (required_fams.transfer) ? available_fams.transfer : -1;
+    out_families->present  = (required_fams.present ) ? available_fams.present  : -1;
+
+    score += queue_fam_score;
+
     // get required extensions
     uint32_t required_ext_count = 0;
     __EnumerateRequiredExtensions(requirements, &required_ext_count, NULL);
     const char *required_exts[required_ext_count];
     __EnumerateRequiredExtensions(requirements, &required_ext_count, required_exts);
 
-    TL_Log(debugger, "Validating Vulkan extensions for device \"%s\"...", props.deviceName);
+    TL_Log(debugger, "  %s: Validating Vulkan extensions...", props.deviceName);
 
     bool is_missing_exts = false;
 
@@ -208,8 +340,8 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     }
 
     // increase score relative to the amount of required extensions that are supported
-    // this helps in cases where e.g. if no devices support all extensions; prioritise device with the *most* extensions supported out of required
-    // note that the casts to floats is to avoid integer division.
+    // this helps in cases where e.g. if no devices support all extensions; prioritise device with the *most* extensions supported out of required.
+    // note that the casts to floats are to avoid integer division.
     if (required_ext_count > 0) {
         score += (uint64_t) (((float) out_exts->size / (float) required_ext_count) * 80);
     }
@@ -220,7 +352,7 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     // get required features
     VkPhysicalDeviceFeatures required_feats = __EnumerateRequiredDeviceFeatures(requirements);
 
-    TL_Log(debugger, "Validating Vulkan features for device \"%s\"...", props.deviceName);
+    TL_Log(debugger, "  %s: Validating Vulkan features...", props.deviceName);
 
     bool is_missing_features = false;
 
@@ -290,6 +422,8 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
     uint64_t min_score = 0;
     VkPhysicalDevice best_physical_device = VK_NULL_HANDLE;
 
+    __QueueFamilyIndices_t best_device_queue_fams;
+
     for (uint32_t i = 0; i < pd_count; i++) {
         VkPhysicalDevice dev = pd_arr[i];
 
@@ -297,13 +431,13 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
         VkPhysicalDeviceFeatures cur_dev_feats;
 
         // score device
-        uint64_t cur_score = __ScorePhysicalDevice(dev, render_system->features, &cur_dev_exts, &cur_dev_feats, debugger);
+        uint64_t cur_score = __ScorePhysicalDevice(dev, render_system->features, &cur_dev_exts, &cur_dev_feats, &best_device_queue_fams, debugger);
 
         if (debugger) {
             VkPhysicalDeviceProperties props;
             vkGetPhysicalDeviceProperties(dev, &props);
 
-            TL_Log(debugger, "Thallium scored %lu for available device \"%s\"", cur_score, props.deviceName);
+            TL_Note(debugger, "%s scored Thallium score of %lu", props.deviceName, cur_score);
         }
 
         // best device so far

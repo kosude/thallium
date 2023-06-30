@@ -32,7 +32,7 @@ typedef struct TLVK_DeviceManager_t TLVK_DeviceManager_t;
  */
 typedef struct TLVK_DeviceManagerDescriptor_t {
     // TODO device manager descriptor
-    // TODO - some way of overriding physical device selection and directly choosing the physical device (e.g. by name? index? idk ;-;)
+    // TODO - some way of overriding physical device selection and directly choosing the physical device via device UUID (requires extension or 1.2)
     uint32_t placeholder;
 } TLVK_DeviceManagerDescriptor_t;
 
