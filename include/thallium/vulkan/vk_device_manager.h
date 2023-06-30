@@ -44,7 +44,7 @@ typedef struct TLVK_DeviceManagerDescriptor_t {
  *
  * @param render_system pointer to the parent render system object
  * @param descriptor Thallium Vulkan device manager descriptor
- * @return The new device manager
+ * @return The new device manager or NULL
  *
  * @sa @ref TLVK_DeviceManager_t
  * @sa @ref TLVK_DestroyDeviceManager()

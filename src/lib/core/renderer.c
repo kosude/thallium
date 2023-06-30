@@ -226,13 +226,6 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
     return true;
 }
 
-/**
- * @brief Free the given renderer object.
- *
- * This function frees the specified renderer object.
- *
- * @param renderer Pointer to the renderer object to free.
- */
 void TL_DestroyRenderer(TL_Renderer_t *const renderer) {
     if (!renderer) {
         return;

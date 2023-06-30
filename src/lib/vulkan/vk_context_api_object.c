@@ -163,15 +163,17 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
         return false;
     }
 
-    TL_Log(debugger, "Created Vulkan instance at %p in Thallium context %p", block->vk_instance, context);
+    if (debugger) {
+        TL_Log(debugger, "Created Vulkan instance at %p in Thallium context %p", block->vk_instance, context);
 
-    TL_Log(debugger, "  %d layers", block->instance_layers.size);
-    for (uint32_t i = 0; i < block->instance_layers.size; i++) {
-        TL_Log(debugger, "    - layer #%d: %s", i, block->instance_layers.data[i]);
-    }
-    TL_Log(debugger, "  %d instance-level extensions", block->instance_extensions.size);
-    for (uint32_t i = 0; i < block->instance_extensions.size; i++) {
-        TL_Log(debugger, "    - extension #%d: %s", i, block->instance_extensions.data[i]);
+        TL_Log(debugger, "  %d layers", block->instance_layers.size);
+        for (uint32_t i = 0; i < block->instance_layers.size; i++) {
+            TL_Log(debugger, "    - layer #%d: %s", i, block->instance_layers.data[i]);
+        }
+        TL_Log(debugger, "  %d extensions", block->instance_extensions.size);
+        for (uint32_t i = 0; i < block->instance_extensions.size; i++) {
+            TL_Log(debugger, "    - extension #%d: %s", i, block->instance_extensions.data[i]);
+        }
     }
 
     // load vulkan functions

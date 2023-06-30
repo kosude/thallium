@@ -52,7 +52,7 @@ int main() {
 
     TL_RendererDescriptor_t vulkan_renderer_descriptor = {};
     vulkan_renderer_descriptor.api = TL_RENDERER_API_VULKAN_BIT;
-    vulkan_renderer_descriptor.api_version = { 1, 2, 0 };
+    vulkan_renderer_descriptor.api_version = { 1, 3, 0 };
     vulkan_renderer_descriptor.render_system_descriptor = &render_system_descriptor;
     vulkan_renderer_descriptor.requirements.presentation = true;
 
@@ -65,11 +65,11 @@ int main() {
 
     std::vector<TL_RendererDescriptor_t> renderer_descriptors = {
         vulkan_renderer_descriptor,
-        // extra_vulkan_renderer_descriptor,
+        extra_vulkan_renderer_descriptor,
     };
     std::vector<TL_Renderer_t **> renderer_ptrs = {
         &VULKAN_RENDERER,
-        // &extra_vulkan_renderer
+        &extra_vulkan_renderer
     };
 
     if (!TL_CreateRenderers(CONTEXT, renderer_ptrs.size(), renderer_descriptors.data(), renderer_ptrs.data(), DEBUGGER)) {
