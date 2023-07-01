@@ -19,6 +19,11 @@ typedef struct TL_Debugger_t {
     TL_DebugSeverityFlags_t severities;
     /// @brief Bit field of source flags - messages from these sources will be reported
     TL_DebugSourceFlags_t sources;
+
+    /// @brief User-set callback function - can be NULL
+    TL_DebugCallbackfn_t user_callback;
+    /// @brief User-set pointer to send to the callback - can be NULL
+    void *user_pointer;
 } TL_Debugger_t;
 
 #ifdef __cplusplus

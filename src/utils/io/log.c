@@ -5,28 +5,28 @@
  *   See the LICENCE file for more information.
  *
  *
- * Part of this file is (modified) from the log.c library, at https://github.com/rxi/log.c
- * That source's licence is shown below:
+ *   Part of this file is (modified) from the log.c library, at https://github.com/rxi/log.c
+ *   The licence used by log.c is shown below:
  *
- * Copyright (c) 2020 rxi
+ *   Copyright (c) 2020 rxi
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to
- * deal in the Software without restriction, including without limitation the
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- * sell copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *   of this software and associated documentation files (the "Software"), to
+ *   deal in the Software without restriction, including without limitation the
+ *   rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ *   sell copies of the Software, and to permit persons to whom the Software is
+ *   furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ *   The above copyright notice and this permission notice shall be included in
+ *   all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ *   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ *   IN THE SOFTWARE.
  */
 
 #include "log.h"
@@ -174,6 +174,26 @@ void TL_ReportMessage(const TL_Debugger_t *const debugger, const TL_DebugSeverit
         return;
     }
 
+    char msg[__MAX_DBGMSG_LEN];
+
+    // format string msg with given format + variadic arguments
+    va_list varargs;
+    va_start(varargs, format);
+    vsnprintf(msg, __MAX_DBGMSG_LEN, format, varargs);
+    va_end(varargs);
+
+    if (debugger->user_callback) {
+        // invoke set user callback
+        debugger->user_callback(
+            msg,
+            severity,
+            source,
+            debugger->user_pointer);
+        return;
+    }
+
+    // if no user callback is set, we use default behaviour, using the functions defined above...
+
     switch (source) {
         case TL_DEBUG_SOURCE_THALLIUM_BIT:
             fprintf(stderr, "\x1b[90mTH   \x1b[0m");
@@ -184,14 +204,6 @@ void TL_ReportMessage(const TL_Debugger_t *const debugger, const TL_DebugSeverit
         default:
             break;
     }
-
-    char msg[__MAX_DBGMSG_LEN];
-
-    // format string msg with given format + variadic arguments
-    va_list varargs;
-    va_start(varargs, format);
-    vsnprintf(msg, __MAX_DBGMSG_LEN, format, varargs);
-    va_end(varargs);
 
     switch (severity) {
         case TL_DEBUG_SEVERITY_VERBOSE_BIT:

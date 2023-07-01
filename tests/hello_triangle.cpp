@@ -22,7 +22,8 @@ int main() {
         // ..:: Create a debugger ::..
 
         TL_DebuggerDescriptor_t debugger_descriptor = {};
-        (int &) debugger_descriptor.severities = TL_DEBUG_SEVERITY_ALL_BIT;// & ~TL_DEBUG_SEVERITY_VERBOSE_BIT;
+
+        (int &) debugger_descriptor.severities = TL_DEBUG_SEVERITY_ALL_BIT;// & ~TL_DEBUG_SEVERITY_VERBOSE_BIT & ~TL_DEBUG_SEVERITY_NOTIF_BIT;
         (int &) debugger_descriptor.sources = TL_DEBUG_SOURCE_THALLIUM_BIT | TL_DEBUG_SOURCE_VULKAN_BIT;
 
         DEBUGGER = TL_CreateDebugger(debugger_descriptor);
@@ -37,6 +38,7 @@ int main() {
     TL_DebuggerAttachmentDescriptor_t debugger_attachment_descriptor = {};
     debugger_attachment_descriptor.debugger = DEBUGGER;
 
+    // TODO: WINDOWS! They are likely to be passed to this context descriptor to be used in renderer setup where necessary.
     TL_ContextDescriptor_t context_descriptor = {};
     context_descriptor.debug_attachment_descriptor = &debugger_attachment_descriptor;
 

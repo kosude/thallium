@@ -16,6 +16,26 @@
 #include "thallium/fwd.h"
 
 /**
+ * @brief The function pointer type for custom debugger message callbacks.
+ *
+ * This is the function pointer type for custom debugger message callbacks. This can be used to configure the handling of messages reported by
+ * Thallium debuggers.
+ *
+ * @param msg The basic message string reported by the Thallium API.
+ * @param sev The severity of the debug message - see @ref TL_DebugSeverityFlags_t.
+ * @param src The source of the debug message (e.g. Thallium, Vulkan, etc) - see @ref TL_DebugSourceFlags_t.
+ * @param ptr NULL, or the user-configured pointer set with the @ref TL_SetDebuggerCallback() function.
+ *
+ * @sa @ref TL_Debugger_t
+ */
+typedef void (*TL_DebugCallbackfn_t)(
+    char *msg,
+    TL_DebugSeverityFlags_t sev,
+    TL_DebugSourceFlags_t src,
+    void *ptr
+);
+
+/**
  * @brief A structure used to debug Thallium operations.
  *
  * This structure can be created and passed to Thallium functions to receive debug messages. This is necessary to recieve errors and warnings, for
@@ -37,8 +57,10 @@ typedef struct TL_DebuggerDescriptor_t {
     TL_DebugSeverityFlags_t severities;
     /// @brief Bit field of source flags - messages from these sources will be reported
     TL_DebugSourceFlags_t sources;
-
-    // TODO: add a callback
+    /// @brief NULL or the callback function for the debugger to use (NULL reverts to the default Thallium debugger behaviour)
+    TL_DebugCallbackfn_t callback;
+    /// @brief NULL or callback pointer for the user callback (`callback`) to recieve
+    void *pointer;
 } TL_DebuggerDescriptor_t;
 
 /**

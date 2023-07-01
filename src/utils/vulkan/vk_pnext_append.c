@@ -23,10 +23,9 @@ void TLVK_AppendPNext(const void **const p_next, const void *const obj) {
 
     // if the pNext member is not NULL then we are still traversing through the chain...
 
-    // we are assuming next_obj is a Vulkan struct and there is no padding (!)
     // offset assumes pNext is the second member of the struct following sType.
-    // FIXME: I don't know why, but the size of the enum is reported as half of what it seems to actually be, so I'm multiplying it
-    //        by 2. This solution works, but it is obviously idiotic and probably not portable. FIX IT YOU IDIOT! (i'm the idiot)
+    // we are also assuming next_obj is a Vulkan struct, multiplying by 2 because of memory padding added prior to pNext as it is a void ptr.
+    // NOTE: this may bork on random platforms if the struct's padding is wacky, I'm not really sure how to fix that.
     size_t offset = sizeof(VkStructureType) * 2;
 
     // get the pNext member of the next object to traverse

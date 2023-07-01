@@ -90,7 +90,7 @@ static __QueueFamilyIndices_t __GetDeviceQueueFamilyIndices(const VkPhysicalDevi
             }
         }
 
-        // TODO: check for present queue
+        // TODO: get present queue
         indices.present = i;
 
         queue_score += fams[i].queueCount;
@@ -713,10 +713,14 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
             device_manager->vk_queues.present_queue_count;
 
         TL_Log(debugger, "  %d queues", queue_count);
-        TL_Log(debugger, "    - %d graphics", device_manager->vk_queues.graphics_queue_count);
-        TL_Log(debugger, "    - %d compute", device_manager->vk_queues.compute_queue_count);
-        TL_Log(debugger, "    - %d transfer", device_manager->vk_queues.transfer_queue_count);
-        TL_Log(debugger, "    - %d presentation", device_manager->vk_queues.present_queue_count);
+        if (best_device_queue_fams.graphics > -1)
+            TL_Log(debugger, "    - %d graphics (family index: %d)", device_manager->vk_queues.graphics_queue_count, best_device_queue_fams.graphics);
+        if (best_device_queue_fams.compute > -1)
+            TL_Log(debugger, "    - %d compute  (family index: %d)", device_manager->vk_queues.compute_queue_count, best_device_queue_fams.compute);
+        if (best_device_queue_fams.transfer > -1)
+            TL_Log(debugger, "    - %d transfer (family index: %d)", device_manager->vk_queues.transfer_queue_count, best_device_queue_fams.transfer);
+        if (best_device_queue_fams.present > -1)
+            TL_Log(debugger, "    - %d present  (family index: %d)", device_manager->vk_queues.present_queue_count, best_device_queue_fams.present);
     }
 
     return device_manager;

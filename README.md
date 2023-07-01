@@ -12,9 +12,8 @@ far future.
 > **Warning**: I am a student and Thallium is a very work-in-progress **personal project**, so updates can be erratic and broken for others. Over
 > time, I aim to make the library more useful to others.
 
-As a side-note, I track TO-DO items on [Trello](https://trello.com/b/Fbj9GSzf/thallium-todo) and occassionally with GitHub issues in this repository.
-
-See [this file](SPECIFICATION.md) for the working Specification.
+As a side-note, I track TO-DO items on [Trello](https://trello.com/b/ZHYGTiZr/thallium-development-tracking). GitHub issues on this repository are
+also used to track bugs or requests.
 
 
 ## Project logos

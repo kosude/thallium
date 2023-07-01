@@ -21,8 +21,8 @@ TL_Debugger_t *TL_CreateDebugger(const TL_DebuggerDescriptor_t descriptor) {
 
     debugger->severities = descriptor.severities;
     debugger->sources = descriptor.sources;
-
-    TL_Log(debugger, "Allocated debugger at %p", debugger);
+    debugger->user_callback = descriptor.callback;
+    debugger->user_pointer = descriptor.pointer;
 
     return debugger;
 }
