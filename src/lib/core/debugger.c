@@ -13,7 +13,7 @@
 
 #include <stdlib.h>
 
-TL_Debugger_t *TL_CreateDebugger(const TL_DebuggerDescriptor_t descriptor) {
+TL_Debugger_t *TL_DebuggerCreate(const TL_DebuggerDescriptor_t descriptor) {
     TL_Debugger_t *debugger = malloc(sizeof(TL_Debugger_t));
     if (!debugger) {
         return NULL;
@@ -27,7 +27,7 @@ TL_Debugger_t *TL_CreateDebugger(const TL_DebuggerDescriptor_t descriptor) {
     return debugger;
 }
 
-void TL_DestroyDebugger(TL_Debugger_t *const debugger) {
+void TL_DebuggerDestroy(TL_Debugger_t *const debugger) {
     if (!debugger) {
         return;
     }

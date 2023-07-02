@@ -24,7 +24,7 @@
  * Note that this data **does not include a VkInstance**, as the instance is stored per-context rather than per-renderer. All Vulkan render sytems in
  * an application refer to the same instance, which is created when allocating and populating the context data.
  *
- * @sa @ref TLVK_CreateRenderSystem()
+ * @sa @ref TLVK_RenderSystemCreate()
  */
 typedef struct TLVK_RenderSystem_t TLVK_RenderSystem_t;
 
@@ -49,9 +49,9 @@ typedef struct TLVK_RenderSystemDescriptor_t {
  * @return The new render system
  *
  * @sa @ref TLVK_RenderSystem_t
- * @sa @ref TLVK_DestroyRenderSystem()
+ * @sa @ref TLVK_RenderSystemDestroy()
  */
-TLVK_RenderSystem_t *TLVK_CreateRenderSystem(
+TLVK_RenderSystem_t *TLVK_RenderSystemCreate(
     const TL_Renderer_t *const renderer,
     const TLVK_RenderSystemDescriptor_t descriptor
 );
@@ -64,9 +64,9 @@ TLVK_RenderSystem_t *TLVK_CreateRenderSystem(
  * @param render_system Pointer to the Thallium Vulkan render system to free.
  *
  * @sa @ref TLVK_RenderSystem_t
- * @sa @ref TLVK_CreateRenderSystem()
+ * @sa @ref TLVK_RenderSystemCreate()
  */
-void TLVK_DestroyRenderSystem(
+void TLVK_RenderSystemDestroy(
     TLVK_RenderSystem_t *const render_system
 );
 

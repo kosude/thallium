@@ -19,9 +19,9 @@
 typedef struct TL_Context_t {
     /// @brief Meta object state
     struct {
-        /// @brief Has TL_CreateContextAPIObjects() been called on this context object?
+        /// @brief Has TL_ContextBlocksCreate() been called on this context object?
         bool api_objects_init;
-        /// @brief Has TL_CreateRenderers() been called on this context object?
+        /// @brief Has TL_RendererCreate() been called on this context object?
         bool renderers_init;
     } state;
 

@@ -22,7 +22,7 @@
 // static context pointer singleton
 static TL_Context_t *__CONTEXT_PTR = NULL;
 
-TL_Context_t *TL_CreateContext(const TL_ContextDescriptor_t context_descriptor, const TL_Debugger_t *const debugger) {
+TL_Context_t *TL_ContextCreate(const TL_ContextDescriptor_t context_descriptor, const TL_Debugger_t *const debugger) {
     if (__CONTEXT_PTR) {
         TL_Warn(debugger, "Attempted to create context (one already exists at %p) - creating multiple contexts is illegal. Existing context was "
             "returned", __CONTEXT_PTR);
@@ -32,7 +32,7 @@ TL_Context_t *TL_CreateContext(const TL_ContextDescriptor_t context_descriptor, 
 
     TL_Context_t *context = malloc(sizeof(TL_Context_t));
     if (!context) {
-        TL_Fatal(debugger, "MALLOC fault in call to TL_CreateContext");
+        TL_Fatal(debugger, "MALLOC fault in call to TL_ContextCreate");
         return NULL;
     }
 
@@ -50,7 +50,7 @@ TL_Context_t *TL_CreateContext(const TL_ContextDescriptor_t context_descriptor, 
         context->attached_debugger = NULL;
     }
 
-    // the handles of any data blocks that are initialised will be set accordingly in TL_CreateContextAPIObjects
+    // the handles of any data blocks that are initialised will be set accordingly in TL_ContextBlocksCreate
     context->vulkan_offset = TL_CONTEXT_API_OBJECT_UNINITIALISED;
 
     // initialise to NULL as the data depends on which APIs are used.
@@ -62,14 +62,14 @@ TL_Context_t *TL_CreateContext(const TL_ContextDescriptor_t context_descriptor, 
     return context;
 }
 
-void TL_DestroyContext(TL_Context_t *const context) {
+void TL_ContextDestroy(TL_Context_t *const context) {
     if (!context) {
         return;
     }
 
     // destroy API objects stored in the context if created
     if (context->data_size > 0) {
-        TL_DestroyContextAPIObjects(context);
+        TL_ContextBlocksDestroy(context);
     }
 
     memset(context, 0, sizeof(TL_Context_t));
@@ -77,7 +77,7 @@ void TL_DestroyContext(TL_Context_t *const context) {
     free(context);
 }
 
-bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAPIFlags_t apis, const TL_ContextAPIVersions_t versions,
+bool TL_ContextBlocksCreate(TL_Context_t *const context, const TL_RendererAPIFlags_t apis, const TL_ContextAPIVersions_t versions,
     const TL_RendererFeatures_t features, const TL_Debugger_t *const debugger)
 {
     if (context->state.api_objects_init) {
@@ -107,7 +107,7 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
     // allocate space the context data
     context->data = malloc(data_size);
     if (!context->data) {
-        TL_Fatal(debugger, "MALLOC fault in call to TL_CreateContextAPIObjects");
+        TL_Fatal(debugger, "MALLOC fault in call to TL_ContextBlocksCreate");
         return false;
     }
 
@@ -124,7 +124,7 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
             TL_Note(debugger, "Requesting the Vulkan API at version %d.%d.%d", versions.vulkan_version.major, versions.vulkan_version.minor,
                 versions.vulkan_version.patch);
 
-            if (!TLVK_CreateContextVulkanBlock(context, versions.vulkan_version, features, debugger)) {
+            if (!TLVK_ContextBlockCreate(context, versions.vulkan_version, features, debugger)) {
                 TL_Error(debugger, "Failed to populate Vulkan-specific context data block (%p + offset %d)", context->data, context->vulkan_offset);
                 return false;
             }
@@ -141,14 +141,14 @@ bool TL_CreateContextAPIObjects(TL_Context_t *const context, const TL_RendererAP
     return true;
 }
 
-void TL_DestroyContextAPIObjects(TL_Context_t *const context) {
+void TL_ContextBlocksDestroy(TL_Context_t *const context) {
     if (!context) {
         return;
     }
 
     if (context->vulkan_offset != TL_CONTEXT_API_OBJECT_UNINITIALISED) {
 #       if defined(THALLIUM_VULKAN_INCL)
-            TLVK_DestroyContextVulkanBlock(context);
+            TLVK_ContextBlockDestroy(context);
 #       endif
     }
 

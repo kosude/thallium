@@ -33,7 +33,7 @@ typedef enum TL_RendererAPIFlags_t {
  *
  * @sa @ref TL_Debugger_t
  * @sa @ref TL_DebuggerDescriptor_t
- * @sa @ref TL_CreateDebugger()
+ * @sa @ref TL_DebuggerCreate()
  */
 typedef enum TL_DebugSeverityFlags_t {
     /// @brief Log messages
@@ -57,7 +57,7 @@ typedef enum TL_DebugSeverityFlags_t {
  * This enumeration contains message sources to describe debug messages.
  *
  * @sa @ref TL_Debugger_t
- * @sa @ref TL_CreateDebugger()
+ * @sa @ref TL_DebuggerCreate()
  */
 typedef enum TL_DebugSourceFlags_t {
     /// @brief Messages reported by core Thallium functions

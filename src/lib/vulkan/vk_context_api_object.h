@@ -57,7 +57,7 @@ typedef struct TLVK_ContextVulkanBlock_t {
  *
  * @return False if error
  */
-bool TLVK_CreateContextVulkanBlock(
+bool TLVK_ContextBlockCreate(
     TL_Context_t *const context,
     const TL_Version_t api_version,
     const TL_RendererFeatures_t features,
@@ -73,7 +73,7 @@ bool TLVK_CreateContextVulkanBlock(
  *
  * @param context Context to free data from.
  */
-void TLVK_DestroyContextVulkanBlock(
+void TLVK_ContextBlockDestroy(
     TL_Context_t *const context
 );
 

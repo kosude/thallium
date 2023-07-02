@@ -49,7 +49,7 @@ typedef struct TL_ContextAPIVersions_t {
  *
  * @return False if error
  */
-bool TL_CreateContextAPIObjects(
+bool TL_ContextBlocksCreate(
     TL_Context_t *const context,
     const TL_RendererAPIFlags_t apis,
     const TL_ContextAPIVersions_t versions,
@@ -64,7 +64,7 @@ bool TL_CreateContextAPIObjects(
  *
  * @param context Context object to depopulate
  */
-void TL_DestroyContextAPIObjects(
+void TL_ContextBlocksDestroy(
     TL_Context_t *const context
 );
 

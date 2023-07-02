@@ -41,8 +41,8 @@ typedef void (*TL_DebugCallbackfn_t)(
  * This structure can be created and passed to Thallium functions to receive debug messages. This is necessary to recieve errors and warnings, for
  * example.
  *
- * @sa @ref TL_CreateDebugger()
- * @sa @ref TL_DestroyDebugger()
+ * @sa @ref TL_DebuggerCreate()
+ * @sa @ref TL_DebuggerDestroy()
  * @sa @ref TL_DebuggerDescriptor_t
  */
 typedef struct TL_Debugger_t TL_Debugger_t;
@@ -88,7 +88,7 @@ typedef struct TL_DebuggerAttachmentDescriptor_t {
  *
  * @sa @ref th_Debugger_t
  */
-TL_Debugger_t *TL_CreateDebugger(
+TL_Debugger_t *TL_DebuggerCreate(
     const TL_DebuggerDescriptor_t descriptor
 );
 
@@ -99,7 +99,7 @@ TL_Debugger_t *TL_CreateDebugger(
  *
  * @param debugger The debugger object to free.
  */
-void TL_DestroyDebugger(
+void TL_DebuggerDestroy(
     TL_Debugger_t *const debugger
 );
 

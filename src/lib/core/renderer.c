@@ -22,7 +22,7 @@ static bool __ValidateAPI(const TL_RendererAPIFlags_t api, const TL_Debugger_t *
         case TL_RENDERER_API_VULKAN_BIT:
             // test if Vulkan module was compiled
 #           if !defined(THALLIUM_VULKAN_INCL)
-                TL_Error(debugger, "TL_CreateRenderers attempted to create renderer for API which was not compiled (TL_RENDERER_API_VULKAN_BIT); "
+                TL_Error(debugger, "TL_RendererCreate attempted to create renderer for API which was not compiled (TL_RENDERER_API_VULKAN_BIT); "
                     "Recompile Thallium with the -DTHALLIUM_BUILD_MODULE_VULKAN=ON flag!");
                 return false;
 #           else
@@ -116,7 +116,7 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
                     rsdescr.device_manager_descriptor = NULL;
                 }
 
-                renderer->render_system = (void *) TLVK_CreateRenderSystem(renderer, rsdescr);
+                renderer->render_system = (void *) TLVK_RenderSystemCreate(renderer, rsdescr);
                 if (!renderer->render_system) {
                     TL_Error(debugger, "Failed to create Vulkan render system for new renderer at %p", renderer);
                     return NULL;
@@ -145,7 +145,7 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
     return renderer;
 }
 
-uint32_t TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const TL_RendererDescriptor_t *const descriptors,
+uint32_t TL_RendererCreate(TL_Context_t *const context, const uint32_t count, const TL_RendererDescriptor_t *const descriptors,
     TL_Renderer_t **const *const renderers, const TL_Debugger_t *const debugger)
 {
     if (!context || !descriptors || !renderers || count <= 0) {
@@ -154,7 +154,7 @@ uint32_t TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, c
 
     // function has already been called once on this context
     if (context->state.renderers_init) {
-        TL_Warn(debugger, "Attempted to invoke TL_CreateRenderers multiple times on the same context, which is illegal behaviour");
+        TL_Warn(debugger, "Attempted to invoke TL_RendererCreate multiple times on the same context, which is illegal behaviour");
         return count;
     }
 
@@ -163,7 +163,7 @@ uint32_t TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, c
         TL_RendererAPIFlags_t api = descriptors[i].api;
 
         if (!__ValidateAPI(api, debugger)) {
-            TL_Error(debugger, "Renderer descriptor at index %d in call to TL_CreateRenderers specified invalid graphics API id %d", i, api);
+            TL_Error(debugger, "Renderer descriptor at index %d in call to TL_RendererCreate specified invalid graphics API id %d", i, api);
             return 0;
         }
     }
@@ -186,8 +186,8 @@ uint32_t TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, c
             descriptor.api_version.minor, descriptor.api_version.patch);
     }
 
-    if (!TL_CreateContextAPIObjects(context, combined_apis, highest_api_versions, combined_features, debugger)) {
-        TL_Error(debugger, "Failed to create API objects for context at %p in call to TL_CreateRenderers", context);
+    if (!TL_ContextBlocksCreate(context, combined_apis, highest_api_versions, combined_features, debugger)) {
+        TL_Error(debugger, "Failed to create API objects for context at %p in call to TL_RendererCreate", context);
         return 0;
     }
 
@@ -199,7 +199,7 @@ uint32_t TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, c
     for (uint32_t i = 0; i < count; i++) {
         TL_Renderer_t *ret = __CreateRenderer(context, descriptors[i], debugger);
         if (!ret) {
-            TL_Error(debugger, "TL_CreateRenderers failed to create renderer index %d", i);
+            TL_Error(debugger, "TL_RendererCreate failed to create renderer index %d", i);
             fail_renderer_count++;
             continue;
         }
@@ -211,7 +211,7 @@ uint32_t TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, c
     uint32_t ret = count - fail_renderer_count;
 
     if (ret < count) {
-        TL_Warn(debugger, "Call to TL_CreateRenderers failed to create %d out of %d renderer(s) with context %p", fail_renderer_count, count,
+        TL_Warn(debugger, "Call to TL_RendererCreate failed to create %d out of %d renderer(s) with context %p", fail_renderer_count, count,
             context);
     }
 
@@ -222,7 +222,7 @@ uint32_t TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, c
     return ret;
 }
 
-void TL_DestroyRenderer(TL_Renderer_t *const renderer) {
+void TL_RendererDestroy(TL_Renderer_t *const renderer) {
     if (!renderer) {
         return;
     }
@@ -232,7 +232,7 @@ void TL_DestroyRenderer(TL_Renderer_t *const renderer) {
         // destroy Vulkan render system
         case TL_RENDERER_API_VULKAN_BIT:
 #           if defined(THALLIUM_VULKAN_INCL)
-                TLVK_DestroyRenderSystem(renderer->render_system);
+                TLVK_RenderSystemDestroy(renderer->render_system);
 #           endif
 
             break;

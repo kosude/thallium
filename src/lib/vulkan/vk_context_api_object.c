@@ -98,7 +98,7 @@ for (uint32_t i = 0; i < block->instance_extensions.size; i++) {            \
 // flag to only load vulkan loader once
 static bool __VOLK_INITIALISED = false;
 
-bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version_t api_version, const TL_RendererFeatures_t features,
+bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api_version, const TL_RendererFeatures_t features,
     const TL_Debugger_t *const debugger)
 {
     if (!context) {
@@ -106,7 +106,7 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
     }
 
     if (context->vulkan_offset == TL_CONTEXT_API_OBJECT_UNINITIALISED) {
-        TL_Warn(debugger, "TLVK_CreateContextVulkanBlock: Vulkan data block uninitialised for context object %p", context);
+        TL_Warn(debugger, "TLVK_ContextBlockCreate: Vulkan data block uninitialised for context object %p", context);
         return false;
     }
 
@@ -138,7 +138,7 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
         .apiVersion = __MAKE_API_VERSION(api_version),
     };
 
-    // this will be used to create a debug messenger for validation layers in TLVK_CreateInstance, as well as the standalone debug messenger
+    // this will be used to create a debug messenger for validation layers in TLVK_InstanceCreate, as well as the standalone debug messenger
     // (if a debug descriptor was specified to be attached)
     VkDebugUtilsMessengerCreateInfoEXT debug_utils_create_info = { 0 };
 
@@ -156,7 +156,7 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
         debug_utils_create_info.pUserData = (void *) context->attached_debugger;
     }
 
-    block->vk_instance = TLVK_CreateInstance(app_info, debug_utils_create_info, features, &block->instance_layers, &block->instance_extensions,
+    block->vk_instance = TLVK_InstanceCreate(app_info, debug_utils_create_info, features, &block->instance_layers, &block->instance_extensions,
         debugger);
     if (!block->vk_instance) {
         TL_Error(debugger, "Failed to create Vulkan instance in context %p (Vulkan block located at %p)", context, block);
@@ -200,7 +200,7 @@ bool TLVK_CreateContextVulkanBlock(TL_Context_t *const context, const TL_Version
     return true;
 }
 
-void TLVK_DestroyContextVulkanBlock(TL_Context_t *const context) {
+void TLVK_ContextBlockDestroy(TL_Context_t *const context) {
     TLVK_ContextVulkanBlock_t *block = (TLVK_ContextVulkanBlock_t *) ((char *) context->data + context->vulkan_offset);
 
     // destroy the debug messenger if the function is available

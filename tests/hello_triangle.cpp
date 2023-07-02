@@ -30,7 +30,7 @@ int main() {
         (int &) debugger_descriptor.severities = TL_DEBUG_SEVERITY_ALL_BIT;// & ~TL_DEBUG_SEVERITY_VERBOSE_BIT & ~TL_DEBUG_SEVERITY_NOTIF_BIT;
         (int &) debugger_descriptor.sources = TL_DEBUG_SOURCE_THALLIUM_BIT | TL_DEBUG_SOURCE_VULKAN_BIT;
 
-        DEBUGGER = TL_CreateDebugger(debugger_descriptor);
+        DEBUGGER = TL_DebuggerCreate(debugger_descriptor);
         if (!DEBUGGER) {
             std::cerr << "FAILED TO CREATE THALLIUM DEBUGGER" << std::endl;
             return 1;
@@ -46,7 +46,7 @@ int main() {
     TL_ContextDescriptor_t context_descriptor = {};
     context_descriptor.debug_attachment_descriptor = &debugger_attachment_descriptor;
 
-    CONTEXT = TL_CreateContext(context_descriptor, DEBUGGER);
+    CONTEXT = TL_ContextCreate(context_descriptor, DEBUGGER);
     if (!CONTEXT) {
         std::cerr << "FAILED TO CREATE THALLIUM CONTEXT" << std::endl;
         return 1;
@@ -93,7 +93,7 @@ int main() {
         // &extra_vulkan_renderer
     };
 
-    if (TL_CreateRenderers(CONTEXT, renderer_ptrs.size(), renderer_descriptors.data(), renderer_ptrs.data(), DEBUGGER) < renderer_ptrs.size()) {
+    if (TL_RendererCreate(CONTEXT, renderer_ptrs.size(), renderer_descriptors.data(), renderer_ptrs.data(), DEBUGGER) < renderer_ptrs.size()) {
         std::cerr << "FAILED TO CREATE THALLIUM RENDERER(S)" << std::endl;
         return 1;
     }
@@ -101,12 +101,12 @@ int main() {
 
     // ..:: Termination ::..
 
-    TL_DestroyRenderer(VULKAN_RENDERER);
-    // TL_DestroyRenderer(extra_vulkan_renderer);
+    TL_RendererDestroy(VULKAN_RENDERER);
+    // TL_RendererDestroy(extra_vulkan_renderer);
 
-    TL_DestroyContext(CONTEXT);
+    TL_ContextDestroy(CONTEXT);
 
-    TL_DestroyDebugger(DEBUGGER);
+    TL_DebuggerDestroy(DEBUGGER);
 
     glfwDestroyWindow(WINDOW1);
     glfwTerminate();

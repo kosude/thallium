@@ -20,7 +20,7 @@
  *
  * A Thallium Vulkan device manager stores handles to a Vulkan physical and logical device for use in Vulkan render systems.
  *
- * @sa @ref TLVK_CreateDeviceManager()
+ * @sa @ref TLVK_DeviceManagerCreate()
  * @sa @ref TLVK_DeviceData_t
  */
 typedef struct TLVK_DeviceManager_t TLVK_DeviceManager_t;
@@ -47,9 +47,9 @@ typedef struct TLVK_DeviceManagerDescriptor_t {
  * @return The new device manager or NULL
  *
  * @sa @ref TLVK_DeviceManager_t
- * @sa @ref TLVK_DestroyDeviceManager()
+ * @sa @ref TLVK_DeviceManagerDestroy()
  */
-TLVK_DeviceManager_t *TLVK_CreateDeviceManager(
+TLVK_DeviceManager_t *TLVK_DeviceManagerCreate(
     const TLVK_RenderSystem_t *const render_system,
     const TLVK_DeviceManagerDescriptor_t descriptor
 );
@@ -62,9 +62,9 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(
  * @param device_manager Pointer to the Thallium Vulkan device manager to free.
  *
  * @sa @ref TLVK_DeviceManager_t
- * @sa @ref TLVK_CreateDeviceManager()
+ * @sa @ref TLVK_DeviceManagerCreate()
  */
-void TLVK_DestroyDeviceManager(
+void TLVK_DeviceManagerDestroy(
     TLVK_DeviceManager_t *const device_manager
 );
 

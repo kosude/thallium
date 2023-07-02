@@ -533,7 +533,7 @@ VkDevice __CreateLogicalDevice(const VkPhysicalDevice physical_device, const car
     return device;
 }
 
-TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const render_system, const TLVK_DeviceManagerDescriptor_t descriptor) {
+TLVK_DeviceManager_t *TLVK_DeviceManagerCreate(const TLVK_RenderSystem_t *const render_system, const TLVK_DeviceManagerDescriptor_t descriptor) {
     if (!render_system || !render_system->renderer || !render_system->vk_context) {
         return NULL;
     }
@@ -543,7 +543,7 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
 
     TLVK_DeviceManager_t *device_manager = malloc(sizeof(TLVK_DeviceManager_t));
     if (!device_manager) {
-        TL_Fatal(debugger, "MALLOC fault in call to TLVK_CreateDeviceManager");
+        TL_Fatal(debugger, "MALLOC fault in call to TLVK_DeviceManagerCreate");
         return NULL;
     }
 
@@ -694,7 +694,7 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
     return device_manager;
 }
 
-void TLVK_DestroyDeviceManager(TLVK_DeviceManager_t *const device_manager) {
+void TLVK_DeviceManagerDestroy(TLVK_DeviceManager_t *const device_manager) {
     if (!device_manager) {
         return;
     }

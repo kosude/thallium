@@ -15,7 +15,7 @@
 
 #include <stdlib.h>
 
-TLVK_RenderSystem_t *TLVK_CreateRenderSystem(const TL_Renderer_t *const renderer, const TLVK_RenderSystemDescriptor_t descriptor) {
+TLVK_RenderSystem_t *TLVK_RenderSystemCreate(const TL_Renderer_t *const renderer, const TLVK_RenderSystemDescriptor_t descriptor) {
     // if renderer is not NULL then we can assume the context was populated, as renderers are only created in core after populating their context
     if (!renderer) {
         return NULL;
@@ -25,7 +25,7 @@ TLVK_RenderSystem_t *TLVK_CreateRenderSystem(const TL_Renderer_t *const renderer
 
     TLVK_RenderSystem_t *render_system = malloc(sizeof(TLVK_RenderSystem_t));
     if (!render_system) {
-        TL_Fatal(debugger, "MALLOC fault in call to TLVK_CreateRenderSystem");
+        TL_Fatal(debugger, "MALLOC fault in call to TLVK_RenderSystemCreate");
         return NULL;
     }
 
@@ -46,7 +46,7 @@ TLVK_RenderSystem_t *TLVK_CreateRenderSystem(const TL_Renderer_t *const renderer
         device_manager_descriptor.placeholder = 5;
     }
 
-    render_system->device_manager = TLVK_CreateDeviceManager(render_system, device_manager_descriptor);
+    render_system->device_manager = TLVK_DeviceManagerCreate(render_system, device_manager_descriptor);
     if (!render_system->device_manager) {
         TL_Error(debugger, "Failed to create Vulkan device manager for render system at %p", render_system);
         return NULL;
@@ -55,12 +55,12 @@ TLVK_RenderSystem_t *TLVK_CreateRenderSystem(const TL_Renderer_t *const renderer
     return render_system;
 }
 
-void TLVK_DestroyRenderSystem(TLVK_RenderSystem_t *const render_system) {
+void TLVK_RenderSystemDestroy(TLVK_RenderSystem_t *const render_system) {
     if (!render_system) {
         return;
     }
 
-    TLVK_DestroyDeviceManager(render_system->device_manager);
+    TLVK_DeviceManagerDestroy(render_system->device_manager);
 
     free(render_system);
 }

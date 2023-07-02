@@ -39,7 +39,7 @@ typedef struct TL_RendererFeatures_t {
  * This opaque structure provides a representation of a certain graphics API.
  *
  * @sa @ref TL_CreateRenderer()
- * @sa @ref TL_DestroyRenderer()
+ * @sa @ref TL_RendererDestroy()
  * @sa @ref TL_RendererDescriptor_t
  */
 typedef struct TL_Renderer_t TL_Renderer_t;
@@ -89,7 +89,7 @@ typedef struct TL_RendererDescriptor_t {
  *
  * @return The amount of renderers that were successfully created
  */
-uint32_t TL_CreateRenderers(
+uint32_t TL_RendererCreate(
     TL_Context_t *const context,
     const uint32_t count,
     const TL_RendererDescriptor_t *const descriptors,
@@ -104,7 +104,7 @@ uint32_t TL_CreateRenderers(
  *
  * @param renderer Pointer to the renderer object to free.
  */
-void TL_DestroyRenderer(
+void TL_RendererDestroy(
     TL_Renderer_t *const renderer
 );
 

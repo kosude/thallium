@@ -37,7 +37,7 @@
  *
  * @return The new Vulkan instance
  */
-VkInstance TLVK_CreateInstance(
+VkInstance TLVK_InstanceCreate(
     const VkApplicationInfo application_info,
     const VkDebugUtilsMessengerCreateInfoEXT debug_messenger_info,
     const TL_RendererFeatures_t requirements,

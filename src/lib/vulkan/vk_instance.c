@@ -203,7 +203,7 @@ for (uint32_t i = 0; i < extensions.size; i++) {            \
     }                                                       \
 }
 
-VkInstance TLVK_CreateInstance(const VkApplicationInfo application_info, const VkDebugUtilsMessengerCreateInfoEXT debug_messenger_info,
+VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const VkDebugUtilsMessengerCreateInfoEXT debug_messenger_info,
     const TL_RendererFeatures_t requirements, carray_t *const out_layer_names, carray_t *const out_extension_names,
     const TL_Debugger_t *const debugger)
 {
