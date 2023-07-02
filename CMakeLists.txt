@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 project("thallium" C CXX)
 
@@ -10,7 +10,7 @@ set(THALLIUM_SRC_DIR "${CMAKE_CURRENT_LIST_DIR}/src")
 set(THALLIUM_TESTS_DIR "${CMAKE_CURRENT_LIST_DIR}/tests")
 set(THALLIUM_UTILS_DIR "${CMAKE_CURRENT_LIST_DIR}/utils")
 
-set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}")
+set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}/mod")
 
 set(CMAKE_CONFIGURATION_TYPES Debug Release)
 if (NOT CMAKE_BUILD_TYPE)
@@ -25,12 +25,21 @@ endif()
 
 if (WIN32)
     set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "WIN32")
-endif()
-if (APPLE)
+elseif(APPLE)
     set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "APPLE")
-endif()
-if (UNIX)
+elseif(UNIX)
     set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "UNIX")
+
+    option(THALLIUM_WSI_XCB "Build XCB WSI support for Thallium window surfaces" ON)
+    option(THALLIUM_WSI_XLIB "Build Xlib WSI support for Thallium window surfaces" ON)
+endif()
+
+# WSI macros
+if (THALLIUM_WSI_XCB)
+    set(THALLIUM_PUBLIC_LIBRARY_DEFS ${THALLIUM_PUBLIC_LIBRARY_DEFS} "THALLIUM_WSI_XCB")
+endif()
+if (THALLIUM_WSI_XLIB)
+    set(THALLIUM_PUBLIC_LIBRARY_DEFS ${THALLIUM_PUBLIC_LIBRARY_DEFS} "THALLIUM_WSI_XLIB")
 endif()
 
 # treating warnings as errors may be problematic when compiling for prod use.

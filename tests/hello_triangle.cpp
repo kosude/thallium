@@ -10,6 +10,12 @@
 
 #include "glfw/include/GLFW/glfw3.h"
 
+// TODO: cross-platform test
+#define GLFW_EXPOSE_NATIVE_X11
+#include "glfw/include/GLFW/glfw3native.h"
+
+#include <X11/Xlib-xcb.h>
+
 #include <iostream>
 #include <vector>
 
@@ -66,6 +72,8 @@ int main() {
         std::cerr << "FAILED TO CREATE GLFW WINDOW(S)" << std::endl;
         return 1;
     }
+
+    TL_WindowSurface_t *window1_surface = TL_CreateXCBWindowSurface(XGetXCBConnection(glfwGetX11Display()), glfwGetX11Window(WINDOW1));
 
 
     // ..:: Create the renderer(s) ::..

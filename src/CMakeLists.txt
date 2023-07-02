@@ -11,8 +11,6 @@ set(THALLIUM_PUBLIC_INCLUDE_DIRS
     "${THALLIUM_INCLUDE_DIR}"
 )
 
-set(THALLIUM_PUBLIC_LIBRARY_DEFS)
-
 set(THALLIUM_MODULE_HEADER_CONTENTS)
 
 # dependencies
@@ -28,7 +26,7 @@ if (THALLIUM_BUILD_MODULE_VULKAN)
 endif()
 
 # api_modules.h config
-configure_file("${THALLIUM_CMAKE_DIR}/api_modules.h" "${PROJECT_BINARY_DIR}/generated/api_modules.h")
+configure_file("${THALLIUM_CMAKE_DIR}/gen/api_modules.h" "${PROJECT_BINARY_DIR}/generated/api_modules.h")
 
 message(STATUS "thallium libraries define: ${THALLIUM_LIBRARY_DEFS}")
 message(STATUS "thallium libraries publicly define: ${THALLIUM_PUBLIC_LIBRARY_DEFS}")

@@ -12,7 +12,7 @@
                 "${workspaceFolder}/build",
                 "-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
                 "-DCMAKE_BUILD_TYPE=Debug",
-                "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/cmake/linux/x86_64-linux-clang.cmake",
+                "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/cmake/tc/linux/x86_64-linux-clang.cmake",
 
                 "-DTHALLIUM_DEBUGGER_TIMESTAMPS=ON",
                 "-DTHALLIUM_BUILD_DOCS=ON",

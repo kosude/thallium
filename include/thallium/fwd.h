@@ -25,6 +25,8 @@ typedef struct TL_RendererFeatures_t TL_RendererFeatures_t;
 
 typedef struct TL_Version_t TL_Version_t;
 
+typedef struct TL_WindowSurface_t TL_WindowSurface_t;
+
 #ifdef __cplusplus
     }
 #endif // __cplusplus

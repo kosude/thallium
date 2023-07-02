@@ -20,6 +20,14 @@
 #include "thallium/core/renderer.h"
 #include "thallium/core/version.h"
 
+#include "thallium/core/wsi/window_surface.h"
+#if defined(THALLIUM_WSI_XCB)
+#   include "thallium/core/wsi/xcb_window_surface.h"
+#endif
+#if defined(THALLIUM_WSI_XLIB)
+#   include "thallium/core/wsi/xlib_window_surface.h"
+#endif
+
 #ifdef __cplusplus
     }
 #endif // __cplusplus
