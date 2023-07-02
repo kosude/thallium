@@ -81,6 +81,25 @@ static __QueueFamilyIndices_t __GetDeviceQueueFamilyIndices(const VkPhysicalDevi
             cur_trans_score++;
         }
 
+        VkBool32 present_support = VK_FALSE;
+
+#       if defined(WIN32)
+            // provided by VK_KHR_win32_surface
+            if (!vkGetPhysicalDeviceWin32PresentationSupportKHR) {
+                continue;
+            }
+
+            present_support = vkGetPhysicalDeviceWin32PresentationSupportKHR(physical_device, i);
+#       endif
+        // TODO last here: present checking for Unix and MoltenVK.
+
+        if (present_support) {
+            // use any family that supports present operations (to the required surfaces) as a presentation family
+            indices.present = i;
+
+            cur_trans_score++;
+        }
+
         if (fams[i].queueFlags & VK_QUEUE_TRANSFER_BIT) {
             if (cur_trans_score <= min_trans_score) {
                 indices.transfer = i;
@@ -89,9 +108,6 @@ static __QueueFamilyIndices_t __GetDeviceQueueFamilyIndices(const VkPhysicalDevi
                 min_trans_score = cur_trans_score;
             }
         }
-
-        // TODO: get present queue
-        indices.present = i;
 
         queue_score += fams[i].queueCount;
     }
@@ -302,23 +318,35 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     // validate queue families...
     // as it is difficult to keep a program running without the required queue families, we return early.
     if (required_fams.graphics && available_fams.graphics <= -1) {
-        TL_Warn(debugger, "Device \"%s\" is missing a graphics-supporting queue family, which the application requires; this device cannot be used.",
+        TL_Error(debugger, "Device \"%s\" is missing a graphics-supporting queue family, which the application requires; this device cannot be used.",
             props.deviceName);
+
+        // init output param(s) due to early return
+        *out_exts = carraynew(1);
         return 0;
     }
     if (required_fams.compute && available_fams.compute <= -1) {
-        TL_Warn(debugger, "Device \"%s\" is missing a compute-supporting queue family, which the application requires; this device cannot be used.",
+        TL_Error(debugger, "Device \"%s\" is missing a compute-supporting queue family, which the application requires; this device cannot be used.",
             props.deviceName);
+
+        // init output param(s) due to early return
+        *out_exts = carraynew(1);
         return 0;
     }
     if (required_fams.transfer && available_fams.transfer <= -1) {
-        TL_Warn(debugger, "Device \"%s\" is missing a transfer-supporting queue family, which the application requires; this device cannot be used.",
+        TL_Error(debugger, "Device \"%s\" is missing a transfer-supporting queue family, which the application requires; this device cannot be used.",
             props.deviceName);
+
+        // init output param(s) due to early return
+        *out_exts = carraynew(1);
         return 0;
     }
     if (required_fams.present && available_fams.present <= -1) {
-        TL_Warn(debugger, "Device \"%s\" is missing a present-supporting queue family, which the application requires; this device cannot be used.",
+        TL_Error(debugger, "Device \"%s\" is missing a present-supporting queue family, which the application requires; this device cannot be used.",
             props.deviceName);
+
+        // init output param(s) due to early return
+        *out_exts = carraynew(1);
         return 0;
     }
 
@@ -610,7 +638,7 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
             VkPhysicalDeviceProperties props;
             vkGetPhysicalDeviceProperties(dev, &props);
 
-            TL_Note(debugger, "%s scored Thallium score of %lu", props.deviceName, cur_score);
+            TL_Note(debugger, "%s scored Thallium score of %lu%s", props.deviceName, cur_score, (cur_score <= 0) ? " (UNSUITABLE)" : "");
         }
 
         // best device so far

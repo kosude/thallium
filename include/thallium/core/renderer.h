@@ -71,12 +71,12 @@ typedef struct TL_RendererDescriptor_t {
  *
  * The resultant array of renderers are allocated and output into `renderers`.
  *
- * The function will return an error if `count` is less than 1. Ensure that both arrays are the same length. The index of each descriptor in the
- * `descriptors` array corresponds to the index of each renderer pointer in the `renderers` array.
+ * The `count` parameter must be greater than 1. Ensure that both arrays are the same length. The index of each descriptor in the `descriptors` array
+ * corresponds to the index of each renderer pointer in the `renderers` array.
  *
  * Neither `descriptors` or `renderers` can be NULL!
  *
- * @note This function can only be called **once** per context object!
+ * @note This function can only be called **once** per context object! If invoked multiple times, the function will return `count`.
  *
  * @warning When loading the appropriate API(s), the highest version specified in the created renderer(s) is loaded. Therefore, if you are using
  * multiple renderers over the same graphics API, only functions from the highest specified version of that API is loaded.
@@ -87,9 +87,9 @@ typedef struct TL_RendererDescriptor_t {
  * @param renderers Array of renderer pointers.
  * @param debugger NULL or a debugger for function debugging
  *
- * @return False if error
+ * @return The amount of renderers that were successfully created
  */
-bool TL_CreateRenderers(
+uint32_t TL_CreateRenderers(
     TL_Context_t *const context,
     const uint32_t count,
     const TL_RendererDescriptor_t *const descriptors,
