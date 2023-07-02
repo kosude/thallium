@@ -21,25 +21,14 @@
 
 // internal struct to hold queue handles inside a device manager.
 typedef struct TLVK_DeviceManagerQueues_t {
-    /// @brief Amount of elements in `graphics_queues`.
-    uint32_t graphics_queue_count;
-    /// @brief NULL or an array of queues for graphics operations
-    VkQueue *graphics_queues;
-
-    /// @brief Amount of elements in `compute_queues`.
-    uint32_t compute_queue_count;
-    /// @brief NULL or an array of queues for compute operations
-    VkQueue *compute_queues;
-
-    /// @brief Amount of elements in `transfer_queues`.
-    uint32_t transfer_queue_count;
-    /// @brief NULL or an array of queues for memory transfer operations
-    VkQueue *transfer_queues;
-
-    /// @brief Amount of elements in `present_queues`.
-    uint32_t present_queue_count;
-    /// @brief NULL or an array of queues for presentation operations
-    VkQueue *present_queues;
+    /// @brief An array of queues for graphics operations
+    carray_t graphics;
+    /// @brief An array of queues for compute operations
+    carray_t compute;
+    /// @brief An array of queues for memory transfer operations
+    carray_t transfer;
+    /// @brief An array of queues for image presentation operations
+    carray_t present;
 } TLVK_DeviceManagerQueues_t;
 
 typedef struct TLVK_DeviceManager_t {

@@ -90,7 +90,6 @@ static __QueueFamilyIndices_t __GetDeviceQueueFamilyIndices(const VkPhysicalDevi
             }
         }
 
-        // TODO: get present queue
         indices.present = i;
 
         queue_score += fams[i].queueCount;
@@ -414,6 +413,23 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
 
 #define __MAX_QUEUE_CREATE_INFO_COUNT 16
 
+#define __STORE_QUEUE_HANDLE(name)                                                  \
+{                                                                                   \
+    if (queue_families.name > -1 && name ## _queue_count > 0) {                     \
+        out_queues->name = carraynew(name ## _queue_count);                         \
+        if (!out_queues->name.capacity) {                                           \
+            TL_Fatal(debugger, "MALLOC fault in call to __CreateLogicalDevice");    \
+            return VK_NULL_HANDLE;                                                  \
+        }                                                                           \
+                                                                                    \
+        for (uint32_t i = 0; i < name ## _queue_count; i++) {                       \
+            VkQueue qptr;                                                           \
+            vkGetDeviceQueue(device, queue_families.name, i, &qptr);                \
+            carraypush(&out_queues->name, (carrayval_t) qptr);                      \
+        }                                                                           \
+    }                                                                               \
+}
+
 // Note that this function assumes the given extensions, features, etc are available on the given physcial device
 // Queue handles will be output to out_queues.
 VkDevice __CreateLogicalDevice(const VkPhysicalDevice physical_device, const carray_t extensions, const VkPhysicalDeviceFeatures features,
@@ -456,12 +472,12 @@ VkDevice __CreateLogicalDevice(const VkPhysicalDevice physical_device, const car
     VkDeviceQueueCreateInfo queue_create_infos[__MAX_QUEUE_CREATE_INFO_COUNT];
     uint32_t queue_create_info_count = 0;
 
+    // amounts of queues to create from each family (if that family is required by the application)
     uint32_t graphics_queue_count = 1;
     uint32_t compute_queue_count = 1;
     uint32_t transfer_queue_count = 1;
     uint32_t present_queue_count = 1;
 
-    // TODO better queue priorities - currently using all queues at same priority
     float queue_priority = 1.0f;
 
     // set up queue create infos to create queue(s) from each queue family index...
@@ -484,14 +500,15 @@ VkDevice __CreateLogicalDevice(const VkPhysicalDevice physical_device, const car
             (family_index == queue_families.graphics) * graphics_queue_count +
             (family_index == queue_families.compute ) * compute_queue_count  +
             (family_index == queue_families.transfer) * transfer_queue_count +
-            (family_index == queue_families.present ) * present_queue_count;
+            (family_index == queue_families.present ) * ((queue_families.graphics == queue_families.present) ? 0 : present_queue_count);
 
         queue_create_info->queueCount = queue_count;
         queue_create_info->queueFamilyIndex = family_index;
 
-        // TODO see above queue priorities TODO
         queue_create_info->pQueuePriorities = &queue_priority;
     }
+
+    carrayfree(&unique_family_indices);
 
     device_create_info.pQueueCreateInfos = queue_create_infos;
     device_create_info.queueCreateInfoCount = queue_create_info_count;
@@ -500,79 +517,18 @@ VkDevice __CreateLogicalDevice(const VkPhysicalDevice physical_device, const car
     VkDevice device;
     if (vkCreateDevice(physical_device, &device_create_info, NULL, &device)) {
         return VK_NULL_HANDLE;
-    }
+    };
 
-    // store handles to graphics queues
-    if (queue_families.graphics > -1) {
-        out_queues->graphics_queues = malloc(sizeof(VkQueue) * graphics_queue_count);
-        if (!out_queues->graphics_queues) {
-            TL_Fatal(debugger, "MALLOC fault in call to __CreateLogicalDevice");
-            return VK_NULL_HANDLE;
-        }
+    // init arrays to be empty
+    out_queues->graphics.size = 0;
+    out_queues->compute.size = 0;
+    out_queues->transfer.size = 0;
+    out_queues->present.size = 0;
 
-        for (uint32_t i = 0; i < graphics_queue_count; i++) {
-            vkGetDeviceQueue(device, queue_families.graphics, i, &out_queues->graphics_queues[i]);
-        }
-
-        out_queues->graphics_queue_count = graphics_queue_count;
-    } else {
-        out_queues->graphics_queues = NULL;
-        out_queues->graphics_queue_count = 0;
-    }
-
-    // store handles to compute queues
-    if (queue_families.compute > -1) {
-        out_queues->compute_queues = malloc(sizeof(VkQueue) * compute_queue_count);
-        if (!out_queues->compute_queues) {
-            TL_Fatal(debugger, "MALLOC fault in call to __CreateLogicalDevice");
-            return VK_NULL_HANDLE;
-        }
-
-        for (uint32_t i = 0; i < compute_queue_count; i++) {
-            vkGetDeviceQueue(device, queue_families.compute, i, &out_queues->compute_queues[i]);
-        }
-
-        out_queues->compute_queue_count = compute_queue_count;
-    } else {
-        out_queues->compute_queues = NULL;
-        out_queues->compute_queue_count = 0;
-    }
-
-    // store handles to memory transfer queues
-    if (queue_families.transfer > -1) {
-        out_queues->transfer_queues = malloc(sizeof(VkQueue) * transfer_queue_count);
-        if (!out_queues->transfer_queues) {
-            TL_Fatal(debugger, "MALLOC fault in call to __CreateLogicalDevice");
-            return VK_NULL_HANDLE;
-        }
-
-        for (uint32_t i = 0; i < transfer_queue_count; i++) {
-            vkGetDeviceQueue(device, queue_families.transfer, i, &out_queues->transfer_queues[i]);
-        }
-
-        out_queues->transfer_queue_count = transfer_queue_count;
-    } else {
-        out_queues->transfer_queues = NULL;
-        out_queues->transfer_queue_count = 0;
-    }
-
-    // store handles to presentation queues
-    if (queue_families.present > -1) {
-        out_queues->present_queues = malloc(sizeof(VkQueue) * present_queue_count);
-        if (!out_queues->present_queues) {
-            TL_Fatal(debugger, "MALLOC fault in call to __CreateLogicalDevice");
-            return VK_NULL_HANDLE;
-        }
-
-        for (uint32_t i = 0; i < present_queue_count; i++) {
-            vkGetDeviceQueue(device, queue_families.present, i, &out_queues->present_queues[i]);
-        }
-
-        out_queues->present_queue_count = present_queue_count;
-    } else {
-        out_queues->present_queues = NULL;
-        out_queues->present_queue_count = 0;
-    }
+    __STORE_QUEUE_HANDLE(graphics);
+    __STORE_QUEUE_HANDLE(compute);
+    __STORE_QUEUE_HANDLE(transfer);
+    __STORE_QUEUE_HANDLE(present);
 
     return device;
 }
@@ -719,20 +675,20 @@ TLVK_DeviceManager_t *TLVK_CreateDeviceManager(const TLVK_RenderSystem_t *const 
         }
 
         uint32_t queue_count =
-            device_manager->vk_queues.graphics_queue_count +
-            device_manager->vk_queues.compute_queue_count +
-            device_manager->vk_queues.transfer_queue_count +
-            device_manager->vk_queues.present_queue_count;
+            device_manager->vk_queues.graphics.size +
+            device_manager->vk_queues.compute.size +
+            device_manager->vk_queues.transfer.size +
+            device_manager->vk_queues.present.size;
 
         TL_Log(debugger, "  %d queues", queue_count);
         if (best_device_queue_fams.graphics > -1)
-            TL_Log(debugger, "    - %d graphics (family index: %d)", device_manager->vk_queues.graphics_queue_count, best_device_queue_fams.graphics);
+            TL_Log(debugger, "    - %d graphics (family index: %d)", device_manager->vk_queues.graphics.size, best_device_queue_fams.graphics);
         if (best_device_queue_fams.compute > -1)
-            TL_Log(debugger, "    - %d compute  (family index: %d)", device_manager->vk_queues.compute_queue_count, best_device_queue_fams.compute);
+            TL_Log(debugger, "    - %d compute  (family index: %d)", device_manager->vk_queues.compute.size, best_device_queue_fams.compute);
         if (best_device_queue_fams.transfer > -1)
-            TL_Log(debugger, "    - %d transfer (family index: %d)", device_manager->vk_queues.transfer_queue_count, best_device_queue_fams.transfer);
+            TL_Log(debugger, "    - %d transfer (family index: %d)", device_manager->vk_queues.transfer.size, best_device_queue_fams.transfer);
         if (best_device_queue_fams.present > -1)
-            TL_Log(debugger, "    - %d present  (family index: %d)", device_manager->vk_queues.present_queue_count, best_device_queue_fams.present);
+            TL_Log(debugger, "    - %d present  (family index: %d)", device_manager->vk_queues.present.size, best_device_queue_fams.present);
     }
 
     return device_manager;
@@ -745,10 +701,11 @@ void TLVK_DestroyDeviceManager(TLVK_DeviceManager_t *const device_manager) {
 
     vkDestroyDevice(device_manager->vk_logical_device, NULL);
 
-    free(device_manager->vk_queues.graphics_queues);
-    free(device_manager->vk_queues.compute_queues);
-    free(device_manager->vk_queues.transfer_queues);
-    free(device_manager->vk_queues.present_queues);
+    // free arrays of queue handles
+    if (device_manager->vk_queues.graphics.size) carrayfree(&(device_manager->vk_queues.graphics));
+    if (device_manager->vk_queues.compute.size)  carrayfree(&(device_manager->vk_queues.compute));
+    if (device_manager->vk_queues.transfer.size) carrayfree(&(device_manager->vk_queues.transfer));
+    if (device_manager->vk_queues.present.size)  carrayfree(&(device_manager->vk_queues.present));
 
     free(device_manager);
 }
