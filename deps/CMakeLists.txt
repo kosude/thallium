@@ -1,5 +1,6 @@
 set(LIBRARY_LINKS)
 
+
 # Build and link cutils
 
 set(CUTILS_CLIST OFF CACHE BOOL "Build clist library" FORCE)
@@ -36,5 +37,6 @@ if (THALLIUM_BUILD_MODULE_VULKAN)
         volk
     )
 endif()
+
 
 set(THALLIUM_LIBRARY_LINKS ${THALLIUM_LIBRARY_LINKS} ${LIBRARY_LINKS} PARENT_SCOPE)

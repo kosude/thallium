@@ -145,17 +145,17 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
     return renderer;
 }
 
-bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const TL_RendererDescriptor_t *const descriptors,
+uint32_t TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const TL_RendererDescriptor_t *const descriptors,
     TL_Renderer_t **const *const renderers, const TL_Debugger_t *const debugger)
 {
     if (!context || !descriptors || !renderers || count <= 0) {
-        return false;
+        return 0;
     }
 
     // function has already been called once on this context
     if (context->state.renderers_init) {
         TL_Warn(debugger, "Attempted to invoke TL_CreateRenderers multiple times on the same context, which is illegal behaviour");
-        return true;
+        return count;
     }
 
     // validate renderer apis
@@ -164,7 +164,7 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
 
         if (!__ValidateAPI(api, debugger)) {
             TL_Error(debugger, "Renderer descriptor at index %d in call to TL_CreateRenderers specified invalid graphics API id %d", i, api);
-            return false;
+            return 0;
         }
     }
 
@@ -188,7 +188,7 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
 
     if (!TL_CreateContextAPIObjects(context, combined_apis, highest_api_versions, combined_features, debugger)) {
         TL_Error(debugger, "Failed to create API objects for context at %p in call to TL_CreateRenderers", context);
-        return false;
+        return 0;
     }
 
     TL_Log(debugger, "Allocated and populated context data for %d renderers", count);
@@ -208,22 +208,18 @@ bool TL_CreateRenderers(TL_Context_t *const context, const uint32_t count, const
         *(renderers[i]) = ret;
     }
 
-    if (fail_renderer_count != count) {
-        TL_Note(debugger, "Successfully created %d renderer(s) with context %p", count - fail_renderer_count, context);
-    }
-    if (fail_renderer_count > 0) {
+    uint32_t ret = count - fail_renderer_count;
+
+    if (ret < count) {
         TL_Warn(debugger, "Call to TL_CreateRenderers failed to create %d out of %d renderer(s) with context %p", fail_renderer_count, count,
             context);
     }
 
-    // no renderers were created
-    if (fail_renderer_count == count) {
-        return false;
+    if (ret > 0) {
+        context->state.renderers_init = true;
     }
 
-    context->state.renderers_init = true;
-
-    return true;
+    return ret;
 }
 
 void TL_DestroyRenderer(TL_Renderer_t *const renderer) {

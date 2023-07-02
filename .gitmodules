@@ -4,3 +4,6 @@
 [submodule "deps/volk"]
 	path = deps/volk
 	url = https://github.com/zeux/volk
+[submodule "tests/deps/glfw"]
+	path = tests/deps/glfw
+	url = https://github.com/glfw/glfw
