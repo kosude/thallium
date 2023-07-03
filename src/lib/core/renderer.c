@@ -217,6 +217,7 @@ uint32_t TL_RendererCreate(TL_Context_t *const context, const uint32_t count, co
 
     if (ret > 0) {
         context->state.renderers_init = true;
+        TL_Note(debugger, "Successfully created %d out of %d renderers with context %p", ret, count, context);
     }
 
     return ret;
