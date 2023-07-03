@@ -1,5 +1,5 @@
 set(SOURCES
-    "vk_context_api_object.c"
+    "vk_context_block.c"
     "vk_device_manager.c"
     "vk_instance.c"
     "vk_render_system.c"
@@ -17,7 +17,7 @@ set(THALLIUM_PUBLIC_INCLUDE_DIRS ${THALLIUM_PUBLIC_INCLUDE_DIRS}
 )
 
 set(THALLIUM_PUBLIC_LIBRARY_DEFS ${THALLIUM_PUBLIC_LIBRARY_DEFS}
-    "THALLIUM_VULKAN_INCL"
+    "_THALLIUM_VULKAN_INCL"
 
     PARENT_SCOPE
 )

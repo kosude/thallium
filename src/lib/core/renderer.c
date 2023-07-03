@@ -21,7 +21,7 @@ static bool __ValidateAPI(const TL_RendererAPIFlags_t api, const TL_Debugger_t *
     switch (api) {
         case TL_RENDERER_API_VULKAN_BIT:
             // test if Vulkan module was compiled
-#           if !defined(THALLIUM_VULKAN_INCL)
+#           if !defined(_THALLIUM_VULKAN_INCL)
                 TL_Error(debugger, "TL_RendererCreate attempted to create renderer for API which was not compiled (TL_RENDERER_API_VULKAN_BIT); "
                     "Recompile Thallium with the -DTHALLIUM_BUILD_MODULE_VULKAN=ON flag!");
                 return false;
@@ -104,7 +104,7 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
 
         // create a Vulkan render system...
         case TL_RENDERER_API_VULKAN_BIT:; // the semicolon somehow fixes variable declaration errors (fml)
-#           if defined(THALLIUM_VULKAN_INCL)
+#           if defined(_THALLIUM_VULKAN_INCL)
 
                 TLVK_RenderSystemDescriptor_t rsdescr;
 
@@ -231,7 +231,7 @@ void TL_RendererDestroy(TL_Renderer_t *const renderer) {
 
         // destroy Vulkan render system
         case TL_RENDERER_API_VULKAN_BIT:
-#           if defined(THALLIUM_VULKAN_INCL)
+#           if defined(_THALLIUM_VULKAN_INCL)
                 TLVK_RenderSystemDestroy(renderer->render_system);
 #           endif
 

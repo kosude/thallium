@@ -12,7 +12,7 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/fwd.h"
+#include "thallium_decl/fwd.h"
 
 #define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>

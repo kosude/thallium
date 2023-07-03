@@ -12,8 +12,8 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/enums.h"
-#include "thallium/fwd.h"
+#include "thallium_decl/enums.h"
+#include "thallium_decl/fwd.h"
 
 /**
  * @brief The function pointer type for custom debugger message callbacks.

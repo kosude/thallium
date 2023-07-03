@@ -5,3 +5,5 @@
 build/
 
 vulkaninfo.html
+
+.vscode/

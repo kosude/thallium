@@ -15,7 +15,7 @@
 #include "io/log.h"
 #include "io/proc.h"
 
-#if defined(THALLIUM_VULKAN_INCL)
+#if defined(_THALLIUM_VULKAN_INCL)
 #   include "vulkan/vk_pnext_append.h"
 #endif
 

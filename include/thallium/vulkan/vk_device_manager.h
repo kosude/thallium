@@ -12,7 +12,7 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/fwdvk.h"
+#include "thallium_decl/fwdvk.h"
 #include "thallium/platform.h"
 
 /**

@@ -15,8 +15,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if defined(THALLIUM_VULKAN_INCL)
-#   include "lib/vulkan/vk_context_api_object.h"
+#if defined(_THALLIUM_VULKAN_INCL)
+#   include "lib/vulkan/vk_context_block.h"
 #endif
 
 // static context pointer singleton
@@ -89,10 +89,10 @@ bool TL_ContextBlocksCreate(TL_Context_t *const context, const TL_RendererAPIFla
 
     // get the size of the data that needs to be allocated as well as setting each block offset
     if (apis & TL_RENDERER_API_VULKAN_BIT) {
-#       if defined(THALLIUM_VULKAN_INCL)
+#       if defined(_THALLIUM_VULKAN_INCL)
             context->vulkan_offset = data_size;
 
-            size_t size_add = sizeof(TLVK_ContextVulkanBlock_t);
+            size_t size_add = sizeof(TLVK_ContextBlock_t);
             data_size += size_add;
 
             TL_Log(debugger, "%d bytes allocated for Vulkan context data block (may be padded) - offset %d (total data size now %d)", size_add,
@@ -120,7 +120,7 @@ bool TL_ContextBlocksCreate(TL_Context_t *const context, const TL_RendererAPIFla
 
     // supporting Vulkan renderers
     if (apis & TL_RENDERER_API_VULKAN_BIT) {
-#       if defined(THALLIUM_VULKAN_INCL)
+#       if defined(_THALLIUM_VULKAN_INCL)
             TL_Note(debugger, "Requesting the Vulkan API at version %d.%d.%d", versions.vulkan_version.major, versions.vulkan_version.minor,
                 versions.vulkan_version.patch);
 
@@ -147,7 +147,7 @@ void TL_ContextBlocksDestroy(TL_Context_t *const context) {
     }
 
     if (context->vulkan_offset != TL_CONTEXT_API_OBJECT_UNINITIALISED) {
-#       if defined(THALLIUM_VULKAN_INCL)
+#       if defined(_THALLIUM_VULKAN_INCL)
             TLVK_ContextBlockDestroy(context);
 #       endif
     }

@@ -6,13 +6,13 @@
  */
 
 #pragma once
-#ifndef __TL__internal__vulkan__vk_context_api_object_h__
-#define __TL__internal__vulkan__vk_context_api_object_h__
+#ifndef __TL__internal__vulkan__vk_context_block_h__
+#define __TL__internal__vulkan__vk_context_block_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/fwd.h"
+#include "thallium_decl/fwd.h"
 #include "thallium/platform.h"
 
 #define VK_NO_PROTOTYPES
@@ -24,7 +24,7 @@
  *
  * This struct describes the block of data stored in a Thallium context object referenced by Vulkan renderers.
  */
-typedef struct TLVK_ContextVulkanBlock_t {
+typedef struct TLVK_ContextBlock_t {
     /// @brief Meta object state
     struct {
         /// @brief Has the Vulkan block already been initialised? Here to avoid overwriting existing handle to stuff like the Vulkan instance.
@@ -43,7 +43,7 @@ typedef struct TLVK_ContextVulkanBlock_t {
     carray_t instance_layers;
     /// @brief Array of enabled instance extensions
     carray_t instance_extensions;
-} TLVK_ContextVulkanBlock_t;
+} TLVK_ContextBlock_t;
 
 /**
  * @brief Populate a block of memory for a Vulkan API object to be stored as part of a Thallium context.

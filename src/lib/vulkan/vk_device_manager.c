@@ -13,6 +13,8 @@
 #include "types/vulkan/vk_render_system.h"
 #include "types/core/renderer.h"
 
+#include "lib/vulkan/vk_context_block.h"
+
 #include <stdlib.h>
 #include <string.h>
 

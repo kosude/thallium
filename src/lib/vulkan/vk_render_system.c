@@ -32,7 +32,7 @@ TLVK_RenderSystem_t *TLVK_RenderSystemCreate(const TL_Renderer_t *const renderer
     TL_Log(debugger, "Allocated memory for Vulkan render system at %p", render_system);
 
     render_system->renderer = renderer;
-    render_system->vk_context = (TLVK_ContextVulkanBlock_t *) ((char *) renderer->context->data + renderer->context->vulkan_offset);
+    render_system->vk_context = (TLVK_ContextBlock_t *) ((char *) renderer->context->data + renderer->context->vulkan_offset);
     render_system->features = renderer->features;
 
     // populate descriptor for device manager

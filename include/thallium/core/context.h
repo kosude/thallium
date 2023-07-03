@@ -12,7 +12,7 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/fwd.h"
+#include "thallium_decl/fwd.h"
 
 /**
  * @brief An opaque object to hold single context state for the Thallium library instance.

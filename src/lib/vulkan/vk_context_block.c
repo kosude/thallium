@@ -5,7 +5,7 @@
  *   See the LICENCE file for more information.
  */
 
-#include "lib/vulkan/vk_context_api_object.h"
+#include "lib/vulkan/vk_context_block.h"
 
 #include "thallium.h"
 
@@ -110,7 +110,7 @@ bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api
         return false;
     }
 
-    TLVK_ContextVulkanBlock_t *block = (TLVK_ContextVulkanBlock_t *) ((char *) context->data + context->vulkan_offset);
+    TLVK_ContextBlock_t *block = (TLVK_ContextBlock_t *) ((char *) context->data + context->vulkan_offset);
 
     // block has already been initialised, so we return early.
     // we don't want to overwrite data in this block as we need to make sure not to lose e.g. the Vulkan instance handle.
@@ -201,7 +201,7 @@ bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api
 }
 
 void TLVK_ContextBlockDestroy(TL_Context_t *const context) {
-    TLVK_ContextVulkanBlock_t *block = (TLVK_ContextVulkanBlock_t *) ((char *) context->data + context->vulkan_offset);
+    TLVK_ContextBlock_t *block = (TLVK_ContextBlock_t *) ((char *) context->data + context->vulkan_offset);
 
     // destroy the debug messenger if the function is available
     __IF_INSTANCE_EXTENSION_ENABLED(VK_EXT_DEBUG_UTILS_EXTENSION_NAME,

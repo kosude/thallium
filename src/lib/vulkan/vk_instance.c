@@ -127,7 +127,7 @@ static carray_t __ValidateInstanceExtensions(const uint32_t count, const char *c
 static VkInstanceCreateFlags __GetRequiredInstanceFlags(const TL_RendererFeatures_t requirements) {
     VkInstanceCreateFlags ret = 0;
 
-#   if defined(APPLE)
+#   if defined(_APPLE)
         // as MoltenVK is non-compliant we need to enable its device enumeration with the portability flag
         __DEFINE_REQUIRED_FLAG(VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR);
 #   endif
@@ -163,7 +163,7 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
 
     uint32_t count_ret = 0;
 
-#   if defined(APPLE)
+#   if defined(_APPLE)
         // __DEFINE_REQUIRED_EXTENSION(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME); deprecated and added to Vulkan core 1.1
         __DEFINE_REQUIRED_EXTENSION(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
 #   endif
@@ -180,13 +180,13 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
         // implementation-independent surface extension
         __DEFINE_REQUIRED_EXTENSION(VK_KHR_SURFACE_EXTENSION_NAME);
 
-#       if defined(WIN32)
+#       if defined(_WIN32)
             // windows surface extension
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
-#       elif defined(UNIX)
+#       elif defined(_UNIX)
             // unix surface extension (assume linux and X)
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
-#       elif defined(APPLE)
+#       elif defined(_APPLE)
             // macos (metal through moltenvk) surface extension
             __DEFINE_REQUIRED_EXTENSION(VK_EXT_METAL_SURFACE_EXTENSION_NAME);
 #       endif

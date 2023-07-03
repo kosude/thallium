@@ -12,7 +12,8 @@
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/enums.h"
+#include "thallium_decl/enums.h"
+
 #include "thallium/platform.h"
 
 #include "thallium/core/context.h"

@@ -22,7 +22,7 @@ GLFWwindow *WINDOW1 = nullptr;
 TL_Renderer_t *VULKAN_RENDERER = nullptr;
 
 int main() {
-#   if defined(DEBUG)
+#   if defined(_DEBUG)
         // ..:: Create a debugger ::..
 
         TL_DebuggerDescriptor_t debugger_descriptor = {};

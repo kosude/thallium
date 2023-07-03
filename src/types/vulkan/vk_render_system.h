@@ -15,16 +15,17 @@
 #include "thallium/vulkan/vk_render_system.h"
 
 #include "thallium/core/renderer.h"
-#include "lib/vulkan/vk_context_api_object.h"
 
 #define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>
+
+typedef struct TLVK_ContextBlock_t TLVK_ContextBlock_t;
 
 typedef struct TLVK_RenderSystem_t {
     /// @brief The parent API-agnostic renderer object.
     const TL_Renderer_t *renderer;
     /// @brief Vulkan context data block pointer.
-    const TLVK_ContextVulkanBlock_t *vk_context;
+    const TLVK_ContextBlock_t *vk_context;
     /// @brief Stack copy of renderer features in `renderer` (used for less derefs)
     TL_RendererFeatures_t features;
 
