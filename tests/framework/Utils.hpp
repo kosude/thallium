@@ -9,8 +9,9 @@
 #define __tests__Utils_hpp__
 
 #include <iosfwd>
+#include "thallium_decl/enums.h"
 
-namespace TLTests::Framework {
+namespace TLTests::Framework::Utils {
     void Log(
         const std::string &msg,
         const bool &timestamp = true
@@ -19,6 +20,13 @@ namespace TLTests::Framework {
         const std::string &msg,
         const bool &timestamp = true,
         const bool &exit_proc = false
+    );
+
+    void DebugCallback(
+        char *msg,
+        TL_DebugSeverityFlags_t sev,
+        TL_DebugSourceFlags_t src,
+        void *ptr
     );
 }
 

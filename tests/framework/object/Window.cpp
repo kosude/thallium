@@ -15,12 +15,12 @@
 namespace TLTests::Framework {
     void Window::_InitGLFW() {
         glfwSetErrorCallback([](int e, const char *d) {
-            Error("GLFW error code " + std::to_string(e) + " - " + d);
+            Utils::Error("GLFW error code " + std::to_string(e) + " - " + d);
         });
 
         if (!glfwInit()) {
             // fatal error if fail
-            Error("Failed to initialise GLFW", true);
+            Utils::Error("Failed to initialise GLFW", true);
         }
     }
 

@@ -42,9 +42,12 @@ namespace TLTests::Framework {
 
             debugger_descriptor.sources = TL_DEBUG_SOURCE_ALL_BIT;
 
+            // debug callback
+            debugger_descriptor.callback = Utils::DebugCallback;
+
             _debugger = TL_DebuggerCreate(debugger_descriptor);
             if (!_debugger) {
-                Error(std::string{"Failed to create debugger"}, true);
+                Utils::Error(std::string{"Failed to create debugger"});
             }
 
             // attachment for attaching the debugger to the context
@@ -63,10 +66,10 @@ namespace TLTests::Framework {
 
         _context = TL_ContextCreate(context_descriptor, _debugger);
         if (!_context) {
-            Error(std::string{"Failed to create Thallium context"}, true);
+            Utils::Error(std::string{"Failed to create Thallium context"});
         }
 
-        Log(std::string{"Starting Thallium test"});
+        Utils::Log(std::string{"Starting Thallium test"});
     }
 
     void Test::Destroy() {
@@ -108,7 +111,7 @@ namespace TLTests::Framework {
 
         uint32_t c = TL_RendererCreate(_context, _renderers.size(), _renderer_descriptors.data(), renderer_ptrs.data(), _debugger);
         if (c < _renderers.size()) {
-            Error(std::string{"Failed to create Thallium renderer(s)"}, true);
+            Utils::Error(std::string{"Failed to create Thallium renderer(s)"}, true);
         }
     }
 }

@@ -41,32 +41,32 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL __DebugMessengerCallback(VkDebugUtilsMessa
 
     // convert the type to a string
     char type_str[32];
+    memset(type_str, 0, sizeof(type_str));
     switch (type) {
         case VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT:
         default:
-            snprintf(type_str, 32, "GENERAL");
             break;
         case VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT:
-            snprintf(type_str, 32, "VALIDATION");
+            snprintf(type_str, 32, "[validate] ");
             break;
         case VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT:
-            snprintf(type_str, 32, "PERFORMANCE");
+            snprintf(type_str, 32, "[optimise] ");
             break;
         case VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT:
-            snprintf(type_str, 32, "DEVICE_ADDRESS_BINDING");
+            snprintf(type_str, 32, "[addrbind] ");
             break;
     }
 
     // redirect to appropriate logging function based on severity
     switch (severity) {
         case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
-            TL_Warn_Vk(debugger, "%s: %s", type_str, callback_data->pMessage);
+            TL_Warn_Vk(debugger, "%s%s", type_str, callback_data->pMessage);
             break;
         case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
-            TL_Error_Vk(debugger, "%s: %s", type_str, callback_data->pMessage);
+            TL_Error_Vk(debugger, "%s%s", type_str, callback_data->pMessage);
             break;
         default:
-            TL_Log_Vk(debugger, "%s: %s", type_str, callback_data->pMessage);
+            TL_Log_Vk(debugger, "%s%s", type_str, callback_data->pMessage);
             break;
     }
 
