@@ -6,13 +6,13 @@
  */
 
 #pragma once
-#ifndef __TL__internal__vulkan__vk_render_system_h__
-#define __TL__internal__vulkan__vk_render_system_h__
+#ifndef __TL__internal__vulkan__vk_renderer_system_h__
+#define __TL__internal__vulkan__vk_renderer_system_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
 
-#include "thallium/vulkan/vk_render_system.h"
+#include "thallium/vulkan/vk_renderer_system.h"
 
 #include "thallium/core/renderer.h"
 
@@ -21,7 +21,7 @@
 
 typedef struct TLVK_ContextBlock_t TLVK_ContextBlock_t;
 
-typedef struct TLVK_RenderSystem_t {
+typedef struct TLVK_RendererSystem_t {
     /// @brief The parent API-agnostic renderer object.
     const TL_Renderer_t *renderer;
     /// @brief Vulkan context data block pointer.
@@ -31,7 +31,7 @@ typedef struct TLVK_RenderSystem_t {
 
     /// @brief Device manager object (contains Vulkan logical and physical device interface(s))
     TLVK_DeviceManager_t *device_manager;
-} TLVK_RenderSystem_t;
+} TLVK_RendererSystem_t;
 
 #ifdef __cplusplus
     }

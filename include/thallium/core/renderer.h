@@ -58,9 +58,9 @@ typedef struct TL_RendererDescriptor_t {
     /// @brief Renderer features to require
     TL_RendererFeatures_t requirements;
 
-    /// @brief NULL or an optional descriptor for the API-specific render system to be created within the renderer. For example, to specify
-    /// API-specific options to a Vulkan renderer, pass to this parameter a pointer to a @ref TLVK_RenderSystemDescriptor_t struct.
-    void *render_system_descriptor;
+    /// @brief NULL or an optional descriptor for the API-specific renderer system to be created within the renderer. For example, to specify
+    /// API-specific options to a Vulkan renderer, pass to this parameter a pointer to a @ref TLVK_RendererSystemDescriptor_t struct.
+    void *renderer_system_descriptor;
 } TL_RendererDescriptor_t;
 
 /**

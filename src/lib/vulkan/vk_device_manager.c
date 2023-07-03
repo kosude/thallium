@@ -10,7 +10,7 @@
 #include "utils/io/log.h"
 
 #include "types/vulkan/vk_device_manager.h"
-#include "types/vulkan/vk_render_system.h"
+#include "types/vulkan/vk_renderer_system.h"
 #include "types/core/renderer.h"
 
 #include "lib/vulkan/vk_context_block.h"
@@ -535,13 +535,13 @@ VkDevice __CreateLogicalDevice(const VkPhysicalDevice physical_device, const car
     return device;
 }
 
-TLVK_DeviceManager_t *TLVK_DeviceManagerCreate(const TLVK_RenderSystem_t *const render_system, const TLVK_DeviceManagerDescriptor_t descriptor) {
-    if (!render_system || !render_system->renderer || !render_system->vk_context) {
+TLVK_DeviceManager_t *TLVK_DeviceManagerCreate(const TLVK_RendererSystem_t *const renderer_system, const TLVK_DeviceManagerDescriptor_t descriptor) {
+    if (!renderer_system || !renderer_system->renderer || !renderer_system->vk_context) {
         return NULL;
     }
 
-    const TL_Debugger_t *debugger = render_system->renderer->debugger;
-    const VkInstance instance = render_system->vk_context->vk_instance;
+    const TL_Debugger_t *debugger = renderer_system->renderer->debugger;
+    const VkInstance instance = renderer_system->vk_context->vk_instance;
 
     TLVK_DeviceManager_t *device_manager = malloc(sizeof(TLVK_DeviceManager_t));
     if (!device_manager) {
@@ -574,7 +574,7 @@ TLVK_DeviceManager_t *TLVK_DeviceManagerCreate(const TLVK_RenderSystem_t *const 
         VkPhysicalDeviceFeatures cur_dev_feats;
 
         // score device
-        uint64_t cur_score = __ScorePhysicalDevice(dev, render_system->features, &cur_dev_exts, &cur_dev_feats, &best_device_queue_fams, debugger);
+        uint64_t cur_score = __ScorePhysicalDevice(dev, renderer_system->features, &cur_dev_exts, &cur_dev_feats, &best_device_queue_fams, debugger);
 
         if (debugger) {
             VkPhysicalDeviceProperties props;
@@ -600,8 +600,8 @@ TLVK_DeviceManager_t *TLVK_DeviceManagerCreate(const TLVK_RenderSystem_t *const 
 
     // no device was suitable
     if (best_physical_device == VK_NULL_HANDLE) {
-        TL_Error(debugger, "No GPU was determined suitable for Vulkan device manager creation in render system %p (in renderer %p)", render_system,
-            render_system->renderer);
+        TL_Error(debugger, "No GPU was determined suitable for Vulkan device manager creation in renderer system %p (in renderer %p)", renderer_system,
+            renderer_system->renderer);
 
         return NULL;
     }
@@ -615,7 +615,7 @@ TLVK_DeviceManager_t *TLVK_DeviceManagerCreate(const TLVK_RenderSystem_t *const 
         vkGetPhysicalDeviceProperties(device_manager->vk_physical_device, &props);
 
         TL_Note(debugger, "Vulkan device manager %p creation: using best suitable Vulkan physical device based on configuration of render"
-            " system at %p", device_manager, render_system);
+            " system at %p", device_manager, renderer_system);
         TL_Note(debugger, "  %s", props.deviceName);
 
         TL_Log(debugger, "  (Thallium score: %lu)", min_score);

@@ -18,7 +18,7 @@
 /**
  * @brief An object to store handles to a Vulkan physical and logical device.
  *
- * A Thallium Vulkan device manager stores handles to a Vulkan physical and logical device for use in Vulkan render systems.
+ * A Thallium Vulkan device manager stores handles to a Vulkan physical and logical device for use in Vulkan renderer systems.
  *
  * @sa @ref TLVK_DeviceManagerCreate()
  * @sa @ref TLVK_DeviceData_t
@@ -42,7 +42,7 @@ typedef struct TLVK_DeviceManagerDescriptor_t {
  * This function creates a new Vulkan device manager, choosing and interfacing with GPU device(s) based on configuration given in `descriptor`. If
  * there were any errors during creation, NULL will be returned instead of the device manager object.
  *
- * @param render_system pointer to the parent render system object
+ * @param renderer_system pointer to the parent renderer system object
  * @param descriptor Thallium Vulkan device manager descriptor
  * @return The new device manager or NULL
  *
@@ -50,7 +50,7 @@ typedef struct TLVK_DeviceManagerDescriptor_t {
  * @sa @ref TLVK_DeviceManagerDestroy()
  */
 TLVK_DeviceManager_t *TLVK_DeviceManagerCreate(
-    const TLVK_RenderSystem_t *const render_system,
+    const TLVK_RendererSystem_t *const renderer_system,
     const TLVK_DeviceManagerDescriptor_t descriptor
 );
 

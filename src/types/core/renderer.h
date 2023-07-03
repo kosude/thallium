@@ -23,8 +23,8 @@ typedef struct TL_Renderer_t {
     /// @brief NULL or attached context debugger object.
     const TL_Debugger_t *debugger;
 
-    /// @brief Internal API-aware render system.
-    void *render_system;
+    /// @brief Internal API-aware renderer system.
+    void *renderer_system;
 
     /// @brief Features requested from the renderer at creation time
     TL_RendererFeatures_t features;

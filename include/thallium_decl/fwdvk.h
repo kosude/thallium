@@ -15,8 +15,8 @@
 typedef struct TLVK_DeviceManager_t TLVK_DeviceManager_t;
 typedef struct TLVK_DeviceManagerDescriptor_t TLVK_DeviceManagerDescriptor_t;
 
-typedef struct TLVK_RenderSystem_t TLVK_RenderSystem_t;
-typedef struct TLVK_RenderSystemDescriptor_t TLVK_RenderSystemDescriptor_t;
+typedef struct TLVK_RendererSystem_t TLVK_RendererSystem_t;
+typedef struct TLVK_RendererSystemDescriptor_t TLVK_RendererSystemDescriptor_t;
 
 #ifdef __cplusplus
     }

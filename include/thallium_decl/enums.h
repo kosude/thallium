@@ -62,7 +62,7 @@ typedef enum TL_DebugSeverityFlags_t {
 typedef enum TL_DebugSourceFlags_t {
     /// @brief Messages reported by core Thallium functions
     TL_DEBUG_SOURCE_THALLIUM_BIT =  0x20,
-    /// @brief Messages reported by Vulkan render systems
+    /// @brief Messages reported by Vulkan renderer systems
     TL_DEBUG_SOURCE_VULKAN_BIT =    0x10,
 
     /// @brief All message sources

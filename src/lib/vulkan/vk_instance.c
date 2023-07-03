@@ -245,7 +245,7 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
         TL_Warn(debugger, "Missing extensions for Vulkan instance, some features may not be available");
     }
 
-    // initialise the heap-allocated arrays of instance-level extensions and layers stored by the render system
+    // initialise the heap-allocated arrays of instance-level extensions and layers stored by the renderer system
     instance_create_info.enabledLayerCount = layers.size;
     instance_create_info.ppEnabledLayerNames = (const char **) layers.data;
     instance_create_info.enabledExtensionCount = extensions.size;
@@ -273,7 +273,7 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
             char *str = malloc(sizeof(char) * (len + 1));
             strcpy(str, (char *) layers.data[i]);
 
-            // append layer name into render system store
+            // append layer name into renderer system store
             carraypush(out_layer_names, (carrayval_t) str);
         }
     }
@@ -286,7 +286,7 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
             char *str = malloc(sizeof(char) * (len + 1));
             strcpy(str, (char *) extensions.data[i]);
 
-            // append extension name into render system store
+            // append extension name into renderer system store
             carraypush(out_extension_names, (carrayval_t) str);
         }
     }

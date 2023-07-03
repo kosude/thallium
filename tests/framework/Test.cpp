@@ -96,10 +96,10 @@ namespace TLTests::Framework {
         renderer_descriptor.requirements = _GetRendererRequirements();
 
         TLVK_DeviceManagerDescriptor_t vk_device_manager_descriptor = {};
-        TLVK_RenderSystemDescriptor_t vk_render_system_descriptor = {};
-        vk_render_system_descriptor.device_manager_descriptor = &vk_device_manager_descriptor;
+        TLVK_RendererSystemDescriptor_t vk_renderer_system_descriptor = {};
+        vk_renderer_system_descriptor.device_manager_descriptor = &vk_device_manager_descriptor;
 
-        renderer_descriptor.render_system_descriptor = &vk_render_system_descriptor;
+        renderer_descriptor.renderer_system_descriptor = &vk_renderer_system_descriptor;
 
         _renderer_descriptors.push_back(renderer_descriptor);
         _renderers.push_back(nullptr); // pointer will be populated when renderers are created

@@ -13,7 +13,7 @@
 #endif // __cplusplus
 
 #include "thallium/vulkan/vk_device_manager.h"
-#include "thallium/vulkan/vk_render_system.h"
+#include "thallium/vulkan/vk_renderer_system.h"
 
 #ifdef __cplusplus
     }

@@ -99,26 +99,26 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
     renderer->debugger = context->attached_debugger;
     renderer->features = descriptor.requirements;
 
-    // creating API-appropriate render system
+    // creating API-appropriate renderer system
     switch (descriptor.api) {
 
-        // create a Vulkan render system...
+        // create a Vulkan renderer system...
         case TL_RENDERER_API_VULKAN_BIT:; // the semicolon somehow fixes variable declaration errors (fml)
 #           if defined(_THALLIUM_VULKAN_INCL)
 
-                TLVK_RenderSystemDescriptor_t rsdescr;
+                TLVK_RendererSystemDescriptor_t rsdescr;
 
-                if (descriptor.render_system_descriptor) {
-                    rsdescr = *((TLVK_RenderSystemDescriptor_t *) descriptor.render_system_descriptor);
+                if (descriptor.renderer_system_descriptor) {
+                    rsdescr = *((TLVK_RendererSystemDescriptor_t *) descriptor.renderer_system_descriptor);
                 } else {
-                    // default render system descriptor configuration (used if no user-given descriptor was specified)...
+                    // default renderer system descriptor configuration (used if no user-given descriptor was specified)...
 
                     rsdescr.device_manager_descriptor = NULL;
                 }
 
-                renderer->render_system = (void *) TLVK_RenderSystemCreate(renderer, rsdescr);
-                if (!renderer->render_system) {
-                    TL_Error(debugger, "Failed to create Vulkan render system for new renderer at %p", renderer);
+                renderer->renderer_system = (void *) TLVK_RendererSystemCreate(renderer, rsdescr);
+                if (!renderer->renderer_system) {
+                    TL_Error(debugger, "Failed to create Vulkan renderer system for new renderer at %p", renderer);
                     return NULL;
                 }
 
@@ -140,7 +140,7 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
         TL_Note(debugger, "  API: %s (id %d)", __StringifyAPI(descriptor.api), descriptor.api);
     }
 
-    TL_Note(debugger, "  Child render system: %p", renderer->render_system);
+    TL_Note(debugger, "  Child renderer system: %p", renderer->renderer_system);
 
     return renderer;
 }
@@ -230,10 +230,10 @@ void TL_RendererDestroy(TL_Renderer_t *const renderer) {
 
     switch (renderer->api) {
 
-        // destroy Vulkan render system
+        // destroy Vulkan renderer system
         case TL_RENDERER_API_VULKAN_BIT:
 #           if defined(_THALLIUM_VULKAN_INCL)
-                TLVK_RenderSystemDestroy(renderer->render_system);
+                TLVK_RendererSystemDestroy(renderer->renderer_system);
 #           endif
 
             break;
