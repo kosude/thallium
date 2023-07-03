@@ -1,9 +1,12 @@
-.vscode/*
-!tasks.json
-!launch.json
+# IDE config files
+.vscode/
 
+!ide/**
+
+# build output
 build/
 
-vulkaninfo.html
-
-.vscode/
+# platform directory files
+.DS_Store
+Thumbs.db
+desktop.ini

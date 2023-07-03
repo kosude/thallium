@@ -3,8 +3,8 @@ deps/
 
 *.md
 *.svg
-
 *.sh
+*.json
 
 CMakeLists.txt
 *.cmake
