@@ -1,12 +1,11 @@
 # IDE config files
-.vscode/
-
-!ide/**
+**/.vscode/
 
 # build output
-build/
+**/build/
+**/vulkaninfo.html
 
 # platform directory files
-.DS_Store
-Thumbs.db
-desktop.ini
+**/.DS_Store
+**/Thumbs.db
+**/desktop.ini

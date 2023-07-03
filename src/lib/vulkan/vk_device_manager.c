@@ -149,7 +149,7 @@ static carray_t __ValidateExtensions(const VkPhysicalDevice physical_device, con
             // ppEnabledExtensionNames must include "VK_KHR_portability_subset"" - from the Vulkan Specification
             if (!strcmp(available[j].extensionName, "VK_KHR_portability_subset")) {
                 carraypush(&ret, (carrayval_t) "VK_KHR_portability_subset");
-                break;
+                continue;
             }
         }
 

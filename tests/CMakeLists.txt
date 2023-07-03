@@ -21,4 +21,4 @@ endfunction()
 
 # tests defined below
 
-thallium_add_test("hellotriangle" "bin/hello_triangle.cpp")
+thallium_add_test("hellotriangle" "bin/HelloTriangle.cpp")

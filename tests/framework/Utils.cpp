@@ -98,6 +98,8 @@ namespace TLTests::Framework::Utils {
             case TL_DEBUG_SEVERITY_FATAL_BIT:
                 std::cerr << ciocol(CIOCOL_RED, 0xff).code << "FATAL ";
                 break;
+            default:
+                break;
         }
 
         std::cerr << ciocoldef().code << msg << std::endl;

@@ -183,12 +183,12 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
 #       if defined(_WIN32)
             // windows surface extension
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
+#       elif defined(_APPLE)
+            // metal surface extension
+            __DEFINE_REQUIRED_EXTENSION(VK_EXT_METAL_SURFACE_EXTENSION_NAME);
 #       elif defined(_UNIX)
             // unix surface extension (assume linux and X)
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
-#       elif defined(_APPLE)
-            // macos (metal through moltenvk) surface extension
-            __DEFINE_REQUIRED_EXTENSION(VK_EXT_METAL_SURFACE_EXTENSION_NAME);
 #       endif
     }
 
