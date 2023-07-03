@@ -149,7 +149,6 @@ static carray_t __ValidateExtensions(const VkPhysicalDevice physical_device, con
             // ppEnabledExtensionNames must include "VK_KHR_portability_subset"" - from the Vulkan Specification
             if (!strcmp(available[j].extensionName, "VK_KHR_portability_subset")) {
                 carraypush(&ret, (carrayval_t) "VK_KHR_portability_subset");
-
                 break;
             }
         }
@@ -357,7 +356,7 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     *out_exts = __ValidateExtensions(physical_device, required_ext_count, required_exts, &is_missing_exts, debugger);
 
     if (is_missing_exts) {
-        TL_Warn(debugger, "Missing device-level extensions for Vulkan physical device \"%s\", some features may not be available", props.deviceName);
+        TL_Error(debugger, "Missing device-level extensions for Vulkan physical device \"%s\", some features may not be available", props.deviceName);
     }
 
     // increase score relative to the amount of required extensions that are supported
@@ -381,7 +380,8 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     *out_features = __ValidateDeviceFeatures(physical_device, required_feats, &is_missing_features, debugger);
 
     if (is_missing_features) {
-        TL_Warn(debugger, "Missing device features for Vulkan physical device \"%s\", some renderer features may not be available", props.deviceName);
+        TL_Error(debugger, "Missing device features for Vulkan physical device \"%s\", some renderer features may not be available",
+            props.deviceName);
     }
 
     // further increase score if all features supported

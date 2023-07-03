@@ -84,19 +84,19 @@ namespace TLTests::Framework::Utils {
 
         switch (sev) {
             case TL_DEBUG_SEVERITY_VERBOSE_BIT:
-                std::cerr << ciocol(CIOCOL_BLUE, 0xff).code << "LOG  ";
+                std::cerr << ciocol(CIOCOL_BLUE, 0xff).code << "LOG   ";
                 break;
             case TL_DEBUG_SEVERITY_NOTIF_BIT:
-                std::cerr << ciocol(CIOCOL_GREEN, 0xff).code << "NOTE ";
+                std::cerr << ciocol(CIOCOL_GREEN, 0xff).code << "NOTE  ";
                 break;
             case TL_DEBUG_SEVERITY_WARNING_BIT:
-                std::cerr << ciocol(CIOCOL_YELLOW, 0xff).code << "WARN ";
+                std::cerr << ciocol(CIOCOL_YELLOW, 0xff).code << "WARN  ";
                 break;
             case TL_DEBUG_SEVERITY_ERROR_BIT:
-                std::cerr << ciocol(CIOCOL_RED, 0xff).code << "ERROR";
+                std::cerr << ciocol(CIOCOL_RED, 0xff).code << "ERROR ";
                 break;
             case TL_DEBUG_SEVERITY_FATAL_BIT:
-                std::cerr << ciocol(CIOCOL_RED, 0xff).code << "FATAL";
+                std::cerr << ciocol(CIOCOL_RED, 0xff).code << "FATAL ";
                 break;
         }
 

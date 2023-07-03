@@ -227,7 +227,7 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
     bool is_missing_layers = false;
     carray_t layers = __ValidateInstanceLayers(required_layer_count, required_layers, &is_missing_layers, debugger);
     if (is_missing_layers) {
-        TL_Warn(debugger, "Missing layers for Vulkan instance, some features may not be available");
+        TL_Error(debugger, "Missing layers for Vulkan instance, some features may not be available");
     }
 
     // validate required extensions...
@@ -242,7 +242,7 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
     carray_t extensions = __ValidateInstanceExtensions(required_extension_count, required_extensions, layers.size, (const char **) layers.data,
         &is_missing_extensions, debugger);
     if (is_missing_extensions) {
-        TL_Warn(debugger, "Missing extensions for Vulkan instance, some features may not be available");
+        TL_Error(debugger, "Missing extensions for Vulkan instance, some features may not be available");
     }
 
     // initialise the heap-allocated arrays of instance-level extensions and layers stored by the renderer system
