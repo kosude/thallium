@@ -45,8 +45,11 @@ the `-DTHALLIUM_BUILD_MODULE_VULKAN=ON` build flag (this requires the Vulkan SDK
 
 ## Documentation
 
-For the Thallium API documentation, see the GitHub Pages instance at https://kosude.github.io/thallium/. Otherwise, local HTML documentation can be
-generated at compilation with the `-DTHALLIUM_BUILD_DOCS=ON` flag, as above.
+For the Thallium API documentation, see the GitHub Pages instance at https://kosude.github.io/thallium/.
+
+Local HTML documentation can be generated at compilation with the `-DTHALLIUM_BUILD_DOCS=ON` flag, as above. This is not default behaviour and is not
+recommended, as it can lengthen build time, and requires Doxygen to be installed as well as several Python modules (listed in the
+[docs/requirements.txt](docs/requirements.txt) file for pip).
 
 
 ## Project logos

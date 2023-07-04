@@ -15,13 +15,15 @@ author = "Jack Bennett"
 
 extensions = [ "breathe" ]
 
-templates_path = [ "_templates" ]
+templates_path = [ "res/templates" ]
 exclude_patterns = [ "_build", "Thumbs.db", ".DS_Store" ]
+
+master_doc = "pages/index"
 
 
 # -- Options for HTML output -------------------------------------------------
 
-html_static_path = [ "_static" ]
+html_static_path = [ "res/static" ]
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
@@ -31,12 +33,14 @@ html_theme_options = {
     "includehidden": False,
     "titles_only": False,
     "display_version": True,
-    "logo_only": False,
+    "logo_only": True,
     "prev_next_buttons_location": None,
     "style_external_links": True
 }
 
-html_title = "Thallium Docs"
+html_title = "Thallium"
+html_favicon = "res/static/img/favicon.png"
+html_logo = "res/static/img/logo_wtext.svg"
 
 
 # -- Breathe configuration ---------------------------------------------------

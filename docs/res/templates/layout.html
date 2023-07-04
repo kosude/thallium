@@ -1,0 +1,7 @@
+{% extends '!layout.html' %}
+
+{%- set customtitlesuffix = " - "|safe + docstitle|e %}
+
+{%- block htmltitle %}
+<title>{{ title|striptags|e }}{{ customtitlesuffix }}</title>
+{%- endblock %}

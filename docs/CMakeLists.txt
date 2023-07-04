@@ -4,10 +4,7 @@ find_package("Sphinx" REQUIRED)
 
 # doxygen: XML documentation
 
-set(DOXYGEN_SRC_DIR "${CMAKE_CURRENT_LIST_DIR}")
-set(DOXYGEN_OUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/output")
-
-configure_file("${DOXYGEN_SRC_DIR}/Doxyfile.conf" "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile.conf" @ONLY)
+configure_file("${CMAKE_CURRENT_LIST_DIR}/Doxyfile.conf" "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile.conf" @ONLY)
 
 add_custom_target(${PROJECT_NAME}xmldoc
     ALL
@@ -19,12 +16,9 @@ add_custom_target(${PROJECT_NAME}xmldoc
 
 # sphinx: HTML frontend
 
-set(SPHINX_SRC_DIR "${CMAKE_CURRENT_LIST_DIR}/sphinx")
-set(SPHINX_OUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/output/html")
-
 add_custom_target(${PROJECT_NAME}htmldoc
     ALL
-    COMMAND ${SPHINX_EXECUTABLE} "-q" "-b" "html" ${SPHINX_SRC_DIR} ${SPHINX_OUT_DIR}
+    COMMAND ${SPHINX_EXECUTABLE} "-q" "-b" "html" ${CMAKE_CURRENT_LIST_DIR} "${CMAKE_CURRENT_BINARY_DIR}/output/html"
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
     COMMENT "Building Thallium HTML documentation with Sphinx"
     VERBATIM)
