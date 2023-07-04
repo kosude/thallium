@@ -24,7 +24,7 @@
  * @param msg The basic message string reported by the Thallium API.
  * @param sev The severity of the debug message - see @ref TL_DebugSeverityFlags_t.
  * @param src The source of the debug message (e.g. Thallium, Vulkan, etc) - see @ref TL_DebugSourceFlags_t.
- * @param ptr NULL, or the user-configured pointer set with the @ref TL_SetDebuggerCallback() function.
+ * @param ptr NULL, or the user-configured pointer passed to the [debugger creation descriptor](@ref TL_DebuggerDescriptor_t)
  *
  * @sa @ref TL_Debugger_t
  */
@@ -86,7 +86,7 @@ typedef struct TL_DebuggerAttachmentDescriptor_t {
  *
  * @return Pointer to the new debugger
  *
- * @sa @ref th_Debugger_t
+ * @sa @ref TL_Debugger_t
  */
 TL_Debugger_t *TL_DebuggerCreate(
     const TL_DebuggerDescriptor_t descriptor

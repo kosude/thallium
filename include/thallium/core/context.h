@@ -47,6 +47,7 @@ typedef struct TL_ContextDescriptor_t {
  *
  * This function creates a heap-allocated opaque Thallium context object and returns its handle.
  *
+ * @param context_descriptor Context [descriptor](@ref TL_ContextDescriptor_t)
  * @param debugger NULL or a debugger for function debugging
  *
  * @return Handle to the new Thallium context

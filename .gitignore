@@ -3,9 +3,16 @@
 
 # build output
 **/build/
+**/?build/
 **/vulkaninfo.html
 
 # platform directory files
 **/.DS_Store
 **/Thumbs.db
 **/desktop.ini
+
+# python virtual environment
+venv/
+.venv/
+env/
+.env/

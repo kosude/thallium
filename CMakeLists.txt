@@ -10,7 +10,7 @@ set(THALLIUM_SRC_DIR "${CMAKE_CURRENT_LIST_DIR}/src")
 set(THALLIUM_TESTS_DIR "${CMAKE_CURRENT_LIST_DIR}/tests")
 set(THALLIUM_UTILS_DIR "${CMAKE_CURRENT_LIST_DIR}/utils")
 
-set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}")
+set(CMAKE_MODULE_PATH "${THALLIUM_CMAKE_DIR}/mod")
 
 set(CMAKE_CONFIGURATION_TYPES Debug Release)
 if (NOT CMAKE_BUILD_TYPE)
@@ -70,10 +70,9 @@ if (THALLIUM_BUILD_TESTS)
     add_subdirectory("${THALLIUM_TESTS_DIR}")
 endif()
 
-# TODO: docs
-# if (THALLIUM_BUILD_DOCS)
-#     add_subdirectory("${THALLIUM_DOCS_DIR}/")
-# endif()
+if (THALLIUM_BUILD_DOCS)
+    add_subdirectory("${THALLIUM_DOCS_DIR}/")
+endif()
 
 if (BUILD_SHARED_LIBS)
     set(THALLIUM_SUMMARY_LIB_TYPE "Shared/dynamic")
@@ -114,11 +113,11 @@ message(STATUS "BUILT core lib")
 message(STATUS "  - Vulkan module?\t=>\t  ${THALLIUM_BUILD_MODULE_VULKAN}")
 
 message(STATUS "BUILT tests?\t\t=>\t${THALLIUM_BUILD_TESTS}")
-# message(STATUS "BUILT docs?\t\t=>\t${THALLIUM_BUILD_DOCS}")
+message(STATUS "BUILT docs?\t\t=>\t${THALLIUM_BUILD_DOCS}")
 
-# if (THALLIUM_BUILD_DOCS)
-#     message(STATUS "  - see output at ${PROJECT_BINARY_DIR}/docs/html/index.html")
-# endif()
+if (THALLIUM_BUILD_DOCS)
+    message(STATUS "  - see output at ${PROJECT_BINARY_DIR}/docs/output/html/index.html")
+endif()
 
 message("")
 

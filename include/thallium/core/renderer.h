@@ -38,7 +38,7 @@ typedef struct TL_RendererFeatures_t {
  *
  * This opaque structure provides a representation of a certain graphics API.
  *
- * @sa @ref TL_CreateRenderer()
+ * @sa @ref TL_RendererCreate()
  * @sa @ref TL_RendererDestroy()
  * @sa @ref TL_RendererDescriptor_t
  */

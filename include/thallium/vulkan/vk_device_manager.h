@@ -21,7 +21,6 @@
  * A Thallium Vulkan device manager stores handles to a Vulkan physical and logical device for use in Vulkan renderer systems.
  *
  * @sa @ref TLVK_DeviceManagerCreate()
- * @sa @ref TLVK_DeviceData_t
  */
 typedef struct TLVK_DeviceManager_t TLVK_DeviceManager_t;
 

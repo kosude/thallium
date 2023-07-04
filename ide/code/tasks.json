@@ -15,8 +15,6 @@
                 "-DTHALLIUM_BUILD_TESTS=ON",
                 "-DTHALLIUM_BUILD_MODULE_VULKAN=ON",
 
-                "-DTHALLIUM_DEBUGGER_TIMESTAMPS=ON",
-
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
             ]
