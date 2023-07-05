@@ -59,12 +59,17 @@ else()
     set(THALLIUM_LIB_TYPE STATIC)
 endif()
 
+option(THALLIUM_BUILD_LIB "Build core Thallium library" ON)
+if (THALLIUM_BUILD_LIB)
+    option(THALLIUM_BUILD_MODULE_VULKAN "Include the Vulkan module in the compilation" OFF)
+endif()
+
 option(THALLIUM_BUILD_TESTS "Build Thallium tests" OFF)
 option(THALLIUM_BUILD_DOCS "Build Thallium HTML documentation" OFF)
 
-option(THALLIUM_BUILD_MODULE_VULKAN "Include the Vulkan module in the compilation" OFF)
-
-add_subdirectory("${THALLIUM_SRC_DIR}")
+if (THALLIUM_BUILD_LIB)
+    add_subdirectory("${THALLIUM_SRC_DIR}")
+endif()
 
 if (THALLIUM_BUILD_TESTS)
     add_subdirectory("${THALLIUM_TESTS_DIR}")
@@ -109,8 +114,10 @@ message(STATUS "Compiler\t\t=>\t${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER_VERSIO
 
 message("")
 
-message(STATUS "BUILT core lib")
-message(STATUS "  - Vulkan module?\t=>\t  ${THALLIUM_BUILD_MODULE_VULKAN}")
+message(STATUS "BUILT core?\t\t=>\t${THALLIUM_BUILD_LIB}")
+if (THALLIUM_BUILD_LIB)
+    message(STATUS "  - Vulkan module?\t=>\t  ${THALLIUM_BUILD_MODULE_VULKAN}")
+endif()
 
 message(STATUS "BUILT tests?\t\t=>\t${THALLIUM_BUILD_TESTS}")
 message(STATUS "BUILT docs?\t\t=>\t${THALLIUM_BUILD_DOCS}")

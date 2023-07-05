@@ -32,6 +32,7 @@ The following is a table of available CMake configuration options for Thallium. 
 |        Option name      |            Description           | Default |
 | ----------------------- | -------------------------------- | ------- |
 | BUILD_SHARED_LIBS       | Build shared libraries           | ON      |
+| THALLIUM_BUILD_LIB      | Build the Thallium library       | ON      |
 | THALLIUM_BUILD_TESTS    | Build Thallium tests             | OFF     |
 | THALLIUM_BUILD_EXAMPLES | Build Thallium example projects  | OFF     |
 | THALLIUM_BUILD_DOCS     | Build HTML documentation         | OFF     |

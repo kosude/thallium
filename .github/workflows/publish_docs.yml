@@ -32,7 +32,7 @@ jobs:
       #     && ln -s ./doxygen-1.9.7/bin/doxygen ${GITHUB_WORKSPACE}/doxygen
 
       - name: Build docs
-        run: cmake . -B ${GITHUB_WORKSPACE}/build/ -DCMAKE_BUILD_TYPE=Release -DTHALLIUM_BUILD_DOCS=ON
+        run: cmake . -B ${GITHUB_WORKSPACE}/build/ -DCMAKE_BUILD_TYPE=Release -DTHALLIUM_BUILD_DOCS=ON -DTHALLIUM_BUILD_LIB=OFF
           && cmake --build ${GITHUB_WORKSPACE}/build/
 
       - name: Deploy to GitHub Pages
