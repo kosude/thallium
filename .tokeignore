@@ -1,10 +1,10 @@
 build/
 deps/
+docs/
+utils/
 
 *.md
 *.svg
-*.sh
-*.json
 
 CMakeLists.txt
 *.cmake

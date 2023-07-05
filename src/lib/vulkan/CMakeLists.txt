@@ -1,7 +1,8 @@
 set(SOURCES
+    "helper/vk_device.c"
+    "helper/vk_instance.c"
+
     "vk_context_block.c"
-    "vk_device_manager.c"
-    "vk_instance.c"
     "vk_renderer_system.c"
 )
 

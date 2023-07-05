@@ -16,10 +16,14 @@
 
 #include "thallium/core/renderer.h"
 
+#include "vk_device_queues.h"
+
 #define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>
 
-typedef struct TLVK_ContextBlock_t TLVK_ContextBlock_t;
+#include <cutils/carray/carray.h>
+
+typedef struct TLVK_ContextBlock_t TLVK_ContextBlock_t; // forward decl for TLVK_RendererSystem_t
 
 typedef struct TLVK_RendererSystem_t {
     /// @brief The parent API-agnostic renderer object.
@@ -27,10 +31,25 @@ typedef struct TLVK_RendererSystem_t {
     /// @brief Vulkan context data block pointer.
     const TLVK_ContextBlock_t *vk_context;
     /// @brief Stack copy of renderer features in `renderer` (used for less derefs)
+    // TODO this might be unnecessary
     TL_RendererFeatures_t features;
 
-    /// @brief Device manager object (contains Vulkan logical and physical device interface(s))
-    TLVK_DeviceManager_t *device_manager;
+    /// @brief Vulkan physical device object used by the renderer system.
+    /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html
+    VkPhysicalDevice vk_physical_device;
+    /// @brief Handle to a Vulkan logical device.
+    /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDevice.html
+    VkDevice vk_logical_device;
+
+    /// @brief Array of enabled device extensions
+    carray_t device_extensions;
+    /// @brief Enabled device features.
+    /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFeatures.html
+    VkPhysicalDeviceFeatures vk_device_features;
+
+    /// @brief Vulkan queue handles:
+    /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkQueue.html
+    TLVK_LogicalDeviceQueues_t vk_queues;
 } TLVK_RendererSystem_t;
 
 #ifdef __cplusplus

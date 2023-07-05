@@ -34,8 +34,7 @@ typedef struct TLVK_RendererSystem_t TLVK_RendererSystem_t;
  * This descriptor structure provides options for the creation of Thallium renderer systems.
  */
 typedef struct TLVK_RendererSystemDescriptor_t {
-    /// @brief Descriptor for the renderer system [device manager object](@ref TLVK_DeviceManagerDescriptor_t)
-    TLVK_DeviceManagerDescriptor_t *device_manager_descriptor;
+    uint32_t placeholder;
 } TLVK_RendererSystemDescriptor_t;
 
 /**
