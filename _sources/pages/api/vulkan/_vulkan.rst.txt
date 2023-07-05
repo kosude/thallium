@@ -10,5 +10,4 @@ Objects and functions defined within the Thallium Vulkan module (compiled using 
 .. toctree::
     :maxdepth: 1
 
-    vk_device_manager
     vk_renderer_system
