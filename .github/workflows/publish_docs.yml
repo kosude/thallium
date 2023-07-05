@@ -34,6 +34,7 @@ jobs:
       - name: Build docs
         run: cmake . -B ${GITHUB_WORKSPACE}/build/ -DCMAKE_BUILD_TYPE=Release -DTHALLIUM_BUILD_DOCS=ON -DTHALLIUM_BUILD_LIB=OFF
           && cmake --build ${GITHUB_WORKSPACE}/build/
+          && touch ${GITHUB_WORKSPACE}/build/docs/html/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
