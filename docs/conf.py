@@ -28,7 +28,7 @@ extensions = [ "breathe" ]
 templates_path = [ "res/templates" ]
 exclude_patterns = [ "_build", "Thumbs.db", ".DS_Store" ]
 
-master_doc = "pages/index"
+master_doc = "index"
 
 
 # -- Options for HTML output -------------------------------------------------

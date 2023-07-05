@@ -5,7 +5,7 @@ Home
 .. toctree::
     :hidden:
 
-    api/_api
+    pages/api/_api
 
 
 Source code: `kosude/thallium <https://github.com/kosude/thallium/>`_.
