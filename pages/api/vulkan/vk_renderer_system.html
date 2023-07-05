@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vulkan renderer systems - Thallium</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Vulkan device managers" href="vk_device_manager.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Thallium Documentation
+          </a>
+              <div class="version">
+                v0.0.0dev_f2b3e9e (2023-07-05)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../core/_core.html">Core API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="_vulkan.html">Vulkan Module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="vk_device_manager.html">Vulkan device managers</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Vulkan renderer systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Thallium Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../_api.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="_vulkan.html">Vulkan Module</a></li>
+      <li class="breadcrumb-item active">Vulkan renderer systems</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pages/api/vulkan/vk_renderer_system.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vulkan-renderer-systems">
+<h1>Vulkan renderer systems<a class="headerlink" href="#vulkan-renderer-systems" title="Permalink to this heading"></a></h1>
+<p>This section documents the <strong>renderer systems</strong> found in <em>Vulkan</em> renderer objects, and their associated functions.</p>
+<hr class="docutils" />
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
+<section id="objects">
+<h3>Objects<a class="headerlink" href="#objects" title="Permalink to this heading"></a></h3>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv421TLVK_RendererSystem_t">
+<span id="_CPPv321TLVK_RendererSystem_t"></span><span id="_CPPv221TLVK_RendererSystem_t"></span><span id="TLVK_RendererSystem_t"></span><span class="target" id="db/df2/vk__renderer__system_8h_1a54ff11733378a6e736f0a643a21ccbfc"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv421TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></span><a class="headerlink" href="#_CPPv421TLVK_RendererSystem_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A renderer system to hold Vulkan-specific rendering data. </p>
+<p>This structure holds per-renderer data for rendering with Vulkan.</p>
+<p>Note that this data <strong>does not include a VkInstance</strong>, as the instance is stored per-context rather than per-renderer. All Vulkan render sytems in an application refer to the same instance, which is created when allocating and populating the context data.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#db/df2/vk__renderer__system_8h_1aaee1925579a5b11b202eec56abc884d9"><span class="std std-ref">TLVK_RendererSystemCreate()</span></a></p>
+</div>
+</p>
+</dd></dl>
+
+</section>
+<section id="descriptors">
+<h3>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this heading"></a></h3>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv431TLVK_RendererSystemDescriptor_t">
+<span id="_CPPv331TLVK_RendererSystemDescriptor_t"></span><span id="_CPPv231TLVK_RendererSystemDescriptor_t"></span><span id="TLVK_RendererSystemDescriptor_t"></span><span class="target" id="d6/d29/structTLVK__RendererSystemDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemDescriptor_t</span></span></span><a class="headerlink" href="#_CPPv431TLVK_RendererSystemDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Descriptor struct to configure the creation of a Thallium renderer system for Vulkan. </p>
+<p>This descriptor structure provides options for the creation of Thallium renderer systems. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N31TLVK_RendererSystemDescriptor_t25device_manager_descriptorE">
+<span id="_CPPv3N31TLVK_RendererSystemDescriptor_t25device_manager_descriptorE"></span><span id="_CPPv2N31TLVK_RendererSystemDescriptor_t25device_manager_descriptorE"></span><span id="TLVK_RendererSystemDescriptor_t::device_manager_descriptor__TLVK_DeviceManagerDescriptor_tP"></span><span class="target" id="d6/d29/structTLVK__RendererSystemDescriptor__t_1a0a65fb68a4da34f2aff60306f70a90c7"></span><a class="reference internal" href="vk_device_manager.html#_CPPv430TLVK_DeviceManagerDescriptor_t" title="TLVK_DeviceManagerDescriptor_t"><span class="n"><span class="pre">TLVK_DeviceManagerDescriptor_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">device_manager_descriptor</span></span></span><a class="headerlink" href="#_CPPv4N31TLVK_RendererSystemDescriptor_t25device_manager_descriptorE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Descriptor for the renderer system <a class="reference internal" href="vk_device_manager.html#de/df0/structTLVK__DeviceManagerDescriptor__t"><span class="std std-ref">device manager object</span></a>. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+<hr class="docutils" />
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425TLVK_RendererSystemCreatePCK13TL_Renderer_tK31TLVK_RendererSystemDescriptor_t">
+<span id="_CPPv325TLVK_RendererSystemCreatePCK13TL_Renderer_tK31TLVK_RendererSystemDescriptor_t"></span><span id="_CPPv225TLVK_RendererSystemCreatePCK13TL_Renderer_tK31TLVK_RendererSystemDescriptor_t"></span><span id="TLVK_RendererSystemCreate__TL_Renderer_tCPC.TLVK_RendererSystemDescriptor_tC"></span><span class="target" id="db/df2/vk__renderer__system_8h_1aaee1925579a5b11b202eec56abc884d9"></span><a class="reference internal" href="#_CPPv421TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../core/renderers.html#_CPPv413TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">renderer</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv431TLVK_RendererSystemDescriptor_t" title="TLVK_RendererSystemDescriptor_t"><span class="n"><span class="pre">TLVK_RendererSystemDescriptor_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425TLVK_RendererSystemCreatePCK13TL_Renderer_tK31TLVK_RendererSystemDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Create and return a heap-allocated Vulkan renderer system. </p>
+<p>This function creates a new Vulkan renderer system and returns it. If there were any errors in creation, NULL will be returned instead.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>TLVK_RendererSystem_t</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#db/df2/vk__renderer__system_8h_1aad366734a13fdfc8f445eff7ed60df3d"><span class="std std-ref">TLVK_RendererSystemDestroy()</span></a></p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>renderer</strong> – pointer to the parent renderer object </p></li>
+<li><p><strong>descriptor</strong> – Thallium Vulkan renderer system descriptor </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The new renderer system</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426TLVK_RendererSystemDestroyPC21TLVK_RendererSystem_t">
+<span id="_CPPv326TLVK_RendererSystemDestroyPC21TLVK_RendererSystem_t"></span><span id="_CPPv226TLVK_RendererSystemDestroyPC21TLVK_RendererSystem_t"></span><span id="TLVK_RendererSystemDestroy__TLVK_RendererSystem_tPC"></span><span class="target" id="db/df2/vk__renderer__system_8h_1aad366734a13fdfc8f445eff7ed60df3d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemDestroy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv421TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">renderer_system</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426TLVK_RendererSystemDestroyPC21TLVK_RendererSystem_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Free the given Thallium Vulkan renderer system object. </p>
+<p>This function frees the specified renderer system object.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>TLVK_RendererSystem_t</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#db/df2/vk__renderer__system_8h_1aaee1925579a5b11b202eec56abc884d9"><span class="std std-ref">TLVK_RendererSystemCreate()</span></a></p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>renderer_system</strong> – Pointer to the Thallium Vulkan renderer system to free.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jack Bennett.</p>
+  </div>
+
+  
+    v0.0.0dev_f2b3e9e (2023-07-05) » <a href="https://github.com/kosude/thallium">upstream url</a>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

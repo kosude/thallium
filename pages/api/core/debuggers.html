@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debuggers - Thallium</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Renderers" href="renderers.html" />
+    <link rel="prev" title="Context Object" href="context.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Thallium Documentation
+          </a>
+              <div class="version">
+                v0.0.0dev_f2b3e9e (2023-07-05)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Debuggers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html">Renderers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html#renderer-features">Renderer Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">Version Representation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vulkan/_vulkan.html">Vulkan Module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Thallium Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../_api.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="_core.html">Core API</a></li>
+      <li class="breadcrumb-item active">Debuggers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pages/api/core/debuggers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="debuggers">
+<h1>Debuggers<a class="headerlink" href="#debuggers" title="Permalink to this heading"></a></h1>
+<p>This section contains library compounds for configuring Thallium debug output through the use of <strong>debuggers</strong>.</p>
+<hr class="docutils" />
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
+<section id="objects">
+<h3>Objects<a class="headerlink" href="#objects" title="Permalink to this heading"></a></h3>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv413TL_Debugger_t">
+<span id="_CPPv313TL_Debugger_t"></span><span id="_CPPv213TL_Debugger_t"></span><span id="TL_Debugger_t"></span><span class="target" id="dc/d72/debugger_8h_1aa4c16c0033887f640078459160384dca"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Debugger_t</span></span></span><a class="headerlink" href="#_CPPv413TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A structure used to debug Thallium operations. </p>
+<p>This structure can be created and passed to Thallium functions to receive debug messages. This is necessary to recieve errors and warnings, for example.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dc/d72/debugger_8h_1a0c521b646e561d5ffcd88d311c40133c"><span class="std std-ref">TL_DebuggerCreate()</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dc/d72/debugger_8h_1ac27dcda189285516b1b9a0e45fb3e405"><span class="std std-ref">TL_DebuggerDestroy()</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#de/db9/structTL__DebuggerDescriptor__t"><span class="std std-ref">TL_DebuggerDescriptor_t</span></a></p>
+</div>
+</p>
+</dd></dl>
+
+</section>
+<section id="descriptors">
+<h3>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this heading"></a></h3>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv423TL_DebuggerDescriptor_t">
+<span id="_CPPv323TL_DebuggerDescriptor_t"></span><span id="_CPPv223TL_DebuggerDescriptor_t"></span><span id="TL_DebuggerDescriptor_t"></span><span class="target" id="de/db9/structTL__DebuggerDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DebuggerDescriptor_t</span></span></span><a class="headerlink" href="#_CPPv423TL_DebuggerDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A structure describing a Thallium debugger object to be created. </p>
+<p>This structure describes a debugger object to be created. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebuggerDescriptor_t10severitiesE">
+<span id="_CPPv3N23TL_DebuggerDescriptor_t10severitiesE"></span><span id="_CPPv2N23TL_DebuggerDescriptor_t10severitiesE"></span><span id="TL_DebuggerDescriptor_t::severities__TL_DebugSeverityFlags_t"></span><span class="target" id="de/db9/structTL__DebuggerDescriptor__t_1a757a218fe49838a6edfe8f5752ccff69"></span><a class="reference internal" href="#_CPPv423TL_DebugSeverityFlags_t" title="TL_DebugSeverityFlags_t"><span class="n"><span class="pre">TL_DebugSeverityFlags_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">severities</span></span></span><a class="headerlink" href="#_CPPv4N23TL_DebuggerDescriptor_t10severitiesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bit field of severity flags - messages of these severities will be reported. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebuggerDescriptor_t7sourcesE">
+<span id="_CPPv3N23TL_DebuggerDescriptor_t7sourcesE"></span><span id="_CPPv2N23TL_DebuggerDescriptor_t7sourcesE"></span><span id="TL_DebuggerDescriptor_t::sources__TL_DebugSourceFlags_t"></span><span class="target" id="de/db9/structTL__DebuggerDescriptor__t_1a47e25afc9a0ad0a7659ec9a2899d955f"></span><a class="reference internal" href="#_CPPv421TL_DebugSourceFlags_t" title="TL_DebugSourceFlags_t"><span class="n"><span class="pre">TL_DebugSourceFlags_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sources</span></span></span><a class="headerlink" href="#_CPPv4N23TL_DebuggerDescriptor_t7sourcesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bit field of source flags - messages from these sources will be reported. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebuggerDescriptor_t8callbackE">
+<span id="_CPPv3N23TL_DebuggerDescriptor_t8callbackE"></span><span id="_CPPv2N23TL_DebuggerDescriptor_t8callbackE"></span><span id="TL_DebuggerDescriptor_t::callback__TL_DebugCallbackfn_t"></span><span class="target" id="de/db9/structTL__DebuggerDescriptor__t_1a6a8fce6445be208959cbb8dfc19e1bc6"></span><a class="reference internal" href="#_CPPv420TL_DebugCallbackfn_t" title="TL_DebugCallbackfn_t"><span class="n"><span class="pre">TL_DebugCallbackfn_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">callback</span></span></span><a class="headerlink" href="#_CPPv4N23TL_DebuggerDescriptor_t8callbackE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>NULL or the callback function for the debugger to use (NULL reverts to the default Thallium debugger behaviour) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebuggerDescriptor_t7pointerE">
+<span id="_CPPv3N23TL_DebuggerDescriptor_t7pointerE"></span><span id="_CPPv2N23TL_DebuggerDescriptor_t7pointerE"></span><span id="TL_DebuggerDescriptor_t::pointer__voidP"></span><span class="target" id="de/db9/structTL__DebuggerDescriptor__t_1af2794c6158d845c5cdb675bc6be89b97"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">pointer</span></span></span><a class="headerlink" href="#_CPPv4N23TL_DebuggerDescriptor_t7pointerE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>NULL or callback pointer for the user callback (<code class="docutils literal notranslate"><span class="pre">callback</span></code>) to recieve. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv433TL_DebuggerAttachmentDescriptor_t">
+<span id="_CPPv333TL_DebuggerAttachmentDescriptor_t"></span><span id="_CPPv233TL_DebuggerAttachmentDescriptor_t"></span><span id="TL_DebuggerAttachmentDescriptor_t"></span><span class="target" id="d6/dfb/structTL__DebuggerAttachmentDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DebuggerAttachmentDescriptor_t</span></span></span><a class="headerlink" href="#_CPPv433TL_DebuggerAttachmentDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A structure describing a Thallium debugger attachment. </p>
+<p>This structure describes a debugger attachment.</p>
+<p>A debug attachment refers to the idea of immutably ‘attaching’ a debugger to a context at creation time, allowing for more detailed debug output. More specifically, this enables API-specific debug functionality. For example, Vulkan <a class="reference external" href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_utils.html">debug utils</a> are enabled for use by Vulkan renderers. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N33TL_DebuggerAttachmentDescriptor_t8debuggerE">
+<span id="_CPPv3N33TL_DebuggerAttachmentDescriptor_t8debuggerE"></span><span id="_CPPv2N33TL_DebuggerAttachmentDescriptor_t8debuggerE"></span><span id="TL_DebuggerAttachmentDescriptor_t::debugger__TL_Debugger_tCP"></span><span class="target" id="d6/dfb/structTL__DebuggerAttachmentDescriptor__t_1a746ed6a803e23c03113a2b3e3f8aeb72"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">debugger</span></span></span><a class="headerlink" href="#_CPPv4N33TL_DebuggerAttachmentDescriptor_t8debuggerE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Debugger to link the attachment to. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="function-pointers">
+<h3>Function Pointers<a class="headerlink" href="#function-pointers" title="Permalink to this heading"></a></h3>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv420TL_DebugCallbackfn_t">
+<span id="_CPPv320TL_DebugCallbackfn_t"></span><span id="_CPPv220TL_DebugCallbackfn_t"></span><span id="TL_DebugCallbackfn_t"></span><span class="target" id="dc/d72/debugger_8h_1ac4ea7a2770b18e8bb7bbdee5869cdd3c"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_DebugCallbackfn_t</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv423TL_DebugSeverityFlags_t" title="TL_DebugSeverityFlags_t"><span class="n"><span class="pre">TL_DebugSeverityFlags_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">sev</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv421TL_DebugSourceFlags_t" title="TL_DebugSourceFlags_t"><span class="n"><span class="pre">TL_DebugSourceFlags_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ptr</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv420TL_DebugCallbackfn_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The function pointer type for custom debugger message callbacks. </p>
+<p>This is the function pointer type for custom debugger message callbacks. This can be used to configure the handling of messages reported by Thallium debuggers.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>TL_Debugger_t</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param msg<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The basic message string reported by the Thallium API. </p>
+</dd>
+<dt class="field-even">Param sev<span class="colon">:</span></dt>
+<dd class="field-even"><p>The severity of the debug message - see TL_DebugSeverityFlags_t. </p>
+</dd>
+<dt class="field-odd">Param src<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The source of the debug message (e.g. Thallium, Vulkan, etc) - see TL_DebugSourceFlags_t. </p>
+</dd>
+<dt class="field-even">Param ptr<span class="colon">:</span></dt>
+<dd class="field-even"><p>NULL, or the user-configured pointer passed to the <a class="reference internal" href="#de/db9/structTL__DebuggerDescriptor__t"><span class="std std-ref">debugger creation descriptor</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="enums">
+<h3>Enums<a class="headerlink" href="#enums" title="Permalink to this heading"></a></h3>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv423TL_DebugSeverityFlags_t">
+<span id="_CPPv323TL_DebugSeverityFlags_t"></span><span id="_CPPv223TL_DebugSeverityFlags_t"></span><span class="target" id="d0/d0b/enums_8h_1a059b6f46f4ba647942768d2d22c97af2"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DebugSeverityFlags_t</span></span></span><a class="headerlink" href="#_CPPv423TL_DebugSeverityFlags_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enumeration containing severities to describe debug messages. </p>
+<p>This enumeration contains severities to describe debug messages.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>TL_Debugger_t</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#de/db9/structTL__DebuggerDescriptor__t"><span class="std std-ref">TL_DebuggerDescriptor_t</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dc/d72/debugger_8h_1a0c521b646e561d5ffcd88d311c40133c"><span class="std std-ref">TL_DebuggerCreate()</span></a></p>
+</div>
+</p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebugSeverityFlags_t29TL_DEBUG_SEVERITY_VERBOSE_BITE">
+<span id="_CPPv3N23TL_DebugSeverityFlags_t29TL_DEBUG_SEVERITY_VERBOSE_BITE"></span><span id="_CPPv2N23TL_DebugSeverityFlags_t29TL_DEBUG_SEVERITY_VERBOSE_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a059b6f46f4ba647942768d2d22c97af2a279addd40254f9ddb388cec75f031a0d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SEVERITY_VERBOSE_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x10</span></span><a class="headerlink" href="#_CPPv4N23TL_DebugSeverityFlags_t29TL_DEBUG_SEVERITY_VERBOSE_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Log messages. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_NOTIF_BITE">
+<span id="_CPPv3N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_NOTIF_BITE"></span><span id="_CPPv2N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_NOTIF_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a059b6f46f4ba647942768d2d22c97af2a3efbc1d40994b3c26820f891bad7d217"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SEVERITY_NOTIF_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x08</span></span><a class="headerlink" href="#_CPPv4N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_NOTIF_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Notification messages. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebugSeverityFlags_t29TL_DEBUG_SEVERITY_WARNING_BITE">
+<span id="_CPPv3N23TL_DebugSeverityFlags_t29TL_DEBUG_SEVERITY_WARNING_BITE"></span><span id="_CPPv2N23TL_DebugSeverityFlags_t29TL_DEBUG_SEVERITY_WARNING_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a059b6f46f4ba647942768d2d22c97af2a3c0b073cf870bb91005ed15a5ab740e9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SEVERITY_WARNING_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x04</span></span><a class="headerlink" href="#_CPPv4N23TL_DebugSeverityFlags_t29TL_DEBUG_SEVERITY_WARNING_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Warning messages. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_ERROR_BITE">
+<span id="_CPPv3N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_ERROR_BITE"></span><span id="_CPPv2N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_ERROR_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a059b6f46f4ba647942768d2d22c97af2a7aa7a801618fbb6fc36b7b85a6e32df9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SEVERITY_ERROR_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x02</span></span><a class="headerlink" href="#_CPPv4N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_ERROR_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Error messages. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_FATAL_BITE">
+<span id="_CPPv3N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_FATAL_BITE"></span><span id="_CPPv2N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_FATAL_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a059b6f46f4ba647942768d2d22c97af2a42dfcf5e0beaae5047f1dda2bce87d83"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SEVERITY_FATAL_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x01</span></span><a class="headerlink" href="#_CPPv4N23TL_DebugSeverityFlags_t27TL_DEBUG_SEVERITY_FATAL_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Fatal error messages. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_DebugSeverityFlags_t25TL_DEBUG_SEVERITY_ALL_BITE">
+<span id="_CPPv3N23TL_DebugSeverityFlags_t25TL_DEBUG_SEVERITY_ALL_BITE"></span><span id="_CPPv2N23TL_DebugSeverityFlags_t25TL_DEBUG_SEVERITY_ALL_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a059b6f46f4ba647942768d2d22c97af2acc573241826197684e89ab9d860773f6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SEVERITY_ALL_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x1f</span></span><a class="headerlink" href="#_CPPv4N23TL_DebugSeverityFlags_t25TL_DEBUG_SEVERITY_ALL_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>All message severities. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv421TL_DebugSourceFlags_t">
+<span id="_CPPv321TL_DebugSourceFlags_t"></span><span id="_CPPv221TL_DebugSourceFlags_t"></span><span class="target" id="d0/d0b/enums_8h_1a1b48a0eedaa312d4c3ff7a28bfcafe89"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DebugSourceFlags_t</span></span></span><a class="headerlink" href="#_CPPv421TL_DebugSourceFlags_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enumeration containing sources to describe debug messages. </p>
+<p>This enumeration contains message sources to describe debug messages.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>TL_Debugger_t</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dc/d72/debugger_8h_1a0c521b646e561d5ffcd88d311c40133c"><span class="std std-ref">TL_DebuggerCreate()</span></a></p>
+</div>
+</p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21TL_DebugSourceFlags_t28TL_DEBUG_SOURCE_THALLIUM_BITE">
+<span id="_CPPv3N21TL_DebugSourceFlags_t28TL_DEBUG_SOURCE_THALLIUM_BITE"></span><span id="_CPPv2N21TL_DebugSourceFlags_t28TL_DEBUG_SOURCE_THALLIUM_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a1b48a0eedaa312d4c3ff7a28bfcafe89adc962fd196b17c4676501425062f4e33"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SOURCE_THALLIUM_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x20</span></span><a class="headerlink" href="#_CPPv4N21TL_DebugSourceFlags_t28TL_DEBUG_SOURCE_THALLIUM_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Messages reported by core Thallium functions. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21TL_DebugSourceFlags_t26TL_DEBUG_SOURCE_VULKAN_BITE">
+<span id="_CPPv3N21TL_DebugSourceFlags_t26TL_DEBUG_SOURCE_VULKAN_BITE"></span><span id="_CPPv2N21TL_DebugSourceFlags_t26TL_DEBUG_SOURCE_VULKAN_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a1b48a0eedaa312d4c3ff7a28bfcafe89aaa2c8ebcb9823b978051772b545ef2f6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SOURCE_VULKAN_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x10</span></span><a class="headerlink" href="#_CPPv4N21TL_DebugSourceFlags_t26TL_DEBUG_SOURCE_VULKAN_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Messages reported by Vulkan renderer systems. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21TL_DebugSourceFlags_t23TL_DEBUG_SOURCE_ALL_BITE">
+<span id="_CPPv3N21TL_DebugSourceFlags_t23TL_DEBUG_SOURCE_ALL_BITE"></span><span id="_CPPv2N21TL_DebugSourceFlags_t23TL_DEBUG_SOURCE_ALL_BITE"></span><span class="target" id="d0/d0b/enums_8h_1a1b48a0eedaa312d4c3ff7a28bfcafe89aa225843c0b68910f984ff313d361f99c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DEBUG_SOURCE_ALL_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x3f</span></span><a class="headerlink" href="#_CPPv4N21TL_DebugSourceFlags_t23TL_DEBUG_SOURCE_ALL_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>All message sources. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<hr class="docutils" />
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417TL_DebuggerCreateK23TL_DebuggerDescriptor_t">
+<span id="_CPPv317TL_DebuggerCreateK23TL_DebuggerDescriptor_t"></span><span id="_CPPv217TL_DebuggerCreateK23TL_DebuggerDescriptor_t"></span><span id="TL_DebuggerCreate__TL_DebuggerDescriptor_tC"></span><span class="target" id="dc/d72/debugger_8h_1a0c521b646e561d5ffcd88d311c40133c"></span><a class="reference internal" href="#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_DebuggerCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv423TL_DebuggerDescriptor_t" title="TL_DebuggerDescriptor_t"><span class="n"><span class="pre">TL_DebuggerDescriptor_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417TL_DebuggerCreateK23TL_DebuggerDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Create a debugger with the specified configuration options. </p>
+<p>This function creates a debugger with the specified configuration options.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>TL_Debugger_t</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>descriptor</strong> – a <a class="reference internal" href="#de/db9/structTL__DebuggerDescriptor__t"><span class="std std-ref">TL_DebuggerDescriptor_t</span></a> descriptor structure.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pointer to the new debugger</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418TL_DebuggerDestroyPC13TL_Debugger_t">
+<span id="_CPPv318TL_DebuggerDestroyPC13TL_Debugger_t"></span><span id="_CPPv218TL_DebuggerDestroyPC13TL_Debugger_t"></span><span id="TL_DebuggerDestroy__TL_Debugger_tPC"></span><span class="target" id="dc/d72/debugger_8h_1ac27dcda189285516b1b9a0e45fb3e405"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_DebuggerDestroy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418TL_DebuggerDestroyPC13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Free the given debugger object. </p>
+<p>This function frees the specified debugger object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>debugger</strong> – The debugger object to free. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jack Bennett.</p>
+  </div>
+
+  
+    v0.0.0dev_f2b3e9e (2023-07-05) » <a href="https://github.com/kosude/thallium">upstream url</a>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

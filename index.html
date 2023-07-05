@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Thallium</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="pages/api/_api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Thallium Documentation
+          </a>
+              <div class="version">
+                v0.0.0dev_f2b3e9e (2023-07-05)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/api/_api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Thallium Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home">
+<h1>Home<a class="headerlink" href="#home" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>Source code: <a class="reference external" href="https://github.com/kosude/thallium/">kosude/thallium</a>.</p>
+<p>The Thallium Project is a library for C/C++ applications that will provide the ability to write cross-renderer applications with the same interface.
+Cross-platform APIs (i.e. Vulkan and OpenGL) will be prioritised, but I plan to also implement dumber APIs such as Metal, DX11, and DX12 in the
+far future.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The contents of this page can also be seen in the project’s <a class="reference external" href="https://github.com/kosude/thallium/blob/master/README.md/">README</a>.</p>
+</div>
+<section id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this heading"></a></h2>
+<p>CMake is used to generate build files. Ideally, you should build in a Linux environment - do note however that MinGW32 and subsystems like Cygwin
+and MSYS2 have not yet been tested.</p>
+<section id="general-options">
+<h3>General options<a class="headerlink" href="#general-options" title="Permalink to this heading"></a></h3>
+<p>The following is a table of available CMake configuration options for Thallium. Note that this list may be missing some, so check the appropriate
+<code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file to make sure.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BUILD_SHARED_LIBS</span></code></p></td>
+<td><p>Build shared libraries</p></td>
+<td><p>ON</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">THALLIUM_BUILD_LIB</span></code></p></td>
+<td><p>Build the Thallium library</p></td>
+<td><p>ON</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">THALLIUM_BUILD_TESTS</span></code></p></td>
+<td><p>Build Thallium tests</p></td>
+<td><p>OFF</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">THALLIUM_BUILD_EXAMPLES</span></code></p></td>
+<td><p>Build Thallium example projects</p></td>
+<td><p>OFF</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">THALLIUM_BUILD_DOCS</span></code></p></td>
+<td><p>Build HTML documentation</p></td>
+<td><p>OFF</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="api-modules">
+<h3>API modules<a class="headerlink" href="#api-modules" title="Permalink to this heading"></a></h3>
+<p>Thallium source compilation is split into <strong>modules</strong>, based on the graphics APIs you need support for. Each module can be manually enabled or
+disabled with CMake flags, just like above. These flags are named <code class="docutils literal notranslate"><span class="pre">THALLIUM_BUILD_MODULE_&lt;API&gt;</span></code>. For example, the Vulkan module can be compiled
+using the <code class="docutils literal notranslate"><span class="pre">-DTHALLIUM_BUILD_MODULE_VULKAN=ON</span></code> build flag (this requires the Vulkan SDK to be installed).</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jack Bennett.</p>
+  </div>
+
+  
+    v0.0.0dev_f2b3e9e (2023-07-05) » <a href="https://github.com/kosude/thallium">upstream url</a>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

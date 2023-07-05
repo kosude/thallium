@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Version Representation - Thallium</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Vulkan Module" href="../vulkan/_vulkan.html" />
+    <link rel="prev" title="Renderers" href="renderers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Thallium Documentation
+          </a>
+              <div class="version">
+                v0.0.0dev_f2b3e9e (2023-07-05)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debuggers.html">Debuggers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html">Renderers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html#renderer-features">Renderer Features</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Version Representation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vulkan/_vulkan.html">Vulkan Module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Thallium Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../_api.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="_core.html">Core API</a></li>
+      <li class="breadcrumb-item active">Version Representation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pages/api/core/version.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="version-representation">
+<h1>Version Representation<a class="headerlink" href="#version-representation" title="Permalink to this heading"></a></h1>
+<p>This section documents the Thallium version struct.</p>
+<hr class="docutils" />
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
+<section id="structs">
+<h3>Structs<a class="headerlink" href="#structs" title="Permalink to this heading"></a></h3>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv412TL_Version_t">
+<span id="_CPPv312TL_Version_t"></span><span id="_CPPv212TL_Version_t"></span><span id="TL_Version_t"></span><span class="target" id="df/ded/structTL__Version__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Version_t</span></span></span><a class="headerlink" href="#_CPPv412TL_Version_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A structure to describe a version. </p>
+<p>This structure describes a version with major, minor, and patch values. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N12TL_Version_t5majorE">
+<span id="_CPPv3N12TL_Version_t5majorE"></span><span id="_CPPv2N12TL_Version_t5majorE"></span><span id="TL_Version_t::major__uint16_t"></span><span class="target" id="df/ded/structTL__Version__t_1a236e09599fcc962ce9e061c170acc9d1"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">major</span></span></span><a class="headerlink" href="#_CPPv4N12TL_Version_t5majorE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Major version number. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N12TL_Version_t5minorE">
+<span id="_CPPv3N12TL_Version_t5minorE"></span><span id="_CPPv2N12TL_Version_t5minorE"></span><span id="TL_Version_t::minor__uint16_t"></span><span class="target" id="df/ded/structTL__Version__t_1a1cea72fdf9dab093c96a1d9e60de2609"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">minor</span></span></span><a class="headerlink" href="#_CPPv4N12TL_Version_t5minorE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Minor version number. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N12TL_Version_t5patchE">
+<span id="_CPPv3N12TL_Version_t5patchE"></span><span id="_CPPv2N12TL_Version_t5patchE"></span><span id="TL_Version_t::patch__uint16_t"></span><span class="target" id="df/ded/structTL__Version__t_1a7f3a21e6a807ffdbbb85cde0880049f9"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">patch</span></span></span><a class="headerlink" href="#_CPPv4N12TL_Version_t5patchE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Patch version number. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jack Bennett.</p>
+  </div>
+
+  
+    v0.0.0dev_f2b3e9e (2023-07-05) » <a href="https://github.com/kosude/thallium">upstream url</a>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

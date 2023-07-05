@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Renderers - Thallium</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Version Representation" href="version.html" />
+    <link rel="prev" title="Debuggers" href="debuggers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Thallium Documentation
+          </a>
+              <div class="version">
+                v0.0.0dev_f2b3e9e (2023-07-05)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debuggers.html">Debuggers</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Renderers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#renderer-features">Renderer Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">Version Representation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vulkan/_vulkan.html">Vulkan Module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Thallium Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../_api.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="_core.html">Core API</a></li>
+      <li class="breadcrumb-item active">Renderers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pages/api/core/renderers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="renderers">
+<h1>Renderers<a class="headerlink" href="#renderers" title="Permalink to this heading"></a></h1>
+<p>This section describes the use of high-level, cross-API <strong>renderer objects</strong>.</p>
+<hr class="docutils" />
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
+<section id="objects">
+<h3>Objects<a class="headerlink" href="#objects" title="Permalink to this heading"></a></h3>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv413TL_Renderer_t">
+<span id="_CPPv313TL_Renderer_t"></span><span id="_CPPv213TL_Renderer_t"></span><span id="TL_Renderer_t"></span><span class="target" id="d6/d85/renderer_8h_1a8f1a2ceb78e42cf1c107bc29d9ca36f4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv413TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Renderer_t</span></span></span><a class="headerlink" href="#_CPPv413TL_Renderer_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A structure to represent a graphics API renderer. </p>
+<p>This opaque structure provides a representation of a certain graphics API.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#d6/d85/renderer_8h_1a86078c761a54ef4920c1eb6df6b1beba"><span class="std std-ref">TL_RendererCreate()</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#d6/d85/renderer_8h_1a1ec671fbef1d9b628aa4804b0c92a51b"><span class="std std-ref">TL_RendererDestroy()</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#d7/d78/structTL__RendererDescriptor__t"><span class="std std-ref">TL_RendererDescriptor_t</span></a></p>
+</div>
+</p>
+</dd></dl>
+
+</section>
+<section id="descriptors">
+<h3>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this heading"></a></h3>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv423TL_RendererDescriptor_t">
+<span id="_CPPv323TL_RendererDescriptor_t"></span><span id="_CPPv223TL_RendererDescriptor_t"></span><span id="TL_RendererDescriptor_t"></span><span class="target" id="d7/d78/structTL__RendererDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RendererDescriptor_t</span></span></span><a class="headerlink" href="#_CPPv423TL_RendererDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A structure describing a renderer object to be created. </p>
+<p>This structure describes a renderer object to be created. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_RendererDescriptor_t3apiE">
+<span id="_CPPv3N23TL_RendererDescriptor_t3apiE"></span><span id="_CPPv2N23TL_RendererDescriptor_t3apiE"></span><span id="TL_RendererDescriptor_t::api__TL_RendererAPIFlags_t"></span><span class="target" id="d7/d78/structTL__RendererDescriptor__t_1a1066de8c13e441ed1aef58c554354e38"></span><a class="reference internal" href="#_CPPv421TL_RendererAPIFlags_t" title="TL_RendererAPIFlags_t"><span class="n"><span class="pre">TL_RendererAPIFlags_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">api</span></span></span><a class="headerlink" href="#_CPPv4N23TL_RendererDescriptor_t3apiE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Renderer API enumeration (<strong>must not</strong> be bitwise-OR’d - only one API is supported per renderer) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_RendererDescriptor_t11api_versionE">
+<span id="_CPPv3N23TL_RendererDescriptor_t11api_versionE"></span><span id="_CPPv2N23TL_RendererDescriptor_t11api_versionE"></span><span id="TL_RendererDescriptor_t::api_version__TL_Version_t"></span><span class="target" id="d7/d78/structTL__RendererDescriptor__t_1acbc75b0cd5b969b91a7c4bd9b775ffc9"></span><a class="reference internal" href="version.html#_CPPv412TL_Version_t" title="TL_Version_t"><span class="n"><span class="pre">TL_Version_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">api_version</span></span></span><a class="headerlink" href="#_CPPv4N23TL_RendererDescriptor_t11api_versionE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Renderer API version. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_RendererDescriptor_t12requirementsE">
+<span id="_CPPv3N23TL_RendererDescriptor_t12requirementsE"></span><span id="_CPPv2N23TL_RendererDescriptor_t12requirementsE"></span><span id="TL_RendererDescriptor_t::requirements__TL_RendererFeatures_t"></span><span class="target" id="d7/d78/structTL__RendererDescriptor__t_1a2f89ee22235a7059d97bb7cdecebe446"></span><a class="reference internal" href="#_CPPv421TL_RendererFeatures_t" title="TL_RendererFeatures_t"><span class="n"><span class="pre">TL_RendererFeatures_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">requirements</span></span></span><a class="headerlink" href="#_CPPv4N23TL_RendererDescriptor_t12requirementsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Renderer features to require. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N23TL_RendererDescriptor_t26renderer_system_descriptorE">
+<span id="_CPPv3N23TL_RendererDescriptor_t26renderer_system_descriptorE"></span><span id="_CPPv2N23TL_RendererDescriptor_t26renderer_system_descriptorE"></span><span id="TL_RendererDescriptor_t::renderer_system_descriptor__voidP"></span><span class="target" id="d7/d78/structTL__RendererDescriptor__t_1a0e2fb7a2ba298170776efb345a367b9d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">renderer_system_descriptor</span></span></span><a class="headerlink" href="#_CPPv4N23TL_RendererDescriptor_t26renderer_system_descriptorE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>NULL or an optional descriptor for the API-specific renderer system to be created within the renderer. For example, to specify API-specific options to a Vulkan renderer, pass to this parameter a pointer to a <a class="reference internal" href="../vulkan/vk_renderer_system.html#d6/d29/structTLVK__RendererSystemDescriptor__t"><span class="std std-ref">TLVK_RendererSystemDescriptor_t</span></a> struct. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="enums">
+<h3>Enums<a class="headerlink" href="#enums" title="Permalink to this heading"></a></h3>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv421TL_RendererAPIFlags_t">
+<span id="_CPPv321TL_RendererAPIFlags_t"></span><span id="_CPPv221TL_RendererAPIFlags_t"></span><span class="target" id="d0/d0b/enums_8h_1addf6ace4606c77207d4e8d523105fd41"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RendererAPIFlags_t</span></span></span><a class="headerlink" href="#_CPPv421TL_RendererAPIFlags_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enumeration containing graphics APIs for renderers. </p>
+<p>This enumeration contains all graphics APIs for renderers. Not all enumerations will necessarily be accepted by renderers on creation; ensure that the appropriate module or modules were added to the build process when compiling the Thallium library. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21TL_RendererAPIFlags_t26TL_RENDERER_API_VULKAN_BITE">
+<span id="_CPPv3N21TL_RendererAPIFlags_t26TL_RENDERER_API_VULKAN_BITE"></span><span id="_CPPv2N21TL_RendererAPIFlags_t26TL_RENDERER_API_VULKAN_BITE"></span><span class="target" id="d0/d0b/enums_8h_1addf6ace4606c77207d4e8d523105fd41a1a65e984961e0d1db76677b9e749987c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RENDERER_API_VULKAN_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x10</span></span><a class="headerlink" href="#_CPPv4N21TL_RendererAPIFlags_t26TL_RENDERER_API_VULKAN_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference external" href="https://www.vulkan.org/">Vulkan GPU API</a></p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21TL_RendererAPIFlags_t24TL_RENDERER_API_NULL_BITE">
+<span id="_CPPv3N21TL_RendererAPIFlags_t24TL_RENDERER_API_NULL_BITE"></span><span id="_CPPv2N21TL_RendererAPIFlags_t24TL_RENDERER_API_NULL_BITE"></span><span class="target" id="d0/d0b/enums_8h_1addf6ace4606c77207d4e8d523105fd41a58ea2585002893164e51d3072421fb4f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RENDERER_API_NULL_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x00</span></span><a class="headerlink" href="#_CPPv4N21TL_RendererAPIFlags_t24TL_RENDERER_API_NULL_BITE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Null API. Not to be used in valid Thallium applications. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<hr class="docutils" />
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417TL_RendererCreatePC12TL_Context_tK8uint32_tPCK23TL_RendererDescriptor_tPCPCP13TL_Renderer_tPCK13TL_Debugger_t">
+<span id="_CPPv317TL_RendererCreatePC12TL_Context_tK8uint32_tPCK23TL_RendererDescriptor_tPCPCP13TL_Renderer_tPCK13TL_Debugger_t"></span><span id="_CPPv217TL_RendererCreatePC12TL_Context_tK8uint32_tPCK23TL_RendererDescriptor_tPCPCP13TL_Renderer_tPCK13TL_Debugger_t"></span><span id="TL_RendererCreate__TL_Context_tPC.uint32_tC.TL_RendererDescriptor_tCPC.TL_Renderer_tPPCPC.TL_Debugger_tCPC"></span><span class="target" id="d6/d85/renderer_8h_1a86078c761a54ef4920c1eb6df6b1beba"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RendererCreate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="context.html#_CPPv412TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">context</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">count</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv423TL_RendererDescriptor_t" title="TL_RendererDescriptor_t"><span class="n"><span class="pre">TL_RendererDescriptor_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">descriptors</span></span>, <a class="reference internal" href="#_CPPv413TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">renderers</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417TL_RendererCreatePC12TL_Context_tK8uint32_tPCK23TL_RendererDescriptor_tPCPCP13TL_Renderer_tPCK13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Create <code class="docutils literal notranslate"><span class="pre">count</span></code> renderer(s) in the given Thallium context. </p>
+<p>This function creates <code class="docutils literal notranslate"><span class="pre">count</span></code> renderers into the context object <code class="docutils literal notranslate"><span class="pre">context</span></code>. These renderers are configured using the array of <a class="reference internal" href="#d7/d78/structTL__RendererDescriptor__t"><span class="std std-ref">descriptors</span></a> given in <code class="docutils literal notranslate"><span class="pre">descriptors</span></code> (the length of which is also assumed to be <code class="docutils literal notranslate"><span class="pre">count</span></code>).</p>
+<p>The resultant array of renderers are allocated and output into <code class="docutils literal notranslate"><span class="pre">renderers</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">count</span></code> parameter must be greater than 1. Ensure that both arrays are the same length. The index of each descriptor in the <code class="docutils literal notranslate"><span class="pre">descriptors</span></code> array corresponds to the index of each renderer pointer in the <code class="docutils literal notranslate"><span class="pre">renderers</span></code> array.</p>
+<p>Neither <code class="docutils literal notranslate"><span class="pre">descriptors</span></code> or <code class="docutils literal notranslate"><span class="pre">renderers</span></code> can be NULL!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function can only be called <strong>once</strong> per context object! If invoked multiple times, the function will return <code class="docutils literal notranslate"><span class="pre">count</span></code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When loading the appropriate API(s), the highest version specified in the created renderer(s) is loaded. Therefore, if you are using multiple renderers over the same graphics API, only functions from the highest specified version of that API is loaded.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> – The Thallium context to create the renderers in. </p></li>
+<li><p><strong>count</strong> – Length of both <code class="docutils literal notranslate"><span class="pre">descriptors</span></code> and <code class="docutils literal notranslate"><span class="pre">renderers</span></code> arrays. </p></li>
+<li><p><strong>descriptors</strong> – Array of descriptors for created renderers. </p></li>
+<li><p><strong>renderers</strong> – Array of renderer pointers. </p></li>
+<li><p><strong>debugger</strong> – NULL or a debugger for function debugging</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The amount of renderers that were successfully created </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418TL_RendererDestroyPC13TL_Renderer_t">
+<span id="_CPPv318TL_RendererDestroyPC13TL_Renderer_t"></span><span id="_CPPv218TL_RendererDestroyPC13TL_Renderer_t"></span><span id="TL_RendererDestroy__TL_Renderer_tPC"></span><span class="target" id="d6/d85/renderer_8h_1a1ec671fbef1d9b628aa4804b0c92a51b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RendererDestroy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv413TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">renderer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418TL_RendererDestroyPC13TL_Renderer_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Free the given renderer object. </p>
+<p>This function frees the specified renderer object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>renderer</strong> – Pointer to the renderer object to free. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<hr class="docutils" />
+<section id="renderer-features">
+<h1>Renderer Features<a class="headerlink" href="#renderer-features" title="Permalink to this heading"></a></h1>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv421TL_RendererFeatures_t">
+<span id="_CPPv321TL_RendererFeatures_t"></span><span id="_CPPv221TL_RendererFeatures_t"></span><span id="TL_RendererFeatures_t"></span><span class="target" id="d1/d8e/structTL__RendererFeatures__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RendererFeatures_t</span></span></span><a class="headerlink" href="#_CPPv421TL_RendererFeatures_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A structure to hold flags for the features of a renderer object. </p>
+<p>This structure allows the user to, for example, require desired Thallium-supported features from a renderer.</p>
+<p>Requiring the features that will be used throughout the program at renderer creation is required to access those features, as renderers are immutable for the most part.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>TL_Renderer_t</p>
+</div>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N21TL_RendererFeatures_t12presentationE">
+<span id="_CPPv3N21TL_RendererFeatures_t12presentationE"></span><span id="_CPPv2N21TL_RendererFeatures_t12presentationE"></span><span id="TL_RendererFeatures_t::presentation__b"></span><span class="target" id="d1/d8e/structTL__RendererFeatures__t_1a83b32f521a3b14203ac136ff432e36d9"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">presentation</span></span></span><a class="headerlink" href="#_CPPv4N21TL_RendererFeatures_t12presentationE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The renderer can present images to a swapchain. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jack Bennett.</p>
+  </div>
+
+  
+    v0.0.0dev_f2b3e9e (2023-07-05) » <a href="https://github.com/kosude/thallium">upstream url</a>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
