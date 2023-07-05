@@ -4,7 +4,6 @@
 # build output
 **/build/
 **/?build/
-**/vulkaninfo.html
 
 # platform directory files
 **/.DS_Store
@@ -16,3 +15,6 @@ venv/
 .venv/
 env/
 .env/
+
+# useless rubbish
+**/__pycache__/
