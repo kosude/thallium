@@ -51,7 +51,7 @@ html_title = "Thallium"
 html_favicon = "res/static/img/favicon.png"
 
 html_css_files = [
-    "css/dark.css"
+    "css/dark.css",
 ]
 
 html_show_sphinx = False

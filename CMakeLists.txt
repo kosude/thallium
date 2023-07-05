@@ -123,7 +123,7 @@ message(STATUS "BUILT tests?\t\t=>\t${THALLIUM_BUILD_TESTS}")
 message(STATUS "BUILT docs?\t\t=>\t${THALLIUM_BUILD_DOCS}")
 
 if (THALLIUM_BUILD_DOCS)
-    message(STATUS "  - see output at ${PROJECT_BINARY_DIR}/docs/html/pages/index.html")
+    message(STATUS "  - see output at ${PROJECT_BINARY_DIR}/docs/html/index.html")
 endif()
 
 message("")

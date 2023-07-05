@@ -19,6 +19,15 @@ As a side-note, I track TO-DO items on [Trello](https://trello.com/b/ZHYGTiZr/th
 also used to track bugs or requests.
 
 
+## Documentation
+
+For the Thallium API documentation, see the GitHub Pages instance at https://kosude.github.io/thallium/.
+
+Local HTML documentation can be generated at compilation with the `-DTHALLIUM_BUILD_DOCS=ON` flag, as above. This is not default behaviour and is not
+recommended, as it can lengthen build time, and requires Doxygen to be installed as well as several Python modules (listed in the
+[docs/requirements.txt](docs/requirements.txt) file for pip).
+
+
 ## Building
 
 CMake is used to generate build files. Ideally, you should build in a Linux environment - do note however that MinGW32 and subsystems like Cygwin
@@ -42,15 +51,6 @@ The following is a table of available CMake configuration options for Thallium. 
 Thallium source compilation is split into **modules**, based on the graphics APIs you need support for. Each module can be manually enabled or
 disabled with CMake flags, just like above. These flags are named `THALLIUM_BUILD_MODULE_<API>`. For example, the Vulkan module can be compiled using
 the `-DTHALLIUM_BUILD_MODULE_VULKAN=ON` build flag (this requires the Vulkan SDK to be installed).
-
-
-## Documentation
-
-For the Thallium API documentation, see the GitHub Pages instance at https://kosude.github.io/thallium/.
-
-Local HTML documentation can be generated at compilation with the `-DTHALLIUM_BUILD_DOCS=ON` flag, as above. This is not default behaviour and is not
-recommended, as it can lengthen build time, and requires Doxygen to be installed as well as several Python modules (listed in the
-[docs/requirements.txt](docs/requirements.txt) file for pip).
 
 
 ## Project logos
