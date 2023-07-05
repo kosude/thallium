@@ -1,5 +1,5 @@
-Library debuggers
-=================
+Debuggers
+=========
 
 This section contains library compounds for configuring Thallium debug output through the use of **debuggers**.
 

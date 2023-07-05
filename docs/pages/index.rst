@@ -1,12 +1,11 @@
-Thallium Documentation
-======================
+Home
+====
 
 
 .. toctree::
     :hidden:
-    :glob:
 
-    api/api
+    api/_api
 
 
 Source code: `kosude/thallium <https://github.com/kosude/thallium/>`_.
@@ -14,8 +13,6 @@ Source code: `kosude/thallium <https://github.com/kosude/thallium/>`_.
 The Thallium Project is a library for C/C++ applications that will provide the ability to write cross-renderer applications with the same interface.
 Cross-platform APIs (i.e. Vulkan and OpenGL) will be prioritised, but I plan to also implement dumber APIs such as Metal, DX11, and DX12 in the
 far future.
-
-For function and struct documentation, see the `API reference <api/api>`_.
 
 .. note::
     The contents of this page can also be seen in the project's `README <https://github.com/kosude/thallium/blob/master/README.md/>`_.

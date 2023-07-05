@@ -2,9 +2,10 @@ API Reference
 =============
 
 Welcome to the Thallium Public API Reference. This is a group of comprehensive documentation for all public API functions, structures, etc. To
-continue, select one of the sections below:
+continue, select one of the sections listed on this page.
 
 .. toctree::
-    :glob:
+    :maxdepth: 1
 
-    debuggers/debuggers
+    core/_core
+    vulkan/_vulkan
