@@ -15,6 +15,9 @@
 #include "thallium/core/renderer.h"
 
 typedef struct TL_Renderer_t {
+    /// @brief Internal API-aware renderer system.
+    void *renderer_system;
+
     /// @brief Renderer API enumeration.
     TL_RendererAPIFlags_t api;
 
@@ -22,9 +25,6 @@ typedef struct TL_Renderer_t {
     const TL_Context_t *context;
     /// @brief NULL or attached context debugger object.
     const TL_Debugger_t *debugger;
-
-    /// @brief Internal API-aware renderer system.
-    void *renderer_system;
 
     /// @brief Features requested from the renderer at creation time
     TL_RendererFeatures_t features;

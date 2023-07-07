@@ -2,6 +2,7 @@ set(SOURCES
     "context.c"
     "debugger.c"
     "renderer.c"
+    "swapchain.c"
 )
 
 # add path prefix to each filename in sources

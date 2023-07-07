@@ -3,7 +3,9 @@ set(SOURCES
     "helper/vk_instance.c"
 
     "vk_context_block.c"
+
     "vk_renderer_system.c"
+    "vk_swapchain_system.c"
 )
 
 # add path prefix to each filename in sources

@@ -39,6 +39,8 @@ namespace TLTests::Framework {
             return instance;
         };
 
+        inline const std::vector<TL_Renderer_t *> &GetRenderers() const { return _renderers; }
+
         void Destroy();
 
         template<GraphicsAPI A>

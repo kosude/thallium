@@ -26,6 +26,7 @@
  * an application refer to the same instance, which is created when allocating and populating the context data.
  *
  * @sa @ref TLVK_RendererSystemCreate()
+ * @sa @ref TLVK_RendererSystemDestroy()
  */
 typedef struct TLVK_RendererSystem_t TLVK_RendererSystem_t;
 
@@ -52,6 +53,7 @@ typedef struct TLVK_RendererSystemDescriptor_t {
  *
  * @sa @ref TLVK_RendererSystem_t
  * @sa @ref TLVK_RendererSystemDestroy()
+ * @sa @ref TLVK_RendererSystemDescriptor_t
  */
 TLVK_RendererSystem_t *TLVK_RendererSystemCreate(
     const TL_Renderer_t *const renderer,

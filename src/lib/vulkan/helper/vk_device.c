@@ -198,8 +198,6 @@ static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requiremen
         __DEFINE_REQUIRED_EXTENSION(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
     }
 
-    __DEFINE_REQUIRED_EXTENSION("£ushdf");
-
     *out_extension_count = count_ret;
 }
 

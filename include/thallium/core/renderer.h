@@ -41,6 +41,7 @@ typedef struct TL_RendererFeatures_t {
  * @sa @ref TL_RendererCreate()
  * @sa @ref TL_RendererDestroy()
  * @sa @ref TL_RendererDescriptor_t
+ * @sa @ref TL_RendererFeatures_t
  */
 typedef struct TL_Renderer_t TL_Renderer_t;
 

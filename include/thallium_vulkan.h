@@ -13,6 +13,7 @@
 #endif // __cplusplus
 
 #include "thallium/vulkan/vk_renderer_system.h"
+#include "thallium/vulkan/vk_swapchain_system.h"
 
 #ifdef __cplusplus
     }

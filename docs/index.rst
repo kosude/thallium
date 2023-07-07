@@ -51,6 +51,3 @@ API modules
 Thallium source compilation is split into **modules**, based on the graphics APIs you need support for. Each module can be manually enabled or
 disabled with CMake flags, just like above. These flags are named ``THALLIUM_BUILD_MODULE_<API>``. For example, the Vulkan module can be compiled
 using the ``-DTHALLIUM_BUILD_MODULE_VULKAN=ON`` build flag (this requires the Vulkan SDK to be installed).
-
-
-.. cpp:alias:: TL_Renderer_t

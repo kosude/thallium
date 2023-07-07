@@ -8,6 +8,8 @@ Objects and functions defined within the Thallium Vulkan module (compiled using 
     access them.
 
 .. toctree::
+    :caption: Contents
     :maxdepth: 1
 
     vk_renderer_system
+    vk_swapchain_system
