@@ -5,8 +5,10 @@ Objects and functions defined within the core Thallium library, exposed by ``tha
 
 .. toctree::
     :maxdepth: 1
+    :caption: Contents
 
     context
     debuggers
     renderers
+    swapchains
     version
