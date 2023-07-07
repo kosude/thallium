@@ -14,6 +14,7 @@
 
 #include "thallium_decl/fwd.h"
 #include "thallium_decl/fwdvk.h"
+#include "thallium_decl/enumsvk.h"
 #include "thallium/platform.h"
 
 /**
@@ -34,7 +35,9 @@ typedef struct TLVK_RendererSystem_t TLVK_RendererSystem_t;
  * This descriptor structure provides options for the creation of Thallium renderer systems.
  */
 typedef struct TLVK_RendererSystemDescriptor_t {
-    uint32_t placeholder;
+    /// @brief A @ref TLVK_PhysicalDeviceSelectionMode_t enum indicating the mode of selection for the Vulkan physical device used by the renderer
+    /// system
+    TLVK_PhysicalDeviceSelectionMode_t physical_device_mode;
 } TLVK_RendererSystemDescriptor_t;
 
 /**

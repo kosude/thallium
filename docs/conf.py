@@ -51,6 +51,7 @@ html_title = "Thallium"
 html_favicon = "res/static/img/favicon.png"
 
 html_css_files = [
+    "css/see_also_hotfix.css",
     "css/dark.css",
 ]
 

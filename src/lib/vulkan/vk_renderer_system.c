@@ -20,10 +20,11 @@
 
 #include <volk/volk.h>
 
-static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_RendererSystem_t *const renderer_system, carray_t *const out_exts,
-    VkPhysicalDeviceFeatures *const out_feats, const TL_Debugger_t *const debugger)
+static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_RendererSystem_t *const renderer_system,
+    const TLVK_RendererSystemDescriptor_t *const descriptor, carray_t *const out_exts, VkPhysicalDeviceFeatures *const out_feats,
+    const TL_Debugger_t *const debugger)
 {
-    if (!out_exts || !out_feats) {
+    if (!out_exts || !out_feats || !descriptor) {
         return VK_NULL_HANDLE;
     }
 
@@ -55,7 +56,19 @@ static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_Renderer
         return VK_NULL_HANDLE;
     }
 
-    return TLVK_PhysicalDeviceSelect(candidates, requirements, out_exts, out_feats, debugger);
+    VkPhysicalDevice ret;
+
+    switch (descriptor->physical_device_mode) {
+        case TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL:
+        default:
+            // select optimal physical device (with score etc)
+            ret = TLVK_PhysicalDeviceSelect(candidates, requirements, descriptor->physical_device_mode, out_exts, out_feats, debugger);
+            break;
+    }
+
+    carrayfree(&candidates);
+
+    return ret;
 }
 
 TLVK_RendererSystem_t *TLVK_RendererSystemCreate(const TL_Renderer_t *const renderer, const TLVK_RendererSystemDescriptor_t descriptor) {
@@ -78,7 +91,7 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(const TL_Renderer_t *const rend
     renderer_system->vk_context = (TLVK_ContextBlock_t *) ((char *) renderer->context->data + renderer->context->vulkan_offset);
     renderer_system->features = renderer->features;
 
-    renderer_system->vk_physical_device = __SelectRendererSystemPhysicalDevice(renderer_system, &renderer_system->device_extensions,
+    renderer_system->vk_physical_device = __SelectRendererSystemPhysicalDevice(renderer_system, &descriptor, &renderer_system->device_extensions,
         &renderer_system->vk_device_features, debugger);
     if (renderer_system->vk_physical_device == VK_NULL_HANDLE) {
         TL_Error(debugger, "Failed to select physical device for Vulkan renderer system %p", renderer_system);

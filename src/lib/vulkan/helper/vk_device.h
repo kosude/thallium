@@ -13,6 +13,7 @@
 #endif // __cplusplus
 
 #include "thallium_decl/fwd.h"
+#include "thallium_decl/enumsvk.h"
 #include "thallium/platform.h"
 
 #define VK_NO_PROTOTYPES
@@ -101,6 +102,7 @@ TLVK_PhysicalDeviceQueueFamilyIndices TLVK_PhysicalDeviceQueueFamilyIndicesGetEn
  *
  * @param candidates Array of physical device choices.
  * @param requirements Renderer requirements
+ * @param mode The select mode to run by
  * @param out_extensions Pointer to an array into which extensions are returned which can safely be enabled on the selected device.
  * @param out_features Pointer to a struct into which features are returned which can safely be enabled on the selected device.
  * @param debugger Debugger object to debug the function with
@@ -109,6 +111,7 @@ TLVK_PhysicalDeviceQueueFamilyIndices TLVK_PhysicalDeviceQueueFamilyIndicesGetEn
 VkPhysicalDevice TLVK_PhysicalDeviceSelect(
     const carray_t candidates,
     const TL_RendererFeatures_t requirements,
+    const TLVK_PhysicalDeviceSelectionMode_t mode,
     carray_t *const out_extensions,
     VkPhysicalDeviceFeatures *const out_features,
     const TL_Debugger_t *const debugger

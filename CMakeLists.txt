@@ -62,9 +62,10 @@ endif()
 option(THALLIUM_BUILD_LIB "Build core Thallium library" ON)
 if (THALLIUM_BUILD_LIB)
     option(THALLIUM_BUILD_MODULE_VULKAN "Include the Vulkan module in the compilation" OFF)
+
+    option(THALLIUM_BUILD_TESTS "Build Thallium tests" OFF)
 endif()
 
-option(THALLIUM_BUILD_TESTS "Build Thallium tests" OFF)
 option(THALLIUM_BUILD_DOCS "Build Thallium HTML documentation" OFF)
 
 if (THALLIUM_BUILD_LIB)

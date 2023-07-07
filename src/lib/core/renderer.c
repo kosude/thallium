@@ -113,7 +113,7 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
                 } else {
                     // default renderer system descriptor configuration (used if no user-given descriptor was specified)...
 
-                    rsdescr.placeholder = 5;
+                    rsdescr.physical_device_mode = TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL;
                 }
 
                 renderer->renderer_system = (void *) TLVK_RendererSystemCreate(renderer, rsdescr);

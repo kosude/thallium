@@ -43,8 +43,8 @@ Functions
 *****
 
 
-Renderer Features
-=================
+Renderer features
+-----------------
 
 .. doxygenstruct:: TL_RendererFeatures_t
     :members:

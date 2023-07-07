@@ -97,6 +97,7 @@ namespace TLTests::Framework {
             renderer_descriptor.requirements = _GetRendererRequirements();
 
             TLVK_RendererSystemDescriptor_t vk_renderer_system_descriptor = {};
+            vk_renderer_system_descriptor.physical_device_mode = TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL;
 
             renderer_descriptor.renderer_system_descriptor = &vk_renderer_system_descriptor;
 

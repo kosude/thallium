@@ -198,6 +198,8 @@ static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requiremen
         __DEFINE_REQUIRED_EXTENSION(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
     }
 
+    __DEFINE_REQUIRED_EXTENSION("£ushdf");
+
     *out_extension_count = count_ret;
 }
 
@@ -304,7 +306,7 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
 
     uint64_t score = 1;
 
-    TL_Log(debugger, "Scoring suitability of device \"%s\"", props.deviceName);
+    TL_Log(debugger, "Validating device \"%s\"", props.deviceName);
 
     // get required extensions
     uint32_t required_ext_count = 0;
@@ -520,55 +522,64 @@ TLVK_PhysicalDeviceQueueFamilyIndices TLVK_PhysicalDeviceQueueFamilyIndicesGetEn
     };
 }
 
-VkPhysicalDevice TLVK_PhysicalDeviceSelect(const carray_t candidates, const TL_RendererFeatures_t requirements, carray_t *const out_extensions,
-    VkPhysicalDeviceFeatures *const out_features, const TL_Debugger_t *const debugger)
+VkPhysicalDevice TLVK_PhysicalDeviceSelect(const carray_t candidates, const TL_RendererFeatures_t requirements,
+    const TLVK_PhysicalDeviceSelectionMode_t mode, carray_t *const out_extensions, VkPhysicalDeviceFeatures *const out_features,
+    const TL_Debugger_t *const debugger)
 {
     if (!out_extensions || !out_features) {
-        return 0;
+        return VK_NULL_HANDLE;
     }
 
-    if (candidates.size == 1) {
-        return (VkPhysicalDevice) candidates.data[0];
-    }
+    VkPhysicalDevice ret = VK_NULL_HANDLE;
 
-    // get the physical device with highest score
-    uint64_t min_score = 0;
-    VkPhysicalDevice best_physical_device = VK_NULL_HANDLE;
+    if (candidates.size == 1 || mode == TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRST) {
+        // get the first physical device
 
-    for (uint32_t i = 0; i < candidates.size; i++) {
-        VkPhysicalDevice dev = (VkPhysicalDevice) candidates.data[i];
+        ret = (VkPhysicalDevice) candidates.data[0];
 
-        carray_t cur_dev_exts;
-        VkPhysicalDeviceFeatures cur_dev_feats;
+        // score discarded as it isn't needed
+        // we still have to run this function as it is what gives out the extensions and features that can be requested.
+        __ScorePhysicalDevice(ret, requirements, out_extensions, out_features, debugger);
+    } else {
+        // get the physical device with highest score
 
-        // score device
-        uint64_t cur_score = __ScorePhysicalDevice(dev, requirements, &cur_dev_exts, &cur_dev_feats, debugger);
+        uint64_t min_score = 0;
 
-        if (debugger) {
-            VkPhysicalDeviceProperties props;
-            vkGetPhysicalDeviceProperties(dev, &props);
+        for (uint32_t i = 0; i < candidates.size; i++) {
+            VkPhysicalDevice dev = (VkPhysicalDevice) candidates.data[i];
 
-            TL_Note(debugger, "%s scored Thallium score of [%lu]", props.deviceName, cur_score);
-        }
+            carray_t cur_dev_exts;
+            VkPhysicalDeviceFeatures cur_dev_feats;
 
-        // best device so far
-        if (cur_score > min_score) {
-            min_score = cur_score;
-            best_physical_device = dev;
+            // score device
+            uint64_t cur_score = __ScorePhysicalDevice(dev, requirements, &cur_dev_exts, &cur_dev_feats, debugger);
 
-            // free old extensions array, we only do this after the first iteration as otherwise it won't have been initialised yet.
-            if (i > 0) {
-                carrayfree(out_extensions);
+            if (debugger) {
+                VkPhysicalDeviceProperties props;
+                vkGetPhysicalDeviceProperties(dev, &props);
+
+                TL_Note(debugger, "%s scored Thallium score of [%lu]", props.deviceName, cur_score);
             }
 
-            // store the extensions and features that can be enabled for logical devices interfacing this physical device
-            *out_extensions = cur_dev_exts;
-            *out_features = cur_dev_feats;
-        } else {
-            // this array can be discarded
-            carrayfree(&cur_dev_exts);
+            // best device so far
+            if (cur_score > min_score) {
+                min_score = cur_score;
+                ret = dev;
+
+                // free old extensions array, we only do this after the first iteration as otherwise it won't have been initialised yet.
+                if (i > 0) {
+                    carrayfree(out_extensions);
+                }
+
+                // store the extensions and features that can be enabled for logical devices interfacing this physical device
+                *out_extensions = cur_dev_exts;
+                *out_features = cur_dev_feats;
+            } else {
+                // this array can be discarded
+                carrayfree(&cur_dev_exts);
+            }
         }
     }
 
-    return best_physical_device;
+    return ret;
 }
