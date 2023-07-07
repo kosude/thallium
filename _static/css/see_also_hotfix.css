@@ -1,0 +1,22 @@
+/* Breathe's see-also boxes are WAY too big by default for some reason. This stylesheet aims to make them less prominent. */
+
+.admonition.seealso,
+.admonition.seealso .admonition-title {
+    background: none !important;
+}
+
+.admonition.seealso {
+    display: flex;
+
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.admonition.seealso .admonition-title {
+    margin: 0 !important;
+    padding: 3px 8px 0 0 !important;
+}
+
+.admonition.seealso .admonition-title::before {
+    display: none;
+}

@@ -32,3 +32,12 @@ Functions
 
 .. doxygenfunction:: TLVK_RendererSystemCreate
 .. doxygenfunction:: TLVK_RendererSystemDestroy
+
+
+*****
+
+
+Physical device selection
+-------------------------
+
+.. doxygenenum:: TLVK_PhysicalDeviceSelectionMode_t

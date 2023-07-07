@@ -7,6 +7,7 @@
     <title>Vulkan renderer systems - Thallium</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/see_also_hotfix.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/dark.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.png"/>
   <!--[if lt IE 9]>
@@ -36,7 +37,7 @@
             Thallium Documentation
           </a>
               <div class="version">
-                v0.0.0dev_b3c23f5 (2023-07-07)
+                v0.0.0dev_a1185e2 (2023-07-07)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -55,6 +56,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Vulkan renderer systems</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#physical-device-selection">Physical device selection</a></li>
 </ul>
 </li>
 </ul>
@@ -118,6 +120,15 @@
 <span id="_CPPv331TLVK_RendererSystemDescriptor_t"></span><span id="_CPPv231TLVK_RendererSystemDescriptor_t"></span><span id="TLVK_RendererSystemDescriptor_t"></span><span class="target" id="d6/d29/structTLVK__RendererSystemDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemDescriptor_t</span></span></span><a class="headerlink" href="#_CPPv431TLVK_RendererSystemDescriptor_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Descriptor struct to configure the creation of a Thallium renderer system for Vulkan. </p>
 <p>This descriptor structure provides options for the creation of Thallium renderer systems. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N31TLVK_RendererSystemDescriptor_t20physical_device_modeE">
+<span id="_CPPv3N31TLVK_RendererSystemDescriptor_t20physical_device_modeE"></span><span id="_CPPv2N31TLVK_RendererSystemDescriptor_t20physical_device_modeE"></span><span id="TLVK_RendererSystemDescriptor_t::physical_device_mode__TLVK_PhysicalDeviceSelectionMode_t"></span><span class="target" id="d6/d29/structTLVK__RendererSystemDescriptor__t_1a92244a81ec2ba7d78655bc0dc71a1d4f"></span><a class="reference internal" href="#_CPPv434TLVK_PhysicalDeviceSelectionMode_t" title="TLVK_PhysicalDeviceSelectionMode_t"><span class="n"><span class="pre">TLVK_PhysicalDeviceSelectionMode_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">physical_device_mode</span></span></span><a class="headerlink" href="#_CPPv4N31TLVK_RendererSystemDescriptor_t20physical_device_modeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A TLVK_PhysicalDeviceSelectionMode_t enum indicating the mode of selection for the Vulkan physical device used by the renderer system. </p>
+</dd></dl>
+
+</div>
 </dd></dl>
 
 </section>
@@ -174,6 +185,30 @@
 </dd></dl>
 
 </section>
+<hr class="docutils" />
+<section id="physical-device-selection">
+<h2>Physical device selection<a class="headerlink" href="#physical-device-selection" title="Permalink to this heading"></a></h2>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv434TLVK_PhysicalDeviceSelectionMode_t">
+<span id="_CPPv334TLVK_PhysicalDeviceSelectionMode_t"></span><span id="_CPPv234TLVK_PhysicalDeviceSelectionMode_t"></span><span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PhysicalDeviceSelectionMode_t</span></span></span><a class="headerlink" href="#_CPPv434TLVK_PhysicalDeviceSelectionMode_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enumeration containing modes of physical device selection in a Vulkan renderer system. </p>
+<p>This enumeration contains modes of physical device selection available to be used when creating a Vulkan renderer system. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N34TLVK_PhysicalDeviceSelectionMode_t43TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMALE">
+<span id="_CPPv3N34TLVK_PhysicalDeviceSelectionMode_t43TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMALE"></span><span id="_CPPv2N34TLVK_PhysicalDeviceSelectionMode_t43TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMALE"></span><span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624ac57aad3ec84ec3b03a1eae613cf49e30"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL</span></span></span><a class="headerlink" href="#_CPPv4N34TLVK_PhysicalDeviceSelectionMode_t43TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMALE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use the most <strong>optimal</strong> physical device for the renderer system, based on queue families, and available extensions, device features, memory size, device type, etc. This mode <strong>may</strong> result in more processing but will usually result in the best GPU being used. <strong>This is the default behaviour.</strong></p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N34TLVK_PhysicalDeviceSelectionMode_t41TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRSTE">
+<span id="_CPPv3N34TLVK_PhysicalDeviceSelectionMode_t41TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRSTE"></span><span id="_CPPv2N34TLVK_PhysicalDeviceSelectionMode_t41TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRSTE"></span><span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624a04df18f39fe5c868e9342d3f1af4d4cd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRST</span></span></span><a class="headerlink" href="#_CPPv4N34TLVK_PhysicalDeviceSelectionMode_t41TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRSTE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use the <strong>first</strong> possible physical device for the renderer system. This could result in a device that does not support the required Vulkan extensions or features being used, leading to some missing features. Queue families will still be validated. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -188,7 +223,7 @@
   </div>
 
   
-    v0.0.0dev_b3c23f5 (2023-07-07) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_a1185e2 (2023-07-07) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>
