@@ -22,11 +22,13 @@
  *
  * @param display Xlib `Display` connection to the X server (as a void ptr)
  * @param window Xlib `Window` handle (as an unsigned long)
+ * @param debugger NULL or a debugger for function debugging
  * @return Resulting window surface for use in Thallium functions.
  */
 TL_WindowSurface_t *TL_WindowSurfaceCreateXlib(
-    const void *const display,
-    const uint64_t window
+    void *const display,
+    const uint64_t window,
+    const TL_Debugger_t *const debugger
 );
 
 #ifdef __cplusplus

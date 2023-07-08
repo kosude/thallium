@@ -16,19 +16,18 @@ using namespace TLTests::Framework;
 Test &test = Test::GetInstance();
 
 Window window1(640, 480, "Hello Triangle");
+TL_Swapchain_t *swapchain1;
 
 int main() {
     test.AddRenderer<GraphicsAPI::Vulkan>();
     test.CreateRenderers();
 
-    // swapchains - temp
     TL_SwapchainDescriptor_t scdescr = {};
-    TL_Swapchain_t *swapchain = TL_SwapchainCreate(test.GetRenderers()[0], scdescr);
+    scdescr.window_surface = window1.GetSurface();
+    swapchain1 = TL_SwapchainCreate(test.GetRenderers()[0], scdescr);
 
-    TL_SwapchainDestroy(swapchain);
-
+    TL_SwapchainDestroy(swapchain1);
     test.Destroy();
-
     Window::TerminateAPI();
 
     return 0;

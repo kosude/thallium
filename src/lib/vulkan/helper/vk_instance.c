@@ -187,8 +187,9 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
             // metal surface extension
             __DEFINE_REQUIRED_EXTENSION(VK_EXT_METAL_SURFACE_EXTENSION_NAME);
 #       elif defined(_UNIX)
-            // unix surface extension (assume linux and X)
+            // unix surface extensions (assume linux)
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
+            __DEFINE_REQUIRED_EXTENSION(VK_KHR_XLIB_SURFACE_EXTENSION_NAME);
 #       endif
     }
 

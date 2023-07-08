@@ -32,6 +32,9 @@ typedef struct TL_Swapchain_t TL_Swapchain_t;
  * This structure describes a [swapchain object](@ref TL_Swapchain_t) to be created.
  */
 typedef struct TL_SwapchainDescriptor_t {
+    /// @brief A Thallium [window surface object](@ref TL_WindowSurface_t).
+    TL_WindowSurface_t *window_surface;
+
     /// @brief NULL or an optional descriptor for the API-specific swapchain system to be created within the swapchain. For example, to specify
     /// API-specific options to a Vulkan swapchain system, pass to this parameter a pointer to a @ref TLVK_SwapchainSystemDescriptor_t struct.
     void *swapchain_system_descriptor;

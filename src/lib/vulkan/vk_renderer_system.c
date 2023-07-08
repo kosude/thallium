@@ -89,7 +89,6 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(const TL_Renderer_t *const rend
 
     renderer_system->renderer = renderer;
     renderer_system->vk_context = (TLVK_ContextBlock_t *) ((char *) renderer->context->data + renderer->context->vulkan_offset);
-    renderer_system->features = renderer->features;
 
     renderer_system->vk_physical_device = __SelectRendererSystemPhysicalDevice(renderer_system, &descriptor, &renderer_system->device_extensions,
         &renderer_system->vk_device_features, debugger);

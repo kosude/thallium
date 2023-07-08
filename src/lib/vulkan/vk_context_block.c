@@ -45,15 +45,16 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL __DebugMessengerCallback(VkDebugUtilsMessa
     switch (type) {
         case VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT:
         default:
+            snprintf(type_str, 32, "[g] ");
             break;
         case VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT:
-            snprintf(type_str, 32, "[validate] ");
+            snprintf(type_str, 32, "[v] ");
             break;
         case VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT:
-            snprintf(type_str, 32, "[optimise] ");
+            snprintf(type_str, 32, "[o] ");
             break;
         case VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT:
-            snprintf(type_str, 32, "[addrbind] ");
+            snprintf(type_str, 32, "[a] ");
             break;
     }
 

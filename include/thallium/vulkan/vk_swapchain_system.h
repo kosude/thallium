@@ -12,8 +12,11 @@
     extern "C" {
 #endif // __cplusplus
 
+#include "thallium_decl/fwd.h"
 #include "thallium_decl/fwdvk.h"
 #include "thallium/platform.h"
+
+typedef struct VkSurfaceKHR_T *VkSurfaceKHR;
 
 /**
  * @brief A renderer system to hold Vulkan-specific swapchain data.
@@ -31,7 +34,10 @@ typedef struct TLVK_SwapchainSystem_t TLVK_SwapchainSystem_t;
  * This descriptor structure provides options for the creation of Vulkan swapchains via Thallium Vulkan swapchain systems.
  */
 typedef struct TLVK_SwapchainSystemDescriptor_t {
-    uint32_t placeholder;
+    /// @brief NULL or a Vulkan surface to use in swapchain creation.
+    /// If this is NULL, a surface will be created based on the specified Thallium **window surface** (i.e. platform window handles). Otherwise, that
+    /// window will be disregarded and this surface will be directly used instead.
+    VkSurfaceKHR vk_surface;
 } TLVK_SwapchainSystemDescriptor_t;
 
 /**
@@ -44,8 +50,12 @@ typedef struct TLVK_SwapchainSystemDescriptor_t {
  * @note The parent renderer of the given Thallium renderer system `renderer_system` must have been created with the `presentation`
  * [feature](@ref TL_RendererFeatures_t).
  *
+ * @note The `window_surface` parameter can be NULL **only if** a Vulkan surface is directly supplied to `descriptor.vk_surface` - otherwise, this
+ * parameter **must** be a valid Thallium window surface object, in which case a new Vulkan surface will be created and stored by the swapchain.
+ *
  * @param renderer_system a valid Thallium Vulkan renderer system object
  * @param descriptor a Thallium Vulkan swapchain system descriptor
+ * @param window_surface a Thallium window surface object <i>(can conditionally be NULL - see note above)</i>
  * @return The new swapchain system
  *
  * @sa @ref TLVK_SwapchainSystem_t
@@ -54,7 +64,8 @@ typedef struct TLVK_SwapchainSystemDescriptor_t {
  */
 TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(
     const TLVK_RendererSystem_t *const renderer_system,
-    const TLVK_SwapchainSystemDescriptor_t descriptor
+    const TLVK_SwapchainSystemDescriptor_t descriptor,
+    const TL_WindowSurface_t *const window_surface
 );
 
 /**

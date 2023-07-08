@@ -29,12 +29,12 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
     }
 
     TL_Swapchain_t *swapchain = malloc(sizeof(TL_Swapchain_t));
-    if (!renderer) {
+    if (!swapchain) {
         TL_Fatal(debugger, "MALLOC fault in call to TL_SwapchainCreate");
         return NULL;
     }
 
-    TL_Log(renderer->debugger, "Allocated swapchain at %p", swapchain);
+    TL_Log(debugger, "Allocated swapchain at %p", swapchain);
 
     swapchain->renderer = renderer;
 
@@ -52,10 +52,10 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
                 } else {
                     // default swapchain system descriptor configuration (used if no user-given descriptor was specified)...
 
-                    ssdescr.placeholder = 5;
+                    ssdescr.vk_surface = NULL; // create a surface for descriptor.window_surface (passed to TLVK_SwapchainSystemCreate call).
                 }
 
-                swapchain->swapchain_system = (void *) TLVK_SwapchainSystemCreate(renderer->renderer_system, ssdescr);
+                swapchain->swapchain_system = (void *) TLVK_SwapchainSystemCreate(renderer->renderer_system, ssdescr, descriptor.window_surface);
                 if (!swapchain->swapchain_system) {
                     TL_Error(debugger, "Failed to create Vulkan swapchain system for new swapchain at %p", swapchain);
                     return NULL;
@@ -78,6 +78,19 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
 void TL_SwapchainDestroy(TL_Swapchain_t *const swapchain) {
     if (!swapchain) {
         return;
+    }
+
+    switch (swapchain->renderer->api) {
+        // destroy Vulkan swapchain system
+        case TL_RENDERER_API_VULKAN_BIT:
+#           if defined(_THALLIUM_VULKAN_INCL)
+                TLVK_SwapchainSystemDestroy(swapchain->swapchain_system);
+#           endif
+            break;
+
+        case TL_RENDERER_API_NULL_BIT:
+        default:
+            break;
     }
 
     free(swapchain);

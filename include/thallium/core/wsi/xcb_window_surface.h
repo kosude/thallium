@@ -22,11 +22,13 @@
  *
  * @param connection XCB `xcb_connection_t` handle (as a void ptr)
  * @param window XCB `xcb_window_t` handle (as an unsigned int)
+ * @param debugger NULL or a debugger for function debugging
  * @return Resulting window surface for use in Thallium functions.
  */
 TL_WindowSurface_t *TL_WindowSurfaceCreateXCB(
-    const void *const connection,
-    const uint32_t window
+    void *const connection,
+    const uint32_t window,
+    const TL_Debugger_t *const debugger
 );
 
 #ifdef __cplusplus

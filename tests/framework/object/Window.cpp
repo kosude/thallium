@@ -10,6 +10,13 @@
 #include "../Utils.hpp"
 
 #include "glfw/include/GLFW/glfw3.h"
+
+#define GLFW_EXPOSE_NATIVE_X11
+#include "glfw/include/GLFW/glfw3native.h"
+
+#include <xcb/xcb.h>
+#include <X11/Xlib-xcb.h>
+
 #include <iostream>
 
 namespace TLTests::Framework {
@@ -34,6 +41,13 @@ namespace TLTests::Framework {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
         _handle = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+
+        xcb_connection_t *con = XGetXCBConnection(glfwGetX11Display());
+        xcb_window_t win = glfwGetX11Window(_handle);
+
+        // _surface = TL_WindowSurfaceCreateXCB(con, win, nullptr);
+
+        _surface = TL_WindowSurfaceCreateXlib(glfwGetX11Display(), glfwGetX11Window(_handle), nullptr);
     }
 
     void Window::Destroy() {

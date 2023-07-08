@@ -30,9 +30,6 @@ typedef struct TLVK_RendererSystem_t {
     const TL_Renderer_t *renderer;
     /// @brief Vulkan context data block pointer.
     const TLVK_ContextBlock_t *vk_context;
-    /// @brief Stack copy of renderer features in `renderer` (used for less derefs)
-    // TODO this might be unnecessary
-    TL_RendererFeatures_t features;
 
     /// @brief Vulkan physical device object used by the renderer system.
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html

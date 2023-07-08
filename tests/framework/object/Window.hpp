@@ -11,6 +11,8 @@
 #include <cstdint>
 #include <iosfwd>
 
+#include "thallium.h"
+
 typedef struct GLFWwindow GLFWwindow;
 
 namespace TLTests::Framework {
@@ -18,11 +20,14 @@ namespace TLTests::Framework {
     private:
         GLFWwindow *_handle;
 
+        TL_WindowSurface_t *_surface;
+
         inline static bool _init; // GLFW init flag
         void _InitGLFW();
 
     public:
         inline GLFWwindow *GetHandle() const { return _handle; }
+        inline TL_WindowSurface_t *GetSurface() const { return _surface; }
 
         Window(
             const uint32_t &width,

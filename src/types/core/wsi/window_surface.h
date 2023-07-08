@@ -28,7 +28,12 @@ typedef enum TL_WSI_API_t {
 
 typedef struct TL_WindowSurface_t {
     /// @brief The window system used by the window surface
+    /// This enum is helpful to know how to interpret the data stored by this struct.
     TL_WSI_API_t wsi;
+
+    /// @brief The window platform data - i.e. the native handle(s) for the window.
+    /// E.g., this can point to a struct containing handles of types xcb_connection_t and xcb_window_t.
+    void *platform_data;
 } TL_WindowSurface_t;
 
 #ifdef __cplusplus

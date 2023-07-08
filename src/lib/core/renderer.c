@@ -229,13 +229,11 @@ void TL_RendererDestroy(TL_Renderer_t *const renderer) {
     }
 
     switch (renderer->api) {
-
         // destroy Vulkan renderer system
         case TL_RENDERER_API_VULKAN_BIT:
 #           if defined(_THALLIUM_VULKAN_INCL)
                 TLVK_RendererSystemDestroy(renderer->renderer_system);
 #           endif
-
             break;
 
         case TL_RENDERER_API_NULL_BIT:

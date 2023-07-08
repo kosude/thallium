@@ -6,9 +6,33 @@
  */
 
 #include "thallium.h"
+#include "surface_platform_data.h"
 
-#include <xcb/xcb.h>
+#include "types/core/wsi/window_surface.h"
+#include "utils/utils.h"
 
-TL_WindowSurface_t *TL_WindowSurfaceCreateXCB(const void *const connection, const uint32_t window) {
-    return NULL;
+#include <stdlib.h>
+
+TL_WindowSurface_t *TL_WindowSurfaceCreateXCB(void *const connection, const uint32_t window, const TL_Debugger_t *const debugger) {
+    TL_WindowSurface_t *surface = malloc(sizeof(TL_WindowSurface_t));
+    if (!surface) {
+        TL_Fatal(debugger, "MALLOC fault in call to TL_WindowSurfaceCreateXCB");
+        return NULL;
+    }
+
+    surface->wsi = TL_WSI_API_XCB;
+
+    // allocate platform data to hold XCB handles
+    TL_WindowSurfacePlatformDataXCB_t *platform_data = malloc(sizeof(TL_WindowSurfacePlatformDataXCB_t));
+    if (!platform_data) {
+        TL_Fatal(debugger, "MALLOC fault in call to TL_WindowSurfaceCreateXCB");
+        return NULL;
+    }
+
+    platform_data->window = (xcb_window_t) window;
+    platform_data->connection = (xcb_connection_t *) connection;
+
+    surface->platform_data = (void *) platform_data;
+
+    return surface;
 }
