@@ -7,6 +7,7 @@ Objects and functions defined within the core Thallium library, exposed by ``tha
     :maxdepth: 1
     :caption: Contents
 
+    wsi
     context
     debuggers
     renderers

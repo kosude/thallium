@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WSI and Window Surfaces - Thallium</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/see_also_hotfix.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Context Object" href="context.html" />
+    <link rel="prev" title="Core API" href="_core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Thallium Documentation
+          </a>
+              <div class="version">
+                v0.0.0dev_849fb8e (2023-07-08)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">WSI and Window Surfaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debuggers.html">Debuggers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html">Renderers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="swapchains.html">Swapchains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">Version Representation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vulkan/_vulkan.html">Vulkan Module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Thallium Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../_api.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="_core.html">Core API</a></li>
+      <li class="breadcrumb-item active">WSI and Window Surfaces</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pages/api/core/wsi.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wsi-and-window-surfaces">
+<h1>WSI and Window Surfaces<a class="headerlink" href="#wsi-and-window-surfaces" title="Permalink to this heading"></a></h1>
+<p>This section describes the Thallium WSI system, including the window surface structure.</p>
+<hr class="docutils" />
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
+<section id="objects">
+<h3>Objects<a class="headerlink" href="#objects" title="Permalink to this heading"></a></h3>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv418TL_WindowSurface_t">
+<span id="_CPPv318TL_WindowSurface_t"></span><span id="_CPPv218TL_WindowSurface_t"></span><span id="TL_WindowSurface_t"></span><span class="target" id="db/d25/window__surface_8h_1aa990e83efcd8d08b05782e49667068b4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv418TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></span><a class="headerlink" href="#_CPPv418TL_WindowSurface_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A portable Thallium structure to wrap around a platform-dependent, API-specific representation of a window. </p>
+<p>This structure wraps around a platform-dependent, API-specific representation of a window. </p>
+</dd></dl>
+
+</section>
+</section>
+<hr class="docutils" />
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<section id="for-x11-systems-via-xcb">
+<h3>For X11 systems - via XCB<a class="headerlink" href="#for-x11-systems-via-xcb" title="Permalink to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Definitions for these functions is compiled <strong>only if</strong> the <code class="docutils literal notranslate"><span class="pre">-DTHALLIUM_WSI_XCB=ON</span></code> CMake flag was present at build. This is the
+<strong>default behaviour</strong> on <strong>Unix</strong> <em>(not Apple)</em> systems.</p>
+</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425TL_WindowSurfaceCreateXCBPCvK8uint32_tPCK13TL_Debugger_t">
+<span id="_CPPv325TL_WindowSurfaceCreateXCBPCvK8uint32_tPCK13TL_Debugger_t"></span><span id="_CPPv225TL_WindowSurfaceCreateXCBPCvK8uint32_tPCK13TL_Debugger_t"></span><span id="TL_WindowSurfaceCreateXCB__voidPC.uint32_tC.TL_Debugger_tCPC"></span><span class="target" id="d6/de6/xcb__window__surface_8h_1ac339017200a757526964b39837a8e6d0"></span><a class="reference internal" href="#_CPPv418TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateXCB</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">connection</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425TL_WindowSurfaceCreateXCBPCvK8uint32_tPCK13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Create a Thallium window surface from an XCB window and connection. </p>
+<p>This function creates a window surface for Thallium functions, using an XCB window handle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> – XCB <code class="docutils literal notranslate"><span class="pre">xcb_connection_t</span></code> handle (as a void ptr) </p></li>
+<li><p><strong>window</strong> – XCB <code class="docutils literal notranslate"><span class="pre">xcb_window_t</span></code> handle (as an unsigned int) </p></li>
+<li><p><strong>debugger</strong> – NULL or a debugger for function debugging </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resulting window surface for use in Thallium functions. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="for-x11-systems-via-xlib">
+<h3>For X11 systems - via Xlib<a class="headerlink" href="#for-x11-systems-via-xlib" title="Permalink to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Definitions for these functions is compiled <strong>only if</strong> the <code class="docutils literal notranslate"><span class="pre">-DTHALLIUM_WSI_XLIB=ON</span></code> CMake flag was present at build. This is the
+<strong>default behaviour</strong> on <strong>Unix</strong> <em>(not Apple)</em> systems.</p>
+</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426TL_WindowSurfaceCreateXlibPCvK8uint64_tPCK13TL_Debugger_t">
+<span id="_CPPv326TL_WindowSurfaceCreateXlibPCvK8uint64_tPCK13TL_Debugger_t"></span><span id="_CPPv226TL_WindowSurfaceCreateXlibPCvK8uint64_tPCK13TL_Debugger_t"></span><span id="TL_WindowSurfaceCreateXlib__voidPC.uint64_tC.TL_Debugger_tCPC"></span><span class="target" id="d9/de2/xlib__window__surface_8h_1a3d55d9af3b60255f53f1eed83b63c59b"></span><a class="reference internal" href="#_CPPv418TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateXlib</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">display</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426TL_WindowSurfaceCreateXlibPCvK8uint64_tPCK13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Create a Thallium window surface from an Xlib (X11) display and window handle. </p>
+<p>This function creates a window surface for Thallium functions, using an X11/Xlib window handle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>display</strong> – Xlib <code class="docutils literal notranslate"><span class="pre">Display</span></code> connection to the X server (as a void ptr) </p></li>
+<li><p><strong>window</strong> – Xlib <code class="docutils literal notranslate"><span class="pre">Window</span></code> handle (as an unsigned long) </p></li>
+<li><p><strong>debugger</strong> – NULL or a debugger for function debugging </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resulting window surface for use in Thallium functions. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jack Bennett.</p>
+  </div>
+
+  
+    v0.0.0dev_849fb8e (2023-07-08) » <a href="https://github.com/kosude/thallium">upstream url</a>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
