@@ -28,6 +28,8 @@ typedef struct TL_SwapchainDescriptor_t TL_SwapchainDescriptor_t;
 
 typedef struct TL_Version_t TL_Version_t;
 
+typedef struct TL_WindowSurface_t TL_WindowSurface_t;
+
 #ifdef __cplusplus
     }
 #endif // __cplusplus

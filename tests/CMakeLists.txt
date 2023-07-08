@@ -1,3 +1,4 @@
+# compile dependencies
 set(THALLIUM_TESTS_DEPS_DIR "${CMAKE_CURRENT_LIST_DIR}/deps")
 set(THALLIUM_TEST_LINKS)
 

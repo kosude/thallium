@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 project("thallium" C CXX)
 
@@ -25,12 +25,21 @@ endif()
 
 if (WIN32)
     set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "_WIN32")
-endif()
-if (APPLE)
+elseif(APPLE)
     set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "_APPLE")
-endif()
-if (UNIX)
+elseif(UNIX)
     set(THALLIUM_LIBRARY_DEFS ${THALLIUM_LIBRARY_DEFS} "_UNIX")
+
+    option(THALLIUM_WSI_XCB "Build XCB WSI support for Thallium window surfaces" ON)
+    option(THALLIUM_WSI_XLIB "Build Xlib WSI support for Thallium window surfaces" ON)
+endif()
+
+# WSI macros
+if (THALLIUM_WSI_XCB)
+    set(THALLIUM_PUBLIC_LIBRARY_DEFS ${THALLIUM_PUBLIC_LIBRARY_DEFS} "_THALLIUM_WSI_XCB")
+endif()
+if (THALLIUM_WSI_XLIB)
+    set(THALLIUM_PUBLIC_LIBRARY_DEFS ${THALLIUM_PUBLIC_LIBRARY_DEFS} "_THALLIUM_WSI_XLIB")
 endif()
 
 # treating warnings as errors may be problematic when compiling for prod use.
