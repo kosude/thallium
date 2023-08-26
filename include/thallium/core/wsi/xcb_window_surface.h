@@ -20,7 +20,7 @@
  *
  * This function creates a window surface for Thallium functions, using an XCB window handle.
  *
- * @param connection XCB `xcb_connection_t` handle (as a void ptr)
+ * @param connection XCB `xcb_connection_t *` handle (as a void ptr)
  * @param window XCB `xcb_window_t` handle (as an unsigned int)
  * @param debugger NULL or a debugger for function debugging
  * @return Resulting window surface for use in Thallium functions.

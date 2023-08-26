@@ -72,7 +72,7 @@ typedef struct TL_RendererDescriptor_t {
  *
  * The resultant array of renderers are allocated and output into `renderers`.
  *
- * The `count` parameter must be greater than 1. Ensure that both arrays are the same length. The index of each descriptor in the `descriptors` array
+ * The `count` parameter must be 1 or greater. Ensure that both arrays are the same length. The index of each descriptor in the `descriptors` array
  * corresponds to the index of each renderer pointer in the `renderers` array.
  *
  * Neither `descriptors` or `renderers` can be NULL!

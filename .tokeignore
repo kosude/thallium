@@ -5,6 +5,3 @@ utils/
 
 *.md
 *.svg
-
-CMakeLists.txt
-*.cmake

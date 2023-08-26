@@ -27,11 +27,6 @@ typedef struct TLVK_SwapchainSystem_t {
     /// @brief Vulkan window surface object:
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html
     VkSurfaceKHR vk_surface;
-
-    /// @brief Graphics queue handle, retrieved from the renderer system
-    VkQueue vk_graphics_queue;
-    /// @brief Present queue handle, retrieved from the renderer system
-    VkQueue vk_present_queue;
 } TLVK_SwapchainSystem_t;
 
 #ifdef __cplusplus

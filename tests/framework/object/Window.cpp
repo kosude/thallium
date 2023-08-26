@@ -45,9 +45,8 @@ namespace TLTests::Framework {
         xcb_connection_t *con = XGetXCBConnection(glfwGetX11Display());
         xcb_window_t win = glfwGetX11Window(_handle);
 
-        // _surface = TL_WindowSurfaceCreateXCB(con, win, nullptr);
-
-        _surface = TL_WindowSurfaceCreateXlib(glfwGetX11Display(), glfwGetX11Window(_handle), nullptr);
+        _surface = TL_WindowSurfaceCreateXCB(con, win, nullptr);
+        // _surface = TL_WindowSurfaceCreateXlib(glfwGetX11Display(), glfwGetX11Window(_handle), nullptr);
     }
 
     void Window::Destroy() {

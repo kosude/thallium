@@ -20,7 +20,7 @@
  *
  * This function creates a window surface for Thallium functions, using an X11/Xlib window handle.
  *
- * @param display Xlib `Display` connection to the X server (as a void ptr)
+ * @param display Xlib `Display *` connection to the X server (as a void ptr)
  * @param window Xlib `Window` handle (as an unsigned long)
  * @param debugger NULL or a debugger for function debugging
  * @return Resulting window surface for use in Thallium functions.

@@ -34,12 +34,18 @@ elseif(UNIX)
     option(THALLIUM_WSI_XLIB "Build Xlib WSI support for Thallium window surfaces" ON)
 endif()
 
-# WSI macros
+set(THALLIUM_SUMMARY_WSI_LIST)
+
+# WSI macros: XCB
 if (THALLIUM_WSI_XCB)
     set(THALLIUM_PUBLIC_LIBRARY_DEFS ${THALLIUM_PUBLIC_LIBRARY_DEFS} "_THALLIUM_WSI_XCB")
+    set(THALLIUM_SUMMARY_WSI_LIST ${THALLIUM_SUMMARY_WSI_LIST} "xcb")
 endif()
+
+# WSI macros: XLib
 if (THALLIUM_WSI_XLIB)
     set(THALLIUM_PUBLIC_LIBRARY_DEFS ${THALLIUM_PUBLIC_LIBRARY_DEFS} "_THALLIUM_WSI_XLIB")
+    set(THALLIUM_SUMMARY_WSI_LIST ${THALLIUM_SUMMARY_WSI_LIST} "Xlib")
 endif()
 
 # treating warnings as errors may be problematic when compiling for prod use.
@@ -118,6 +124,7 @@ message("")
 message(STATUS "Target platform\t=>\t${THALLIUM_SUMMARY_TARGET_PLATFORM}")
 message(STATUS "Target architecture\t=>\t${THALLIUM_SUMMARY_TARGET_ARCH}")
 message(STATUS "Library type\t\t=>\t${THALLIUM_SUMMARY_LIB_TYPE}")
+message(STATUS "WSI systems\t\t=>\t${THALLIUM_SUMMARY_WSI_LIST}")
 
 message(STATUS "Configuration\t=>\t${CMAKE_BUILD_TYPE}")
 message(STATUS "Compiler\t\t=>\t${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER_VERSION} @ ${CMAKE_C_COMPILER}")
