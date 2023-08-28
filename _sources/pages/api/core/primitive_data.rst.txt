@@ -1,4 +1,4 @@
-Primitive data objects
+Primitive Data Objects
 ======================
 
 This section specifies primitive struct definitions used for general data representation.
