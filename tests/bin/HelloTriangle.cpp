@@ -22,11 +22,10 @@ int main() {
     test.AddRenderer<GraphicsAPI::Vulkan>();
     test.CreateRenderers();
 
-    TL_SwapchainDescriptor_t scdescr = {};
-    scdescr.window_surface = window1.GetSurface();
-    swapchain1 = TL_SwapchainCreate(test.GetRenderers()[0], scdescr);
+    swapchain1 = window1.CreateSwapchain(test.GetRenderers()[0]);
 
     TL_SwapchainDestroy(swapchain1);
+
     test.Destroy();
     Window::TerminateAPI();
 

@@ -15,7 +15,7 @@
 #include "lib/core/context_api.h"
 #include "utils/utils.h"
 
-#include "helper/vk_instance.h"
+#include "vk_instance.h"
 
 #include <volk/volk.h>
 

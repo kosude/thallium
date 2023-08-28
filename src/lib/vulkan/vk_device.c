@@ -60,8 +60,8 @@
 }
 
 // out_queue_score will be higher if, say, the transfer queue is independent/dedicated
-static TLVK_PhysicalDeviceQueueFamilyIndices __GetDeviceQueueFamilyIndices(const VkPhysicalDevice physical_device, uint64_t *out_queue_score) {
-    TLVK_PhysicalDeviceQueueFamilyIndices indices;
+static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetDeviceQueueFamilyIndices(const VkPhysicalDevice physical_device, uint64_t *out_queue_score) {
+    TLVK_PhysicalDeviceQueueFamilyIndices_t indices;
 
     // -1 indicates not found
     indices.graphics = -1;
@@ -124,8 +124,8 @@ static TLVK_PhysicalDeviceQueueFamilyIndices __GetDeviceQueueFamilyIndices(const
 
 // Get the queue family types required to support the given features
 // Members of the returned __QueueFamilyIndices_t struct will be set to 1 if required, 0 if not.
-static TLVK_PhysicalDeviceQueueFamilyIndices __GetRequiredQueueFamilies(const TL_RendererFeatures_t requirements) {
-    TLVK_PhysicalDeviceQueueFamilyIndices required = { false };
+static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetRequiredQueueFamilies(const TL_RendererFeatures_t requirements) {
+    TLVK_PhysicalDeviceQueueFamilyIndices_t required = { false };
 
     __DEFINE_REQUIRED_QUEUE_FAMILY(graphics); // always require graphics queue
 
@@ -382,7 +382,7 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
 }
 
 VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const carray_t extensions, const VkPhysicalDeviceFeatures features,
-    const TLVK_PhysicalDeviceQueueFamilyIndices queue_families, TLVK_LogicalDeviceQueues_t *const out_queues, const TL_Debugger_t *const debugger)
+    const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families, TLVK_LogicalDeviceQueues_t *const out_queues, const TL_Debugger_t *const debugger)
 {
     if (!out_queues) {
         return VK_NULL_HANDLE;
@@ -489,8 +489,8 @@ bool TLVK_PhysicalDeviceCheckCandidacy(const VkPhysicalDevice physical_device, c
     vkGetPhysicalDeviceProperties(physical_device, &props);
 
     // get available and required queue families
-    TLVK_PhysicalDeviceQueueFamilyIndices required_fam_flags = __GetRequiredQueueFamilies(requirements);
-    TLVK_PhysicalDeviceQueueFamilyIndices available_fams = __GetDeviceQueueFamilyIndices(physical_device, NULL);
+    TLVK_PhysicalDeviceQueueFamilyIndices_t required_fam_flags = __GetRequiredQueueFamilies(requirements);
+    TLVK_PhysicalDeviceQueueFamilyIndices_t available_fams = __GetDeviceQueueFamilyIndices(physical_device, NULL);
 
     // validate queue families...
     __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(graphics);
@@ -501,18 +501,18 @@ bool TLVK_PhysicalDeviceCheckCandidacy(const VkPhysicalDevice physical_device, c
     return true;
 }
 
-TLVK_PhysicalDeviceQueueFamilyIndices TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(const VkPhysicalDevice physical_device,
+TLVK_PhysicalDeviceQueueFamilyIndices_t TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(const VkPhysicalDevice physical_device,
     const TL_RendererFeatures_t requirements)
 {
     VkPhysicalDeviceProperties props;
     vkGetPhysicalDeviceProperties(physical_device, &props);
 
     // get available and required queue families
-    TLVK_PhysicalDeviceQueueFamilyIndices required_fam_flags = __GetRequiredQueueFamilies(requirements);
-    TLVK_PhysicalDeviceQueueFamilyIndices available_fams = __GetDeviceQueueFamilyIndices(physical_device, NULL);
+    TLVK_PhysicalDeviceQueueFamilyIndices_t required_fam_flags = __GetRequiredQueueFamilies(requirements);
+    TLVK_PhysicalDeviceQueueFamilyIndices_t available_fams = __GetDeviceQueueFamilyIndices(physical_device, NULL);
 
     // when returning family indices to use, -1 is used to indicate that no queues need to be created from a certain queue family.
-    return (TLVK_PhysicalDeviceQueueFamilyIndices) {
+    return (TLVK_PhysicalDeviceQueueFamilyIndices_t) {
         (required_fam_flags.graphics) ? available_fams.graphics : -1,
         (required_fam_flags.compute ) ? available_fams.compute  : -1,
         (required_fam_flags.transfer) ? available_fams.transfer : -1,

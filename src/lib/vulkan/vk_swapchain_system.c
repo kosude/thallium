@@ -7,6 +7,8 @@
 
 #include "thallium_vulkan.h"
 
+#include "thallium/core/extent.h"
+
 #include "utils/utils.h"
 
 #include "types/core/renderer.h"
@@ -81,9 +83,111 @@ static VkSurfaceKHR __CreateVkSurface(const VkInstance instance, const TL_Window
     return surface;
 }
 
-TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *const renderer_system,
+/**
+ * @brief A struct containing information about what swapchains from a certain device can support.
+ *
+ * This struct contains info about what swapchains from a certain VkPhysicalDevice can support.
+ */
+typedef struct TLVK_SwapchainSupportInfo_t {
+    /// @brief Basic surface capabilities supported - min/max images in swapchain, min/max size of images, etc
+    VkSurfaceCapabilitiesKHR caps;
+
+    /// @brief Supported surface formats (pixel format, colour space)
+    VkSurfaceFormatKHR *formats;
+    /// @brief Amount of elements in array `formats`
+    uint32_t format_count;
+
+    /// @brief Available presentation modes (fifo, mailbox, etc)
+    VkPresentModeKHR *present_modes;
+    /// @brief Amount of elements in array `present_modes`
+    uint32_t present_mode_count;
+} TLVK_SwapchainSupportInfo_t;
+
+static TLVK_SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDevice physical_device, const VkSurfaceKHR surface) {
+    TLVK_SwapchainSupportInfo_t details;
+
+    // get surface capabilities
+    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device, surface, &details.caps);
+
+    // get supported surface formats
+    vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, &details.format_count, NULL);
+    if (details.format_count > 0) {
+        details.formats = malloc(sizeof(VkSurfaceFormatKHR) * details.format_count);
+        vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, &details.format_count, details.formats);
+    }
+
+    // get supported presentation modes
+    vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, &details.present_mode_count, NULL);
+    if (details.format_count > 0) {
+        details.present_modes = malloc(sizeof(VkPresentModeKHR) * details.present_mode_count);
+        vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, &details.present_mode_count, details.present_modes);
+    }
+
+    return details;
+}
+
+static bool __ValidateSwapchainSupportInfo(const TLVK_SwapchainSupportInfo_t details, const TL_Debugger_t *const debugger)
+{
+    bool ret = (details.format_count > 0) && (details.present_mode_count > 0);
+
+    if (!ret) {
+        TL_Warn(debugger, "Swapchain support not valid (__ValidateSwapchainSupportInfo)");
+    }
+
+    return ret;
+}
+
+// select most optimal available format for the swapchain to use, from the candidates specified.
+// TODO: provide option to use specific surface format via system descriptor.
+static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *const formats, const uint32_t format_count) {
+    for (uint32_t i = 0; i < format_count; i++) {
+        // ideally we use sRGB colour space with a BGRA which is a common format.
+        if (formats[i].format == VK_FORMAT_B8G8R8A8_SRGB && formats[i].colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
+            return formats[i];
+        }
+    }
+
+    // fallback
+    return formats[0];
+}
+
+// select best presentation mode for the swapchain to use from the candidates specified.
+// TODO: provide option to use specific present mode via system descriptor.
+static VkPresentModeKHR __PickSwapPresentMode(const VkPresentModeKHR *const modes, const uint32_t mode_count) {
+    for (uint32_t i = 0; i < mode_count; i++) {
+        // use mailbox if available
+        if (modes[i] == VK_PRESENT_MODE_MAILBOX_KHR) {
+            return modes[i];
+        }
+    }
+
+    // the Specification guarantees FIFO (vsync) to be available
+    return VK_PRESENT_MODE_FIFO_KHR;
+}
+
+// `width` and `height` are clamped to min/max extents as specified in `caps`.
+static VkExtent2D __PickSwapExtent(const VkSurfaceCapabilitiesKHR caps, const uint32_t width, const uint32_t height) {
+    // if current extent width/height is *not* set to uint32_max by the wm, then we match the extent to the window size
+    if (caps.currentExtent.width != UINT32_MAX) {
+        return caps.currentExtent;
+    }
+
+    // clamp width
+    uint32_t w = (width < caps.minImageExtent.width) ? caps.minImageExtent.width : width;
+    w = (w > caps.maxImageExtent.width) ? caps.maxImageExtent.width : w;
+
+    // clamp height
+    uint32_t h = (height < caps.minImageExtent.height) ? caps.minImageExtent.height : height;
+    h = (h > caps.maxImageExtent.height) ? caps.maxImageExtent.height : h;
+
+    return (VkExtent2D) { w, h };
+}
+
+TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *const renderer_system, const TL_Extent2D_t resolution,
     const TLVK_SwapchainSystemDescriptor_t descriptor, const TL_WindowSurface_t *const window_surface)
 {
+    // note that we assume the renderer has the presentation feature enabled because this is checked in TL_SwapchainCreate (abstraction layer above)
+
     if (!renderer_system) {
         return NULL;
     }
@@ -114,7 +218,6 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
         // if caller directly passed an existing Vulkan surface, we use that
         surface = descriptor.vk_surface;
     } else {
-
         // if no surface was directly passed, we create a new one for the window (passed via Thallium window surface `window_surface`)
         surface = __CreateVkSurface(swapchain_system->vk_instance, window_surface, debugger);
         if (surface == VK_NULL_HANDLE) {
@@ -125,7 +228,72 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
 
     swapchain_system->vk_surface = surface;
 
-    // TODO create swapchain (add VkSwapchainKHR to TLVK_SwapchainSystem_t)
+    TLVK_SwapchainSupportInfo_t support_info = __GetSwapchainSupportInfo(swapchain_system->renderer_system->vk_physical_device, surface);
+
+    // get best configuration as allowed by support_info
+    VkSurfaceFormatKHR surface_format = __PickSwapSurfaceFormat(support_info.formats, support_info.format_count);
+    VkPresentModeKHR present_mode = __PickSwapPresentMode(support_info.present_modes, support_info.present_mode_count);
+    VkExtent2D extent = __PickSwapExtent(support_info.caps, resolution.width, resolution.height);
+
+    VkSwapchainCreateInfoKHR create_info;
+    create_info.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
+    create_info.pNext = NULL;
+    create_info.flags = 0;
+
+    create_info.surface = surface;
+    create_info.minImageCount = support_info.caps.minImageCount + 1;
+    create_info.imageFormat = surface_format.format;
+    create_info.imageColorSpace = surface_format.colorSpace;
+    create_info.imageExtent = extent;
+    create_info.imageArrayLayers = 1;
+    create_info.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
+
+    // queue families which images may be shared across (if the indices are different)
+    int32_t graphicsfam = renderer_system->vk_queues.graphics_family;
+    int32_t presentfam = renderer_system->vk_queues.present_family;
+
+    if (graphicsfam != presentfam) {
+        // if the queue families are different then allow sharing between them
+        // (as the images need to be accessed for both drawing and presentation)
+        create_info.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
+        create_info.queueFamilyIndexCount = 2;
+        create_info.pQueueFamilyIndices = (uint32_t[]) { graphicsfam, presentfam };
+    } else {
+        // if the queue families are the same then specify exclusive image ownership
+        // (as drawing and presentation will therefore occur within the same family)
+        create_info.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
+        create_info.queueFamilyIndexCount = 0;
+        create_info.pQueueFamilyIndices = NULL;
+    }
+
+    create_info.preTransform = support_info.caps.currentTransform; // no image transformation
+
+    // don't blend with other windows in the window system
+    create_info.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
+
+    create_info.presentMode = present_mode;
+    create_info.clipped = VK_TRUE;
+
+    create_info.oldSwapchain = VK_NULL_HANDLE; // TODO recreating swapchain
+
+    // create swapchain into system
+    if (vkCreateSwapchainKHR(renderer_system->vk_logical_device, &create_info, NULL, &swapchain_system->vk_swapchain)) {
+        TL_Error(debugger, "Failed to create Vulkan swapchain object in swapchain system %p", swapchain_system);
+
+        free(swapchain_system);
+        return NULL;
+    }
+
+    if (debugger) {
+        VkPhysicalDeviceProperties props;
+        vkGetPhysicalDeviceProperties(renderer_system->vk_physical_device, &props);
+
+        TL_Log(debugger, "Created Vulkan swapchain object at %p in Thallium Vulkan swapchain system %p", swapchain_system->vk_swapchain,
+            swapchain_system);
+
+        TL_Log(debugger, "  For use by physical device \"%s\"", props.deviceName);
+        TL_Log(debugger, "  With extent resolution %dx%d", extent.width, extent.height);
+    }
 
     return swapchain_system;
 }
@@ -135,6 +303,7 @@ void TLVK_SwapchainSystemDestroy(TLVK_SwapchainSystem_t *const swapchain_system)
         return;
     }
 
+    vkDestroySwapchainKHR(swapchain_system->renderer_system->vk_logical_device, swapchain_system->vk_swapchain, NULL);
     vkDestroySurfaceKHR(swapchain_system->vk_instance, swapchain_system->vk_surface, NULL);
 
     free(swapchain_system);

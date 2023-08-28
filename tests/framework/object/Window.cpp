@@ -56,4 +56,13 @@ namespace TLTests::Framework {
     void Window::TerminateAPI() {
         glfwTerminate();
     }
+
+    TL_Swapchain_t *Window::CreateSwapchain(const TL_Renderer_t *renderer) const {
+        TL_SwapchainDescriptor_t scdescr = {};
+        scdescr.window_surface = _surface;
+
+        glfwGetFramebufferSize(_handle, (int *) &scdescr.resolution.width, (int *) &scdescr.resolution.height);
+
+        return TL_SwapchainCreate(renderer, scdescr);
+    }
 }

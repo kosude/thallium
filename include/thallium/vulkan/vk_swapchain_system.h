@@ -54,6 +54,7 @@ typedef struct TLVK_SwapchainSystemDescriptor_t {
  * parameter **must** be a valid Thallium window surface object, in which case a new Vulkan surface will be created and stored by the swapchain.
  *
  * @param renderer_system a valid Thallium Vulkan renderer system object
+ * @param resolution resolution of images in the swapchain
  * @param descriptor a Thallium Vulkan swapchain system descriptor
  * @param window_surface a Thallium window surface object <i>(can conditionally be NULL - see note above)</i>
  * @return The new swapchain system
@@ -64,6 +65,7 @@ typedef struct TLVK_SwapchainSystemDescriptor_t {
  */
 TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(
     const TLVK_RendererSystem_t *const renderer_system,
+    const TL_Extent2D_t resolution,
     const TLVK_SwapchainSystemDescriptor_t descriptor,
     const TL_WindowSurface_t *const window_surface
 );

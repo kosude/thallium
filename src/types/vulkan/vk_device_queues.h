@@ -12,10 +12,21 @@
     extern "C" {
 #endif // __cplusplus
 
+#include "thallium/platform.h"
+
 #include <cutils/carray/carray.h>
 
 // internal struct to hold queue handles returned from a logical device.
 typedef struct TLVK_LogicalDeviceQueues_t {
+    /// @brief Index of the graphics queue family (-1 if not used)
+    int32_t graphics_family;
+    /// @brief Index of the compute queue family (-1 if not used)
+    int32_t compute_family;
+    /// @brief Index of the transfer queue family (-1 if not used)
+    int32_t transfer_family;
+    /// @brief Index of the present queue family (-1 if not used)
+    int32_t present_family;
+
     /// @brief An array of queues for graphics operations
     carray_t graphics;
     /// @brief An array of queues for compute operations

@@ -24,6 +24,9 @@ typedef struct TLVK_SwapchainSystem_t {
     /// @brief VkInstance object, retrieved from the context of the parent renderer of renderer_system
     VkInstance vk_instance;
 
+    /// @brief Vulkan swapchain object:
+    /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainKHR.html
+    VkSwapchainKHR vk_swapchain;
     /// @brief Vulkan window surface object:
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html
     VkSurfaceKHR vk_surface;

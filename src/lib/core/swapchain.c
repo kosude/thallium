@@ -55,7 +55,8 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
                     ssdescr.vk_surface = NULL; // create a surface for descriptor.window_surface (passed to TLVK_SwapchainSystemCreate call).
                 }
 
-                swapchain->swapchain_system = (void *) TLVK_SwapchainSystemCreate(renderer->renderer_system, ssdescr, descriptor.window_surface);
+                swapchain->swapchain_system = (void *) TLVK_SwapchainSystemCreate(renderer->renderer_system, descriptor.resolution, ssdescr,
+                    descriptor.window_surface);
                 if (!swapchain->swapchain_system) {
                     TL_Error(debugger, "Failed to create Vulkan swapchain system for new swapchain at %p", swapchain);
                     return NULL;

@@ -37,6 +37,10 @@ namespace TLTests::Framework {
 
         void Destroy();
         static void TerminateAPI();
+
+        TL_Swapchain_t *CreateSwapchain(
+            const TL_Renderer_t *renderer
+        ) const;
     };
 }
 

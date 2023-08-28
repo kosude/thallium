@@ -14,7 +14,7 @@
 #include "types/core/renderer.h"
 
 #include "vk_context_block.h"
-#include "helper/vk_device.h"
+#include "vk_device.h"
 
 #include <stdlib.h>
 
@@ -141,13 +141,19 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(const TL_Renderer_t *const rend
     VkPhysicalDevice pd = renderer_system->vk_physical_device;
     carray_t exts = renderer_system->device_extensions;
     VkPhysicalDeviceFeatures feats = renderer_system->vk_device_features;
-    TLVK_PhysicalDeviceQueueFamilyIndices qf = TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(pd, renderer->features);
+    TLVK_PhysicalDeviceQueueFamilyIndices_t qf = TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(pd, renderer->features);
 
     renderer_system->vk_logical_device = TLVK_LogicalDeviceCreate(pd, exts, feats, qf, &renderer_system->vk_queues, debugger);
     if (renderer_system->vk_logical_device == VK_NULL_HANDLE) {
         TL_Error(debugger, "Failed to create Vulkan logical device object in renderer system %p", renderer_system);
         return NULL;
     }
+
+    // store queue family indices
+    renderer_system->vk_queues.graphics_family = qf.graphics;
+    renderer_system->vk_queues.compute_family = qf.compute;
+    renderer_system->vk_queues.transfer_family = qf.transfer;
+    renderer_system->vk_queues.present_family = qf.present;
 
     if (debugger) {
         TL_Log(debugger, "Created Vulkan device object at %p in Thallium Vulkan renderer system %p", renderer_system->vk_logical_device,

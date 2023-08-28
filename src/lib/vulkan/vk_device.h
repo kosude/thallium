@@ -28,7 +28,7 @@
  *
  * This struct contains indices for Vulkan device queue families.
  */
-typedef struct TLVK_PhysicalDeviceQueueFamilyIndices {
+typedef struct TLVK_PhysicalDeviceQueueFamilyIndices_t {
     /// @brief Graphics queue family index
     int32_t graphics;
     /// @brief Compute queue family index
@@ -37,7 +37,7 @@ typedef struct TLVK_PhysicalDeviceQueueFamilyIndices {
     int32_t transfer;
     /// @brief Image presentation queue family index
     int32_t present;
-} TLVK_PhysicalDeviceQueueFamilyIndices;
+} TLVK_PhysicalDeviceQueueFamilyIndices_t;
 
 /**
  * @brief Create a Vulkan logical device object with the given extensions and capabilities enabled.
@@ -58,7 +58,7 @@ VkDevice TLVK_LogicalDeviceCreate(
     const VkPhysicalDevice physical_device,
     const carray_t extensions,
     const VkPhysicalDeviceFeatures features,
-    const TLVK_PhysicalDeviceQueueFamilyIndices queue_families,
+    const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families,
     TLVK_LogicalDeviceQueues_t *const out_queues,
     const TL_Debugger_t *const debugger
 );
@@ -90,7 +90,7 @@ bool TLVK_PhysicalDeviceCheckCandidacy(
  * @param requirements Renderer requirements
  * @return Queue families to request queues from
  */
-TLVK_PhysicalDeviceQueueFamilyIndices TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(
+TLVK_PhysicalDeviceQueueFamilyIndices_t TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(
     const VkPhysicalDevice physical_device,
     const TL_RendererFeatures_t requirements
 );

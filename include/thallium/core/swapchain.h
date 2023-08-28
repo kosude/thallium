@@ -15,6 +15,8 @@
 #include "thallium_decl/fwd.h"
 #include "thallium/platform.h"
 
+#include "thallium/core/extent.h"
+
 /**
  * @brief A structure to represent a graphical swapchain.
  *
@@ -32,6 +34,9 @@ typedef struct TL_Swapchain_t TL_Swapchain_t;
  * This structure describes a [swapchain object](@ref TL_Swapchain_t) to be created.
  */
 typedef struct TL_SwapchainDescriptor_t {
+    /// @brief Resolution of images in the swapchain
+    TL_Extent2D_t resolution;
+
     /// @brief A Thallium [window surface object](@ref TL_WindowSurface_t).
     TL_WindowSurface_t *window_surface;
 
