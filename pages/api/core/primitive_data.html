@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Version Representation - Thallium</title>
+    <title>Primitive data objects - Thallium</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/see_also_hotfix.css" type="text/css" />
@@ -22,7 +22,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Vulkan Module" href="../vulkan/_vulkan.html" />
+    <link rel="next" title="WSI and Window Surfaces" href="wsi.html" />
     <link rel="prev" title="Swapchains" href="swapchains.html" /> 
 </head>
 
@@ -38,7 +38,7 @@
             Thallium Documentation
           </a>
               <div class="version">
-                v0.0.0dev_2f4f4cf (2023-08-26)
+                v0.0.0dev_48b3f34 (2023-08-28)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -53,15 +53,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="wsi.html">WSI and Window Surfaces</a></li>
 <li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
 <li class="toctree-l3"><a class="reference internal" href="debuggers.html">Debuggers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="renderers.html">Renderers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="swapchains.html">Swapchains</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Version Representation</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Primitive data objects</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="wsi.html">WSI and Window Surfaces</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../vulkan/_vulkan.html">Vulkan Module</a></li>
@@ -85,9 +85,9 @@
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../_api.html">API Reference</a></li>
           <li class="breadcrumb-item"><a href="_core.html">Core API</a></li>
-      <li class="breadcrumb-item active">Version Representation</li>
+      <li class="breadcrumb-item active">Primitive data objects</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/pages/api/core/version.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/pages/api/core/primitive_data.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -95,14 +95,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="version-representation">
-<h1>Version Representation<a class="headerlink" href="#version-representation" title="Permalink to this heading"></a></h1>
-<p>This section documents the Thallium version struct.</p>
+  <section id="primitive-data-objects">
+<h1>Primitive data objects<a class="headerlink" href="#primitive-data-objects" title="Permalink to this heading"></a></h1>
+<p>This section specifies primitive struct definitions used for general data representation.</p>
 <hr class="docutils" />
 <section id="types">
 <h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
 <section id="structs">
 <h3>Structs<a class="headerlink" href="#structs" title="Permalink to this heading"></a></h3>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv413TL_Extent2D_t">
+<span id="_CPPv313TL_Extent2D_t"></span><span id="_CPPv213TL_Extent2D_t"></span><span id="TL_Extent2D_t"></span><span class="target" id="d6/d7c/structTL__Extent2D__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Extent2D_t</span></span></span><a class="headerlink" href="#_CPPv413TL_Extent2D_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>2-dimensional extent structure </p>
+<p>This 2-dimensional extent struct is used for unsigned integral 2D extents. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13TL_Extent2D_t5widthE">
+<span id="_CPPv3N13TL_Extent2D_t5widthE"></span><span id="_CPPv2N13TL_Extent2D_t5widthE"></span><span id="TL_Extent2D_t::width__uint32_t"></span><span class="target" id="d6/d7c/structTL__Extent2D__t_1a90ca554516d4e78c578d868fbde34a77"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">width</span></span></span><a class="headerlink" href="#_CPPv4N13TL_Extent2D_t5widthE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Extent width. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13TL_Extent2D_t6heightE">
+<span id="_CPPv3N13TL_Extent2D_t6heightE"></span><span id="_CPPv2N13TL_Extent2D_t6heightE"></span><span id="TL_Extent2D_t::height__uint32_t"></span><span class="target" id="d6/d7c/structTL__Extent2D__t_1ae7bc43d254e295fe2d8e75b1c668a384"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">height</span></span></span><a class="headerlink" href="#_CPPv4N13TL_Extent2D_t6heightE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Extent height. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv412TL_Version_t">
 <span id="_CPPv312TL_Version_t"></span><span id="_CPPv212TL_Version_t"></span><span id="TL_Version_t"></span><span class="target" id="df/ded/structTL__Version__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Version_t</span></span></span><a class="headerlink" href="#_CPPv412TL_Version_t" title="Permalink to this definition"></a><br /></dt>
@@ -147,7 +169,7 @@
   </div>
 
   
-    v0.0.0dev_2f4f4cf (2023-08-26) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_48b3f34 (2023-08-28) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>
