@@ -99,7 +99,7 @@ for (uint32_t i = 0; i < block->instance_extensions.size; i++) {            \
 // flag to only load vulkan loader once
 static bool __VOLK_INITIALISED = false;
 
-bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api_version, const TL_RendererFeatures_t features,
+bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api_version, TL_RendererFeatures_t *const features,
     const TL_Debugger_t *const debugger)
 {
     if (!context) {

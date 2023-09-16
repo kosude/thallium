@@ -56,7 +56,7 @@ typedef struct TLVK_RendererSystemDescriptor_t {
  * @sa @ref TLVK_RendererSystemDescriptor_t
  */
 TLVK_RendererSystem_t *TLVK_RendererSystemCreate(
-    const TL_Renderer_t *const renderer,
+    TL_Renderer_t *const renderer,
     const TLVK_RendererSystemDescriptor_t descriptor
 );
 

@@ -30,7 +30,7 @@
  *
  * @param application_info Vulkan application info struct
  * @param debug_messenger_info NULL or optional Vulkan debug messenger create info struct.
- * @param requirements Renderer feature requirements for the instance to support.
+ * @param requirements Pointer to the renderer feature requirements for the instance to support.
  * @param out_layer_names Pointer to the dynamic array into which names of successfully enabled layers will be output.
  * @param out_extension_names Pointer to the dynamic array into which names of successfully enabled instance-level extensions will be output.
  * @param debugger NULL or a debugger for function debugging
@@ -40,7 +40,7 @@
 VkInstance TLVK_InstanceCreate(
     const VkApplicationInfo application_info,
     const VkDebugUtilsMessengerCreateInfoEXT debug_messenger_info,
-    const TL_RendererFeatures_t requirements,
+    TL_RendererFeatures_t *const requirements,
     carray_t *const out_layer_names,
     carray_t *const out_extension_names,
     const TL_Debugger_t *const debugger

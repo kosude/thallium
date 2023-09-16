@@ -133,8 +133,6 @@ static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetRequiredQueueFamilies(const 
         __DEFINE_REQUIRED_QUEUE_FAMILY(present);
     }
 
-    // TODO: conditions to require transfer families (and maybe compute)
-
     return required;
 }
 
@@ -199,6 +197,28 @@ static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requiremen
     }
 
     *out_extension_count = count_ret;
+}
+
+static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const features, carray_t extensions, const TL_Debugger_t *const debugger) {
+    // presentation feature availability
+    {
+        bool pa = false;
+
+        // look for surface extension
+        for (uint32_t i = 0; i < extensions.size && !pa; i++) {
+            if (!strcmp((const char *) extensions.data[i], VK_KHR_SWAPCHAIN_EXTENSION_NAME)) {
+                pa = true;
+                continue;
+            }
+        }
+
+        // if any of the listed extensions above were not found then disable presentation
+        if (!pa) {
+            features->presentation = false;
+            TL_Error(debugger,
+                "When creating Vulkan device: RENDERER FEATURE UNAVAILABLE (missing device extensions) - 'presentation' was disabled!!!");
+        }
+    }
 }
 
 static VkPhysicalDeviceFeatures __ValidateDeviceFeatures(const VkPhysicalDevice physical_device, VkPhysicalDeviceFeatures features,
@@ -382,11 +402,14 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
 }
 
 VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const carray_t extensions, const VkPhysicalDeviceFeatures features,
-    const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families, TLVK_LogicalDeviceQueues_t *const out_queues, const TL_Debugger_t *const debugger)
+    const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families, TLVK_LogicalDeviceQueues_t *const out_queues,
+    TL_RendererFeatures_t *const out_rfeatures, const TL_Debugger_t *const debugger)
 {
-    if (!out_queues) {
+    if (!out_rfeatures) {
         return VK_NULL_HANDLE;
     }
+
+    __UpdateRendererFeaturesWithSupported(out_rfeatures, extensions, debugger);
 
     VkDeviceCreateInfo device_create_info;
     device_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
@@ -468,16 +491,18 @@ VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const 
         return VK_NULL_HANDLE;
     };
 
-    // init arrays to be empty
-    out_queues->graphics.size = 0;
-    out_queues->compute.size = 0;
-    out_queues->transfer.size = 0;
-    out_queues->present.size = 0;
+    if (out_queues) {
+        // init arrays to be empty
+        out_queues->graphics.size = 0;
+        out_queues->compute.size = 0;
+        out_queues->transfer.size = 0;
+        out_queues->present.size = 0;
 
-    __STORE_QUEUE_HANDLE(graphics);
-    __STORE_QUEUE_HANDLE(compute);
-    __STORE_QUEUE_HANDLE(transfer);
-    __STORE_QUEUE_HANDLE(present);
+        __STORE_QUEUE_HANDLE(graphics);
+        __STORE_QUEUE_HANDLE(compute);
+        __STORE_QUEUE_HANDLE(transfer);
+        __STORE_QUEUE_HANDLE(present);
+    }
 
     return device;
 }

@@ -196,6 +196,58 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
     *out_extension_count = count_ret;
 }
 
+static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const features, carray_t extensions, carray_t layers,
+    const TL_Debugger_t *const debugger)
+{
+    // presentation feature availability
+    {
+        bool pa = false, pb = false;
+#       if defined(_UNIX)
+            bool pc = false;
+#       endif
+
+        // look for surface extension
+        for (uint32_t i = 0; i < extensions.size; i++) {
+            if (!strcmp((const char *) extensions.data[i], VK_KHR_SURFACE_EXTENSION_NAME)) {
+                pa = true;
+                continue;
+            }
+
+#           if defined(_WIN32)
+                if (!strcmp((const char *) extensions.data[i], VK_KHR_WIN32_SURFACE_EXTENSION_NAME)) {
+                    pb = true;
+                    break;
+                }
+#           elif defined(_APPLE)
+                if (!strcmp((const char *) extensions.data[i], VK_EXT_METAL_SURFACE_EXTENSION_NAME)) {
+                    pb = true;
+                    break;
+                }
+#           elif defined(_UNIX)
+                if (!strcmp((const char *) extensions.data[i], VK_KHR_XCB_SURFACE_EXTENSION_NAME)) {
+                    pb = true;
+                    continue;
+                }
+                if (!strcmp((const char *) extensions.data[i], VK_KHR_XLIB_SURFACE_EXTENSION_NAME)) {
+                    pc = true;
+                    continue;
+                }
+#           endif
+        }
+
+        // if any of the listed extensions above were not found then disable presentation
+        if (!pa || !pb
+#           if defined(_UNIX)
+                || !pc
+#           endif
+        ) {
+            features->presentation = false;
+            TL_Error(debugger,
+                "When creating Vulkan instance: RENDERER FEATURE UNAVAILABLE (missing instance extensions) - 'presentation' was disabled!!!");
+        }
+    }
+}
+
 #define __IF_EXTENSION_ENABLED(ext, fn)                     \
 for (uint32_t i = 0; i < extensions.size; i++) {            \
     if (!strcmp((const char *) extensions.data[i], ext)) {  \
@@ -205,23 +257,27 @@ for (uint32_t i = 0; i < extensions.size; i++) {            \
 }
 
 VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const VkDebugUtilsMessengerCreateInfoEXT debug_messenger_info,
-    const TL_RendererFeatures_t requirements, carray_t *const out_layer_names, carray_t *const out_extension_names,
+    TL_RendererFeatures_t *const requirements, carray_t *const out_layer_names, carray_t *const out_extension_names,
     const TL_Debugger_t *const debugger)
 {
+    if (!requirements) {
+        return VK_NULL_HANDLE;
+    }
+
     VkInstanceCreateInfo instance_create_info;
     instance_create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
     instance_create_info.pApplicationInfo = &application_info;
     instance_create_info.pNext = NULL;
 
-    instance_create_info.flags = __GetRequiredInstanceFlags(requirements);
+    instance_create_info.flags = __GetRequiredInstanceFlags(*requirements);
 
     bool debug_utils = (debug_messenger_info.sType != 0);
 
     // validate required layers...
     uint32_t required_layer_count = 0;
-    __EnumerateRequiredInstanceLayers(requirements, debug_utils, &required_layer_count, NULL);
+    __EnumerateRequiredInstanceLayers(*requirements, debug_utils, &required_layer_count, NULL);
     const char *required_layers[required_layer_count];
-    __EnumerateRequiredInstanceLayers(requirements, debug_utils, &required_layer_count, required_layers);
+    __EnumerateRequiredInstanceLayers(*requirements, debug_utils, &required_layer_count, required_layers);
 
     TL_Log(debugger, "Validating Vulkan layers...");
 
@@ -233,9 +289,9 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
 
     // validate required extensions...
     uint32_t required_extension_count = 0;
-    __EnumerateRequiredInstanceExtensions(requirements, debug_utils, &required_extension_count, NULL);
+    __EnumerateRequiredInstanceExtensions(*requirements, debug_utils, &required_extension_count, NULL);
     const char *required_extensions[required_extension_count];
-    __EnumerateRequiredInstanceExtensions(requirements, debug_utils, &required_extension_count, required_extensions);
+    __EnumerateRequiredInstanceExtensions(*requirements, debug_utils, &required_extension_count, required_extensions);
 
     TL_Log(debugger, "Validating Vulkan instance-level extensions...");
 
@@ -245,6 +301,9 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
     if (is_missing_extensions) {
         TL_Error(debugger, "Missing extensions for Vulkan instance, some features may not be available");
     }
+
+    // disable any renderer features if they could not be used
+    __UpdateRendererFeaturesWithSupported(requirements, extensions, layers, debugger);
 
     // initialise the heap-allocated arrays of instance-level extensions and layers stored by the renderer system
     instance_create_info.enabledLayerCount = layers.size;
@@ -265,6 +324,18 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
         .disabledValidationFeatureCount = 0,
         .pDisabledValidationFeatures = NULL
     };
+
+    // if validation features are available...
+    __IF_EXTENSION_ENABLED(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME,
+        // append the validation features description onto the pNext chain
+        TLVK_AppendPNext(&instance_create_info.pNext, &validation_features);
+    );
+
+    // if debug utils are available...
+    __IF_EXTENSION_ENABLED(VK_EXT_DEBUG_UTILS_EXTENSION_NAME,
+        // append debug messenger info to the pNext chain
+        TLVK_AppendPNext(&instance_create_info.pNext, &debug_messenger_info);
+    );
 
     // returning enabled layer names
     if (out_layer_names) {
@@ -291,18 +362,6 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
             carraypush(out_extension_names, (carrayval_t) str);
         }
     }
-
-    // if validation features are available...
-    __IF_EXTENSION_ENABLED(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME,
-        // append the validation features description onto the pNext chain
-        TLVK_AppendPNext(&instance_create_info.pNext, &validation_features);
-    );
-
-    // // if debug utils are available...
-    __IF_EXTENSION_ENABLED(VK_EXT_DEBUG_UTILS_EXTENSION_NAME,
-        // append debug messenger info to the pNext chain
-        TLVK_AppendPNext(&instance_create_info.pNext, &debug_messenger_info);
-    );
 
     // create instance
     VkInstance instance;

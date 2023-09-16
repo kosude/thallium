@@ -51,6 +51,7 @@ typedef struct TLVK_PhysicalDeviceQueueFamilyIndices_t {
  * @param features Device features to request
  * @param queue_families Queue families from which to request queues
  * @param out_queues NULL or a pointer to a struct into which the created queue handles will be returned
+ * @param out_rfeatures A pointer to the renderer features struct - in case any features are found to be unavailable, this struct will be updated.
  * @param debugger Debugger object to debug the function with
  * @return VK_NULL_HANDLE if there was an error, otherwise return the resulting VkDevice.
  */
@@ -60,6 +61,7 @@ VkDevice TLVK_LogicalDeviceCreate(
     const VkPhysicalDeviceFeatures features,
     const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families,
     TLVK_LogicalDeviceQueues_t *const out_queues,
+    TL_RendererFeatures_t *const out_rfeatures,
     const TL_Debugger_t *const debugger
 );
 

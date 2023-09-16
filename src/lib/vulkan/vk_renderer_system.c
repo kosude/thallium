@@ -71,7 +71,7 @@ static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_Renderer
     return ret;
 }
 
-TLVK_RendererSystem_t *TLVK_RendererSystemCreate(const TL_Renderer_t *const renderer, const TLVK_RendererSystemDescriptor_t descriptor) {
+TLVK_RendererSystem_t *TLVK_RendererSystemCreate(TL_Renderer_t *const renderer, const TLVK_RendererSystemDescriptor_t descriptor) {
     // if renderer is not NULL then we can assume the context was populated, as renderers are only created in core after populating their context
     if (!renderer) {
         return NULL;
@@ -143,7 +143,7 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(const TL_Renderer_t *const rend
     VkPhysicalDeviceFeatures feats = renderer_system->vk_device_features;
     TLVK_PhysicalDeviceQueueFamilyIndices_t qf = TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(pd, renderer->features);
 
-    renderer_system->vk_logical_device = TLVK_LogicalDeviceCreate(pd, exts, feats, qf, &renderer_system->vk_queues, debugger);
+    renderer_system->vk_logical_device = TLVK_LogicalDeviceCreate(pd, exts, feats, qf, &renderer_system->vk_queues, &renderer->features, debugger);
     if (renderer_system->vk_logical_device == VK_NULL_HANDLE) {
         TL_Error(debugger, "Failed to create Vulkan logical device object in renderer system %p", renderer_system);
         return NULL;

@@ -52,7 +52,7 @@ typedef struct TLVK_ContextBlock_t {
  *
  * @param context Context in which the Vulkan block of data will be stored.
  * @param api_version The minimum version of the Vulkan API to request
- * @param features Renderer features to request
+ * @param features Pointer to renderer features to request
  * @param debugger NULL or a debugger for function debugging
  *
  * @return False if error
@@ -60,7 +60,7 @@ typedef struct TLVK_ContextBlock_t {
 bool TLVK_ContextBlockCreate(
     TL_Context_t *const context,
     const TL_Version_t api_version,
-    const TL_RendererFeatures_t features,
+    TL_RendererFeatures_t *const features,
     const TL_Debugger_t *const debugger
 );
 

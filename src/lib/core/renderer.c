@@ -186,7 +186,7 @@ uint32_t TL_RendererCreate(TL_Context_t *const context, const uint32_t count, co
             descriptor.api_version.minor, descriptor.api_version.patch);
     }
 
-    if (!TL_ContextBlocksCreate(context, combined_apis, highest_api_versions, combined_features, debugger)) {
+    if (!TL_ContextBlocksCreate(context, combined_apis, highest_api_versions, &combined_features, debugger)) {
         TL_Error(debugger, "Failed to create API objects for context at %p in call to TL_RendererCreate", context);
         return 0;
     }
@@ -197,7 +197,12 @@ uint32_t TL_RendererCreate(TL_Context_t *const context, const uint32_t count, co
     uint32_t fail_renderer_count = 0;
 
     for (uint32_t i = 0; i < count; i++) {
-        TL_Renderer_t *ret = __CreateRenderer(context, descriptors[i], debugger);
+        TL_RendererDescriptor_t descr = descriptors[i];
+
+        // update descriptor presentation requirement in case it is not available
+        if (descr.requirements.presentation) descr.requirements.presentation = combined_features.presentation;
+
+        TL_Renderer_t *ret = __CreateRenderer(context, descr, debugger);
         if (!ret) {
             TL_Error(debugger, "TL_RendererCreate failed to create renderer index %d", i);
             fail_renderer_count++;

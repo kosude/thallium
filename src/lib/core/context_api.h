@@ -53,7 +53,7 @@ bool TL_ContextBlocksCreate(
     TL_Context_t *const context,
     const TL_RendererAPIFlags_t apis,
     const TL_ContextAPIVersions_t versions,
-    const TL_RendererFeatures_t features,
+    TL_RendererFeatures_t *const features,
     const TL_Debugger_t *const debugger
 );
 
