@@ -12,6 +12,9 @@
     extern "C" {
 #endif // __cplusplus
 
+#define VK_NO_PROTOTYPES
+#include <vulkan/vulkan.h>
+
 #include "thallium/vulkan/vk_renderer_system.h"
 #include "thallium/vulkan/vk_swapchain_system.h"
 

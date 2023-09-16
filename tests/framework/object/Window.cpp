@@ -19,6 +19,8 @@
 
 #include <iostream>
 
+#include "thallium_vulkan.h"
+
 namespace TLTests::Framework {
     void Window::_InitGLFW() {
         glfwSetErrorCallback([](int e, const char *d) {
@@ -58,10 +60,15 @@ namespace TLTests::Framework {
     }
 
     TL_Swapchain_t *Window::CreateSwapchain(const TL_Renderer_t *renderer) const {
-        TL_SwapchainDescriptor_t scdescr = {};
-        scdescr.window_surface = _surface;
+        TLVK_SwapchainSystemDescriptor_t sssdescr = {};
+        sssdescr.vk_present_mode = VK_PRESENT_MODE_FIFO_RELAXED_KHR;
+        (int &) sssdescr.vk_surface_format.format = -1;
 
+        TL_SwapchainDescriptor_t scdescr = {};
+
+        scdescr.window_surface = _surface;
         glfwGetFramebufferSize(_handle, (int *) &scdescr.resolution.width, (int *) &scdescr.resolution.height);
+        scdescr.swapchain_system_descriptor = &sssdescr;
 
         return TL_SwapchainCreate(renderer, scdescr);
     }

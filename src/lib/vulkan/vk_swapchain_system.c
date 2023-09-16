@@ -138,7 +138,6 @@ static bool __ValidateSwapchainSupportInfo(const TLVK_SwapchainSupportInfo_t det
 }
 
 // select most optimal available format for the swapchain to use, from the candidates specified.
-// TODO: provide option to use specific surface format via system descriptor.
 static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *const formats, const uint32_t format_count) {
     for (uint32_t i = 0; i < format_count; i++) {
         // ideally we use sRGB colour space with a BGRA which is a common format.
@@ -152,7 +151,6 @@ static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *cons
 }
 
 // select best presentation mode for the swapchain to use from the candidates specified.
-// TODO: provide option to use specific present mode via system descriptor.
 static VkPresentModeKHR __PickSwapPresentMode(const VkPresentModeKHR *const modes, const uint32_t mode_count) {
     for (uint32_t i = 0; i < mode_count; i++) {
         // use mailbox if available
@@ -230,9 +228,15 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
 
     TLVK_SwapchainSupportInfo_t support_info = __GetSwapchainSupportInfo(swapchain_system->renderer_system->vk_physical_device, surface);
 
-    // get best configuration as allowed by support_info
-    VkSurfaceFormatKHR surface_format = __PickSwapSurfaceFormat(support_info.formats, support_info.format_count);
-    VkPresentModeKHR present_mode = __PickSwapPresentMode(support_info.present_modes, support_info.present_mode_count);
+    // automatically select surface format if not explicitly chosen
+    VkSurfaceFormatKHR surface_format = ((int) descriptor.vk_surface_format.format != -1) ?
+        descriptor.vk_surface_format : __PickSwapSurfaceFormat(support_info.formats, support_info.format_count);
+
+    // automatically select present mode if not explicitly chosen
+    VkPresentModeKHR present_mode = ((int) descriptor.vk_present_mode != -1) ?
+        descriptor.vk_present_mode : __PickSwapPresentMode(support_info.present_modes, support_info.present_mode_count);
+
+    // clamp swap extent to capabilities
     VkExtent2D extent = __PickSwapExtent(support_info.caps, resolution.width, resolution.height);
 
     VkSwapchainCreateInfoKHR create_info;

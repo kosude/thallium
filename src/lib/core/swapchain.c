@@ -53,6 +53,10 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
                     // default swapchain system descriptor configuration (used if no user-given descriptor was specified)...
 
                     ssdescr.vk_surface = NULL; // create a surface for descriptor.window_surface (passed to TLVK_SwapchainSystemCreate call).
+
+                    // automatically select properties
+                    ssdescr.vk_surface_format.format = -1;
+                    ssdescr.vk_present_mode = -1;
                 }
 
                 swapchain->swapchain_system = (void *) TLVK_SwapchainSystemCreate(renderer->renderer_system, descriptor.resolution, ssdescr,

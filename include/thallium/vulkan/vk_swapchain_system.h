@@ -38,6 +38,14 @@ typedef struct TLVK_SwapchainSystemDescriptor_t {
     /// If this is NULL, a surface will be created based on the specified Thallium **window surface** (i.e. platform window handles). Otherwise, that
     /// window will be disregarded and this surface will be directly used instead.
     VkSurfaceKHR vk_surface;
+
+    /// @brief Explicit surface format to use in swapchain creation.
+    /// To automatically select surface format (which is default behaviour), set the `format` member of this struct to -1.
+    VkSurfaceFormatKHR vk_surface_format;
+
+    /// @brief Explicit presentation mode to use in swapchain creation.
+    /// To automatically select optimal present mode (which is default behaviour), set this to -1.
+    VkPresentModeKHR vk_present_mode;
 } TLVK_SwapchainSystemDescriptor_t;
 
 /**
