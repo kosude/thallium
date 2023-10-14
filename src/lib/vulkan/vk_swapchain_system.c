@@ -239,13 +239,23 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
     // clamp swap extent to capabilities
     VkExtent2D extent = __PickSwapExtent(support_info.caps, resolution.width, resolution.height);
 
+    // get min image from support info
+    uint32_t min_img_count = support_info.caps.minImageCount + 1;
+
+    // transformation applied before presentation
+    uint32_t pre_trans = support_info.caps.currentTransform; // no image transformation
+
+    // be sure to free support info struct now that we have extracted the neceessary info.
+    free(support_info.formats);
+    free(support_info.present_modes);
+
     VkSwapchainCreateInfoKHR create_info;
     create_info.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
     create_info.pNext = NULL;
     create_info.flags = 0;
 
     create_info.surface = surface;
-    create_info.minImageCount = support_info.caps.minImageCount + 1;
+    create_info.minImageCount = min_img_count;
     create_info.imageFormat = surface_format.format;
     create_info.imageColorSpace = surface_format.colorSpace;
     create_info.imageExtent = extent;
@@ -270,7 +280,7 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
         create_info.pQueueFamilyIndices = NULL;
     }
 
-    create_info.preTransform = support_info.caps.currentTransform; // no image transformation
+    create_info.preTransform = pre_trans;
 
     // don't blend with other windows in the window system
     create_info.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;

@@ -44,7 +44,7 @@ cd "${PROJECT_PATH}/utils/memcheck"
 SUPPRESSION_FILES="$(ls | grep \\.supp$)"
 
 # write the command (arguments)
-VALGRIND_CMD+=" --leak-check=full --track-origins=yes -s"
+VALGRIND_CMD+=" --keep-debuginfo=yes --leak-check=full --track-origins=yes -s"
 
 # add suppression files to command
 # (unless chosen not to...)
