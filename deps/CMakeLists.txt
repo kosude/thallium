@@ -14,6 +14,16 @@ set(LIBRARY_LINKS ${LIBRARY_LINKS}
 )
 
 
+# Link Cocoa and other OS X frameworks if required
+
+if (THALLIUM_WSI_COCOA)
+    find_library(COCOA_LIB "Cocoa" REQUIRED)
+    find_library(QUARTZCORE_LIB "QuartzCore" REQUIRED)
+
+    set(LIBRARY_LINKS ${LIBRARY_LINKS} ${COCOA_LIB} ${QUARTZCORE_LIB})
+endif()
+
+
 # Link XCB if required
 
 if (THALLIUM_WSI_XCB)

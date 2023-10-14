@@ -23,6 +23,9 @@
 #include "thallium/core/version.h"
 
 #include "thallium/core/wsi/window_surface.h"
+#if defined(_THALLIUM_WSI_COCOA)
+#   include "thallium/core/wsi/cocoa_window_surface.h"
+#endif
 #if defined(_THALLIUM_WSI_XCB)
 #   include "thallium/core/wsi/xcb_window_surface.h"
 #endif

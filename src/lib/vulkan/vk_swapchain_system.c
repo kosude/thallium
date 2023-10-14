@@ -35,6 +35,27 @@ static VkSurfaceKHR __CreateVkSurface(const VkInstance instance, const TL_Window
             TL_Error(debugger, "Invalid TL_WindowSurface_t format encountered when attempting to create Vulkan surface");
             return VK_NULL_HANDLE;
 
+        // ---------------- cocoa window surface ----------------
+        case TL_WSI_API_COCOA:;
+#           if defined(_THALLIUM_WSI_COCOA)
+                TL_WindowSurfacePlatformDataCocoa_t *cocoa_native = (TL_WindowSurfacePlatformDataCocoa_t *) tl_surface->platform_data;
+
+                VkMetalSurfaceCreateInfoEXT cocoa_mt_create_info;
+                cocoa_mt_create_info.sType = VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT;
+                cocoa_mt_create_info.pNext = NULL;
+                cocoa_mt_create_info.flags = 0;
+                cocoa_mt_create_info.pLayer = (CAMetalLayer *) cocoa_native->mt_layer; // note a CAMetalLayer forward decl is provided by Vulkan.
+
+                vkCreateMetalSurfaceEXT(instance, &cocoa_mt_create_info, NULL, &surface);
+
+                break;
+#           else
+                // Thallium XCB support not compiled
+                TL_Error(debugger, "Attempted to create a Vulkan surface for Cocoa window, but Thallium Cocoa support was not compiled; "
+                    "Recompile Thallium with the -DTHALLIUM_WSI_COCOA=ON flag!");
+                return VK_NULL_HANDLE;
+#           endif
+
         // ---------------- xcb window surface ----------------
         case TL_WSI_API_XCB:;
 #           if defined(_THALLIUM_WSI_XCB)
@@ -126,16 +147,17 @@ static TLVK_SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDev
     return details;
 }
 
-static bool __ValidateSwapchainSupportInfo(const TLVK_SwapchainSupportInfo_t details, const TL_Debugger_t *const debugger)
-{
-    bool ret = (details.format_count > 0) && (details.present_mode_count > 0);
+// why is this function here if it isn't being used? I dont know why i wrote it? Am i an idiot???
+    // static bool __ValidateSwapchainSupportInfo(const TLVK_SwapchainSupportInfo_t details, const TL_Debugger_t *const debugger)
+    // {
+    //     bool ret = (details.format_count > 0) && (details.present_mode_count > 0);
 
-    if (!ret) {
-        TL_Warn(debugger, "Swapchain support not valid (__ValidateSwapchainSupportInfo)");
-    }
+    //     if (!ret) {
+    //         TL_Warn(debugger, "Swapchain support not valid (__ValidateSwapchainSupportInfo)");
+    //     }
 
-    return ret;
-}
+    //     return ret;
+    // }
 
 // select most optimal available format for the swapchain to use, from the candidates specified.
 static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *const formats, const uint32_t format_count) {

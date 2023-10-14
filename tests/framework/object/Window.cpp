@@ -9,17 +9,32 @@
 
 #include "../Utils.hpp"
 
+#if defined(__linux__)
+#   include <xcb/xcb.h>
+#   include <X11/Xlib-xcb.h>
+
+#   define GLFW_EXPOSE_NATIVE_X11
+#elif defined(__APPLE__)
+#   if defined(__OBJC__)
+#       import <Cocoa/Cocoa.h>
+#   else
+#       include <ApplicationServices/ApplicationServices.h>
+#       include <objc/objc.h>
+#   endif
+
+#   define GLFW_EXPOSE_NATIVE_COCOA
+#elif defined(_WIN32)
+#   error Useless operating systems are not yet supported by Thallium's WSI abstraction set
+#endif
+
 #include "glfw/include/GLFW/glfw3.h"
-
-#define GLFW_EXPOSE_NATIVE_X11
 #include "glfw/include/GLFW/glfw3native.h"
-
-#include <xcb/xcb.h>
-#include <X11/Xlib-xcb.h>
 
 #include <iostream>
 
-#include "thallium_vulkan.h"
+#if defined(_THALLIUM_VULKAN_INCL)
+#   include "thallium_vulkan.h"
+#endif
 
 namespace TLTests::Framework {
     void Window::_InitGLFW() {
@@ -44,11 +59,18 @@ namespace TLTests::Framework {
 
         _handle = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
-        xcb_connection_t *con = XGetXCBConnection(glfwGetX11Display());
-        xcb_window_t win = glfwGetX11Window(_handle);
+#       if defined(GLFW_EXPOSE_NATIVE_COCOA)
+            id win = glfwGetCocoaWindow(_handle);
+            _surface = TL_WindowSurfaceCreateCocoa(win, nullptr);
+#       elif defined(GLFW_EXPOSE_NATIVE_X11)
+            // note that Thallium *does* also support X11 (Xlib) instead of xcb, but we're using xcb here because X11 is stupid and has generic type
+            // names like 'Window' and guess what this class is called :))
 
-        _surface = TL_WindowSurfaceCreateXCB(con, win, nullptr);
-        // _surface = TL_WindowSurfaceCreateXlib(glfwGetX11Display(), glfwGetX11Window(_handle), nullptr);
+            xcb_connection_t *con = XGetXCBConnection(glfwGetX11Display());
+            xcb_window_t win = glfwGetX11Window(_handle); // xcb ref == x11 ref
+
+            _surface = TL_WindowSurfaceCreateXCB(con, win, nullptr);
+#       endif
     }
 
     void Window::Destroy() {
@@ -66,5 +88,13 @@ namespace TLTests::Framework {
         glfwGetFramebufferSize(_handle, (int *) &scdescr.resolution.width, (int *) &scdescr.resolution.height);
 
         return TL_SwapchainCreate(renderer, scdescr);
+    }
+
+    bool Window::ShouldClose() const {
+        return glfwWindowShouldClose(_handle);
+    }
+
+    void Window::PollEvents() {
+        glfwPollEvents();
     }
 }

@@ -1,5 +1,9 @@
 set(SOURCES
+    "$<$<BOOL:${THALLIUM_WSI_COCOA}>:wsi/cocoa_mtbridge.m>"
+    "$<$<BOOL:${THALLIUM_WSI_COCOA}>:wsi/cocoa_window_surface.c>"
+
     "$<$<BOOL:${THALLIUM_WSI_XCB}>:wsi/xcb_window_surface.c>"
+
     "$<$<BOOL:${THALLIUM_WSI_XLIB}>:wsi/xlib_window_surface.c>"
 
     "context.c"

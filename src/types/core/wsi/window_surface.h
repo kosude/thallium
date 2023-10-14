@@ -20,6 +20,8 @@
  * This enumerator contains the window system APIs supported by Thallium window surfaces.
  */
 typedef enum TL_WSI_API_t {
+    /// @brief Cocoa window system
+    TL_WSI_API_COCOA,
     /// @brief XCB window system
     TL_WSI_API_XCB,
     /// @brief X11 (Xlib) window system

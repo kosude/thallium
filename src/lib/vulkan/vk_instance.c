@@ -188,9 +188,11 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
             __DEFINE_REQUIRED_EXTENSION(VK_EXT_METAL_SURFACE_EXTENSION_NAME);
 #       elif defined(_UNIX)
             // unix surface extensions (assume linux)
+            // TODO wayland support|
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_XLIB_SURFACE_EXTENSION_NAME);
 #       endif
+
     }
 
     *out_extension_count = count_ret;

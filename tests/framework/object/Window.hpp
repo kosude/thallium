@@ -41,6 +41,9 @@ namespace TLTests::Framework {
         TL_Swapchain_t *CreateSwapchain(
             const TL_Renderer_t *renderer
         ) const;
+
+        bool ShouldClose() const;
+        static void PollEvents();
     };
 }
 

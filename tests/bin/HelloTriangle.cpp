@@ -24,6 +24,10 @@ int main() {
 
     swapchain1 = window1.CreateSwapchain(test.GetRenderers()[0]);
 
+    for (; !window1.ShouldClose();) {
+        Window::PollEvents();
+    }
+
     TL_SwapchainDestroy(swapchain1);
 
     test.Destroy();
