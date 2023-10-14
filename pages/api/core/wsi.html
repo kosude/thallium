@@ -38,7 +38,7 @@
             Thallium Documentation
           </a>
               <div class="version">
-                v0.0.0dev_145d868 (2023-10-14)
+                v0.0.0dev_521650c (2023-10-14)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -116,6 +116,32 @@
 <hr class="docutils" />
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<section id="for-cocoa-macos-systems">
+<h3>For Cocoa (macOS) systems<a class="headerlink" href="#for-cocoa-macos-systems" title="Permalink to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Definitions for these functions is compiled <strong>only if</strong> the <code class="docutils literal notranslate"><span class="pre">-DTHALLIUM_WSI_COCOA=ON</span></code> CMake flag was present at build. This is the
+<strong>default behaviour</strong> on <strong>Apple</strong> systems.</p>
+</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427TL_WindowSurfaceCreateCocoaPCvPCK13TL_Debugger_t">
+<span id="_CPPv327TL_WindowSurfaceCreateCocoaPCvPCK13TL_Debugger_t"></span><span id="_CPPv227TL_WindowSurfaceCreateCocoaPCvPCK13TL_Debugger_t"></span><span id="TL_WindowSurfaceCreateCocoa__voidPC.TL_Debugger_tCPC"></span><span class="target" id="d3/df1/cocoa__window__surface_8h_1a9c18ba8411b5eb12385a2a46ed62481f"></span><a class="reference internal" href="#_CPPv418TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateCocoa</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427TL_WindowSurfaceCreateCocoaPCvPCK13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Create a Thallium window surface from a Cocoa window handle. </p>
+<p>This function creates a window surface for Thallium functions, using a Cocoa <code class="docutils literal notranslate"><span class="pre">NSWindow</span></code> window handle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window</strong> – The Cocoa <code class="docutils literal notranslate"><span class="pre">NSWindow</span></code> handle (as a void ptr) </p></li>
+<li><p><strong>debugger</strong> – NULL or a debugger for function debugging </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resulting window surface for use in Thallium functions. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="for-x11-systems-via-xcb">
 <h3>For X11 systems - via XCB<a class="headerlink" href="#for-x11-systems-via-xcb" title="Permalink to this heading"></a></h3>
 <div class="admonition important">
@@ -185,7 +211,7 @@
   </div>
 
   
-    v0.0.0dev_145d868 (2023-10-14) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_521650c (2023-10-14) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>
