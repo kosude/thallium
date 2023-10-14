@@ -24,8 +24,18 @@ Functions
 ---------
 
 
-For X11 systems - via XCB
+For Cocoa (macOS) systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important::
+    Definitions for these functions is compiled **only if** the ``-DTHALLIUM_WSI_COCOA=ON`` CMake flag was present at build. This is the
+    **default behaviour** on **Apple** systems.
+
+.. doxygenfunction:: TL_WindowSurfaceCreateCocoa
+
+
+For Xorg systems (via xcb)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
     Definitions for these functions is compiled **only if** the ``-DTHALLIUM_WSI_XCB=ON`` CMake flag was present at build. This is the
@@ -34,8 +44,8 @@ For X11 systems - via XCB
 .. doxygenfunction:: TL_WindowSurfaceCreateXCB
 
 
-For X11 systems - via Xlib
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+For Xorg systems (via Xlib)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
     Definitions for these functions is compiled **only if** the ``-DTHALLIUM_WSI_XLIB=ON`` CMake flag was present at build. This is the

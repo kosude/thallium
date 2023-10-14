@@ -18,9 +18,9 @@
 /**
  * @brief Create a Thallium window surface from a Cocoa window handle.
  *
- * This function creates a window surface for Thallium functions, using a Cocoa window handle.
+ * This function creates a window surface for Thallium functions, using a Cocoa `NSWindow` window handle.
  *
- * @param window
+ * @param window The Cocoa `NSWindow` handle (as a void ptr)
  * @param debugger NULL or a debugger for function debugging
  * @return Resulting window surface for use in Thallium functions.
  */
