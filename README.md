@@ -1,5 +1,5 @@
 <p align=center>
-    <img align=left src="resources/render.png" height=110>
+    <img align=left src=".github/resources/render.png" height=110>
 </p>
 
 
@@ -51,15 +51,3 @@ The following is a table of available CMake configuration options for Thallium. 
 Thallium source compilation is split into **modules**, based on the graphics APIs you need support for. Each module can be manually enabled or
 disabled with CMake flags, just like above. These flags are named `THALLIUM_BUILD_MODULE_<API>`. For example, the Vulkan module can be compiled using
 the `-DTHALLIUM_BUILD_MODULE_VULKAN=ON` build flag (this requires the Vulkan SDK to be installed).
-
-
-## Project logos
-
-Thallium has two project logos. The rendered one is used more often as the actual de facto icon of the project, whilst the vector one is used for
-smaller applications, like on the documentation.
-
-|                               Render                               |                                Vector                               |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| <br/><p align=center><img src="resources/render.png" width=90></p> | <br/><p align=center><img src="resources/vector.svg" width=100></p> |
-
-The colour theme used by the project (which is reflected in the vector logo) consists of neon pink (`#ff0457`) and dark purple (`#521057`).
