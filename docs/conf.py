@@ -49,10 +49,12 @@ html_theme_options = {
 
 html_title = "Thallium"
 html_favicon = "res/static/img/favicon.png"
+html_logo = "res/static/img/logo_wtext.svg"
 
 html_css_files = [
-    "css/see_also_hotfix.css",
     "css/dark.css",
+    "css/see_also_hotfix.css",
+    "css/sidebar.css",
 ]
 
 html_show_sphinx = False

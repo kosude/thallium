@@ -24,8 +24,21 @@ code.literal {
     border: 1px solid #6d6d6d !important;
 }
 
+/* Tiled logo in background */
 .wy-nav-content-wrap {
     background-color: rgba(0, 0, 0, 0.6) !important;
+}
+.wy-nav-content-wrap::before {
+    content: "";
+    position: fixed;
+    overflow: hidden;
+
+    width: 100vw;
+    height: 100vh;
+    z-index: -1000;
+
+    background-image: url("../img/bgtile.png");
+    background-size: 60px;
 }
 
 .sidebar {
