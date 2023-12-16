@@ -40,7 +40,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_8c903a3 (2023-12-14)
+                v0.0.0dev_a77aab0 (2023-12-16)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -52,7 +52,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Context Object</a><ul>
@@ -106,9 +106,9 @@
 <h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
 <section id="objects">
 <h3>Objects<a class="headerlink" href="#objects" title="Permalink to this heading"></a></h3>
-<dl class="cpp type">
-<dt class="sig sig-object cpp" id="_CPPv412TL_Context_t">
-<span id="_CPPv312TL_Context_t"></span><span id="_CPPv212TL_Context_t"></span><span id="TL_Context_t"></span><span class="target" id="dc/d1e/context_8h_1a2ab90da406d417dffba83a7e2a45666c"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv412TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Context_t</span></span></span><a class="headerlink" href="#_CPPv412TL_Context_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.TL_Context_t">
+<span class="target" id="dc/d1e/context_8h_1a2ab90da406d417dffba83a7e2a45666c"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Context_t</span></span></span><a class="headerlink" href="#c.TL_Context_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>An opaque object to hold single context state for the Thallium library instance. </p>
 <p>This opaque struct holds context state for the application. There can only be one context per program.</p>
 <p>‘Context state’ refers to any single API-specific objects, such as Vulkan instances. As having multiple of these objects in an application is messy, it is avoided by restricting the creation of a Thallium context to only one.</p>
@@ -130,9 +130,9 @@
 </section>
 <section id="descriptors">
 <h3>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this heading"></a></h3>
-<dl class="cpp struct">
-<dt class="sig sig-object cpp" id="_CPPv422TL_ContextDescriptor_t">
-<span id="_CPPv322TL_ContextDescriptor_t"></span><span id="_CPPv222TL_ContextDescriptor_t"></span><span id="TL_ContextDescriptor_t"></span><span class="target" id="d6/de3/structTL__ContextDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextDescriptor_t</span></span></span><a class="headerlink" href="#_CPPv422TL_ContextDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.TL_ContextDescriptor_t">
+<span class="target" id="d6/de3/structTL__ContextDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextDescriptor_t</span></span></span><a class="headerlink" href="#c.TL_ContextDescriptor_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A structure describing a Thallium context object to be created with <a class="reference internal" href="#dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"><span class="std std-ref">TL_ContextCreate()</span></a>. </p>
 <p>This structure describes a context object to be created.</p>
 <p><div class="admonition seealso">
@@ -150,9 +150,9 @@
 </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N22TL_ContextDescriptor_t27debug_attachment_descriptorE">
-<span id="_CPPv3N22TL_ContextDescriptor_t27debug_attachment_descriptorE"></span><span id="_CPPv2N22TL_ContextDescriptor_t27debug_attachment_descriptorE"></span><span id="TL_ContextDescriptor_t::debug_attachment_descriptor__TL_DebuggerAttachmentDescriptor_tCP"></span><span class="target" id="d6/de3/structTL__ContextDescriptor__t_1a2dbc8dd378c7a59302c5e250a55590aa"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv433TL_DebuggerAttachmentDescriptor_t" title="TL_DebuggerAttachmentDescriptor_t"><span class="n"><span class="pre">TL_DebuggerAttachmentDescriptor_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">debug_attachment_descriptor</span></span></span><a class="headerlink" href="#_CPPv4N22TL_ContextDescriptor_t27debug_attachment_descriptorE" title="Permalink to this definition"></a><br /></dt>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_ContextDescriptor_t.debug_attachment_descriptor">
+<span class="target" id="d6/de3/structTL__ContextDescriptor__t_1a2dbc8dd378c7a59302c5e250a55590aa"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#c.TL_DebuggerAttachmentDescriptor_t" title="TL_DebuggerAttachmentDescriptor_t"><span class="n"><span class="pre">TL_DebuggerAttachmentDescriptor_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">debug_attachment_descriptor</span></span></span><a class="headerlink" href="#c.TL_ContextDescriptor_t.debug_attachment_descriptor" title="Permalink to this definition"></a><br /></dt>
 <dd><p>NULL or a descriptor describing a debug attachment for the context. </p>
 </dd></dl>
 
@@ -164,9 +164,9 @@
 <hr class="docutils" />
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv416TL_ContextCreateK22TL_ContextDescriptor_tPCK13TL_Debugger_t">
-<span id="_CPPv316TL_ContextCreateK22TL_ContextDescriptor_tPCK13TL_Debugger_t"></span><span id="_CPPv216TL_ContextCreateK22TL_ContextDescriptor_tPCK13TL_Debugger_t"></span><span id="TL_ContextCreate__TL_ContextDescriptor_tC.TL_Debugger_tCPC"></span><span class="target" id="dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"></span><a class="reference internal" href="#_CPPv412TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv422TL_ContextDescriptor_t" title="TL_ContextDescriptor_t"><span class="n"><span class="pre">TL_ContextDescriptor_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">context_descriptor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416TL_ContextCreateK22TL_ContextDescriptor_tPCK13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.TL_ContextCreate">
+<span class="target" id="dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"></span><a class="reference internal" href="#c.TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_ContextDescriptor_t" title="TL_ContextDescriptor_t"><span class="n"><span class="pre">TL_ContextDescriptor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">context_descriptor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#c.TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_ContextCreate" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Allocate space for and create a Thallium context object. </p>
 <p>This function creates a heap-allocated opaque Thallium context object and returns its handle.</p>
 <p><div class="admonition seealso">
@@ -191,9 +191,9 @@
 </dl>
 </dd></dl>
 
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv417TL_ContextDestroyPC12TL_Context_t">
-<span id="_CPPv317TL_ContextDestroyPC12TL_Context_t"></span><span id="_CPPv217TL_ContextDestroyPC12TL_Context_t"></span><span id="TL_ContextDestroy__TL_Context_tPC"></span><span class="target" id="dc/d1e/context_8h_1a433fdbcc3cea0e8430beebd3c17deeca"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextDestroy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv412TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">context</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417TL_ContextDestroyPC12TL_Context_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.TL_ContextDestroy">
+<span class="target" id="dc/d1e/context_8h_1a433fdbcc3cea0e8430beebd3c17deeca"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextDestroy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">context</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_ContextDestroy" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Free space allocated for the given Thallium context object. </p>
 <p>This function frees the space allocated for the given Thallium context object with <a class="reference internal" href="#dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"><span class="std std-ref">TL_ContextCreate</span></a>,</p>
 <p><div class="admonition seealso">
@@ -207,7 +207,9 @@
 </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>context</strong> – Context object to destroy</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> – Context object to destroy</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -227,7 +229,7 @@
   </div>
 
   
-    v0.0.0dev_8c903a3 (2023-12-14) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_a77aab0 (2023-12-16) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>

@@ -23,7 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contributing" href="pages/contributing.html" /> 
+    <link rel="next" title="Getting started" href="pages/getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +39,7 @@
               <img src="_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_8c903a3 (2023-12-14)
+                v0.0.0dev_a77aab0 (2023-12-16)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,7 +51,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Home</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/api/_api.html">API Reference</a></li>
 </ul>
 
@@ -90,8 +90,7 @@ far future.</p>
 <p class="admonition-title">Note</p>
 <p>The contents of this page can also be seen in the project’s <a class="reference external" href="https://github.com/kosude/thallium/blob/master/README.md/">README</a>.</p>
 </div>
-<p>For information about contributing, see the <a class="reference internal" href="pages/contributing.html"><span class="doc">Contributing page</span></a>. For comprehensive function and struct documentation, see
-the <a class="reference internal" href="pages/api/_api.html"><span class="doc">API reference</span></a>.</p>
+<p>For comprehensive function and struct documentation, see the <a class="reference internal" href="pages/api/_api.html"><span class="doc">API reference</span></a>.</p>
 <section id="building">
 <h2>Building<a class="headerlink" href="#building" title="Permalink to this heading"></a></h2>
 <p>CMake is used to generate build files. Ideally, you should build in a Linux environment - do note however that MinGW32 and subsystems like Cygwin
@@ -130,6 +129,7 @@ and MSYS2 have not yet been tested.</p>
 </tr>
 </tbody>
 </table>
+<p>It’s recommended to use the <code class="docutils literal notranslate"><span class="pre">-DCMAKE_BUILD_TYPE=Debug</span></code> flag when building Thallium for library development.</p>
 </section>
 <section id="api-modules">
 <h3>API modules<a class="headerlink" href="#api-modules" title="Permalink to this heading"></a></h3>
@@ -137,6 +137,24 @@ and MSYS2 have not yet been tested.</p>
 disabled with CMake flags, just like above. These flags are named <code class="docutils literal notranslate"><span class="pre">THALLIUM_BUILD_MODULE_&lt;API&gt;</span></code>. For example, the Vulkan module can be compiled
 using the <code class="docutils literal notranslate"><span class="pre">-DTHALLIUM_BUILD_MODULE_VULKAN=ON</span></code> build flag (this requires the Vulkan SDK to be installed).</p>
 </section>
+<section id="wsi-flags">
+<h3>WSI flags<a class="headerlink" href="#wsi-flags" title="Permalink to this heading"></a></h3>
+<p>Window system integration (WSI) is available depending on the target platform:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>On Apple systems, <code class="docutils literal notranslate"><span class="pre">THALLIUM_WSI_COCOA</span></code> is available and enabled by default.</p></li>
+<li><p>On other *nix systems, <code class="docutils literal notranslate"><span class="pre">THALLIUM_WSI_XCB</span></code> and <code class="docutils literal notranslate"><span class="pre">THALLIUM_WSI_XLIB</span></code> are both available and enabled by default. <em>Wayland is not yet supported.</em></p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="information-for-contributing">
+<h2>Information for contributing<a class="headerlink" href="#information-for-contributing" title="Permalink to this heading"></a></h2>
+<p>Document <strong>all</strong> new public functions or types with <a class="reference external" href="https://www.doxygen.nl/">Doxygen</a>-style formatting. Also see the
+<a class="reference external" href="https://breathe.readthedocs.io/en/latest/index.html">Breathe documentation</a> to find out how to include your code’s documentation in the HTML
+output.</p>
+<p>I keep an upstream TO-DO list on <a class="reference external" href="https://trello.com/b/ZHYGTiZr/thallium-development-tracking">Trello</a>. Submit issues and pull requests to the
+<a class="reference external" href="https://github.com/kosude/thallium">GitHub repo</a>.</p>
 </section>
 </section>
 
@@ -152,7 +170,7 @@ using the <code class="docutils literal notranslate"><span class="pre">-DTHALLIU
   </div>
 
   
-    v0.0.0dev_8c903a3 (2023-12-14) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_a77aab0 (2023-12-16) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>

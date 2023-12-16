@@ -40,7 +40,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_8c903a3 (2023-12-14)
+                v0.0.0dev_a77aab0 (2023-12-16)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -52,7 +52,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../core/_core.html">Core API</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="_vulkan.html">Vulkan Module</a><ul class="current">
@@ -103,9 +103,9 @@
 <h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
 <section id="objects">
 <h3>Objects<a class="headerlink" href="#objects" title="Permalink to this heading"></a></h3>
-<dl class="cpp type">
-<dt class="sig sig-object cpp" id="_CPPv421TLVK_RendererSystem_t">
-<span id="_CPPv321TLVK_RendererSystem_t"></span><span id="_CPPv221TLVK_RendererSystem_t"></span><span id="TLVK_RendererSystem_t"></span><span class="target" id="db/df2/vk__renderer__system_8h_1a54ff11733378a6e736f0a643a21ccbfc"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv421TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></span><a class="headerlink" href="#_CPPv421TLVK_RendererSystem_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.TLVK_RendererSystem_t">
+<span class="target" id="db/df2/vk__renderer__system_8h_1a54ff11733378a6e736f0a643a21ccbfc"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#c.TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></span><a class="headerlink" href="#c.TLVK_RendererSystem_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A renderer system to hold Vulkan-specific rendering data. </p>
 <p>This structure holds per-renderer data for rendering with Vulkan.</p>
 <p>Note that this data <strong>does not include a VkInstance</strong>, as the instance is stored per-context rather than per-renderer. All Vulkan render sytems in an application refer to the same instance, which is created when allocating and populating the context data.</p>
@@ -123,16 +123,16 @@
 </section>
 <section id="descriptors">
 <h3>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this heading"></a></h3>
-<dl class="cpp struct">
-<dt class="sig sig-object cpp" id="_CPPv431TLVK_RendererSystemDescriptor_t">
-<span id="_CPPv331TLVK_RendererSystemDescriptor_t"></span><span id="_CPPv231TLVK_RendererSystemDescriptor_t"></span><span id="TLVK_RendererSystemDescriptor_t"></span><span class="target" id="d6/d29/structTLVK__RendererSystemDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemDescriptor_t</span></span></span><a class="headerlink" href="#_CPPv431TLVK_RendererSystemDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.TLVK_RendererSystemDescriptor_t">
+<span class="target" id="d6/d29/structTLVK__RendererSystemDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemDescriptor_t</span></span></span><a class="headerlink" href="#c.TLVK_RendererSystemDescriptor_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Descriptor struct to configure the creation of a Thallium renderer system for Vulkan. </p>
 <p>This descriptor structure provides options for the creation of Thallium renderer systems. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N31TLVK_RendererSystemDescriptor_t20physical_device_modeE">
-<span id="_CPPv3N31TLVK_RendererSystemDescriptor_t20physical_device_modeE"></span><span id="_CPPv2N31TLVK_RendererSystemDescriptor_t20physical_device_modeE"></span><span id="TLVK_RendererSystemDescriptor_t::physical_device_mode__TLVK_PhysicalDeviceSelectionMode_t"></span><span class="target" id="d6/d29/structTLVK__RendererSystemDescriptor__t_1a92244a81ec2ba7d78655bc0dc71a1d4f"></span><a class="reference internal" href="#_CPPv434TLVK_PhysicalDeviceSelectionMode_t" title="TLVK_PhysicalDeviceSelectionMode_t"><span class="n"><span class="pre">TLVK_PhysicalDeviceSelectionMode_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">physical_device_mode</span></span></span><a class="headerlink" href="#_CPPv4N31TLVK_RendererSystemDescriptor_t20physical_device_modeE" title="Permalink to this definition"></a><br /></dt>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TLVK_RendererSystemDescriptor_t.physical_device_mode">
+<span class="target" id="d6/d29/structTLVK__RendererSystemDescriptor__t_1a92244a81ec2ba7d78655bc0dc71a1d4f"></span><a class="reference internal" href="#c.TLVK_PhysicalDeviceSelectionMode_t" title="TLVK_PhysicalDeviceSelectionMode_t"><span class="n"><span class="pre">TLVK_PhysicalDeviceSelectionMode_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">physical_device_mode</span></span></span><a class="headerlink" href="#c.TLVK_RendererSystemDescriptor_t.physical_device_mode" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A TLVK_PhysicalDeviceSelectionMode_t enum indicating the mode of selection for the Vulkan physical device used by the renderer system. </p>
 </dd></dl>
 
@@ -144,9 +144,9 @@
 <hr class="docutils" />
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv425TLVK_RendererSystemCreatePC13TL_Renderer_tK31TLVK_RendererSystemDescriptor_t">
-<span id="_CPPv325TLVK_RendererSystemCreatePC13TL_Renderer_tK31TLVK_RendererSystemDescriptor_t"></span><span id="_CPPv225TLVK_RendererSystemCreatePC13TL_Renderer_tK31TLVK_RendererSystemDescriptor_t"></span><span id="TLVK_RendererSystemCreate__TL_Renderer_tPC.TLVK_RendererSystemDescriptor_tC"></span><span class="target" id="db/df2/vk__renderer__system_8h_1ab69498750261d92c8bc80f89a96f3f45"></span><a class="reference internal" href="#_CPPv421TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemCreate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="../core/renderers.html#_CPPv413TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">renderer</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv431TLVK_RendererSystemDescriptor_t" title="TLVK_RendererSystemDescriptor_t"><span class="n"><span class="pre">TLVK_RendererSystemDescriptor_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425TLVK_RendererSystemCreatePC13TL_Renderer_tK31TLVK_RendererSystemDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.TLVK_RendererSystemCreate">
+<span class="target" id="db/df2/vk__renderer__system_8h_1ab69498750261d92c8bc80f89a96f3f45"></span><a class="reference internal" href="#c.TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemCreate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="../core/renderers.html#c.TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">renderer</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TLVK_RendererSystemDescriptor_t" title="TLVK_RendererSystemDescriptor_t"><span class="n"><span class="pre">TLVK_RendererSystemDescriptor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TLVK_RendererSystemCreate" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Create and return a heap-allocated Vulkan renderer system. </p>
 <p>This function creates a new Vulkan renderer system and returns it. If there were any errors in creation, NULL will be returned instead.</p>
 <p><div class="admonition seealso">
@@ -175,9 +175,9 @@
 </dl>
 </dd></dl>
 
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv426TLVK_RendererSystemDestroyPC21TLVK_RendererSystem_t">
-<span id="_CPPv326TLVK_RendererSystemDestroyPC21TLVK_RendererSystem_t"></span><span id="_CPPv226TLVK_RendererSystemDestroyPC21TLVK_RendererSystem_t"></span><span id="TLVK_RendererSystemDestroy__TLVK_RendererSystem_tPC"></span><span class="target" id="db/df2/vk__renderer__system_8h_1aad366734a13fdfc8f445eff7ed60df3d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemDestroy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv421TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">renderer_system</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426TLVK_RendererSystemDestroyPC21TLVK_RendererSystem_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.TLVK_RendererSystemDestroy">
+<span class="target" id="db/df2/vk__renderer__system_8h_1aad366734a13fdfc8f445eff7ed60df3d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_RendererSystemDestroy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.TLVK_RendererSystem_t" title="TLVK_RendererSystem_t"><span class="n"><span class="pre">TLVK_RendererSystem_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">renderer_system</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TLVK_RendererSystemDestroy" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Free the given Thallium Vulkan renderer system object. </p>
 <p>This function frees the specified renderer system object.</p>
 <p><div class="admonition seealso">
@@ -191,7 +191,9 @@
 </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>renderer_system</strong> – Pointer to the Thallium Vulkan renderer system to free.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>renderer_system</strong> – Pointer to the Thallium Vulkan renderer system to free.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -200,21 +202,21 @@
 <hr class="docutils" />
 <section id="physical-device-selection">
 <h2>Physical device selection<a class="headerlink" href="#physical-device-selection" title="Permalink to this heading"></a></h2>
-<dl class="cpp enum">
-<dt class="sig sig-object cpp" id="_CPPv434TLVK_PhysicalDeviceSelectionMode_t">
-<span id="_CPPv334TLVK_PhysicalDeviceSelectionMode_t"></span><span id="_CPPv234TLVK_PhysicalDeviceSelectionMode_t"></span><span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PhysicalDeviceSelectionMode_t</span></span></span><a class="headerlink" href="#_CPPv434TLVK_PhysicalDeviceSelectionMode_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.TLVK_PhysicalDeviceSelectionMode_t">
+<span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PhysicalDeviceSelectionMode_t</span></span></span><a class="headerlink" href="#c.TLVK_PhysicalDeviceSelectionMode_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Enumeration containing modes of physical device selection in a Vulkan renderer system. </p>
 <p>This enumeration contains modes of physical device selection available to be used when creating a Vulkan renderer system. </p>
 <p><em>Values:</em></p>
-<dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N34TLVK_PhysicalDeviceSelectionMode_t43TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMALE">
-<span id="_CPPv3N34TLVK_PhysicalDeviceSelectionMode_t43TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMALE"></span><span id="_CPPv2N34TLVK_PhysicalDeviceSelectionMode_t43TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMALE"></span><span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624ac57aad3ec84ec3b03a1eae613cf49e30"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL</span></span></span><a class="headerlink" href="#_CPPv4N34TLVK_PhysicalDeviceSelectionMode_t43TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMALE" title="Permalink to this definition"></a><br /></dt>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TLVK_PhysicalDeviceSelectionMode_t.TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL">
+<span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624ac57aad3ec84ec3b03a1eae613cf49e30"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL</span></span></span><a class="headerlink" href="#c.TLVK_PhysicalDeviceSelectionMode_t.TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Use the most <strong>optimal</strong> physical device for the renderer system, based on queue families, and available extensions, device features, memory size, device type, etc. This mode <strong>may</strong> result in more processing but will usually result in the best GPU being used. <strong>This is the default behaviour.</strong></p>
 </dd></dl>
 
-<dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N34TLVK_PhysicalDeviceSelectionMode_t41TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRSTE">
-<span id="_CPPv3N34TLVK_PhysicalDeviceSelectionMode_t41TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRSTE"></span><span id="_CPPv2N34TLVK_PhysicalDeviceSelectionMode_t41TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRSTE"></span><span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624a04df18f39fe5c868e9342d3f1af4d4cd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRST</span></span></span><a class="headerlink" href="#_CPPv4N34TLVK_PhysicalDeviceSelectionMode_t41TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRSTE" title="Permalink to this definition"></a><br /></dt>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TLVK_PhysicalDeviceSelectionMode_t.TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRST">
+<span class="target" id="d8/d8f/enumsvk_8h_1a6e0bf5654358a0a7d62937e7ee6d8624a04df18f39fe5c868e9342d3f1af4d4cd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRST</span></span></span><a class="headerlink" href="#c.TLVK_PhysicalDeviceSelectionMode_t.TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRST" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Use the <strong>first</strong> possible physical device for the renderer system. This could result in a device that does not support the required Vulkan extensions or features being used, leading to some missing features. Queue families will still be validated. </p>
 </dd></dl>
 
@@ -235,7 +237,7 @@
   </div>
 
   
-    v0.0.0dev_8c903a3 (2023-12-14) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_a77aab0 (2023-12-16) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>

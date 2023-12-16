@@ -40,7 +40,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_8c903a3 (2023-12-14)
+                v0.0.0dev_a77aab0 (2023-12-16)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -52,7 +52,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
@@ -106,9 +106,9 @@
 <h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
 <section id="objects">
 <h3>Objects<a class="headerlink" href="#objects" title="Permalink to this heading"></a></h3>
-<dl class="cpp type">
-<dt class="sig sig-object cpp" id="_CPPv418TL_WindowSurface_t">
-<span id="_CPPv318TL_WindowSurface_t"></span><span id="_CPPv218TL_WindowSurface_t"></span><span id="TL_WindowSurface_t"></span><span class="target" id="db/d25/window__surface_8h_1aa990e83efcd8d08b05782e49667068b4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv418TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></span><a class="headerlink" href="#_CPPv418TL_WindowSurface_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.TL_WindowSurface_t">
+<span class="target" id="db/d25/window__surface_8h_1aa990e83efcd8d08b05782e49667068b4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></span><a class="headerlink" href="#c.TL_WindowSurface_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A portable Thallium structure to wrap around a platform-dependent, API-specific representation of a window. </p>
 <p>This structure wraps around a platform-dependent, API-specific representation of a window. </p>
 </dd></dl>
@@ -125,9 +125,9 @@
 <p>Definitions for these functions is compiled <strong>only if</strong> the <code class="docutils literal notranslate"><span class="pre">-DTHALLIUM_WSI_COCOA=ON</span></code> CMake flag was present at build. This is the
 <strong>default behaviour</strong> on <strong>Apple</strong> systems.</p>
 </div>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv427TL_WindowSurfaceCreateCocoaPCvPCK13TL_Debugger_t">
-<span id="_CPPv327TL_WindowSurfaceCreateCocoaPCvPCK13TL_Debugger_t"></span><span id="_CPPv227TL_WindowSurfaceCreateCocoaPCvPCK13TL_Debugger_t"></span><span id="TL_WindowSurfaceCreateCocoa__voidPC.TL_Debugger_tCPC"></span><span class="target" id="d3/df1/cocoa__window__surface_8h_1a9c18ba8411b5eb12385a2a46ed62481f"></span><a class="reference internal" href="#_CPPv418TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateCocoa</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427TL_WindowSurfaceCreateCocoaPCvPCK13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.TL_WindowSurfaceCreateCocoa">
+<span class="target" id="d3/df1/cocoa__window__surface_8h_1a9c18ba8411b5eb12385a2a46ed62481f"></span><a class="reference internal" href="#c.TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateCocoa</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#c.TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_WindowSurfaceCreateCocoa" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Create a Thallium window surface from a Cocoa window handle. </p>
 <p>This function creates a window surface for Thallium functions, using a Cocoa <code class="docutils literal notranslate"><span class="pre">NSWindow</span></code> window handle.</p>
 <dl class="field-list simple">
@@ -151,9 +151,9 @@
 <p>Definitions for these functions is compiled <strong>only if</strong> the <code class="docutils literal notranslate"><span class="pre">-DTHALLIUM_WSI_XCB=ON</span></code> CMake flag was present at build. This is the
 <strong>default behaviour</strong> on <strong>Unix</strong> <em>(not Apple)</em> systems.</p>
 </div>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv425TL_WindowSurfaceCreateXCBPCvK8uint32_tPCK13TL_Debugger_t">
-<span id="_CPPv325TL_WindowSurfaceCreateXCBPCvK8uint32_tPCK13TL_Debugger_t"></span><span id="_CPPv225TL_WindowSurfaceCreateXCBPCvK8uint32_tPCK13TL_Debugger_t"></span><span id="TL_WindowSurfaceCreateXCB__voidPC.uint32_tC.TL_Debugger_tCPC"></span><span class="target" id="d6/de6/xcb__window__surface_8h_1ac339017200a757526964b39837a8e6d0"></span><a class="reference internal" href="#_CPPv418TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateXCB</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">connection</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425TL_WindowSurfaceCreateXCBPCvK8uint32_tPCK13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.TL_WindowSurfaceCreateXCB">
+<span class="target" id="d6/de6/xcb__window__surface_8h_1ac339017200a757526964b39837a8e6d0"></span><a class="reference internal" href="#c.TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateXCB</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">connection</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#c.TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_WindowSurfaceCreateXCB" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Create a Thallium window surface from an XCB window and connection. </p>
 <p>This function creates a window surface for Thallium functions, using an XCB window handle.</p>
 <dl class="field-list simple">
@@ -178,9 +178,9 @@
 <p>Definitions for these functions is compiled <strong>only if</strong> the <code class="docutils literal notranslate"><span class="pre">-DTHALLIUM_WSI_XLIB=ON</span></code> CMake flag was present at build. This is the
 <strong>default behaviour</strong> on <strong>Unix</strong> <em>(not Apple)</em> systems.</p>
 </div>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv426TL_WindowSurfaceCreateXlibPCvK8uint64_tPCK13TL_Debugger_t">
-<span id="_CPPv326TL_WindowSurfaceCreateXlibPCvK8uint64_tPCK13TL_Debugger_t"></span><span id="_CPPv226TL_WindowSurfaceCreateXlibPCvK8uint64_tPCK13TL_Debugger_t"></span><span id="TL_WindowSurfaceCreateXlib__voidPC.uint64_tC.TL_Debugger_tCPC"></span><span class="target" id="d9/de2/xlib__window__surface_8h_1a3d55d9af3b60255f53f1eed83b63c59b"></span><a class="reference internal" href="#_CPPv418TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateXlib</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">display</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#_CPPv413TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426TL_WindowSurfaceCreateXlibPCvK8uint64_tPCK13TL_Debugger_t" title="Permalink to this definition"></a><br /></dt>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.TL_WindowSurfaceCreateXlib">
+<span class="target" id="d9/de2/xlib__window__surface_8h_1a3d55d9af3b60255f53f1eed83b63c59b"></span><a class="reference internal" href="#c.TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_WindowSurfaceCreateXlib</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">display</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#c.TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_WindowSurfaceCreateXlib" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Create a Thallium window surface from an Xlib (X11) display and window handle. </p>
 <p>This function creates a window surface for Thallium functions, using an X11/Xlib window handle.</p>
 <dl class="field-list simple">
@@ -213,7 +213,7 @@
   </div>
 
   
-    v0.0.0dev_8c903a3 (2023-12-14) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_a77aab0 (2023-12-16) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>

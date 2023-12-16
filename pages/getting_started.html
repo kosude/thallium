@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting started - Thallium</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/dark.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/see_also_hotfix.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/sidebar.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="api/_api.html" />
+    <link rel="prev" title="Home" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Thallium Documentation
+              <img src="../_static/logo_wtext.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v0.0.0dev_a77aab0 (2023-12-16)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-thallium-contexts-and-renderers">Understanding Thallium contexts and renderers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-functions">Debugging functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#object-systems">Object systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interacting-with-windows">Interacting with windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/_api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Thallium Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pages/getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<section id="understanding-thallium-contexts-and-renderers">
+<h2>Understanding Thallium contexts and renderers<a class="headerlink" href="#understanding-thallium-contexts-and-renderers" title="Permalink to this heading"></a></h2>
+<p>Each Thallium application must have <strong>one</strong> context object. This object stores state data for APIs that need it, such as the Vulkan instance, and is
+created using the <a class="reference internal" href="api/core/context.html#c.TL_ContextCreate" title="TL_ContextCreate"><code class="xref c c-func docutils literal notranslate"><span class="pre">TL_ContextCreate()</span></code></a> function.</p>
+<p>The context data is initialised as necessary when any renderers are created - in other words, if there are no Vulkan renderers created, then no
+Vulkan instance will be created, for example. One or more renderers can be created in batch with the <a class="reference internal" href="api/core/renderers.html#c.TL_RendererCreate" title="TL_RendererCreate"><code class="xref c c-func docutils literal notranslate"><span class="pre">TL_RendererCreate()</span></code></a> function - this can
+only be done <strong>once</strong> per context!</p>
+</section>
+<section id="debugging-functions">
+<h2>Debugging functions<a class="headerlink" href="#debugging-functions" title="Permalink to this heading"></a></h2>
+<p>While the context is usually the first object to be created in production builds, you might opt for creating a debugger first instead. This is
+necessary to recieve any debug output, and can be done with the <a class="reference internal" href="api/core/debuggers.html#c.TL_DebuggerCreate" title="TL_DebuggerCreate"><code class="xref c c-func docutils literal notranslate"><span class="pre">TL_DebuggerCreate()</span></code></a> function. You’ll need to specify the severities and
+sources of messages you want to stream to the debugger - this configuration is available in the descriptor, as well as an optional callback function.</p>
+<p>Some functions might explicitly take an optional debugger argument to send output to. However, it’s recommended to use a <strong>debugger attachment</strong> to
+get much better output from the context. This is a virtual structure that is defined with the <a class="reference internal" href="api/core/debuggers.html#c.TL_DebuggerAttachmentDescriptor_t" title="TL_DebuggerAttachmentDescriptor_t"><code class="xref c c-struct docutils literal notranslate"><span class="pre">TL_DebuggerAttachmentDescriptor_t</span></code></a>
+descriptor, and is specified at context creation. With a debugger attachment, you can recieve output directly from the graphics API(s) your
+application uses!</p>
+</section>
+<section id="object-systems">
+<h2>Object systems<a class="headerlink" href="#object-systems" title="Permalink to this heading"></a></h2>
+<p>API-specific versions of objects are abstracted in the form of <strong>object systems</strong>. For example, a renderer created with the
+<a class="reference internal" href="api/core/renderers.html#c.TL_RendererAPIFlags_t" title="TL_RendererAPIFlags_t"><code class="xref c c-enum docutils literal notranslate"><span class="pre">TL_RendererAPIFlags_t</span></code></a> flag of <code class="docutils literal notranslate"><span class="pre">TL_RENDERER_API_VULKAN_BIT</span></code> will itself contain a Vulkan renderer system; swapchains will contain an
+API-specific swapchain system, etc.</p>
+<p>Object systems are, by default, not provided in the public API. However, you can still access them by including the appropriate graphics API header,
+such as <code class="docutils literal notranslate"><span class="pre">thallium_vulkan.h</span></code> for Vulkan applications. These headers provide, among other things, their respective object systems.</p>
+</section>
+<section id="interacting-with-windows">
+<h2>Interacting with windows<a class="headerlink" href="#interacting-with-windows" title="Permalink to this heading"></a></h2>
+<p>Windows are passed to Thallium through the <a class="reference internal" href="api/core/wsi.html#c.TL_WindowSurface_t" title="TL_WindowSurface_t"><code class="xref c c-struct docutils literal notranslate"><span class="pre">TL_WindowSurface_t</span></code></a> abstraction. This allows for compatibility with various window systems; for
+example, on Apple systems, this struct can be created with the <a class="reference internal" href="api/core/wsi.html#c.TL_WindowSurfaceCreateCocoa" title="TL_WindowSurfaceCreateCocoa"><code class="xref c c-func docutils literal notranslate"><span class="pre">TL_WindowSurfaceCreateCocoa()</span></code></a> function. X11 and XCB equivalents exist for
+Linux systems - the functions that are compiled depend on which CMake flags are enabled at config-time (e.g. <code class="docutils literal notranslate"><span class="pre">THALLIUM_WSI_COCOA</span></code> is ON by default
+when building on macOS).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jack Bennett.</p>
+  </div>
+
+  
+    v0.0.0dev_a77aab0 (2023-12-16) » <a href="https://github.com/kosude/thallium">upstream url</a>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

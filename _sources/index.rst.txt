@@ -6,7 +6,9 @@ Home
     :hidden:
 
     self
-    pages/contributing
+
+    pages/getting_started
+
     pages/api/_api
 
 
@@ -17,8 +19,7 @@ far future.
 .. note::
     The contents of this page can also be seen in the project's `README <https://github.com/kosude/thallium/blob/master/README.md/>`_.
 
-For information about contributing, see the :doc:`Contributing page <pages/contributing>`. For comprehensive function and struct documentation, see
-the :doc:`API reference <pages/api/_api>`.
+For comprehensive function and struct documentation, see the :doc:`API reference <pages/api/_api>`.
 
 
 Building
@@ -44,6 +45,8 @@ Option name                  Description                       Default
 ``THALLIUM_BUILD_DOCS``      Build HTML documentation          OFF
 ===========================  ================================  =======
 
+It's recommended to use the ``-DCMAKE_BUILD_TYPE=Debug`` flag when building Thallium for library development.
+
 
 API modules
 ^^^^^^^^^^^
@@ -51,3 +54,24 @@ API modules
 Thallium source compilation is split into **modules**, based on the graphics APIs you need support for. Each module can be manually enabled or
 disabled with CMake flags, just like above. These flags are named ``THALLIUM_BUILD_MODULE_<API>``. For example, the Vulkan module can be compiled
 using the ``-DTHALLIUM_BUILD_MODULE_VULKAN=ON`` build flag (this requires the Vulkan SDK to be installed).
+
+
+WSI flags
+^^^^^^^^^
+
+Window system integration (WSI) is available depending on the target platform:
+
+ - On Apple systems, ``THALLIUM_WSI_COCOA`` is available and enabled by default.
+ - On other \*nix systems, ``THALLIUM_WSI_XCB`` and ``THALLIUM_WSI_XLIB`` are both available and enabled by default. *Wayland is not yet supported.*
+
+
+Information for contributing
+----------------------------
+
+
+Document **all** new public functions or types with `Doxygen <https://www.doxygen.nl/>`_-style formatting. Also see the
+`Breathe documentation <https://breathe.readthedocs.io/en/latest/index.html>`_ to find out how to include your code's documentation in the HTML
+output.
+
+I keep an upstream TO-DO list on `Trello <https://trello.com/b/ZHYGTiZr/thallium-development-tracking>`_. Submit issues and pull requests to the
+`GitHub repo <https://github.com/kosude/thallium>`_.
