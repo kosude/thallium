@@ -23,3 +23,4 @@ endfunction()
 # tests defined below
 
 thallium_add_test("hellotriangle" "bin/HelloTriangle.cpp")
+thallium_add_test("standalone" "bin/Standalone.cpp")

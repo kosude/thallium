@@ -69,3 +69,7 @@ breathe_default_project = "Thallium"
 
 breathe_show_define_initializer = True
 breathe_show_enumvalue_initializer = True
+
+breathe_domain_by_extension = {
+    "h": "c"
+}

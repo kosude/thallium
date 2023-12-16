@@ -24,9 +24,13 @@ int main() {
 
     swapchain1 = window1.CreateSwapchain(test.GetRenderers()[0]);
 
-    for (; !window1.ShouldClose();) {
-        Window::PollEvents();
-    }
+    Utils::Log("-- MAIN LOOP BEGIN --");
+
+    // for (; !window1.ShouldClose();) {
+    //     Window::PollEvents();
+    // }
+
+    Utils::Log("-- MAIN LOOP END --");
 
     TL_SwapchainDestroy(swapchain1);
 
