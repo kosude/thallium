@@ -134,9 +134,13 @@ int main() {
 
     // Main loop
 
+    std::cout << "-- MAIN LOOP BEGIN --" << std::endl;
+
     for (; !glfwWindowShouldClose(window);) {
         glfwPollEvents();
     }
+
+    std::cout << "-- MAIN LOOP END --" << std::endl;
 
 
     // Cleanup
@@ -144,6 +148,8 @@ int main() {
     TL_DebuggerDestroy(debugger);
     TL_RendererDestroy(renderer);
     TL_ContextDestroy(context);
+
+    glfwDestroyWindow(window);
 
     glfwTerminate();
 }

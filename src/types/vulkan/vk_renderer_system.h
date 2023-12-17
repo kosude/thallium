@@ -15,6 +15,7 @@
 #include "thallium/vulkan/vk_renderer_system.h"
 
 #include "thallium/core/renderer.h"
+#include "lib/vulkan/vk_loader.h"
 
 #include "vk_device_queues.h"
 
@@ -37,6 +38,9 @@ typedef struct TLVK_RendererSystem_t {
     /// @brief Handle to a Vulkan logical device.
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDevice.html
     VkDevice vk_logical_device;
+
+    /// @brief A function pointer table specific to device vk_logical_device.
+    TLVK_FuncSet_t devfs;
 
     /// @brief Array of enabled device extensions
     carray_t device_extensions;

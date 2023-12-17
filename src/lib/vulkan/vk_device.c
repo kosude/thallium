@@ -53,7 +53,7 @@
                                                                                     \
         for (uint32_t i = 0; i < name ## _queue_count; i++) {                       \
             VkQueue qptr;                                                           \
-            vkGetDeviceQueue(device, queue_families.name, i, &qptr);                \
+            out_funcset->vkGetDeviceQueue(device, queue_families.name, i, &qptr);   \
             carraypush(&out_queues->name, (carrayval_t) qptr);                      \
         }                                                                           \
     }                                                                               \
@@ -401,11 +401,12 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     return score;
 }
 
+// god, I HATE how many parameters this function has!!!
 VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const carray_t extensions, const VkPhysicalDeviceFeatures features,
     const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families, TLVK_LogicalDeviceQueues_t *const out_queues,
-    TL_RendererFeatures_t *const out_rfeatures, const TL_Debugger_t *const debugger)
+    TL_RendererFeatures_t *const out_rfeatures, TLVK_FuncSet_t *const out_funcset, const TL_Debugger_t *const debugger)
 {
-    if (!out_rfeatures) {
+    if (!out_rfeatures || !out_funcset) {
         return VK_NULL_HANDLE;
     }
 
@@ -490,6 +491,9 @@ VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const 
     if (vkCreateDevice(physical_device, &device_create_info, NULL, &device)) {
         return VK_NULL_HANDLE;
     };
+
+    // load vulkan functions from the new device
+    (*out_funcset) = TLVK_FuncSetLoad(device);
 
     if (out_queues) {
         // init arrays to be empty

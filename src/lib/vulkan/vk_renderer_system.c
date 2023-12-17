@@ -143,7 +143,8 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(TL_Renderer_t *const renderer, 
     VkPhysicalDeviceFeatures feats = renderer_system->vk_device_features;
     TLVK_PhysicalDeviceQueueFamilyIndices_t qf = TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(pd, renderer->features);
 
-    renderer_system->vk_logical_device = TLVK_LogicalDeviceCreate(pd, exts, feats, qf, &renderer_system->vk_queues, &renderer->features, debugger);
+    renderer_system->vk_logical_device = TLVK_LogicalDeviceCreate(
+        pd, exts, feats, qf, &renderer_system->vk_queues, &renderer->features, &renderer_system->devfs, debugger);
     if (renderer_system->vk_logical_device == VK_NULL_HANDLE) {
         TL_Error(debugger, "Failed to create Vulkan logical device object in renderer system %p", renderer_system);
         return NULL;
@@ -191,7 +192,9 @@ void TLVK_RendererSystemDestroy(TLVK_RendererSystem_t *const renderer_system) {
         return;
     }
 
-    vkDestroyDevice(renderer_system->vk_logical_device, NULL);
+    const TLVK_FuncSet_t *devfs = &(renderer_system->devfs);
+
+    devfs->vkDestroyDevice(renderer_system->vk_logical_device, NULL);
 
     carrayfree(&renderer_system->device_extensions);
 

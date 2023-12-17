@@ -16,6 +16,18 @@
 
 #include <cutils/carray/carray.h>
 
+// internal struct to hold queue family indices as described by physical devices
+typedef struct TLVK_PhysicalDeviceQueueFamilyIndices_t {
+    /// @brief Graphics queue family index
+    int32_t graphics;
+    /// @brief Compute queue family index
+    int32_t compute;
+    /// @brief Memory transfer queue family index
+    int32_t transfer;
+    /// @brief Image presentation queue family index
+    int32_t present;
+} TLVK_PhysicalDeviceQueueFamilyIndices_t;
+
 // internal struct to hold queue handles returned from a logical device.
 typedef struct TLVK_LogicalDeviceQueues_t {
     /// @brief Index of the graphics queue family (-1 if not used)

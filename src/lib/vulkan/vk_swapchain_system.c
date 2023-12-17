@@ -212,6 +212,8 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
         return NULL;
     }
 
+    const TLVK_FuncSet_t *devfs = &(renderer_system->devfs);
+
     const TL_Debugger_t *debugger = renderer_system->renderer->debugger;
 
     if (!window_surface && !descriptor.vk_surface) {
@@ -313,7 +315,7 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
     create_info.oldSwapchain = VK_NULL_HANDLE; // TODO: Swapchain recreation: https://trello.com/c/l1Fe6hcf
 
     // create swapchain into system
-    if (vkCreateSwapchainKHR(renderer_system->vk_logical_device, &create_info, NULL, &swapchain_system->vk_swapchain)) {
+    if (devfs->vkCreateSwapchainKHR(renderer_system->vk_logical_device, &create_info, NULL, &swapchain_system->vk_swapchain)) {
         TL_Error(debugger, "Failed to create Vulkan swapchain object in swapchain system %p", swapchain_system);
 
         free(swapchain_system);
@@ -339,7 +341,9 @@ void TLVK_SwapchainSystemDestroy(TLVK_SwapchainSystem_t *const swapchain_system)
         return;
     }
 
-    vkDestroySwapchainKHR(swapchain_system->renderer_system->vk_logical_device, swapchain_system->vk_swapchain, NULL);
+    const TLVK_FuncSet_t *devfs = &(swapchain_system->renderer_system->devfs);
+
+    devfs->vkDestroySwapchainKHR(swapchain_system->renderer_system->vk_logical_device, swapchain_system->vk_swapchain, NULL);
     vkDestroySurfaceKHR(swapchain_system->vk_instance, swapchain_system->vk_surface, NULL);
 
     free(swapchain_system);

@@ -16,6 +16,7 @@
 #include "utils/utils.h"
 
 #include "vk_instance.h"
+#include "vk_loader.h"
 
 #include <volk/volk.h>
 
@@ -178,7 +179,7 @@ bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api
     }
 
     // load vulkan functions
-    volkLoadInstance(block->vk_instance);
+    volkLoadInstanceOnly(block->vk_instance);
 
     // creating the Vulkan messenger object (if debugger is attached)...
 

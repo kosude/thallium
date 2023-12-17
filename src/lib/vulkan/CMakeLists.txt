@@ -2,6 +2,7 @@ set(SOURCES
     "vk_context_block.c"
     "vk_device.c"
     "vk_instance.c"
+    "vk_loader.c"
 
     "vk_renderer_system.c"
     "vk_swapchain_system.c"

@@ -22,22 +22,7 @@
 #include <cutils/carray/carray.h>
 
 #include "types/vulkan/vk_device_queues.h"
-
-/**
- * @brief A struct containing indices for Vulkan device queue families.
- *
- * This struct contains indices for Vulkan device queue families.
- */
-typedef struct TLVK_PhysicalDeviceQueueFamilyIndices_t {
-    /// @brief Graphics queue family index
-    int32_t graphics;
-    /// @brief Compute queue family index
-    int32_t compute;
-    /// @brief Memory transfer queue family index
-    int32_t transfer;
-    /// @brief Image presentation queue family index
-    int32_t present;
-} TLVK_PhysicalDeviceQueueFamilyIndices_t;
+#include "lib/vulkan/vk_loader.h"
 
 /**
  * @brief Create a Vulkan logical device object with the given extensions and capabilities enabled.
@@ -52,6 +37,7 @@ typedef struct TLVK_PhysicalDeviceQueueFamilyIndices_t {
  * @param queue_families Queue families from which to request queues
  * @param out_queues NULL or a pointer to a struct into which the created queue handles will be returned
  * @param out_rfeatures A pointer to the renderer features struct - in case any features are found to be unavailable, this struct will be updated.
+ * @param out_funcset A pointer to a function set, into which the function ptrs for this device will be loaded.
  * @param debugger Debugger object to debug the function with
  * @return VK_NULL_HANDLE if there was an error, otherwise return the resulting VkDevice.
  */
@@ -62,6 +48,7 @@ VkDevice TLVK_LogicalDeviceCreate(
     const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families,
     TLVK_LogicalDeviceQueues_t *const out_queues,
     TL_RendererFeatures_t *const out_rfeatures,
+    TLVK_FuncSet_t *const out_funcset,
     const TL_Debugger_t *const debugger
 );
 
