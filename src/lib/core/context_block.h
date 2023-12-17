@@ -6,8 +6,8 @@
  */
 
 #pragma once
-#ifndef __TL__internal__core__context_api_h__
-#define __TL__internal__core__context_api_h__
+#ifndef __TL__internal__core__context_block_h__
+#define __TL__internal__core__context_block_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
@@ -18,7 +18,7 @@
 #include "thallium/core/version.h"
 
 // SIZE_MAX means data block is not initialised
-#define TL_CONTEXT_API_OBJECT_UNINITIALISED SIZE_MAX
+#define TL_CONTEXT_BLOCK_UNINITIALISED SIZE_MAX
 
 /**
  * @brief A struct to hold a version struct for each abstracted API.

@@ -310,7 +310,7 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
     create_info.presentMode = present_mode;
     create_info.clipped = VK_TRUE;
 
-    create_info.oldSwapchain = VK_NULL_HANDLE; // TODO recreating swapchain
+    create_info.oldSwapchain = VK_NULL_HANDLE; // TODO: Swapchain recreation: https://trello.com/c/l1Fe6hcf
 
     // create swapchain into system
     if (vkCreateSwapchainKHR(renderer_system->vk_logical_device, &create_info, NULL, &swapchain_system->vk_swapchain)) {

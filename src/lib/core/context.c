@@ -6,7 +6,11 @@
  */
 
 #include "thallium.h"
-#include "lib/core/context_api.h"
+
+#include "lib/core/context_block.h"
+#if defined(_THALLIUM_VULKAN_INCL)
+#   include "lib/vulkan/vk_context_block.h"
+#endif
 
 #include "types/core/context.h"
 
@@ -14,10 +18,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-
-#if defined(_THALLIUM_VULKAN_INCL)
-#   include "lib/vulkan/vk_context_block.h"
-#endif
 
 // static context pointer singleton
 static TL_Context_t *__CONTEXT_PTR = NULL;
@@ -51,7 +51,7 @@ TL_Context_t *TL_ContextCreate(const TL_ContextDescriptor_t context_descriptor, 
     }
 
     // the handles of any data blocks that are initialised will be set accordingly in TL_ContextBlocksCreate
-    context->vulkan_offset = TL_CONTEXT_API_OBJECT_UNINITIALISED;
+    context->vulkan_offset = TL_CONTEXT_BLOCK_UNINITIALISED;
 
     // initialise to NULL as the data depends on which APIs are used.
     context->data_size = 0;
@@ -146,7 +146,7 @@ void TL_ContextBlocksDestroy(TL_Context_t *const context) {
         return;
     }
 
-    if (context->vulkan_offset != TL_CONTEXT_API_OBJECT_UNINITIALISED) {
+    if (context->vulkan_offset != TL_CONTEXT_BLOCK_UNINITIALISED) {
 #       if defined(_THALLIUM_VULKAN_INCL)
             TLVK_ContextBlockDestroy(context);
 #       endif

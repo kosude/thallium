@@ -16,14 +16,6 @@
 
 #include <volk/volk.h>
 
-// TODO ..:: Room for (probable) optimisation ::..
-// Currently the __ValidateInstanceLayers and __ValidateInstanceExtensions use linear searching algorithms to
-// look for layer and extension names. This is not very efficient, so maybe something like some sort of binary
-// search would be better after alphabetically sorting the available layers/extensions. This doesn't need too
-// much priority as it's not like it's being done every frame, but it should probably be looked into at some
-// point.
-// NOTE: the __ValidateInstanceExtensions function is very slow! (as it is also checking for extensions provied by layers)
-
 // validate given layers and return an array of the layers that are deemed valid (which can be enabled)
 static carray_t __ValidateInstanceLayers(const uint32_t count, const char *const *const names, bool *const out_missing_flag,
     const TL_Debugger_t *const debugger)
@@ -168,8 +160,7 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
         __DEFINE_REQUIRED_EXTENSION(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
 #   endif
 
-    // TODO: Debug utils are present on ~47% of devices. On those where it is not present, debug report (on ~89% devices) should be attempted to be
-    // used instead.
+    // NOTE: some implementations may not support debug utils, but I won't implement support for debug report as a backup because it's deprecated.
     if (debug_utils) {
         __DEFINE_REQUIRED_EXTENSION(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
         __DEFINE_REQUIRED_EXTENSION(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME);
@@ -188,7 +179,6 @@ static void __EnumerateRequiredInstanceExtensions(const TL_RendererFeatures_t re
             __DEFINE_REQUIRED_EXTENSION(VK_EXT_METAL_SURFACE_EXTENSION_NAME);
 #       elif defined(_UNIX)
             // unix surface extensions (assume linux)
-            // TODO wayland support|
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
             __DEFINE_REQUIRED_EXTENSION(VK_KHR_XLIB_SURFACE_EXTENSION_NAME);
 #       endif
@@ -245,7 +235,7 @@ static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const f
         ) {
             features->presentation = false;
             TL_Error(debugger,
-                "When creating Vulkan instance: RENDERER FEATURE UNAVAILABLE (missing instance extensions) - 'presentation' was disabled!!!");
+                "When creating Vulkan instance: RENDERER FEATURE UNAVAILABLE (missing instance extensions) - 'presentation' was disabled!");
         }
     }
 }

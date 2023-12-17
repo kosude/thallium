@@ -12,7 +12,7 @@
 #include "types/core/renderer.h"
 
 #include "utils/utils.h"
-#include "lib/core/context_api.h"
+#include "lib/core/context_block.h"
 
 #include <stdlib.h>
 #include <string.h>

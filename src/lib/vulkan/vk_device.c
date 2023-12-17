@@ -47,7 +47,7 @@
     if (queue_families.name > -1 && name ## _queue_count > 0) {                     \
         out_queues->name = carraynew(name ## _queue_count);                         \
         if (!out_queues->name.capacity) {                                           \
-            TL_Fatal(debugger, "MALLOC fault in call to __CreateLogicalDevice");    \
+            TL_Fatal(debugger, "MALLOC fault in call to TLVK_LogicalDeviceCreate"); \
             return VK_NULL_HANDLE;                                                  \
         }                                                                           \
                                                                                     \
@@ -216,7 +216,7 @@ static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const f
         if (!pa) {
             features->presentation = false;
             TL_Error(debugger,
-                "When creating Vulkan device: RENDERER FEATURE UNAVAILABLE (missing device extensions) - 'presentation' was disabled!!!");
+                "When creating Vulkan device: RENDERER FEATURE UNAVAILABLE (missing device extensions) - 'presentation' was disabled!");
         }
     }
 }

@@ -12,7 +12,7 @@
 #include "types/core/context.h"
 #include "types/core/debugger.h"
 
-#include "lib/core/context_api.h"
+#include "lib/core/context_block.h"
 #include "utils/utils.h"
 
 #include "vk_instance.h"
@@ -106,7 +106,7 @@ bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api
         return false;
     }
 
-    if (context->vulkan_offset == TL_CONTEXT_API_OBJECT_UNINITIALISED) {
+    if (context->vulkan_offset == TL_CONTEXT_BLOCK_UNINITIALISED) {
         TL_Warn(debugger, "TLVK_ContextBlockCreate: Vulkan data block uninitialised for context object %p", context);
         return false;
     }
