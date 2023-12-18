@@ -230,6 +230,9 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
 
     TL_Log(debugger, "Allocated memory for Vulkan swapchain system at %p", swapchain_system);
 
+    swapchain_system->vk_image_count = 0;
+    swapchain_system->vk_images = NULL;
+
     swapchain_system->renderer_system = renderer_system;
 
     swapchain_system->vk_instance = renderer_system->vk_context->vk_instance;
@@ -322,6 +325,17 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
         return NULL;
     }
 
+    // retrieve image handles
+    devfs->vkGetSwapchainImagesKHR(renderer_system->vk_logical_device, swapchain_system->vk_swapchain, &swapchain_system->vk_image_count, NULL);
+    swapchain_system->vk_images = malloc(sizeof(VkImage) * swapchain_system->vk_image_count);
+    if (!swapchain_system->vk_images) {
+        TL_Fatal(debugger, "MALLOC fault in call to TLVK_SwapchainSystemCreate");
+        return NULL;
+    }
+    devfs->vkGetSwapchainImagesKHR(renderer_system->vk_logical_device, swapchain_system->vk_swapchain, &swapchain_system->vk_image_count,
+        swapchain_system->vk_images);
+
+    // debug output
     if (debugger) {
         VkPhysicalDeviceProperties props;
         vkGetPhysicalDeviceProperties(renderer_system->vk_physical_device, &props);
@@ -331,6 +345,7 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
 
         TL_Log(debugger, "  For use by physical device \"%s\"", props.deviceName);
         TL_Log(debugger, "  With extent resolution %dx%d", extent.width, extent.height);
+        TL_Log(debugger, "  Image count %d (from minimum of %d)", swapchain_system->vk_image_count, min_img_count);
     }
 
     return swapchain_system;
@@ -345,6 +360,8 @@ void TLVK_SwapchainSystemDestroy(TLVK_SwapchainSystem_t *const swapchain_system)
 
     devfs->vkDestroySwapchainKHR(swapchain_system->renderer_system->vk_logical_device, swapchain_system->vk_swapchain, NULL);
     vkDestroySurfaceKHR(swapchain_system->vk_instance, swapchain_system->vk_surface, NULL);
+
+    free(swapchain_system->vk_images);
 
     free(swapchain_system);
 }

@@ -30,6 +30,12 @@ typedef struct TLVK_SwapchainSystem_t {
     /// @brief Vulkan window surface object:
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html
     VkSurfaceKHR vk_surface;
+
+    /// @brief Array of Vulkan images, retrieved from `vk_swapchain`:
+    /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImage.html
+    VkImage *vk_images;
+    /// @brief Amount of elements in `vk_images`.
+    uint32_t vk_image_count;
 } TLVK_SwapchainSystem_t;
 
 #ifdef __cplusplus
