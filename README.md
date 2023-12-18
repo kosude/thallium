@@ -1,5 +1,5 @@
 <p align=center>
-    <img align=left src=".github/resources/render.png" height=110>
+    <img align=left src="rc/img/render.png" height=110>
 </p>
 
 

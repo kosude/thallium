@@ -16,8 +16,7 @@
 
 #include "thallium/core/renderer.h"
 #include "lib/vulkan/vk_loader.h"
-
-#include "vk_device_queues.h"
+#include "lib/vulkan/vk_device_queues.h"
 
 #define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>

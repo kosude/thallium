@@ -21,7 +21,7 @@
 
 #include <cutils/carray/carray.h>
 
-#include "types/vulkan/vk_device_queues.h"
+#include "lib/vulkan/vk_device_queues.h"
 #include "lib/vulkan/vk_loader.h"
 
 /**
