@@ -9,9 +9,21 @@
 
 #include <volk/volk.h>
 
+#include <stdbool.h>
 #include <string.h>
 
-TLVK_FuncSet_t TLVK_FuncSetLoad(const VkDevice device) {
+// flag to only load vulkan loader once
+static bool __VOLK_INITIALISED = false;
+
+void TLVK_LoaderInit(void) {
+
+    if (!__VOLK_INITIALISED) {
+        volkInitialize(); // seemed to have spelt initialise wrong
+        __VOLK_INITIALISED = true;
+    }
+}
+
+TLVK_FuncSet_t TLVK_LoaderFuncSetLoad(const VkDevice device) {
     // volk does all the heavy lifting
     struct VolkDeviceTable dtable;
     volkLoadDeviceTable(&dtable, device);
@@ -23,4 +35,8 @@ TLVK_FuncSet_t TLVK_FuncSetLoad(const VkDevice device) {
     memcpy(&funcset, &dtable, sizeof(TLVK_FuncSet_t));
 
     return funcset;
+}
+
+void TLVK_LoaderInstanceLoad(const VkInstance instance) {
+    volkLoadInstanceOnly(instance);
 }

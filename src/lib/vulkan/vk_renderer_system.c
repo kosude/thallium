@@ -31,6 +31,8 @@ static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_Renderer
     VkInstance instance = renderer_system->vk_context->vk_instance;
     TL_RendererFeatures_t requirements = renderer_system->renderer->features;
 
+    TLVK_PhysicalDeviceSelectionMode_t selectmode = descriptor->physical_device_mode;
+
     // init array of all physical device
     uint32_t candidate_count;
     vkEnumeratePhysicalDevices(instance, &candidate_count, NULL);
@@ -58,11 +60,11 @@ static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_Renderer
 
     VkPhysicalDevice ret;
 
-    switch (descriptor->physical_device_mode) {
+    switch (selectmode) {
         case TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL:
         default:
             // select optimal physical device (with score etc)
-            ret = TLVK_PhysicalDeviceSelect(candidates, requirements, descriptor->physical_device_mode, out_exts, out_feats, debugger);
+            ret = TLVK_PhysicalDeviceSelect(candidates, requirements, selectmode, out_exts, out_feats, debugger);
             break;
     }
 
@@ -78,6 +80,7 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(TL_Renderer_t *const renderer, 
     }
 
     const TL_Debugger_t *debugger = renderer->debugger;
+    TL_RendererFeatures_t rendfeatures = renderer->features;
 
     TLVK_RendererSystem_t *renderer_system = malloc(sizeof(TLVK_RendererSystem_t));
     if (!renderer_system) {
@@ -90,25 +93,26 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(TL_Renderer_t *const renderer, 
     renderer_system->renderer = renderer;
     renderer_system->vk_context = (TLVK_ContextBlock_t *) ((char *) renderer->context->data + renderer->context->vulkan_offset);
 
-    renderer_system->vk_physical_device = __SelectRendererSystemPhysicalDevice(renderer_system, &descriptor, &renderer_system->device_extensions,
+    VkPhysicalDevice physdev = __SelectRendererSystemPhysicalDevice(renderer_system, &descriptor, &renderer_system->device_extensions,
         &renderer_system->vk_device_features, debugger);
-    if (renderer_system->vk_physical_device == VK_NULL_HANDLE) {
+    if (physdev == VK_NULL_HANDLE) {
         TL_Error(debugger, "Failed to select physical device for Vulkan renderer system %p", renderer_system);
         return NULL;
     }
+    renderer_system->vk_physical_device = physdev;
 
     VkPhysicalDeviceProperties props;
 
     // print information about the selected physical device
     if (debugger) {
-        vkGetPhysicalDeviceProperties(renderer_system->vk_physical_device, &props);
+        vkGetPhysicalDeviceProperties(physdev, &props);
 
         TL_Note(debugger, "Vulkan renderer system %p physical device selection - this renderer system will use the following GPU:", renderer_system);
         TL_Note(debugger, "  %s", props.deviceName);
 
         TL_Log(debugger, "  Supports Vulkan API version %d.%d.%d", VK_API_VERSION_MAJOR(props.apiVersion), VK_API_VERSION_MINOR(props.apiVersion),
             VK_API_VERSION_PATCH(props.apiVersion));
-        TL_Log(debugger, "  VkPhysicalDevice handle at %p", renderer_system->vk_physical_device);
+        TL_Log(debugger, "  VkPhysicalDevice handle at %p", physdev);
         TL_Log(debugger, "  Device ID: 0x%04hhx", props.deviceID);
 
         // printing device vendor from known PCI IDs
@@ -138,17 +142,17 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(TL_Renderer_t *const renderer, 
         TL_Log(debugger, "    (Vendor id = 0x%04hhx)", props.vendorID);
     }
 
-    VkPhysicalDevice pd = renderer_system->vk_physical_device;
     carray_t exts = renderer_system->device_extensions;
     VkPhysicalDeviceFeatures feats = renderer_system->vk_device_features;
-    TLVK_PhysicalDeviceQueueFamilyIndices_t qf = TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(pd, renderer->features);
+    TLVK_PhysicalDeviceQueueFamilyIndices_t qf = TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(physdev, rendfeatures);
 
-    renderer_system->vk_logical_device = TLVK_LogicalDeviceCreate(
-        pd, exts, feats, qf, &renderer_system->vk_queues, &renderer->features, &renderer_system->devfs, debugger);
-    if (renderer_system->vk_logical_device == VK_NULL_HANDLE) {
+    VkDevice dev = TLVK_LogicalDeviceCreate(
+        physdev, exts, feats, qf, &renderer_system->vk_queues, &rendfeatures, &renderer_system->devfs, debugger);
+    if (dev == VK_NULL_HANDLE) {
         TL_Error(debugger, "Failed to create Vulkan logical device object in renderer system %p", renderer_system);
         return NULL;
     }
+    renderer_system->vk_logical_device = dev;
 
     // store queue family indices
     renderer_system->vk_queues.graphics_family = qf.graphics;
@@ -157,31 +161,32 @@ TLVK_RendererSystem_t *TLVK_RendererSystemCreate(TL_Renderer_t *const renderer, 
     renderer_system->vk_queues.present_family = qf.present;
 
     if (debugger) {
-        TL_Log(debugger, "Created Vulkan device object at %p in Thallium Vulkan renderer system %p", renderer_system->vk_logical_device,
-            renderer_system);
+        TL_Log(debugger, "Created Vulkan device object at %p in Thallium Vulkan renderer system %p", dev, renderer_system);
 
         TL_Log(debugger, "  Interfacing physical device \"%s\"", props.deviceName);
 
-        TL_Log(debugger, "  %d extensions", renderer_system->device_extensions.size);
-        for (uint32_t i = 0; i < renderer_system->device_extensions.size; i++) {
-            TL_Log(debugger, "    - extension #%d: %s", i, renderer_system->device_extensions.data[i]);
+        TL_Log(debugger, "  %d extensions", exts.size);
+        for (uint32_t i = 0; i < exts.size; i++) {
+            TL_Log(debugger, "    - extension #%d: %s", i, exts.data[i]);
         }
 
+        TLVK_LogicalDeviceQueues_t queues = renderer_system->vk_queues;
+
         uint32_t queue_count =
-            renderer_system->vk_queues.graphics.size +
-            renderer_system->vk_queues.compute.size +
-            renderer_system->vk_queues.transfer.size +
-            renderer_system->vk_queues.present.size;
+            queues.graphics.size +
+            queues.compute.size +
+            queues.transfer.size +
+            queues.present.size;
 
         TL_Log(debugger, "  %d queues", queue_count);
         if (qf.graphics > -1)
-            TL_Log(debugger, "    - %d graphics (family index: %d)", renderer_system->vk_queues.graphics.size, qf.graphics);
+            TL_Log(debugger, "    - %d graphics (family index: %d)", queues.graphics.size, qf.graphics);
         if (qf.compute > -1)
-            TL_Log(debugger, "    - %d compute  (family index: %d)", renderer_system->vk_queues.compute.size, qf.compute);
+            TL_Log(debugger, "    - %d compute  (family index: %d)", queues.compute.size, qf.compute);
         if (qf.transfer > -1)
-            TL_Log(debugger, "    - %d transfer (family index: %d)", renderer_system->vk_queues.transfer.size, qf.transfer);
+            TL_Log(debugger, "    - %d transfer (family index: %d)", queues.transfer.size, qf.transfer);
         if (qf.present > -1)
-            TL_Log(debugger, "    - %d present  (family index: %d)", renderer_system->vk_queues.present.size, qf.present);
+            TL_Log(debugger, "    - %d present  (family index: %d)", queues.present.size, qf.present);
     }
 
     return renderer_system;

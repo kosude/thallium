@@ -63,9 +63,11 @@ void TL_ReportMessage(const TL_Debugger_t *const debugger, const TL_DebugSeverit
     vsnprintf(msg, __MAX_DBGMSG_LEN, format, varargs);
     va_end(varargs);
 
-    if (debugger->user_callback) {
+    TL_DebugCallbackfn_t cbfun = debugger->user_callback;
+
+    if (cbfun) {
         // invoke set user callback
-        debugger->user_callback(
+        cbfun(
             msg,
             severity,
             source,

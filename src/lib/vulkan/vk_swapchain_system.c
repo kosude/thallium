@@ -28,9 +28,11 @@ static VkSurfaceKHR __CreateVkSurface(const VkInstance instance, const TL_Window
         return VK_NULL_HANDLE;
     }
 
+    TL_WSI_API_t wsiapi = tl_surface->wsi;
+
     VkSurfaceKHR surface;
 
-    switch (tl_surface->wsi) {
+    switch (wsiapi) {
         default:
             TL_Error(debugger, "Invalid TL_WindowSurface_t format encountered when attempting to create Vulkan surface");
             return VK_NULL_HANDLE;
@@ -147,18 +149,6 @@ static TLVK_SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDev
     return details;
 }
 
-// why is this function here if it isn't being used? I dont know why i wrote it? Am i an idiot???
-    // static bool __ValidateSwapchainSupportInfo(const TLVK_SwapchainSupportInfo_t details, const TL_Debugger_t *const debugger)
-    // {
-    //     bool ret = (details.format_count > 0) && (details.present_mode_count > 0);
-
-    //     if (!ret) {
-    //         TL_Warn(debugger, "Swapchain support not valid (__ValidateSwapchainSupportInfo)");
-    //     }
-
-    //     return ret;
-    // }
-
 // select most optimal available format for the swapchain to use, from the candidates specified.
 static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *const formats, const uint32_t format_count) {
     for (uint32_t i = 0; i < format_count; i++) {
@@ -215,6 +205,11 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
     const TLVK_FuncSet_t *devfs = &(renderer_system->devfs);
 
     const TL_Debugger_t *debugger = renderer_system->renderer->debugger;
+    VkInstance instance = renderer_system->vk_context->vk_instance;
+
+    VkPhysicalDevice physdev = renderer_system->vk_physical_device;
+    VkDevice dev = renderer_system->vk_logical_device;
+    TLVK_LogicalDeviceQueues_t queues = renderer_system->vk_queues;
 
     if (!window_surface && !descriptor.vk_surface) {
         TL_Error(debugger, "When attempting to create Vulkan swapchain system: either a Thallium window surface or a Vulkan VkSurfaceKHR must be "
@@ -235,7 +230,7 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
 
     swapchain_system->renderer_system = renderer_system;
 
-    swapchain_system->vk_instance = renderer_system->vk_context->vk_instance;
+    swapchain_system->vk_instance = instance;
 
     VkSurfaceKHR surface;
 
@@ -244,7 +239,7 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
         surface = descriptor.vk_surface;
     } else {
         // if no surface was directly passed, we create a new one for the window (passed via Thallium window surface `window_surface`)
-        surface = __CreateVkSurface(swapchain_system->vk_instance, window_surface, debugger);
+        surface = __CreateVkSurface(instance, window_surface, debugger);
         if (surface == VK_NULL_HANDLE) {
             TL_Error(debugger, "Failed to create Vulkan surface for new swapchain system at %p", swapchain_system);
             return NULL;
@@ -253,7 +248,7 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
 
     swapchain_system->vk_surface = surface;
 
-    TLVK_SwapchainSupportInfo_t support_info = __GetSwapchainSupportInfo(swapchain_system->renderer_system->vk_physical_device, surface);
+    TLVK_SwapchainSupportInfo_t support_info = __GetSwapchainSupportInfo(physdev, surface);
 
     // automatically select surface format if not explicitly chosen
     VkSurfaceFormatKHR surface_format = ((int) descriptor.vk_surface_format.format != -1) ?
@@ -290,8 +285,8 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
     create_info.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
     // queue families which images may be shared across (if the indices are different)
-    int32_t graphicsfam = renderer_system->vk_queues.graphics_family;
-    int32_t presentfam = renderer_system->vk_queues.present_family;
+    int32_t graphicsfam = queues.graphics_family;
+    int32_t presentfam = queues.present_family;
 
     if (graphicsfam != presentfam) {
         // if the queue families are different then allow sharing between them
@@ -318,29 +313,31 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
     create_info.oldSwapchain = VK_NULL_HANDLE; // TODO: Swapchain recreation: https://trello.com/c/l1Fe6hcf
 
     // create swapchain into system
-    if (devfs->vkCreateSwapchainKHR(renderer_system->vk_logical_device, &create_info, NULL, &swapchain_system->vk_swapchain)) {
+    if (devfs->vkCreateSwapchainKHR(dev, &create_info, NULL, &swapchain_system->vk_swapchain)) {
         TL_Error(debugger, "Failed to create Vulkan swapchain object in swapchain system %p", swapchain_system);
 
         free(swapchain_system);
         return NULL;
     }
 
+    VkSwapchainKHR swapchain = swapchain_system->vk_swapchain;
+
     // retrieve image handles
-    devfs->vkGetSwapchainImagesKHR(renderer_system->vk_logical_device, swapchain_system->vk_swapchain, &swapchain_system->vk_image_count, NULL);
-    swapchain_system->vk_images = malloc(sizeof(VkImage) * swapchain_system->vk_image_count);
-    if (!swapchain_system->vk_images) {
+    devfs->vkGetSwapchainImagesKHR(dev, swapchain, &swapchain_system->vk_image_count, NULL);
+    VkImage *images = malloc(sizeof(VkImage) * swapchain_system->vk_image_count);
+    if (!images) {
         TL_Fatal(debugger, "MALLOC fault in call to TLVK_SwapchainSystemCreate");
         return NULL;
     }
-    devfs->vkGetSwapchainImagesKHR(renderer_system->vk_logical_device, swapchain_system->vk_swapchain, &swapchain_system->vk_image_count,
-        swapchain_system->vk_images);
+    swapchain_system->vk_images = images;
+    devfs->vkGetSwapchainImagesKHR(dev, swapchain, &swapchain_system->vk_image_count, images);
 
     // debug output
     if (debugger) {
         VkPhysicalDeviceProperties props;
-        vkGetPhysicalDeviceProperties(renderer_system->vk_physical_device, &props);
+        vkGetPhysicalDeviceProperties(physdev, &props);
 
-        TL_Log(debugger, "Created Vulkan swapchain object at %p in Thallium Vulkan swapchain system %p", swapchain_system->vk_swapchain,
+        TL_Log(debugger, "Created Vulkan swapchain object at %p in Thallium Vulkan swapchain system %p", swapchain,
             swapchain_system);
 
         TL_Log(debugger, "  For use by physical device \"%s\"", props.deviceName);
@@ -356,9 +353,10 @@ void TLVK_SwapchainSystemDestroy(TLVK_SwapchainSystem_t *const swapchain_system)
         return;
     }
 
-    const TLVK_FuncSet_t *devfs = &(swapchain_system->renderer_system->devfs);
+    const TLVK_RendererSystem_t *renderersys = swapchain_system->renderer_system;
+    const TLVK_FuncSet_t *devfs = &(renderersys->devfs);
 
-    devfs->vkDestroySwapchainKHR(swapchain_system->renderer_system->vk_logical_device, swapchain_system->vk_swapchain, NULL);
+    devfs->vkDestroySwapchainKHR(renderersys->vk_logical_device, swapchain_system->vk_swapchain, NULL);
     vkDestroySurfaceKHR(swapchain_system->vk_instance, swapchain_system->vk_surface, NULL);
 
     free(swapchain_system->vk_images);

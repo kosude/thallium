@@ -31,11 +31,15 @@ static carray_t __ValidateInstanceLayers(const uint32_t count, const char *const
     for (uint32_t i = 0; i < count; i++) {
         bool found = false;
 
+        const char *cur_name_req = names[i];
+
         for (uint32_t j = 0; j < available_count; j++) {
-            if (!strcmp(names[i], available[j].layerName)) {
+            const char *cur_name_av = available[j].layerName;
+
+            if (!strcmp(cur_name_req, cur_name_av)) {
                 // the layer is confirmed available
                 found = true;
-                carraypush(&ret, (carrayval_t) names[i]);
+                carraypush(&ret, (carrayval_t) cur_name_req);
 
                 break;
             }
@@ -43,7 +47,7 @@ static carray_t __ValidateInstanceLayers(const uint32_t count, const char *const
 
         // layer not found
         if (!found) {
-            TL_Warn(debugger, "Could not find layer \"%s\"", names[i]);
+            TL_Warn(debugger, "Could not find layer \"%s\"", cur_name_req);
             *out_missing_flag = true;
         }
     }
@@ -66,11 +70,15 @@ static carray_t __ValidateInstanceExtensions(const uint32_t count, const char *c
     for (uint32_t i = 0; i < count; i++) {
         bool found = false;
 
+        const char *cur_name_req = names[i];
+
         for (uint32_t j = 0; j < available_count; j++) {
-            if (!strcmp(names[i], available[j].extensionName)) {
+            const char *cur_name_av = available[j].extensionName;
+
+            if (!strcmp(cur_name_req, cur_name_av)) {
                 // the extension is confirmed available
                 found = true;
-                carraypush(&ret, (carrayval_t) names[i]);
+                carraypush(&ret, (carrayval_t) cur_name_req);
 
                 break;
             }
@@ -82,17 +90,19 @@ static carray_t __ValidateInstanceExtensions(const uint32_t count, const char *c
         }
 
         for (uint32_t j = 0, br = 0; j < lcount && br == 0; j++) {
+            const char *lname = lnames[j];
+
             // get available extensions for that layer
             uint32_t l_available_count;
-            vkEnumerateInstanceExtensionProperties(lnames[j], &l_available_count, NULL);
+            vkEnumerateInstanceExtensionProperties(lname, &l_available_count, NULL);
             VkExtensionProperties l_available[l_available_count];
-            vkEnumerateInstanceExtensionProperties(lnames[j], &l_available_count, l_available);
+            vkEnumerateInstanceExtensionProperties(lname, &l_available_count, l_available);
 
             for (uint32_t k = 0; k < l_available_count; k++) {
-                if (!strcmp(names[i], l_available[k].extensionName)) {
+                if (!strcmp(cur_name_req, l_available[k].extensionName)) {
                     // the extension is confirmed available
                     found = true;
-                    carraypush(&ret, (carrayval_t) names[i]);
+                    carraypush(&ret, (carrayval_t) cur_name_req);
 
                     // br variable to break nest parent for-loop
                     br = 1;
@@ -200,27 +210,29 @@ static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const f
 
         // look for surface extension
         for (uint32_t i = 0; i < extensions.size; i++) {
-            if (!strcmp((const char *) extensions.data[i], VK_KHR_SURFACE_EXTENSION_NAME)) {
+            const char *curext_name = (const char *) extensions.data[i];
+
+            if (!strcmp((const char *) curext_name, VK_KHR_SURFACE_EXTENSION_NAME)) {
                 pa = true;
                 continue;
             }
 
 #           if defined(_WIN32)
-                if (!strcmp((const char *) extensions.data[i], VK_KHR_WIN32_SURFACE_EXTENSION_NAME)) {
+                if (!strcmp((const char *) curext_name, VK_KHR_WIN32_SURFACE_EXTENSION_NAME)) {
                     pb = true;
                     break;
                 }
 #           elif defined(_APPLE)
-                if (!strcmp((const char *) extensions.data[i], VK_EXT_METAL_SURFACE_EXTENSION_NAME)) {
+                if (!strcmp((const char *) curext_name, VK_EXT_METAL_SURFACE_EXTENSION_NAME)) {
                     pb = true;
                     break;
                 }
 #           elif defined(_UNIX)
-                if (!strcmp((const char *) extensions.data[i], VK_KHR_XCB_SURFACE_EXTENSION_NAME)) {
+                if (!strcmp((const char *) curext_name, VK_KHR_XCB_SURFACE_EXTENSION_NAME)) {
                     pb = true;
                     continue;
                 }
-                if (!strcmp((const char *) extensions.data[i], VK_KHR_XLIB_SURFACE_EXTENSION_NAME)) {
+                if (!strcmp((const char *) curext_name, VK_KHR_XLIB_SURFACE_EXTENSION_NAME)) {
                     pc = true;
                     continue;
                 }
@@ -332,10 +344,12 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
     // returning enabled layer names
     if (out_layer_names) {
         for (uint32_t i = 0; i < layers.size; i++) {
+            char *curlayer_name = (char *) layers.data[i];
+
             // allocate layer name in heap
-            size_t len = strlen((char *) layers.data[i]);
+            size_t len = strlen(curlayer_name);
             char *str = malloc(sizeof(char) * (len + 1));
-            strcpy(str, (char *) layers.data[i]);
+            strcpy(str, curlayer_name);
 
             // append layer name into renderer system store
             carraypush(out_layer_names, (carrayval_t) str);
@@ -345,10 +359,12 @@ VkInstance TLVK_InstanceCreate(const VkApplicationInfo application_info, const V
     // returning enabled extension names
     if (out_extension_names) {
         for (uint32_t i = 0; i < extensions.size; i++) {
+            char *curext_name = (char *) extensions.data[i];
+
             // allocate extension name in heap
-            size_t len = strlen((char *) extensions.data[i]);
+            size_t len = strlen(curext_name);
             char *str = malloc(sizeof(char) * (len + 1));
-            strcpy(str, (char *) extensions.data[i]);
+            strcpy(str, curext_name);
 
             // append extension name into renderer system store
             carraypush(out_extension_names, (carrayval_t) str);

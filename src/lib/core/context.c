@@ -42,16 +42,15 @@ TL_Context_t *TL_ContextCreate(const TL_ContextDescriptor_t context_descriptor, 
     context->state.renderers_init = false;
 
     // attach debugger if specified in descriptor
-    if (context_descriptor.debug_attachment_descriptor) {
-        context->attached_debugger = context_descriptor.debug_attachment_descriptor->debugger;
+    const TL_DebuggerAttachmentDescriptor_t *dbgattachment = context_descriptor.debug_attachment_descriptor;
+    if (dbgattachment) {
+        const TL_Debugger_t *dbgptr = dbgattachment->debugger;
+        context->attached_debugger = dbgptr;
 
-        TL_Log(debugger, "  Attached debugger %p", context->attached_debugger);
+        TL_Log(debugger, "  Attached debugger %p", dbgptr);
     } else {
         context->attached_debugger = NULL;
     }
-
-    // the handles of any data blocks that are initialised will be set accordingly in TL_ContextBlocksCreate
-    context->vulkan_offset = TL_CONTEXT_BLOCK_UNINITIALISED;
 
     // initialise to NULL as the data depends on which APIs are used.
     context->data_size = 0;
@@ -67,8 +66,10 @@ void TL_ContextDestroy(TL_Context_t *const context) {
         return;
     }
 
+    size_t data_size = context->data_size;
+
     // destroy API objects stored in the context if created
-    if (context->data_size > 0) {
+    if (data_size > 0) {
         TL_ContextBlocksDestroy(context);
     }
 
@@ -80,43 +81,55 @@ void TL_ContextDestroy(TL_Context_t *const context) {
 bool TL_ContextBlocksCreate(TL_Context_t *const context, const TL_RendererAPIFlags_t apis, const TL_ContextAPIVersions_t versions,
     TL_RendererFeatures_t *const features, const TL_Debugger_t *const debugger)
 {
-    if (context->state.api_objects_init) {
+    if (!context) {
+        return false;
+    }
+
+    bool api_objects_init = context->state.api_objects_init;
+
+    if (api_objects_init) {
         TL_Warn(debugger, "Attempted to create context API objects multiple times on the same context, which is illegal behaviour");
         return true;
     }
 
+    // running total of size requirements for `data`
     size_t data_size = 0;
+
+    // api object block offsets
+    size_t vkoffset = TL_CONTEXT_BLOCK_UNINITIALISED;
 
     // get the size of the data that needs to be allocated as well as setting each block offset
     if (apis & TL_RENDERER_API_VULKAN_BIT) {
 #       if defined(_THALLIUM_VULKAN_INCL)
-            context->vulkan_offset = data_size;
+            vkoffset = data_size;
 
             size_t size_add = sizeof(TLVK_ContextBlock_t);
             data_size += size_add;
 
             TL_Log(debugger, "%d bytes allocated for Vulkan context data block (may be padded) - offset %d (total data size now %d)", size_add,
-                context->vulkan_offset, data_size);
+                vkoffset, data_size);
 #       else
             return false;
 #       endif
     }
 
     context->data_size = data_size;
+    context->vulkan_offset = vkoffset;
 
-    // allocate space the context data
-    context->data = malloc(data_size);
-    if (!context->data) {
+    // allocate space for the context data
+    void *dataptr = malloc(data_size);
+    if (!dataptr) {
         TL_Fatal(debugger, "MALLOC fault in call to TL_ContextBlocksCreate");
         return false;
     }
+    context->data = dataptr;
 
     // we initialise the data to 0 so any .initialised booleans in the API-specific data blocks are interpreted as false. This is checked when
     // populating this data blocks.
-    memset(context->data, 0, data_size);
+    memset(dataptr, 0, data_size);
 
     TL_Log(debugger, "Allocated %d bytes of space for data blocks in Thallium context %p", data_size, context);
-    TL_Log(debugger, "  Pointer to allocated data space is at %p", context->data);
+    TL_Log(debugger, "  Pointer to allocated data space is at %p", dataptr);
 
     // supporting Vulkan renderers
     if (apis & TL_RENDERER_API_VULKAN_BIT) {
@@ -125,12 +138,12 @@ bool TL_ContextBlocksCreate(TL_Context_t *const context, const TL_RendererAPIFla
                 versions.vulkan_version.patch);
 
             if (!TLVK_ContextBlockCreate(context, versions.vulkan_version, features, debugger)) {
-                TL_Error(debugger, "Failed to populate Vulkan-specific context data block (%p + offset %d)", context->data, context->vulkan_offset);
+                TL_Error(debugger, "Failed to populate Vulkan-specific context data block (%p + offset %d)", dataptr, vkoffset);
                 return false;
             }
 
-            TL_Log(debugger, "Vulkan context data block in context %p is located at %p (%p + offset %d)", context,
-                (char *) context->data + context->vulkan_offset, context->data, context->vulkan_offset);
+            TL_Log(debugger, "Vulkan context data block in context %p is located at %p (%p + offset %d)", context, (char *) dataptr + vkoffset,
+                dataptr, vkoffset);
 #       else
             return false;
 #       endif

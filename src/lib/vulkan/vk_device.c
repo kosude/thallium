@@ -85,21 +85,23 @@ static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetDeviceQueueFamilyIndices(con
     for (uint32_t i = 0; i < fam_count; i++) {
         uint8_t cur_trans_score = 0;
 
-        if (fams[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+        VkQueueFamilyProperties fam = fams[i];
+
+        if (fam.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
             // use any family that supports graphics operations as a graphics family
             indices.graphics = i;
 
             cur_trans_score++;
         }
 
-        if (fams[i].queueFlags & VK_QUEUE_COMPUTE_BIT) {
+        if (fam.queueFlags & VK_QUEUE_COMPUTE_BIT) {
             // use any family that supports compute operations as a compute family
             indices.compute = i;
 
             cur_trans_score++;
         }
 
-        if (fams[i].queueFlags & VK_QUEUE_TRANSFER_BIT) {
+        if (fam.queueFlags & VK_QUEUE_TRANSFER_BIT) {
             if (cur_trans_score <= min_trans_score) {
                 indices.transfer = i;
 
@@ -110,7 +112,7 @@ static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetDeviceQueueFamilyIndices(con
 
         indices.present = i;
 
-        queue_score += fams[i].queueCount;
+        queue_score += fam.queueCount;
     }
 
     queue_score += min_trans_score;
@@ -153,18 +155,22 @@ static carray_t __ValidateExtensions(const VkPhysicalDevice physical_device, con
     for (uint32_t i = 0; i < count; i++) {
         bool found = false;
 
+        const char *cur_name_req = names[i];
+
         for (uint32_t j = 0; j < available_count; j++) {
-            if (!strcmp(names[i], available[j].extensionName)) {
+            const char *cur_name_av = available[j].extensionName;
+
+            if (!strcmp(cur_name_req, cur_name_av)) {
                 // the extension is confirmed available
                 found = true;
-                carraypush(&ret, (carrayval_t) names[i]);
+                carraypush(&ret, (carrayval_t) cur_name_req);
 
                 break;
             }
 
             // VkDeviceCreateInfo: "If the VK_KHR_portability_subset extension is included in pProperties of vkEnumerateDeviceExtensionProperties,
             // ppEnabledExtensionNames must include "VK_KHR_portability_subset"" - from the Vulkan Specification
-            if (!strcmp(available[j].extensionName, "VK_KHR_portability_subset")) {
+            if (!strcmp(cur_name_av, "VK_KHR_portability_subset")) {
                 carraypush(&ret, (carrayval_t) "VK_KHR_portability_subset");
                 continue;
             }
@@ -172,7 +178,7 @@ static carray_t __ValidateExtensions(const VkPhysicalDevice physical_device, con
 
         // extension not found
         if (!found) {
-            TL_Warn(debugger, "Validating physical device \"%s\": could not find extension \"%s\"", props.deviceName, names[i]);
+            TL_Warn(debugger, "Validating physical device \"%s\": could not find extension \"%s\"", props.deviceName, cur_name_req);
             *out_missing_flag = true;
         }
     }
@@ -338,6 +344,7 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
 
     // validate extensions - an array of supported extensions is returned (heap ptr) into out_exts.
     *out_exts = __ValidateExtensions(physical_device, required_ext_count, required_exts, &is_missing_exts, debugger);
+    uint32_t out_exts_size = out_exts->size;
 
     if (is_missing_exts) {
         TL_Error(debugger, "Missing device-level extensions for Vulkan physical device \"%s\", some features may not be available", props.deviceName);
@@ -347,10 +354,10 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     // this helps in cases where e.g. if no devices support all extensions; prioritise device with the *most* extensions supported out of required.
     // note that the casts to floats are to avoid integer division.
     if (required_ext_count > 0) {
-        score += (uint64_t) (((float) out_exts->size / (float) required_ext_count) * 80);
+        score += (uint64_t) (((float) out_exts_size / (float) required_ext_count) * 80);
     }
 
-    if (out_exts->size == required_ext_count) {
+    if (out_exts_size == required_ext_count) {
         score += 250;
     }
 
@@ -391,10 +398,12 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
 
     // get memory size
     for (unsigned int i = 0; i < memprops.memoryHeapCount; i++) {
-        if (memprops.memoryHeaps[i].flags & VK_MEMORY_HEAP_DEVICE_LOCAL_BIT) {
+        VkMemoryHeap heap = memprops.memoryHeaps[i];
+
+        if (heap.flags & VK_MEMORY_HEAP_DEVICE_LOCAL_BIT) {
             // device local heap: .size will be size of VRAM in bytes.
             // we add this size to the score (converted to smaller number)
-            score += memprops.memoryHeaps[i].size / (1024 * 1024 * 1024);
+            score += heap.size / (1024 * 1024 * 1024);
         }
     }
 
@@ -463,10 +472,11 @@ VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const 
             continue;
         }
 
-        VkDeviceQueueCreateInfo *queue_create_info = &(queue_create_infos[queue_create_info_count++]);
-        queue_create_info->sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-        queue_create_info->pNext = NULL;
-        queue_create_info->flags = 0;
+        VkDeviceQueueCreateInfo cinfo;
+
+        cinfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+        cinfo.pNext = NULL;
+        cinfo.flags = 0;
 
         // amount of queues to create for this index, keeping in mind the index could be the same for multiple queue families.
         uint32_t queue_count =
@@ -475,10 +485,13 @@ VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const 
             (family_index == queue_families.transfer) * transfer_queue_count +
             (family_index == queue_families.present ) * ((queue_families.graphics == queue_families.present) ? 0 : present_queue_count);
 
-        queue_create_info->queueCount = queue_count;
-        queue_create_info->queueFamilyIndex = family_index;
+        cinfo.queueCount = queue_count;
+        cinfo.queueFamilyIndex = family_index;
 
-        queue_create_info->pQueuePriorities = &queue_priority;
+        cinfo.pQueuePriorities = &queue_priority;
+
+        // update create-info struct in array
+        queue_create_infos[queue_create_info_count++] = cinfo;
     }
 
     carrayfree(&unique_family_indices);
@@ -493,7 +506,7 @@ VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const 
     };
 
     // load vulkan functions from the new device
-    (*out_funcset) = TLVK_FuncSetLoad(device);
+    (*out_funcset) = TLVK_LoaderFuncSetLoad(device);
 
     if (out_queues) {
         // init arrays to be empty

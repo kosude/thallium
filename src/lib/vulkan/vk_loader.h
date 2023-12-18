@@ -20,6 +20,38 @@
  *
  * This data structure represents a set of per-device Vulkan function pointers.
  */
+typedef struct TLVK_FuncSet_t TLVK_FuncSet_t;
+
+/**
+ * @brief Initialise the Vulkan dynamic function loader.
+ *
+ * This function initialises the Vulkan dynamic function loader.
+ */
+void TLVK_LoaderInit(void);
+
+/**
+ * @brief Load Vulkan device-specific functions into a new function set structure.
+ *
+ * This function loads Vulkan device-specific functions into a new function set structure.
+ *
+ * @param device Logical device from which functions will be loaded.
+ * @return Function set
+ */
+TLVK_FuncSet_t TLVK_LoaderFuncSetLoad(
+    const VkDevice device
+);
+
+/**
+ * @brief Load Vulkan per-instance (i.e. global) functions into the global namespace.
+ *
+ * This function loads Vulkan per-instance (i.e. global) functions into the global namespace.
+ *
+ * @param instance Vulkan instance from which functions will be loaded based on configuration.
+ */
+void TLVK_LoaderInstanceLoad(
+    const VkInstance instance
+);
+
 typedef struct TLVK_FuncSet_t {
     // The design of this struct MUST DIRECTLY mirror that of the VolkDeviceTable struct (see volk/volk.h in dependencies) for memcpy-ing.
     // The only purpose of this struct and associated functions is so volk can be hot-swapped out for something else in the future if necessary.
@@ -838,18 +870,6 @@ typedef struct TLVK_FuncSet_t {
 	PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 #endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_swapchain)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
 } TLVK_FuncSet_t;
-
-/**
- * @brief Load Vulkan device-specific functions into a new function set structure.
- *
- * This function loads Vulkan device-specific functions into a new function set structure.
- *
- * @param device Logical device from which functions will be loaded.
- * @return Function set
- */
-TLVK_FuncSet_t TLVK_FuncSetLoad(
-    const VkDevice device
-);
 
 #ifdef __cplusplus
     }

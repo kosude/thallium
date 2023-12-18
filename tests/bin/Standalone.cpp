@@ -145,6 +145,8 @@ int main() {
 
     // Cleanup
 
+    TL_SwapchainDestroy(swapchain);
+
     TL_DebuggerDestroy(debugger);
     TL_RendererDestroy(renderer);
     TL_ContextDestroy(context);

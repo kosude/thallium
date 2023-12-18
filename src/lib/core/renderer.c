@@ -116,11 +116,13 @@ static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_Ren
                     rsdescr.physical_device_mode = TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL;
                 }
 
-                renderer->renderer_system = (void *) TLVK_RendererSystemCreate(renderer, rsdescr);
-                if (!renderer->renderer_system) {
+                TLVK_RendererSystem_t *renderersys = TLVK_RendererSystemCreate(renderer, rsdescr);
+                if (!renderersys) {
                     TL_Error(debugger, "Failed to create Vulkan renderer system for new renderer at %p", renderer);
                     return NULL;
                 }
+
+                renderer->renderer_system = (void *) renderersys;
 
 #           endif
             break;
@@ -152,8 +154,10 @@ uint32_t TL_RendererCreate(TL_Context_t *const context, const uint32_t count, co
         return 0;
     }
 
+    bool renderers_init = context->state.renderers_init;
+
     // function has already been called once on this context
-    if (context->state.renderers_init) {
+    if (renderers_init) {
         TL_Warn(debugger, "Attempted to invoke TL_RendererCreate multiple times on the same context, which is illegal behaviour");
         return count;
     }
@@ -233,11 +237,14 @@ void TL_RendererDestroy(TL_Renderer_t *const renderer) {
         return;
     }
 
-    switch (renderer->api) {
+    TL_RendererAPIFlags_t api = renderer->api;
+    void *renderersys = renderer->renderer_system;
+
+    switch (api) {
         // destroy Vulkan renderer system
         case TL_RENDERER_API_VULKAN_BIT:
 #           if defined(_THALLIUM_VULKAN_INCL)
-                TLVK_RendererSystemDestroy(renderer->renderer_system);
+                TLVK_RendererSystemDestroy((TLVK_RendererSystem_t *) renderersys);
 #           endif
             break;
 
