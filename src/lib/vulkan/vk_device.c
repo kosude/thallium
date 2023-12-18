@@ -59,6 +59,243 @@
     }                                                                               \
 }
 
+
+static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetDeviceQueueFamilyIndices(const VkPhysicalDevice physical_device, uint64_t *out_queue_score);
+
+static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetRequiredQueueFamilies(const TL_RendererFeatures_t requirements);
+
+static carray_t __ValidateExtensions(const VkPhysicalDevice physical_device, const uint32_t count, const char *const *const names,
+    bool *const out_missing_flag, const TL_Debugger_t *const debugger);
+
+static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requirements, uint32_t *const out_extension_count,
+    const char **out_extension_names);
+
+static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const features, carray_t extensions, const TL_Debugger_t *const debugger);
+
+static VkPhysicalDeviceFeatures __ValidateDeviceFeatures(const VkPhysicalDevice physical_device, VkPhysicalDeviceFeatures features,
+    bool *const out_missing_flag, const TL_Debugger_t *const debugger);
+
+static VkPhysicalDeviceFeatures __EnumerateRequiredDeviceFeatures(const TL_RendererFeatures_t requirements);
+
+static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, const TL_RendererFeatures_t requirements,
+    carray_t *out_exts, VkPhysicalDeviceFeatures *out_features, const TL_Debugger_t *debugger);
+
+
+// for the record i hate how many parameters this function has :,<
+VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const carray_t extensions, const VkPhysicalDeviceFeatures features,
+    const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families, TLVK_LogicalDeviceQueues_t *const out_queues,
+    TL_RendererFeatures_t *const out_rfeatures, TLVK_FuncSet_t *const out_funcset, const TL_Debugger_t *const debugger)
+{
+    if (!out_rfeatures || !out_funcset) {
+        return VK_NULL_HANDLE;
+    }
+
+    __UpdateRendererFeaturesWithSupported(out_rfeatures, extensions, debugger);
+
+    VkDeviceCreateInfo device_create_info;
+    device_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    device_create_info.pNext = NULL;
+    device_create_info.flags = 0;
+
+    // deprecated and ignored
+    device_create_info.enabledLayerCount = 0;
+    device_create_info.ppEnabledLayerNames = NULL;
+
+    device_create_info.enabledExtensionCount = extensions.size;
+    device_create_info.ppEnabledExtensionNames = (const char *const *) extensions.data;
+
+    device_create_info.pEnabledFeatures = &features;
+
+    // array of unique indices
+    carray_t unique_family_indices = carraynew(6);
+        carraypush(&unique_family_indices, queue_families.graphics);
+        carraypush(&unique_family_indices, queue_families.compute);
+        carraypush(&unique_family_indices, queue_families.transfer);
+        carraypush(&unique_family_indices, queue_families.present);
+    // further array creation -- removing duplicate indices
+    for (uint32_t i = 0; i < unique_family_indices.size - 1; i++) {
+        for (uint32_t j = i + 1; j < unique_family_indices.size; j++) {
+            if (unique_family_indices.data[i] == unique_family_indices.data[j]) {
+                carrayremove(&unique_family_indices, i--);
+                break;
+            }
+        }
+    }
+
+    VkDeviceQueueCreateInfo queue_create_infos[__MAX_QUEUE_CREATE_INFO_COUNT];
+    uint32_t queue_create_info_count = 0;
+
+    // amounts of queues to create from each family (if that family is required by the application)
+    uint32_t graphics_queue_count = 1;
+    uint32_t compute_queue_count = 1;
+    uint32_t transfer_queue_count = 1;
+    uint32_t present_queue_count = 1;
+
+    float queue_priority = 1.0f;
+
+    // set up queue create infos to create queue(s) from each queue family index...
+    // note that an index of -1 means no queues are to be created from that family
+    for (uint32_t i = 0; i < unique_family_indices.size; i++) {
+        int32_t family_index = unique_family_indices.data[i];
+
+        // -1 means no queues created for this family
+        if (family_index <= -1) {
+            continue;
+        }
+
+        VkDeviceQueueCreateInfo cinfo;
+
+        cinfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+        cinfo.pNext = NULL;
+        cinfo.flags = 0;
+
+        // amount of queues to create for this index, keeping in mind the index could be the same for multiple queue families.
+        uint32_t queue_count =
+            (family_index == queue_families.graphics) * graphics_queue_count +
+            (family_index == queue_families.compute ) * compute_queue_count  +
+            (family_index == queue_families.transfer) * transfer_queue_count +
+            (family_index == queue_families.present ) * ((queue_families.graphics == queue_families.present) ? 0 : present_queue_count);
+
+        cinfo.queueCount = queue_count;
+        cinfo.queueFamilyIndex = family_index;
+
+        cinfo.pQueuePriorities = &queue_priority;
+
+        // update create-info struct in array
+        queue_create_infos[queue_create_info_count++] = cinfo;
+    }
+
+    carrayfree(&unique_family_indices);
+
+    device_create_info.pQueueCreateInfos = queue_create_infos;
+    device_create_info.queueCreateInfoCount = queue_create_info_count;
+
+    // create device
+    VkDevice device;
+    if (vkCreateDevice(physical_device, &device_create_info, NULL, &device)) {
+        return VK_NULL_HANDLE;
+    };
+
+    // load vulkan functions from the new device
+    (*out_funcset) = TLVK_LoaderFuncSetLoad(device);
+
+    if (out_queues) {
+        // init arrays to be empty
+        out_queues->graphics.size = 0;
+        out_queues->compute.size = 0;
+        out_queues->transfer.size = 0;
+        out_queues->present.size = 0;
+
+        __STORE_QUEUE_HANDLE(graphics);
+        __STORE_QUEUE_HANDLE(compute);
+        __STORE_QUEUE_HANDLE(transfer);
+        __STORE_QUEUE_HANDLE(present);
+    }
+
+    return device;
+}
+
+bool TLVK_PhysicalDeviceCheckCandidacy(const VkPhysicalDevice physical_device, const TL_RendererFeatures_t requirements,
+    const TL_Debugger_t *const debugger)
+{
+    VkPhysicalDeviceProperties props;
+    vkGetPhysicalDeviceProperties(physical_device, &props);
+
+    // get available and required queue families
+    TLVK_PhysicalDeviceQueueFamilyIndices_t required_fam_flags = __GetRequiredQueueFamilies(requirements);
+    TLVK_PhysicalDeviceQueueFamilyIndices_t available_fams = __GetDeviceQueueFamilyIndices(physical_device, NULL);
+
+    // validate queue families...
+    __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(graphics);
+    __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(compute);
+    __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(transfer);
+    __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(present);
+
+    return true;
+}
+
+TLVK_PhysicalDeviceQueueFamilyIndices_t TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(const VkPhysicalDevice physical_device,
+    const TL_RendererFeatures_t requirements)
+{
+    VkPhysicalDeviceProperties props;
+    vkGetPhysicalDeviceProperties(physical_device, &props);
+
+    // get available and required queue families
+    TLVK_PhysicalDeviceQueueFamilyIndices_t required_fam_flags = __GetRequiredQueueFamilies(requirements);
+    TLVK_PhysicalDeviceQueueFamilyIndices_t available_fams = __GetDeviceQueueFamilyIndices(physical_device, NULL);
+
+    // when returning family indices to use, -1 is used to indicate that no queues need to be created from a certain queue family.
+    return (TLVK_PhysicalDeviceQueueFamilyIndices_t) {
+        (required_fam_flags.graphics) ? available_fams.graphics : -1,
+        (required_fam_flags.compute ) ? available_fams.compute  : -1,
+        (required_fam_flags.transfer) ? available_fams.transfer : -1,
+        (required_fam_flags.present ) ? available_fams.present  : -1
+    };
+}
+
+VkPhysicalDevice TLVK_PhysicalDeviceSelect(const carray_t candidates, const TL_RendererFeatures_t requirements,
+    const TLVK_PhysicalDeviceSelectionMode_t mode, carray_t *const out_extensions, VkPhysicalDeviceFeatures *const out_features,
+    const TL_Debugger_t *const debugger)
+{
+    if (!out_extensions || !out_features) {
+        return VK_NULL_HANDLE;
+    }
+
+    VkPhysicalDevice ret = VK_NULL_HANDLE;
+
+    if (candidates.size == 1 || mode == TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRST) {
+        // get the first physical device
+
+        ret = (VkPhysicalDevice) candidates.data[0];
+
+        // score discarded as it isn't needed
+        // we still have to run this function as it is what gives out the extensions and features that can be requested.
+        __ScorePhysicalDevice(ret, requirements, out_extensions, out_features, debugger);
+    } else {
+        // get the physical device with highest score
+
+        uint64_t min_score = 0;
+
+        for (uint32_t i = 0; i < candidates.size; i++) {
+            VkPhysicalDevice dev = (VkPhysicalDevice) candidates.data[i];
+
+            carray_t cur_dev_exts;
+            VkPhysicalDeviceFeatures cur_dev_feats;
+
+            // score device
+            uint64_t cur_score = __ScorePhysicalDevice(dev, requirements, &cur_dev_exts, &cur_dev_feats, debugger);
+
+            if (debugger) {
+                VkPhysicalDeviceProperties props;
+                vkGetPhysicalDeviceProperties(dev, &props);
+
+                TL_Note(debugger, "%s scored Thallium score of [%lu]", props.deviceName, cur_score);
+            }
+
+            // best device so far
+            if (cur_score > min_score) {
+                min_score = cur_score;
+                ret = dev;
+
+                // free old extensions array, we only do this after the first iteration as otherwise it won't have been initialised yet.
+                if (i > 0) {
+                    carrayfree(out_extensions);
+                }
+
+                // store the extensions and features that can be enabled for logical devices interfacing this physical device
+                *out_extensions = cur_dev_exts;
+                *out_features = cur_dev_feats;
+            } else {
+                // this array can be discarded
+                carrayfree(&cur_dev_exts);
+            }
+        }
+    }
+
+    return ret;
+}
+
+
 // out_queue_score will be higher if, say, the transfer queue is independent/dedicated
 static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetDeviceQueueFamilyIndices(const VkPhysicalDevice physical_device, uint64_t *out_queue_score) {
     TLVK_PhysicalDeviceQueueFamilyIndices_t indices;
@@ -408,218 +645,4 @@ static uint64_t __ScorePhysicalDevice(const VkPhysicalDevice physical_device, co
     }
 
     return score;
-}
-
-// god, I HATE how many parameters this function has!!!
-VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const carray_t extensions, const VkPhysicalDeviceFeatures features,
-    const TLVK_PhysicalDeviceQueueFamilyIndices_t queue_families, TLVK_LogicalDeviceQueues_t *const out_queues,
-    TL_RendererFeatures_t *const out_rfeatures, TLVK_FuncSet_t *const out_funcset, const TL_Debugger_t *const debugger)
-{
-    if (!out_rfeatures || !out_funcset) {
-        return VK_NULL_HANDLE;
-    }
-
-    __UpdateRendererFeaturesWithSupported(out_rfeatures, extensions, debugger);
-
-    VkDeviceCreateInfo device_create_info;
-    device_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-    device_create_info.pNext = NULL;
-    device_create_info.flags = 0;
-
-    // deprecated and ignored
-    device_create_info.enabledLayerCount = 0;
-    device_create_info.ppEnabledLayerNames = NULL;
-
-    device_create_info.enabledExtensionCount = extensions.size;
-    device_create_info.ppEnabledExtensionNames = (const char *const *) extensions.data;
-
-    device_create_info.pEnabledFeatures = &features;
-
-    // array of unique indices
-    carray_t unique_family_indices = carraynew(6);
-        carraypush(&unique_family_indices, queue_families.graphics);
-        carraypush(&unique_family_indices, queue_families.compute);
-        carraypush(&unique_family_indices, queue_families.transfer);
-        carraypush(&unique_family_indices, queue_families.present);
-    // further array creation -- removing duplicate indices
-    for (uint32_t i = 0; i < unique_family_indices.size - 1; i++) {
-        for (uint32_t j = i + 1; j < unique_family_indices.size; j++) {
-            if (unique_family_indices.data[i] == unique_family_indices.data[j]) {
-                carrayremove(&unique_family_indices, i--);
-                break;
-            }
-        }
-    }
-
-    VkDeviceQueueCreateInfo queue_create_infos[__MAX_QUEUE_CREATE_INFO_COUNT];
-    uint32_t queue_create_info_count = 0;
-
-    // amounts of queues to create from each family (if that family is required by the application)
-    uint32_t graphics_queue_count = 1;
-    uint32_t compute_queue_count = 1;
-    uint32_t transfer_queue_count = 1;
-    uint32_t present_queue_count = 1;
-
-    float queue_priority = 1.0f;
-
-    // set up queue create infos to create queue(s) from each queue family index...
-    // note that an index of -1 means no queues are to be created from that family
-    for (uint32_t i = 0; i < unique_family_indices.size; i++) {
-        int32_t family_index = unique_family_indices.data[i];
-
-        // -1 means no queues created for this family
-        if (family_index <= -1) {
-            continue;
-        }
-
-        VkDeviceQueueCreateInfo cinfo;
-
-        cinfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-        cinfo.pNext = NULL;
-        cinfo.flags = 0;
-
-        // amount of queues to create for this index, keeping in mind the index could be the same for multiple queue families.
-        uint32_t queue_count =
-            (family_index == queue_families.graphics) * graphics_queue_count +
-            (family_index == queue_families.compute ) * compute_queue_count  +
-            (family_index == queue_families.transfer) * transfer_queue_count +
-            (family_index == queue_families.present ) * ((queue_families.graphics == queue_families.present) ? 0 : present_queue_count);
-
-        cinfo.queueCount = queue_count;
-        cinfo.queueFamilyIndex = family_index;
-
-        cinfo.pQueuePriorities = &queue_priority;
-
-        // update create-info struct in array
-        queue_create_infos[queue_create_info_count++] = cinfo;
-    }
-
-    carrayfree(&unique_family_indices);
-
-    device_create_info.pQueueCreateInfos = queue_create_infos;
-    device_create_info.queueCreateInfoCount = queue_create_info_count;
-
-    // create device
-    VkDevice device;
-    if (vkCreateDevice(physical_device, &device_create_info, NULL, &device)) {
-        return VK_NULL_HANDLE;
-    };
-
-    // load vulkan functions from the new device
-    (*out_funcset) = TLVK_LoaderFuncSetLoad(device);
-
-    if (out_queues) {
-        // init arrays to be empty
-        out_queues->graphics.size = 0;
-        out_queues->compute.size = 0;
-        out_queues->transfer.size = 0;
-        out_queues->present.size = 0;
-
-        __STORE_QUEUE_HANDLE(graphics);
-        __STORE_QUEUE_HANDLE(compute);
-        __STORE_QUEUE_HANDLE(transfer);
-        __STORE_QUEUE_HANDLE(present);
-    }
-
-    return device;
-}
-
-bool TLVK_PhysicalDeviceCheckCandidacy(const VkPhysicalDevice physical_device, const TL_RendererFeatures_t requirements,
-    const TL_Debugger_t *const debugger)
-{
-    VkPhysicalDeviceProperties props;
-    vkGetPhysicalDeviceProperties(physical_device, &props);
-
-    // get available and required queue families
-    TLVK_PhysicalDeviceQueueFamilyIndices_t required_fam_flags = __GetRequiredQueueFamilies(requirements);
-    TLVK_PhysicalDeviceQueueFamilyIndices_t available_fams = __GetDeviceQueueFamilyIndices(physical_device, NULL);
-
-    // validate queue families...
-    __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(graphics);
-    __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(compute);
-    __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(transfer);
-    __CHECK_REQUIRED_PHYSICAL_DEVICE_QUEUE_FAMILY(present);
-
-    return true;
-}
-
-TLVK_PhysicalDeviceQueueFamilyIndices_t TLVK_PhysicalDeviceQueueFamilyIndicesGetEnabled(const VkPhysicalDevice physical_device,
-    const TL_RendererFeatures_t requirements)
-{
-    VkPhysicalDeviceProperties props;
-    vkGetPhysicalDeviceProperties(physical_device, &props);
-
-    // get available and required queue families
-    TLVK_PhysicalDeviceQueueFamilyIndices_t required_fam_flags = __GetRequiredQueueFamilies(requirements);
-    TLVK_PhysicalDeviceQueueFamilyIndices_t available_fams = __GetDeviceQueueFamilyIndices(physical_device, NULL);
-
-    // when returning family indices to use, -1 is used to indicate that no queues need to be created from a certain queue family.
-    return (TLVK_PhysicalDeviceQueueFamilyIndices_t) {
-        (required_fam_flags.graphics) ? available_fams.graphics : -1,
-        (required_fam_flags.compute ) ? available_fams.compute  : -1,
-        (required_fam_flags.transfer) ? available_fams.transfer : -1,
-        (required_fam_flags.present ) ? available_fams.present  : -1
-    };
-}
-
-VkPhysicalDevice TLVK_PhysicalDeviceSelect(const carray_t candidates, const TL_RendererFeatures_t requirements,
-    const TLVK_PhysicalDeviceSelectionMode_t mode, carray_t *const out_extensions, VkPhysicalDeviceFeatures *const out_features,
-    const TL_Debugger_t *const debugger)
-{
-    if (!out_extensions || !out_features) {
-        return VK_NULL_HANDLE;
-    }
-
-    VkPhysicalDevice ret = VK_NULL_HANDLE;
-
-    if (candidates.size == 1 || mode == TLVK_PHYSICAL_DEVICE_SELECTION_MODE_FIRST) {
-        // get the first physical device
-
-        ret = (VkPhysicalDevice) candidates.data[0];
-
-        // score discarded as it isn't needed
-        // we still have to run this function as it is what gives out the extensions and features that can be requested.
-        __ScorePhysicalDevice(ret, requirements, out_extensions, out_features, debugger);
-    } else {
-        // get the physical device with highest score
-
-        uint64_t min_score = 0;
-
-        for (uint32_t i = 0; i < candidates.size; i++) {
-            VkPhysicalDevice dev = (VkPhysicalDevice) candidates.data[i];
-
-            carray_t cur_dev_exts;
-            VkPhysicalDeviceFeatures cur_dev_feats;
-
-            // score device
-            uint64_t cur_score = __ScorePhysicalDevice(dev, requirements, &cur_dev_exts, &cur_dev_feats, debugger);
-
-            if (debugger) {
-                VkPhysicalDeviceProperties props;
-                vkGetPhysicalDeviceProperties(dev, &props);
-
-                TL_Note(debugger, "%s scored Thallium score of [%lu]", props.deviceName, cur_score);
-            }
-
-            // best device so far
-            if (cur_score > min_score) {
-                min_score = cur_score;
-                ret = dev;
-
-                // free old extensions array, we only do this after the first iteration as otherwise it won't have been initialised yet.
-                if (i > 0) {
-                    carrayfree(out_extensions);
-                }
-
-                // store the extensions and features that can be enabled for logical devices interfacing this physical device
-                *out_extensions = cur_dev_exts;
-                *out_features = cur_dev_feats;
-            } else {
-                // this array can be discarded
-                carrayfree(&cur_dev_exts);
-            }
-        }
-    }
-
-    return ret;
 }

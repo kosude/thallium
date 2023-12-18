@@ -17,135 +17,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-static bool __ValidateAPI(const TL_RendererAPIFlags_t api, const TL_Debugger_t *const debugger) {
-    switch (api) {
-        case TL_RENDERER_API_VULKAN_BIT:
-            // test if Vulkan module was compiled
-#           if !defined(_THALLIUM_VULKAN_INCL)
-                TL_Error(debugger, "TL_RendererCreate attempted to create renderer for API which was not compiled (TL_RENDERER_API_VULKAN_BIT); "
-                    "Recompile Thallium with the -DTHALLIUM_BUILD_MODULE_VULKAN=ON flag!");
-                return false;
-#           else
-                return true;
-#           endif
-        case TL_RENDERER_API_NULL_BIT:
-        default:
-            return false;
-    }
+static bool __ValidateAPI(const TL_RendererAPIFlags_t api, const TL_Debugger_t *const debugger);
 
-    return false;
-}
+static const char *__StringifyAPI(const TL_RendererAPIFlags_t api);
 
-static const char *__StringifyAPI(const TL_RendererAPIFlags_t api) {
-    switch (api) {
-        case TL_RENDERER_API_VULKAN_BIT:
-            return "Vulkan";
-        case TL_RENDERER_API_NULL_BIT:
-        default:
-            return "Unknown";
-    }
+static void __AddToCombinedFeatures(TL_RendererFeatures_t *const base, const TL_RendererFeatures_t features);
 
-    return "Unknown";
-}
+static void __AddToCombinedAPIs(TL_RendererAPIFlags_t *const base, const TL_RendererAPIFlags_t api);
 
-static void __AddToCombinedFeatures(TL_RendererFeatures_t *const base, const TL_RendererFeatures_t features) {
-    base->presentation = features.presentation;
-}
+static void __ConsiderAPIVersion(TL_ContextAPIVersions_t *const base, const TL_RendererAPIFlags_t api, const TL_Version_t version);
 
-static void __AddToCombinedAPIs(TL_RendererAPIFlags_t *const base, const TL_RendererAPIFlags_t api) {
-    *base |= api;
-}
+static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_RendererDescriptor_t descriptor, const TL_Debugger_t *const debugger);
 
-static void __ConsiderAPIVersion(TL_ContextAPIVersions_t *const base, const TL_RendererAPIFlags_t api, const TL_Version_t version) {
-    // pointer to the version specified in `base` corresponding to the given api.
-    TL_Version_t *base_version;
-
-    switch (api) {
-        case TL_RENDERER_API_VULKAN_BIT:
-            base_version = &base->vulkan_version;
-            break;
-        case TL_RENDERER_API_NULL_BIT:
-        default:
-            return;
-    }
-
-    // check if any version values are higher than the base version
-    bool is_greater =
-        (version.major > base_version->major) |
-        (version.minor > base_version->minor) |
-        (version.patch > base_version->patch);
-
-    // update base version if the specified one is greater
-    if (is_greater) {
-        *base_version = version;
-    }
-}
-
-static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_RendererDescriptor_t descriptor, const TL_Debugger_t *const debugger) {
-    if (!context) {
-        return NULL;
-    }
-
-    TL_Renderer_t *renderer = malloc(sizeof(TL_Renderer_t));
-    if (!renderer) {
-        TL_Fatal(debugger, "MALLOC fault in call to __CreateRenderer");
-        return NULL;
-    }
-
-    TL_Log(debugger, "Allocated renderer at %p", renderer);
-
-    renderer->api = descriptor.api;
-    renderer->context = context;
-    renderer->debugger = context->attached_debugger;
-    renderer->features = descriptor.requirements;
-
-    // creating API-appropriate renderer system
-    switch (descriptor.api) {
-
-        // create a Vulkan renderer system...
-        case TL_RENDERER_API_VULKAN_BIT:; // the semicolon somehow fixes variable declaration errors (fml)
-#           if defined(_THALLIUM_VULKAN_INCL)
-
-                TLVK_RendererSystemDescriptor_t rsdescr;
-
-                if (descriptor.renderer_system_descriptor) {
-                    rsdescr = *((TLVK_RendererSystemDescriptor_t *) descriptor.renderer_system_descriptor);
-                } else {
-                    // default renderer system descriptor configuration (used if no user-given descriptor was specified)...
-
-                    rsdescr.physical_device_mode = TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL;
-                }
-
-                TLVK_RendererSystem_t *renderersys = TLVK_RendererSystemCreate(renderer, rsdescr);
-                if (!renderersys) {
-                    TL_Error(debugger, "Failed to create Vulkan renderer system for new renderer at %p", renderer);
-                    return NULL;
-                }
-
-                renderer->renderer_system = (void *) renderersys;
-
-#           endif
-            break;
-
-        case TL_RENDERER_API_NULL_BIT:
-        default:
-            return NULL;
-
-    }
-
-    // printing debug information...
-
-    TL_Note(debugger, "Renderer %p created, top-level information:", renderer);
-
-    // enclosing if statement to avoid extra debug processing if its not necessary
-    if (debugger) {
-        TL_Note(debugger, "  API: %s (id %d)", __StringifyAPI(descriptor.api), descriptor.api);
-    }
-
-    TL_Note(debugger, "  Child renderer system: %p", renderer->renderer_system);
-
-    return renderer;
-}
 
 uint32_t TL_RendererCreate(TL_Context_t *const context, const uint32_t count, const TL_RendererDescriptor_t *const descriptors,
     TL_Renderer_t **const *const renderers, const TL_Debugger_t *const debugger)
@@ -254,4 +137,139 @@ void TL_RendererDestroy(TL_Renderer_t *const renderer) {
     }
 
     free(renderer);
+}
+
+
+static bool __ValidateAPI(const TL_RendererAPIFlags_t api, const TL_Debugger_t *const debugger) {
+    switch (api) {
+        case TL_RENDERER_API_VULKAN_BIT:
+            // test if Vulkan module was compiled
+#           if !defined(_THALLIUM_VULKAN_INCL)
+                TL_Error(debugger, "TL_RendererCreate attempted to create renderer for API which was not compiled (TL_RENDERER_API_VULKAN_BIT); "
+                    "Recompile Thallium with the -DTHALLIUM_BUILD_MODULE_VULKAN=ON flag!");
+                return false;
+#           else
+                return true;
+#           endif
+        case TL_RENDERER_API_NULL_BIT:
+        default:
+            return false;
+    }
+
+    return false;
+}
+
+static const char *__StringifyAPI(const TL_RendererAPIFlags_t api) {
+    switch (api) {
+        case TL_RENDERER_API_VULKAN_BIT:
+            return "Vulkan";
+        case TL_RENDERER_API_NULL_BIT:
+        default:
+            return "Unknown";
+    }
+
+    return "Unknown";
+}
+
+static void __AddToCombinedFeatures(TL_RendererFeatures_t *const base, const TL_RendererFeatures_t features) {
+    // using if statements means the base bools only get set to true, not to false
+    // maybe there's a more optimal way of doing this
+
+    if (features.presentation)
+        base->presentation = true;
+}
+
+static void __AddToCombinedAPIs(TL_RendererAPIFlags_t *const base, const TL_RendererAPIFlags_t api) {
+    *base |= api;
+}
+
+static void __ConsiderAPIVersion(TL_ContextAPIVersions_t *const base, const TL_RendererAPIFlags_t api, const TL_Version_t version) {
+    // pointer to the version specified in `base` corresponding to the given api.
+    TL_Version_t *base_version;
+
+    switch (api) {
+        case TL_RENDERER_API_VULKAN_BIT:
+            base_version = &base->vulkan_version;
+            break;
+        case TL_RENDERER_API_NULL_BIT:
+        default:
+            return;
+    }
+
+    // check if any version values are higher than the base version
+    bool is_greater =
+        (version.major > base_version->major) |
+        (version.minor > base_version->minor) |
+        (version.patch > base_version->patch);
+
+    // update base version if the specified one is greater
+    if (is_greater) {
+        *base_version = version;
+    }
+}
+
+static TL_Renderer_t *__CreateRenderer(TL_Context_t *const context, const TL_RendererDescriptor_t descriptor, const TL_Debugger_t *const debugger) {
+    if (!context) {
+        return NULL;
+    }
+
+    TL_Renderer_t *renderer = malloc(sizeof(TL_Renderer_t));
+    if (!renderer) {
+        TL_Fatal(debugger, "MALLOC fault in call to __CreateRenderer");
+        return NULL;
+    }
+
+    TL_Log(debugger, "Allocated renderer at %p", renderer);
+
+    renderer->api = descriptor.api;
+    renderer->context = context;
+    renderer->debugger = context->attached_debugger;
+    renderer->features = descriptor.requirements;
+
+    // creating API-appropriate renderer system
+    switch (descriptor.api) {
+
+        // create a Vulkan renderer system...
+        case TL_RENDERER_API_VULKAN_BIT:; // the semicolon somehow fixes variable declaration errors (fml)
+#           if defined(_THALLIUM_VULKAN_INCL)
+
+                TLVK_RendererSystemDescriptor_t rsdescr;
+
+                if (descriptor.renderer_system_descriptor) {
+                    rsdescr = *((TLVK_RendererSystemDescriptor_t *) descriptor.renderer_system_descriptor);
+                } else {
+                    // default renderer system descriptor configuration (used if no user-given descriptor was specified)...
+
+                    rsdescr.physical_device_mode = TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL;
+                }
+
+                TLVK_RendererSystem_t *renderersys = TLVK_RendererSystemCreate(renderer, rsdescr);
+                if (!renderersys) {
+                    TL_Error(debugger, "Failed to create Vulkan renderer system for new renderer at %p", renderer);
+                    return NULL;
+                }
+
+                renderer->renderer_system = (void *) renderersys;
+
+#           endif
+            break;
+
+        case TL_RENDERER_API_NULL_BIT:
+        default:
+            return NULL;
+
+    }
+
+    // printing debug information...
+
+    TL_Note(debugger, "Renderer %p created, top-level information:", renderer);
+
+    // enclosing if statement to avoid extra debug processing if its not necessary
+    if (debugger) {
+        TL_Note(debugger, "  API: %s (id %d)", __StringifyAPI(descriptor.api), descriptor.api);
+    }
+
+    TL_Note(debugger, "  Child renderer system: %p", renderer->renderer_system);
+
+    return renderer;
 }

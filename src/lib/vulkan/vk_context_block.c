@@ -24,7 +24,6 @@
 #include <stdio.h>
 #include <string.h>
 
-// Format a Thallium version struct for Vulkan
 #define __MAKE_API_VERSION(vers)        \
     VK_MAKE_API_VERSION(                \
         0,                              \
@@ -33,64 +32,6 @@
         vers.patch                      \
     )
 
-// Callback for debug messengers - redirects messages to Thallium debugger
-static VKAPI_ATTR VkBool32 VKAPI_CALL __DebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
-    VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT *callback_data, void *user_data)
-{
-    const char *msg = callback_data->pMessage;
-
-    // userData is guaranteed to be a pointer to the Thallium debugger struct
-    const TL_Debugger_t *debugger = (const TL_Debugger_t *) user_data;
-
-    // convert the type to a string
-    char type_str[32];
-    memset(type_str, 0, sizeof(type_str));
-    switch (type) {
-        case VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT:
-        default:
-            snprintf(type_str, 32, "[g] ");
-            break;
-        case VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT:
-            snprintf(type_str, 32, "[v] ");
-            break;
-        case VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT:
-            snprintf(type_str, 32, "[o] ");
-            break;
-        case VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT:
-            snprintf(type_str, 32, "[a] ");
-            break;
-    }
-
-    // redirect to appropriate logging function based on severity
-    switch (severity) {
-        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
-            TL_Warn_Vk(debugger, "%s%s", type_str, msg);
-            break;
-        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
-            TL_Error_Vk(debugger, "%s%s", type_str, msg);
-            break;
-        default:
-            TL_Log_Vk(debugger, "%s%s", type_str, msg);
-            break;
-    }
-
-    return VK_FALSE;
-}
-
-// Convert debug message severity flags from Thallium format to Vulkan format.
-static VkDebugUtilsMessageSeverityFlagsEXT __ThalliumDebugSeveritiesToVulkanFlags(TL_DebugSeverityFlags_t severities) {
-    // NOTIF severity is not considerered as the only appropriate Vulkan severities (VERBOSE and INFO) are
-    // output by Thallium, which would not show if the VERBOSE severity is not enabled anyway.
-    // i.e., even when considering NOTIF, nothing different is output, so there's no point.
-    return
-          (severities & TL_DEBUG_SEVERITY_VERBOSE_BIT)  >> 4    // VERBOSE  --> VERBOSE
-        | (severities & TL_DEBUG_SEVERITY_VERBOSE_BIT)          //              + INFO
-        | (severities & TL_DEBUG_SEVERITY_WARNING_BIT)  << 6    // WARNING  --> WARNING
-        | (severities & TL_DEBUG_SEVERITY_ERROR_BIT)    << 11   // ERROR    --> ERROR
-        | (severities & TL_DEBUG_SEVERITY_FATAL_BIT)    << 12;  // FATAL    --> ERROR
-}
-
-
 #define __IF_INSTANCE_EXTENSION_ENABLED(ext, fn)                            \
 for (uint32_t i = 0; i < iexts.size; i++) {                                 \
     if (!strcmp((const char *) iexts.data[i], ext)) {                       \
@@ -98,6 +39,13 @@ for (uint32_t i = 0; i < iexts.size; i++) {                                 \
         break;                                                              \
     }                                                                       \
 }
+
+
+static VKAPI_ATTR VkBool32 VKAPI_CALL __DebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
+    VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT *callback_data, void *user_data);
+
+static VkDebugUtilsMessageSeverityFlagsEXT __ThalliumDebugSeveritiesToVulkanFlags(TL_DebugSeverityFlags_t severities);
+
 
 bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api_version, TL_RendererFeatures_t *const features,
     const TL_Debugger_t *const debugger)
@@ -230,4 +178,60 @@ void TLVK_ContextBlockDestroy(TL_Context_t *const context) {
     carrayfree(&block->instance_extensions);
 
     vkDestroyInstance(instance, NULL);
+}
+
+
+static VKAPI_ATTR VkBool32 VKAPI_CALL __DebugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT severity,
+    VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT *callback_data, void *user_data)
+{
+    const char *msg = callback_data->pMessage;
+
+    // userData is guaranteed to be a pointer to the Thallium debugger struct
+    const TL_Debugger_t *debugger = (const TL_Debugger_t *) user_data;
+
+    // convert the type to a string
+    char type_str[32];
+    memset(type_str, 0, sizeof(type_str));
+    switch (type) {
+        case VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT:
+        default:
+            snprintf(type_str, 32, "[g] ");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT:
+            snprintf(type_str, 32, "[v] ");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT:
+            snprintf(type_str, 32, "[o] ");
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_TYPE_DEVICE_ADDRESS_BINDING_BIT_EXT:
+            snprintf(type_str, 32, "[a] ");
+            break;
+    }
+
+    // redirect to appropriate logging function based on severity
+    switch (severity) {
+        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
+            TL_Warn_Vk(debugger, "%s%s", type_str, msg);
+            break;
+        case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
+            TL_Error_Vk(debugger, "%s%s", type_str, msg);
+            break;
+        default:
+            TL_Log_Vk(debugger, "%s%s", type_str, msg);
+            break;
+    }
+
+    return VK_FALSE;
+}
+
+static VkDebugUtilsMessageSeverityFlagsEXT __ThalliumDebugSeveritiesToVulkanFlags(TL_DebugSeverityFlags_t severities) {
+    // NOTIF severity is not considerered as the only appropriate Vulkan severities (VERBOSE and INFO) are
+    // output by Thallium, which would not show if the VERBOSE severity is not enabled anyway.
+    // i.e., even when considering NOTIF, nothing different is output, so there's no point.
+    return
+          (severities & TL_DEBUG_SEVERITY_VERBOSE_BIT)  >> 4    // VERBOSE  --> VERBOSE
+        | (severities & TL_DEBUG_SEVERITY_VERBOSE_BIT)          //              + INFO
+        | (severities & TL_DEBUG_SEVERITY_WARNING_BIT)  << 6    // WARNING  --> WARNING
+        | (severities & TL_DEBUG_SEVERITY_ERROR_BIT)    << 11   // ERROR    --> ERROR
+        | (severities & TL_DEBUG_SEVERITY_FATAL_BIT)    << 12;  // FATAL    --> ERROR
 }

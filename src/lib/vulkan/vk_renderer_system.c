@@ -22,56 +22,8 @@
 
 static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_RendererSystem_t *const renderer_system,
     const TLVK_RendererSystemDescriptor_t *const descriptor, carray_t *const out_exts, VkPhysicalDeviceFeatures *const out_feats,
-    const TL_Debugger_t *const debugger)
-{
-    if (!out_exts || !out_feats || !descriptor) {
-        return VK_NULL_HANDLE;
-    }
+    const TL_Debugger_t *const debugger);
 
-    VkInstance instance = renderer_system->vk_context->vk_instance;
-    TL_RendererFeatures_t requirements = renderer_system->renderer->features;
-
-    TLVK_PhysicalDeviceSelectionMode_t selectmode = descriptor->physical_device_mode;
-
-    // init array of all physical device
-    uint32_t candidate_count;
-    vkEnumeratePhysicalDevices(instance, &candidate_count, NULL);
-
-    if (!candidate_count) {
-        TL_Error(debugger, "No Vulkan-capable GPUs found!");
-        return VK_NULL_HANDLE;
-    }
-
-    carray_t candidates = carraynew(candidate_count);
-    candidates.size = candidates.capacity; // we know the size but we aren't 'pushing' to the array, so set it manually instead
-    vkEnumeratePhysicalDevices(instance, &candidate_count, (VkPhysicalDevice *) candidates.data);
-
-    // remove unsuitable devices
-    for (uint32_t i = 0; i < candidates.size; i++) {
-        if (!TLVK_PhysicalDeviceCheckCandidacy((VkPhysicalDevice) candidates.data[i], requirements, debugger)) {
-            carrayremove(&candidates, i--);
-        }
-    }
-
-    if (!candidates.size) {
-        TL_Error(debugger, "No physical devices were determined suitable for use in Vulkan renderer system at %p", renderer_system);
-        return VK_NULL_HANDLE;
-    }
-
-    VkPhysicalDevice ret;
-
-    switch (selectmode) {
-        case TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL:
-        default:
-            // select optimal physical device (with score etc)
-            ret = TLVK_PhysicalDeviceSelect(candidates, requirements, selectmode, out_exts, out_feats, debugger);
-            break;
-    }
-
-    carrayfree(&candidates);
-
-    return ret;
-}
 
 TLVK_RendererSystem_t *TLVK_RendererSystemCreate(TL_Renderer_t *const renderer, const TLVK_RendererSystemDescriptor_t descriptor) {
     // if renderer is not NULL then we can assume the context was populated, as renderers are only created in core after populating their context
@@ -210,4 +162,58 @@ void TLVK_RendererSystemDestroy(TLVK_RendererSystem_t *const renderer_system) {
     if (renderer_system->vk_queues.present.size)  carrayfree(&(renderer_system->vk_queues.present));
 
     free(renderer_system);
+}
+
+
+static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_RendererSystem_t *const renderer_system,
+    const TLVK_RendererSystemDescriptor_t *const descriptor, carray_t *const out_exts, VkPhysicalDeviceFeatures *const out_feats,
+    const TL_Debugger_t *const debugger)
+{
+    if (!out_exts || !out_feats || !descriptor) {
+        return VK_NULL_HANDLE;
+    }
+
+    VkInstance instance = renderer_system->vk_context->vk_instance;
+    TL_RendererFeatures_t requirements = renderer_system->renderer->features;
+
+    TLVK_PhysicalDeviceSelectionMode_t selectmode = descriptor->physical_device_mode;
+
+    // init array of all physical device
+    uint32_t candidate_count;
+    vkEnumeratePhysicalDevices(instance, &candidate_count, NULL);
+
+    if (!candidate_count) {
+        TL_Error(debugger, "No Vulkan-capable GPUs found!");
+        return VK_NULL_HANDLE;
+    }
+
+    carray_t candidates = carraynew(candidate_count);
+    candidates.size = candidates.capacity; // we know the size but we aren't 'pushing' to the array, so set it manually instead
+    vkEnumeratePhysicalDevices(instance, &candidate_count, (VkPhysicalDevice *) candidates.data);
+
+    // remove unsuitable devices
+    for (uint32_t i = 0; i < candidates.size; i++) {
+        if (!TLVK_PhysicalDeviceCheckCandidacy((VkPhysicalDevice) candidates.data[i], requirements, debugger)) {
+            carrayremove(&candidates, i--);
+        }
+    }
+
+    if (!candidates.size) {
+        TL_Error(debugger, "No physical devices were determined suitable for use in Vulkan renderer system at %p", renderer_system);
+        return VK_NULL_HANDLE;
+    }
+
+    VkPhysicalDevice ret;
+
+    switch (selectmode) {
+        case TLVK_PHYSICAL_DEVICE_SELECTION_MODE_OPTIMAL:
+        default:
+            // select optimal physical device (with score etc)
+            ret = TLVK_PhysicalDeviceSelect(candidates, requirements, selectmode, out_exts, out_feats, debugger);
+            break;
+    }
+
+    carrayfree(&candidates);
+
+    return ret;
 }

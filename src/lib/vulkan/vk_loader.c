@@ -15,8 +15,8 @@
 // flag to only load vulkan loader once
 static bool __VOLK_INITIALISED = false;
 
-void TLVK_LoaderInit(void) {
 
+void TLVK_LoaderInit(void) {
     if (!__VOLK_INITIALISED) {
         volkInitialize(); // seemed to have spelt initialise wrong
         __VOLK_INITIALISED = true;

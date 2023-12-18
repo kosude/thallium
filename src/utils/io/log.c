@@ -13,34 +13,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-static void __DefaultLogFun(char *msg, TL_DebugSeverityFlags_t sev) {
-    FILE *out = stderr;
-
-    switch (sev) {
-        case TL_DEBUG_SEVERITY_VERBOSE_BIT:
-            fprintf(out, "(log) ");
-            break;
-        case TL_DEBUG_SEVERITY_NOTIF_BIT:
-            fprintf(out, "(note) ");
-            break;
-        case TL_DEBUG_SEVERITY_WARNING_BIT:
-            fprintf(out, "(warn) ");
-            break;
-        case TL_DEBUG_SEVERITY_ERROR_BIT:
-            fprintf(out, "(error) ");
-            break;
-        case TL_DEBUG_SEVERITY_FATAL_BIT:
-            fprintf(out, "(fatal) ");
-            break;
-        default:
-            break;
-    }
-
-    fprintf(out, "%s\n", msg);
-}
-
 // Maximum length of debug messages:
 #define __MAX_DBGMSG_LEN 1024
+
+
+static void __DefaultLogFun(char *msg, TL_DebugSeverityFlags_t sev);
+
 
 void TL_ReportMessage(const TL_Debugger_t *const debugger, const TL_DebugSeverityFlags_t severity, const TL_DebugSourceFlags_t source,
     const char *const format, ...)
@@ -80,4 +58,31 @@ void TL_ReportMessage(const TL_Debugger_t *const debugger, const TL_DebugSeverit
     if (severity & TL_DEBUG_SEVERITY_FATAL_BIT) {
         TL_KillProc();
     }
+}
+
+
+static void __DefaultLogFun(char *msg, TL_DebugSeverityFlags_t sev) {
+    FILE *out = stderr;
+
+    switch (sev) {
+        case TL_DEBUG_SEVERITY_VERBOSE_BIT:
+            fprintf(out, "(log) ");
+            break;
+        case TL_DEBUG_SEVERITY_NOTIF_BIT:
+            fprintf(out, "(note) ");
+            break;
+        case TL_DEBUG_SEVERITY_WARNING_BIT:
+            fprintf(out, "(warn) ");
+            break;
+        case TL_DEBUG_SEVERITY_ERROR_BIT:
+            fprintf(out, "(error) ");
+            break;
+        case TL_DEBUG_SEVERITY_FATAL_BIT:
+            fprintf(out, "(fatal) ");
+            break;
+        default:
+            break;
+    }
+
+    fprintf(out, "%s\n", msg);
 }

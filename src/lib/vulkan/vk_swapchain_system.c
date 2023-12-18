@@ -23,89 +23,6 @@
 
 #include <stdlib.h>
 
-static VkSurfaceKHR __CreateVkSurface(const VkInstance instance, const TL_WindowSurface_t *const tl_surface, const TL_Debugger_t *const debugger) {
-    if (!tl_surface || !tl_surface->platform_data) {
-        return VK_NULL_HANDLE;
-    }
-
-    TL_WSI_API_t wsiapi = tl_surface->wsi;
-
-    VkSurfaceKHR surface;
-
-    switch (wsiapi) {
-        default:
-            TL_Error(debugger, "Invalid TL_WindowSurface_t format encountered when attempting to create Vulkan surface");
-            return VK_NULL_HANDLE;
-
-        // ---------------- cocoa window surface ----------------
-        case TL_WSI_API_COCOA:;
-#           if defined(_THALLIUM_WSI_COCOA)
-                TL_WindowSurfacePlatformDataCocoa_t *cocoa_native = (TL_WindowSurfacePlatformDataCocoa_t *) tl_surface->platform_data;
-
-                VkMetalSurfaceCreateInfoEXT cocoa_mt_create_info;
-                cocoa_mt_create_info.sType = VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT;
-                cocoa_mt_create_info.pNext = NULL;
-                cocoa_mt_create_info.flags = 0;
-                cocoa_mt_create_info.pLayer = (CAMetalLayer *) cocoa_native->mt_layer; // note a CAMetalLayer forward decl is provided by Vulkan.
-
-                vkCreateMetalSurfaceEXT(instance, &cocoa_mt_create_info, NULL, &surface);
-
-                break;
-#           else
-                // Thallium XCB support not compiled
-                TL_Error(debugger, "Attempted to create a Vulkan surface for Cocoa window, but Thallium Cocoa support was not compiled; "
-                    "Recompile Thallium with the -DTHALLIUM_WSI_COCOA=ON flag!");
-                return VK_NULL_HANDLE;
-#           endif
-
-        // ---------------- xcb window surface ----------------
-        case TL_WSI_API_XCB:;
-#           if defined(_THALLIUM_WSI_XCB)
-                TL_WindowSurfacePlatformDataXCB_t *xcb_native = (TL_WindowSurfacePlatformDataXCB_t *) tl_surface->platform_data;
-
-                VkXcbSurfaceCreateInfoKHR xcb_create_info;
-                xcb_create_info.sType = VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR;
-                xcb_create_info.pNext = NULL;
-                xcb_create_info.flags = 0;
-                xcb_create_info.connection = xcb_native->connection;
-                xcb_create_info.window = xcb_native->window;
-
-                vkCreateXcbSurfaceKHR(instance, &xcb_create_info, NULL, &surface);
-
-                break;
-#           else
-                // Thallium XCB support not compiled
-                TL_Error(debugger, "Attempted to create a Vulkan surface for XCB window, but Thallium XCB support was not compiled; "
-                    "Recompile Thallium with the -DTHALLIUM_WSI_XCB=ON flag!");
-                return VK_NULL_HANDLE;
-#           endif
-
-        // ---------------- xlib window surface ----------------
-        case TL_WSI_API_XLIB:;
-#           if defined(_THALLIUM_WSI_XLIB)
-                TL_WindowSurfacePlatformDataXlib_t *xlib_native = (TL_WindowSurfacePlatformDataXlib_t *) tl_surface->platform_data;
-
-                VkXlibSurfaceCreateInfoKHR xlib_create_info;
-                xlib_create_info.sType = VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR;
-                xlib_create_info.pNext = NULL;
-                xlib_create_info.flags = 0;
-                xlib_create_info.dpy = xlib_native->display;
-                xlib_create_info.window = xlib_native->window;
-
-                vkCreateXlibSurfaceKHR(instance, &xlib_create_info, NULL, &surface);
-
-                break;
-#           else
-                // Thallium XCB support not compiled
-                TL_Error(debugger, "Attempted to create a Vulkan surface for Xlib window, but Thallium Xlib support was not compiled; "
-                    "Recompile Thallium with the -DTHALLIUM_WSI_XLIB=ON flag!");
-                return VK_NULL_HANDLE;
-#           endif
-    }
-
-    return surface;
-}
-
 /**
  * @brief A struct containing information about what swapchains from a certain device can support.
  *
@@ -126,72 +43,17 @@ typedef struct TLVK_SwapchainSupportInfo_t {
     uint32_t present_mode_count;
 } TLVK_SwapchainSupportInfo_t;
 
-static TLVK_SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDevice physical_device, const VkSurfaceKHR surface) {
-    TLVK_SwapchainSupportInfo_t details;
 
-    // get surface capabilities
-    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device, surface, &details.caps);
+static VkSurfaceKHR __CreateVkSurface(const VkInstance instance, const TL_WindowSurface_t *const tl_surface, const TL_Debugger_t *const debugger);
 
-    // get supported surface formats
-    vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, &details.format_count, NULL);
-    if (details.format_count > 0) {
-        details.formats = malloc(sizeof(VkSurfaceFormatKHR) * details.format_count);
-        vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, &details.format_count, details.formats);
-    }
+static TLVK_SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDevice physical_device, const VkSurfaceKHR surface);
 
-    // get supported presentation modes
-    vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, &details.present_mode_count, NULL);
-    if (details.format_count > 0) {
-        details.present_modes = malloc(sizeof(VkPresentModeKHR) * details.present_mode_count);
-        vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, &details.present_mode_count, details.present_modes);
-    }
+static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *const formats, const uint32_t format_count);
 
-    return details;
-}
+static VkPresentModeKHR __PickSwapPresentMode(const VkPresentModeKHR *const modes, const uint32_t mode_count);
 
-// select most optimal available format for the swapchain to use, from the candidates specified.
-static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *const formats, const uint32_t format_count) {
-    for (uint32_t i = 0; i < format_count; i++) {
-        // ideally we use sRGB colour space with a BGRA which is a common format.
-        if (formats[i].format == VK_FORMAT_B8G8R8A8_SRGB && formats[i].colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
-            return formats[i];
-        }
-    }
+static VkExtent2D __PickSwapExtent(const VkSurfaceCapabilitiesKHR caps, const uint32_t width, const uint32_t height);
 
-    // fallback
-    return formats[0];
-}
-
-// select best presentation mode for the swapchain to use from the candidates specified.
-static VkPresentModeKHR __PickSwapPresentMode(const VkPresentModeKHR *const modes, const uint32_t mode_count) {
-    for (uint32_t i = 0; i < mode_count; i++) {
-        // use mailbox if available
-        if (modes[i] == VK_PRESENT_MODE_MAILBOX_KHR) {
-            return modes[i];
-        }
-    }
-
-    // the Specification guarantees FIFO (vsync) to be available
-    return VK_PRESENT_MODE_FIFO_KHR;
-}
-
-// `width` and `height` are clamped to min/max extents as specified in `caps`.
-static VkExtent2D __PickSwapExtent(const VkSurfaceCapabilitiesKHR caps, const uint32_t width, const uint32_t height) {
-    // if current extent width/height is *not* set to uint32_max by the wm, then we match the extent to the window size
-    if (caps.currentExtent.width != UINT32_MAX) {
-        return caps.currentExtent;
-    }
-
-    // clamp width
-    uint32_t w = (width < caps.minImageExtent.width) ? caps.minImageExtent.width : width;
-    w = (w > caps.maxImageExtent.width) ? caps.maxImageExtent.width : w;
-
-    // clamp height
-    uint32_t h = (height < caps.minImageExtent.height) ? caps.minImageExtent.height : height;
-    h = (h > caps.maxImageExtent.height) ? caps.maxImageExtent.height : h;
-
-    return (VkExtent2D) { w, h };
-}
 
 TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *const renderer_system, const TL_Extent2D_t resolution,
     const TLVK_SwapchainSystemDescriptor_t descriptor, const TL_WindowSurface_t *const window_surface)
@@ -362,4 +224,155 @@ void TLVK_SwapchainSystemDestroy(TLVK_SwapchainSystem_t *const swapchain_system)
     free(swapchain_system->vk_images);
 
     free(swapchain_system);
+}
+
+
+static VkSurfaceKHR __CreateVkSurface(const VkInstance instance, const TL_WindowSurface_t *const tl_surface, const TL_Debugger_t *const debugger) {
+    if (!tl_surface || !tl_surface->platform_data) {
+        return VK_NULL_HANDLE;
+    }
+
+    TL_WSI_API_t wsiapi = tl_surface->wsi;
+
+    VkSurfaceKHR surface;
+
+    switch (wsiapi) {
+        default:
+            TL_Error(debugger, "Invalid TL_WindowSurface_t format encountered when attempting to create Vulkan surface");
+            return VK_NULL_HANDLE;
+
+        // ---------------- cocoa window surface ----------------
+        case TL_WSI_API_COCOA:;
+#           if defined(_THALLIUM_WSI_COCOA)
+                TL_WindowSurfacePlatformDataCocoa_t *cocoa_native = (TL_WindowSurfacePlatformDataCocoa_t *) tl_surface->platform_data;
+
+                VkMetalSurfaceCreateInfoEXT cocoa_mt_create_info;
+                cocoa_mt_create_info.sType = VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT;
+                cocoa_mt_create_info.pNext = NULL;
+                cocoa_mt_create_info.flags = 0;
+                cocoa_mt_create_info.pLayer = (CAMetalLayer *) cocoa_native->mt_layer; // note a CAMetalLayer forward decl is provided by Vulkan.
+
+                vkCreateMetalSurfaceEXT(instance, &cocoa_mt_create_info, NULL, &surface);
+
+                break;
+#           else
+                // Thallium XCB support not compiled
+                TL_Error(debugger, "Attempted to create a Vulkan surface for Cocoa window, but Thallium Cocoa support was not compiled; "
+                    "Recompile Thallium with the -DTHALLIUM_WSI_COCOA=ON flag!");
+                return VK_NULL_HANDLE;
+#           endif
+
+        // ---------------- xcb window surface ----------------
+        case TL_WSI_API_XCB:;
+#           if defined(_THALLIUM_WSI_XCB)
+                TL_WindowSurfacePlatformDataXCB_t *xcb_native = (TL_WindowSurfacePlatformDataXCB_t *) tl_surface->platform_data;
+
+                VkXcbSurfaceCreateInfoKHR xcb_create_info;
+                xcb_create_info.sType = VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR;
+                xcb_create_info.pNext = NULL;
+                xcb_create_info.flags = 0;
+                xcb_create_info.connection = xcb_native->connection;
+                xcb_create_info.window = xcb_native->window;
+
+                vkCreateXcbSurfaceKHR(instance, &xcb_create_info, NULL, &surface);
+
+                break;
+#           else
+                // Thallium XCB support not compiled
+                TL_Error(debugger, "Attempted to create a Vulkan surface for XCB window, but Thallium XCB support was not compiled; "
+                    "Recompile Thallium with the -DTHALLIUM_WSI_XCB=ON flag!");
+                return VK_NULL_HANDLE;
+#           endif
+
+        // ---------------- xlib window surface ----------------
+        case TL_WSI_API_XLIB:;
+#           if defined(_THALLIUM_WSI_XLIB)
+                TL_WindowSurfacePlatformDataXlib_t *xlib_native = (TL_WindowSurfacePlatformDataXlib_t *) tl_surface->platform_data;
+
+                VkXlibSurfaceCreateInfoKHR xlib_create_info;
+                xlib_create_info.sType = VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR;
+                xlib_create_info.pNext = NULL;
+                xlib_create_info.flags = 0;
+                xlib_create_info.dpy = xlib_native->display;
+                xlib_create_info.window = xlib_native->window;
+
+                vkCreateXlibSurfaceKHR(instance, &xlib_create_info, NULL, &surface);
+
+                break;
+#           else
+                // Thallium XCB support not compiled
+                TL_Error(debugger, "Attempted to create a Vulkan surface for Xlib window, but Thallium Xlib support was not compiled; "
+                    "Recompile Thallium with the -DTHALLIUM_WSI_XLIB=ON flag!");
+                return VK_NULL_HANDLE;
+#           endif
+    }
+
+    return surface;
+}
+
+static TLVK_SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDevice physical_device, const VkSurfaceKHR surface) {
+    TLVK_SwapchainSupportInfo_t details;
+
+    // get surface capabilities
+    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device, surface, &details.caps);
+
+    // get supported surface formats
+    vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, &details.format_count, NULL);
+    if (details.format_count > 0) {
+        details.formats = malloc(sizeof(VkSurfaceFormatKHR) * details.format_count);
+        vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, surface, &details.format_count, details.formats);
+    }
+
+    // get supported presentation modes
+    vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, &details.present_mode_count, NULL);
+    if (details.format_count > 0) {
+        details.present_modes = malloc(sizeof(VkPresentModeKHR) * details.present_mode_count);
+        vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, surface, &details.present_mode_count, details.present_modes);
+    }
+
+    return details;
+}
+
+// select most optimal available format for the swapchain to use, from the candidates specified.
+static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *const formats, const uint32_t format_count) {
+    for (uint32_t i = 0; i < format_count; i++) {
+        // ideally we use sRGB colour space with a BGRA which is a common format.
+        if (formats[i].format == VK_FORMAT_B8G8R8A8_SRGB && formats[i].colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
+            return formats[i];
+        }
+    }
+
+    // fallback
+    return formats[0];
+}
+
+// select best presentation mode for the swapchain to use from the candidates specified.
+static VkPresentModeKHR __PickSwapPresentMode(const VkPresentModeKHR *const modes, const uint32_t mode_count) {
+    for (uint32_t i = 0; i < mode_count; i++) {
+        // use mailbox if available
+        if (modes[i] == VK_PRESENT_MODE_MAILBOX_KHR) {
+            return modes[i];
+        }
+    }
+
+    // the Specification guarantees FIFO (vsync) to be available
+    return VK_PRESENT_MODE_FIFO_KHR;
+}
+
+// `width` and `height` are clamped to min/max extents as specified in `caps`.
+static VkExtent2D __PickSwapExtent(const VkSurfaceCapabilitiesKHR caps, const uint32_t width, const uint32_t height) {
+    // if current extent width/height is *not* set to uint32_max by the wm, then we match the extent to the window size
+    if (caps.currentExtent.width != UINT32_MAX) {
+        return caps.currentExtent;
+    }
+
+    // clamp width
+    uint32_t w = (width < caps.minImageExtent.width) ? caps.minImageExtent.width : width;
+    w = (w > caps.maxImageExtent.width) ? caps.maxImageExtent.width : w;
+
+    // clamp height
+    uint32_t h = (height < caps.minImageExtent.height) ? caps.minImageExtent.height : height;
+    h = (h > caps.maxImageExtent.height) ? caps.maxImageExtent.height : h;
+
+    return (VkExtent2D) { w, h };
 }
