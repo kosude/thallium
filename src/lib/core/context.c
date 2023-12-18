@@ -22,6 +22,7 @@
 // static context pointer singleton
 static TL_Context_t *__CONTEXT_PTR = NULL;
 
+
 TL_Context_t *TL_ContextCreate(const TL_ContextDescriptor_t context_descriptor, const TL_Debugger_t *const debugger) {
     if (__CONTEXT_PTR) {
         TL_Warn(debugger, "Attempted to create context (one already exists at %p) - creating multiple contexts is illegal. Existing context was "
