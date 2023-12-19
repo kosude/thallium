@@ -8,6 +8,7 @@ Home
     self
 
     pages/getting_started
+    pages/contributing
 
     pages/api/_api
 
@@ -75,3 +76,5 @@ output.
 
 I keep an upstream TO-DO list on `Trello <https://trello.com/b/ZHYGTiZr/thallium-development-tracking>`_. Submit issues and pull requests to the
 `GitHub repo <https://github.com/kosude/thallium>`_.
+
+See more information on the :doc:`contributing <pages/contributing>` page.

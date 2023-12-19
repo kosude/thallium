@@ -23,17 +23,17 @@ version = release
 
 # -- General configuration ---------------------------------------------------
 
-extensions = [ "breathe" ]
+extensions = ["breathe", "sphinx_design"]
 
-templates_path = [ "res/templates" ]
-exclude_patterns = [ "_build", "Thumbs.db", ".DS_Store" ]
+templates_path = ["res/templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 master_doc = "index"
 
 
 # -- Options for HTML output -------------------------------------------------
 
-html_static_path = [ "res/static" ]
+html_static_path = ["res/static"]
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
@@ -54,12 +54,13 @@ html_logo = "res/static/img/logo_wtext.svg"
 html_css_files = [
     "css/dark.css",
     "css/see_also_hotfix.css",
+    "css/sd_hotfix.css",
     "css/sidebar.css",
 ]
 
 html_show_sphinx = False
 
-html_sidebars = { "**": [ "globaltoc.html", "relations.html", "sourcelink.html", "searchbox.html" ] }
+html_sidebars = { "**": ["globaltoc.html", "relations.html", "sourcelink.html", "searchbox.html"] }
 
 
 # -- Breathe configuration ---------------------------------------------------

@@ -22,7 +22,7 @@
 
 #   define GLFW_EXPOSE_NATIVE_COCOA
 #elif defined(_WIN32)
-#   error Useless operating systems are not yet supported by Thallium's WSI abstraction set
+#   error Useless operating systems are not yet supported by the Thallium WSI abstraction set
 #endif
 
 #include "glfw/include/GLFW/glfw3.h"
@@ -84,10 +84,12 @@ int main() {
     rendererdesc.api_version = { 1, 3, 0 };
     rendererdesc.requirements = rendererfeats;
 
+    TL_Renderer_t **rendererptr = &renderer;
+
     uint32_t renderersucc = TL_RendererCreate(
         context, 1,
-        (TL_RendererDescriptor_t[]) { rendererdesc },
-        (TL_Renderer_t **[]) { &renderer },
+        &rendererdesc,
+        &rendererptr,
         debugger);
 
     if (renderersucc < 1) {

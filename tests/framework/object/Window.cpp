@@ -24,7 +24,7 @@
 
 #   define GLFW_EXPOSE_NATIVE_COCOA
 #elif defined(_WIN32)
-#   error Useless operating systems are not yet supported by Thallium's WSI abstraction set
+#   error Useless operating systems are not yet supported by the Thallium WSI abstraction set
 #endif
 
 #include "glfw/include/GLFW/glfw3.h"
