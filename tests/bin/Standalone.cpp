@@ -113,7 +113,11 @@ int main() {
     }
 
     // window surface for interfacing with Thallium swapchains
-    window_surface = TL_WindowSurfaceCreateXlib(glfwGetX11Display(), glfwGetX11Window(window), debugger);
+#   if defined(GLFW_EXPOSE_NATIVE_COCOA)
+        window_surface = TL_WindowSurfaceCreateCocoa(glfwGetCocoaWindow(window), debugger);
+#   elif defined(GLFW_EXPOSE_NATIVE_X11)
+        window_surface = TL_WindowSurfaceCreateXlib(glfwGetX11Display(), glfwGetX11Window(window), debugger);
+#   endif
 
     if (!window_surface) {
         std::cerr << "Failed to create window" << std::endl;

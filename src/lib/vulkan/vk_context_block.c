@@ -70,7 +70,7 @@ bool TLVK_ContextBlockCreate(TL_Context_t *const context, const TL_Version_t api
     }
 
     // init vulkan function loader
-    TLVK_LoaderInit();
+    TLVK_LoaderInit(debugger);
 
     // creating the Vulkan instance...
 

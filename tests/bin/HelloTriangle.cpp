@@ -19,23 +19,31 @@ Window window1(640, 480, "Hello Triangle");
 TL_Swapchain_t *swapchain1;
 
 int main() {
+    int ret = 0;
+
     test.AddRenderer<GraphicsAPI::Vulkan>();
-    test.CreateRenderers();
+    if (!test.CreateRenderers()) {
+        Utils::Error("Failed to create renderer(s)");
+
+        ret = 1;
+        goto out;
+    }
 
     swapchain1 = window1.CreateSwapchain(test.GetRenderers()[0]);
 
     Utils::Log("-- MAIN LOOP BEGIN --");
 
-    // for (; !window1.ShouldClose();) {
-    //     Window::PollEvents();
-    // }
+    for (; !window1.ShouldClose();) {
+        Window::PollEvents();
+    }
 
     Utils::Log("-- MAIN LOOP END --");
 
     TL_SwapchainDestroy(swapchain1);
 
+out:
     test.Destroy();
     Window::TerminateAPI();
 
-    return 0;
+    return ret;
 }

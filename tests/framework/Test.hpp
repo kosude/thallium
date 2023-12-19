@@ -46,7 +46,7 @@ namespace TLTests::Framework {
         template<GraphicsAPI A>
         void AddRenderer() = delete;
 
-        void CreateRenderers();
+        bool CreateRenderers();
     };
 
     template<>

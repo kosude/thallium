@@ -12,6 +12,8 @@
     extern "C" {
 #endif // __cplusplus
 
+#include "thallium_decl/fwd.h"
+
 #define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>
 
@@ -26,8 +28,12 @@ typedef struct TLVK_FuncSet_t TLVK_FuncSet_t;
  * @brief Initialise the Vulkan dynamic function loader.
  *
  * This function initialises the Vulkan dynamic function loader.
+ *
+ * @param debugger NULL or a debugger for function debugging
  */
-void TLVK_LoaderInit(void);
+void TLVK_LoaderInit(
+    const TL_Debugger_t *const debugger
+);
 
 /**
  * @brief Load Vulkan device-specific functions into a new function set structure.

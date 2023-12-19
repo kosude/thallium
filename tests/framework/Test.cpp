@@ -108,13 +108,21 @@ namespace TLTests::Framework {
 #       endif
     }
 
-    void Test::CreateRenderers() {
+    bool Test::CreateRenderers() {
+        if (_renderers.size() <= 0) {
+            Utils::Error("No renderers were added to the test");
+            return false;
+        }
+
         std::vector<TL_Renderer_t **> renderer_ptrs(_renderers.size());
         std::transform(_renderers.begin(), _renderers.end(), renderer_ptrs.begin(), [](TL_Renderer_t *&r) { return &r; });
 
         uint32_t c = TL_RendererCreate(_context, _renderers.size(), _renderer_descriptors.data(), renderer_ptrs.data(), _debugger);
         if (c < _renderers.size()) {
-            Utils::Error(std::string{"Failed to create Thallium renderer(s)"}, true);
+            Utils::Error("Failed to create Thallium renderer(s)");
+            return false;
         }
+
+        return true;
     }
 }

@@ -24,7 +24,6 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
 
     TL_RendererAPIFlags_t api = renderer->api;
     TL_RendererFeatures_t features = renderer->features;
-    void *renderersys = renderer->renderer_system;
 
     // if this bool is true then we assume swapchain creation functions are available for whatever API the renderer is using
     if (!features.presentation) {
@@ -46,7 +45,7 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
     switch (api) {
 
         // create a Vulkan swapchain system...
-        case TL_RENDERER_API_VULKAN_BIT:; // the semicolon somehow fixes variable declaration errors (fml)
+        case TL_RENDERER_API_VULKAN_BIT:;
 #           if defined(_THALLIUM_VULKAN_INCL)
 
                 TLVK_SwapchainSystemDescriptor_t ssdescr;
@@ -62,6 +61,8 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
                     ssdescr.vk_surface_format.format = -1;
                     ssdescr.vk_present_mode = -1;
                 }
+
+                void *renderersys = renderer->renderer_system;
 
                 TLVK_SwapchainSystem_t *swapchainsys = TLVK_SwapchainSystemCreate(renderersys, descriptor.resolution, ssdescr,
                     descriptor.window_surface);
@@ -91,16 +92,13 @@ void TL_SwapchainDestroy(TL_Swapchain_t *const swapchain) {
         return;
     }
 
-    const TL_Renderer_t *renderer = swapchain->renderer;
-    TL_RendererAPIFlags_t api = renderer->api;
-
-    void *swapchainsys = swapchain->swapchain_system;
+    TL_RendererAPIFlags_t api = swapchain->renderer->api;
 
     switch (api) {
         // destroy Vulkan swapchain system
         case TL_RENDERER_API_VULKAN_BIT:
 #           if defined(_THALLIUM_VULKAN_INCL)
-                TLVK_SwapchainSystemDestroy((TLVK_SwapchainSystem_t *) swapchainsys);
+                TLVK_SwapchainSystemDestroy((TLVK_SwapchainSystem_t *) swapchain->swapchain_system);
 #           endif
             break;
 

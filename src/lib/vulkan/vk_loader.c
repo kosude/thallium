@@ -7,6 +7,8 @@
 
 #include "vk_loader.h"
 
+#include "utils/utils.h"
+
 #include <volk/volk.h>
 
 #include <stdbool.h>
@@ -16,9 +18,12 @@
 static bool __VOLK_INITIALISED = false;
 
 
-void TLVK_LoaderInit(void) {
+void TLVK_LoaderInit(const TL_Debugger_t *const debugger) {
     if (!__VOLK_INITIALISED) {
-        volkInitialize(); // seemed to have spelt initialise wrong
+        if (volkInitialize()) {
+            TL_ReportMessage(debugger, TL_DEBUG_SEVERITY_FATAL_BIT, TL_DEBUG_SOURCE_THALLIUM_BIT, "Failed to load Vulkan");
+            return;
+        }
         __VOLK_INITIALISED = true;
     }
 }
