@@ -1,0 +1,45 @@
+/* Styling hotfixes for Sphinx Design widgets */
+
+.sd-card {
+    border-radius: 0 !important;
+}
+
+.sd-tab-content {
+    /* Remove bottom line */
+    box-shadow: 0 -0.0625rem var(--sd-color-tabs-overline) !important;
+}
+
+.sd-tab-set > label {
+    transition: none;
+}
+.sd-tab-set > label:hover {
+    color: #4fa6e0 !important;
+}
+.sd-tab-set > input:checked + label {
+    border-color: #4fa6e0 !important;
+    color: #4fa6e0 !important;
+}
+.sd-tab-set > input:checked + label:hover {
+    color: #4fa6e0 !important;
+}
+.sd-tab-set > input:not(:checked) + label:hover {
+    color: #4fa6e0 !important;
+    border: 0 !important;
+}
+
+details.sd-dropdown > .sd-card-header {
+    border-radius: 0 !important;
+}
+details.sd-dropdown summary {
+    padding: 0.6em 1em !important;
+}
+details.sd-dropdown .sd-summary-up, details.sd-dropdown .sd-summary-down {
+    top: 0.5em !important;
+}
+
+.sd-summary-content > .sd-tab-set:first-child {
+    margin-top: -1rem !important;
+}
+.sd-summary-content .sd-tab-content {
+    padding-bottom: 0 !important;
+}
