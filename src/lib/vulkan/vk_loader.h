@@ -501,9 +501,6 @@ typedef struct TLVK_FuncSet_t {
 	PFN_vkGetBufferOpaqueCaptureAddressKHR vkGetBufferOpaqueCaptureAddressKHR;
 	PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR vkGetDeviceMemoryOpaqueCaptureAddressKHR;
 #endif /* defined(VK_KHR_buffer_device_address) */
-#if defined(VK_KHR_calibrated_timestamps)
-	PFN_vkGetCalibratedTimestampsKHR vkGetCalibratedTimestampsKHR;
-#endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_copy_commands2)
 	PFN_vkCmdBlitImage2KHR vkCmdBlitImage2KHR;
 	PFN_vkCmdCopyBuffer2KHR vkCmdCopyBuffer2KHR;
@@ -696,14 +693,6 @@ typedef struct TLVK_FuncSet_t {
 	PFN_vkCmdCopyMemoryIndirectNV vkCmdCopyMemoryIndirectNV;
 	PFN_vkCmdCopyMemoryToImageIndirectNV vkCmdCopyMemoryToImageIndirectNV;
 #endif /* defined(VK_NV_copy_memory_indirect) */
-#if defined(VK_NV_cuda_kernel_launch)
-	PFN_vkCmdCudaLaunchKernelNV vkCmdCudaLaunchKernelNV;
-	PFN_vkCreateCudaFunctionNV vkCreateCudaFunctionNV;
-	PFN_vkCreateCudaModuleNV vkCreateCudaModuleNV;
-	PFN_vkDestroyCudaFunctionNV vkDestroyCudaFunctionNV;
-	PFN_vkDestroyCudaModuleNV vkDestroyCudaModuleNV;
-	PFN_vkGetCudaModuleCacheNV vkGetCudaModuleCacheNV;
-#endif /* defined(VK_NV_cuda_kernel_launch) */
 #if defined(VK_NV_device_diagnostic_checkpoints)
 	PFN_vkCmdSetCheckpointNV vkCmdSetCheckpointNV;
 	PFN_vkGetQueueCheckpointDataNV vkGetQueueCheckpointDataNV;
@@ -730,13 +719,6 @@ typedef struct TLVK_FuncSet_t {
 #if defined(VK_NV_fragment_shading_rate_enums)
 	PFN_vkCmdSetFragmentShadingRateEnumNV vkCmdSetFragmentShadingRateEnumNV;
 #endif /* defined(VK_NV_fragment_shading_rate_enums) */
-#if defined(VK_NV_low_latency2)
-	PFN_vkGetLatencyTimingsNV vkGetLatencyTimingsNV;
-	PFN_vkLatencySleepNV vkLatencySleepNV;
-	PFN_vkQueueNotifyOutOfBandNV vkQueueNotifyOutOfBandNV;
-	PFN_vkSetLatencyMarkerNV vkSetLatencyMarkerNV;
-	PFN_vkSetLatencySleepModeNV vkSetLatencySleepModeNV;
-#endif /* defined(VK_NV_low_latency2) */
 #if defined(VK_NV_memory_decompression)
 	PFN_vkCmdDecompressMemoryIndirectCountNV vkCmdDecompressMemoryIndirectCountNV;
 	PFN_vkCmdDecompressMemoryNV vkCmdDecompressMemoryNV;
