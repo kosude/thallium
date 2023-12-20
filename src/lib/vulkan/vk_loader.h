@@ -501,6 +501,9 @@ typedef struct TLVK_FuncSet_t {
 	PFN_vkGetBufferOpaqueCaptureAddressKHR vkGetBufferOpaqueCaptureAddressKHR;
 	PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR vkGetDeviceMemoryOpaqueCaptureAddressKHR;
 #endif /* defined(VK_KHR_buffer_device_address) */
+#if defined(VK_KHR_calibrated_timestamps)
+	PFN_vkGetCalibratedTimestampsKHR vkGetCalibratedTimestampsKHR;
+#endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_copy_commands2)
 	PFN_vkCmdBlitImage2KHR vkCmdBlitImage2KHR;
 	PFN_vkCmdCopyBuffer2KHR vkCmdCopyBuffer2KHR;
@@ -592,6 +595,20 @@ typedef struct TLVK_FuncSet_t {
 	PFN_vkGetImageSubresourceLayout2KHR vkGetImageSubresourceLayout2KHR;
 	PFN_vkGetRenderingAreaGranularityKHR vkGetRenderingAreaGranularityKHR;
 #endif /* defined(VK_KHR_maintenance5) */
+#if defined(VK_KHR_maintenance6)
+	PFN_vkCmdBindDescriptorSets2KHR vkCmdBindDescriptorSets2KHR;
+	PFN_vkCmdPushConstants2KHR vkCmdPushConstants2KHR;
+#endif /* defined(VK_KHR_maintenance6) */
+#if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor)
+	PFN_vkCmdPushDescriptorSet2KHR vkCmdPushDescriptorSet2KHR;
+#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
+#if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)
+	PFN_vkCmdPushDescriptorSetWithTemplate2KHR vkCmdPushDescriptorSetWithTemplate2KHR;
+#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1) */
+#if defined(VK_KHR_maintenance6) && defined(VK_EXT_descriptor_buffer)
+	PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT vkCmdBindDescriptorBufferEmbeddedSamplers2EXT;
+	PFN_vkCmdSetDescriptorBufferOffsets2EXT vkCmdSetDescriptorBufferOffsets2EXT;
+#endif /* defined(VK_KHR_maintenance6) && defined(VK_EXT_descriptor_buffer) */
 #if defined(VK_KHR_map_memory2)
 	PFN_vkMapMemory2KHR vkMapMemory2KHR;
 	PFN_vkUnmapMemory2KHR vkUnmapMemory2KHR;
@@ -693,6 +710,14 @@ typedef struct TLVK_FuncSet_t {
 	PFN_vkCmdCopyMemoryIndirectNV vkCmdCopyMemoryIndirectNV;
 	PFN_vkCmdCopyMemoryToImageIndirectNV vkCmdCopyMemoryToImageIndirectNV;
 #endif /* defined(VK_NV_copy_memory_indirect) */
+#if defined(VK_NV_cuda_kernel_launch)
+	PFN_vkCmdCudaLaunchKernelNV vkCmdCudaLaunchKernelNV;
+	PFN_vkCreateCudaFunctionNV vkCreateCudaFunctionNV;
+	PFN_vkCreateCudaModuleNV vkCreateCudaModuleNV;
+	PFN_vkDestroyCudaFunctionNV vkDestroyCudaFunctionNV;
+	PFN_vkDestroyCudaModuleNV vkDestroyCudaModuleNV;
+	PFN_vkGetCudaModuleCacheNV vkGetCudaModuleCacheNV;
+#endif /* defined(VK_NV_cuda_kernel_launch) */
 #if defined(VK_NV_device_diagnostic_checkpoints)
 	PFN_vkCmdSetCheckpointNV vkCmdSetCheckpointNV;
 	PFN_vkGetQueueCheckpointDataNV vkGetQueueCheckpointDataNV;
@@ -719,6 +744,13 @@ typedef struct TLVK_FuncSet_t {
 #if defined(VK_NV_fragment_shading_rate_enums)
 	PFN_vkCmdSetFragmentShadingRateEnumNV vkCmdSetFragmentShadingRateEnumNV;
 #endif /* defined(VK_NV_fragment_shading_rate_enums) */
+#if defined(VK_NV_low_latency2)
+	PFN_vkGetLatencyTimingsNV vkGetLatencyTimingsNV;
+	PFN_vkLatencySleepNV vkLatencySleepNV;
+	PFN_vkQueueNotifyOutOfBandNV vkQueueNotifyOutOfBandNV;
+	PFN_vkSetLatencyMarkerNV vkSetLatencyMarkerNV;
+	PFN_vkSetLatencySleepModeNV vkSetLatencySleepModeNV;
+#endif /* defined(VK_NV_low_latency2) */
 #if defined(VK_NV_memory_decompression)
 	PFN_vkCmdDecompressMemoryIndirectCountNV vkCmdDecompressMemoryIndirectCountNV;
 	PFN_vkCmdDecompressMemoryNV vkCmdDecompressMemoryNV;
