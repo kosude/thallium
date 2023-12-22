@@ -8,7 +8,7 @@
 #include "log.h"
 
 #include "utils/io/proc.h"
-#include "types/core/debugger.h"
+#include "types/core/debugger_t.h"
 
 #include <stdio.h>
 #include <stdarg.h>

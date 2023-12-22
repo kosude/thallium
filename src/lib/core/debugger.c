@@ -6,7 +6,7 @@
  */
 
 #include "thallium/core/debugger.h"
-#include "types/core/debugger.h"
+#include "types/core/debugger_t.h"
 
 #include "utils/utils.h"
 

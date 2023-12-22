@@ -6,10 +6,10 @@
  */
 
 #include "thallium/core/renderer.h"
-#include "types/core/renderer.h"
+#include "types/core/renderer_t.h"
 
 #include "lib/core/context_block.h"
-#include "types/core/context.h"
+#include "types/core/context_t.h"
 #include "utils/utils.h"
 
 #include "api_modules.h"

@@ -6,7 +6,7 @@
  */
 
 #include "thallium/core/wsi/xcb_window_surface.h"
-#include "types/core/wsi/window_surface.h"
+#include "types/core/wsi/window_surface_t.h"
 
 #include "utils/utils.h"
 

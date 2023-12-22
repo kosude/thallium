@@ -8,8 +8,8 @@
 #include "lib/vulkan/vk_context_block.h"
 
 #include "lib/core/context_block.h"
-#include "types/core/context.h"
-#include "types/core/debugger.h"
+#include "types/core/context_t.h"
+#include "types/core/debugger_t.h"
 #include "utils/utils.h"
 
 #include "vk_instance.h"

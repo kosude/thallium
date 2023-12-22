@@ -6,10 +6,10 @@
  */
 
 #include "thallium/vulkan/vk_renderer_system.h"
-#include "types/vulkan/vk_renderer_system.h"
+#include "types/vulkan/vk_renderer_system_t.h"
 
-#include "types/core/context.h"
-#include "types/core/renderer.h"
+#include "types/core/context_t.h"
+#include "types/core/renderer_t.h"
 #include "utils/io/log.h"
 
 #include "vk_context_block.h"

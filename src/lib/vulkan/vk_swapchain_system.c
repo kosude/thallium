@@ -6,15 +6,15 @@
  */
 
 #include "thallium/vulkan/vk_swapchain_system.h"
-#include "types/vulkan/vk_swapchain_system.h"
+#include "types/vulkan/vk_swapchain_system_t.h"
 
 #include "thallium/core/extent.h"
 
 #include "lib/core/wsi/surface_platform_data.h"
 #include "lib/vulkan/vk_context_block.h"
-#include "types/core/renderer.h"
-#include "types/core/wsi/window_surface.h"
-#include "types/vulkan/vk_renderer_system.h"
+#include "types/core/renderer_t.h"
+#include "types/core/wsi/window_surface_t.h"
+#include "types/vulkan/vk_renderer_system_t.h"
 #include "utils/utils.h"
 
 #include <volk/volk.h>

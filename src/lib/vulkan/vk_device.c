@@ -8,7 +8,7 @@
 #include "vk_device.h"
 
 #include "lib/vulkan/vk_context_block.h"
-#include "types/vulkan/vk_renderer_system.h"
+#include "types/vulkan/vk_renderer_system_t.h"
 #include "utils/io/log.h"
 
 #include <volk/volk.h>

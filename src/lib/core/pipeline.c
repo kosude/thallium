@@ -6,9 +6,9 @@
  */
 
 #include "thallium/core/pipeline.h"
-#include "types/core/pipeline.h"
+#include "types/core/pipeline_t.h"
 
-#include "types/core/renderer.h"
+#include "types/core/renderer_t.h"
 #include "utils/io/log.h"
 
 #include <stdlib.h>

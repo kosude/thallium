@@ -6,7 +6,7 @@
  */
 
 #include "thallium/core/context.h"
-#include "types/core/context.h"
+#include "types/core/context_t.h"
 
 #include "thallium/core/debugger.h"
 

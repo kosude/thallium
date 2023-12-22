@@ -6,9 +6,9 @@
  */
 
 #include "thallium/core/swapchain.h"
-#include "types/core/swapchain.h"
+#include "types/core/swapchain_t.h"
 
-#include "types/core/renderer.h"
+#include "types/core/renderer_t.h"
 #include "utils/utils.h"
 
 #include "api_modules.h"
