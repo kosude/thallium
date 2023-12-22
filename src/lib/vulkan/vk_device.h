@@ -16,13 +16,13 @@
 #include "thallium_decl/enumsvk.h"
 #include "thallium/platform.h"
 
+#include "lib/vulkan/vk_device_queues.h"
+#include "lib/vulkan/vk_loader.h"
+
 #define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>
 
 #include <cutils/carray/carray.h>
-
-#include "lib/vulkan/vk_device_queues.h"
-#include "lib/vulkan/vk_loader.h"
 
 /**
  * @brief Create a Vulkan logical device object with the given extensions and capabilities enabled.

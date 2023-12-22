@@ -5,11 +5,12 @@
  *   See the LICENCE file for more information.
  */
 
-#include "thallium.h"
-#include "surface_platform_data.h"
-
+#include "thallium/core/wsi/xlib_window_surface.h"
 #include "types/core/wsi/window_surface.h"
+
 #include "utils/utils.h"
+
+#include "surface_platform_data.h"
 
 #include <stdlib.h>
 

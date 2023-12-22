@@ -5,8 +5,7 @@
  *   See the LICENCE file for more information.
  */
 
-#include "thallium.h"
-
+#include "thallium/core/debugger.h"
 #include "types/core/debugger.h"
 
 #include "utils/utils.h"

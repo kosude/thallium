@@ -7,11 +7,12 @@
 
 #include "vk_loader.h"
 
+#include "thallium/platform.h"
+
 #include "utils/utils.h"
 
 #include <volk/volk.h>
 
-#include <stdbool.h>
 #include <string.h>
 
 // flag to only load vulkan loader once

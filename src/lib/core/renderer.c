@@ -5,14 +5,14 @@
  *   See the LICENCE file for more information.
  */
 
-#include "thallium.h"
-#include "api_modules.h"
-
-#include "types/core/context.h"
+#include "thallium/core/renderer.h"
 #include "types/core/renderer.h"
 
-#include "utils/utils.h"
 #include "lib/core/context_block.h"
+#include "types/core/context.h"
+#include "utils/utils.h"
+
+#include "api_modules.h"
 
 #include <stdlib.h>
 #include <string.h>

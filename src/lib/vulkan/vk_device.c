@@ -7,17 +7,14 @@
 
 #include "vk_device.h"
 
+#include "lib/vulkan/vk_context_block.h"
+#include "types/vulkan/vk_renderer_system.h"
 #include "utils/io/log.h"
 
-#include "types/vulkan/vk_renderer_system.h"
-#include "types/core/renderer.h"
-
-#include "lib/vulkan/vk_context_block.h"
+#include <volk/volk.h>
 
 #include <stdlib.h>
 #include <string.h>
-
-#include <volk/volk.h>
 
 #define __DEFINE_REQUIRED_QUEUE_FAMILY(fam) required.fam = true
 #define __DEFINE_REQUIRED_EXTENSION(name) if (out_extension_names) { out_extension_names[count_ret] = name; } count_ret++
@@ -371,6 +368,8 @@ static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetRequiredQueueFamilies(const 
     if (requirements.presentation) {
         __DEFINE_REQUIRED_QUEUE_FAMILY(present);
     }
+
+    __DEFINE_REQUIRED_QUEUE_FAMILY(compute);
 
     return required;
 }

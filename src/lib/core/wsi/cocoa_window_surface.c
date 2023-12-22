@@ -5,12 +5,13 @@
  *   See the LICENCE file for more information.
  */
 
-#include "thallium.h"
-#include "surface_platform_data.h"
-
+#include "thallium/core/wsi/cocoa_window_surface.h"
 #include "types/core/wsi/window_surface.h"
+
 #include "utils/utils.h"
+
 #include "cocoa_mtbridge.h"
+#include "surface_platform_data.h"
 
 #include <stdlib.h>
 

@@ -28,11 +28,20 @@
 #include "glfw/include/GLFW/glfw3.h"
 #include "glfw/include/GLFW/glfw3native.h"
 
+#include "cutils/cio/cio.h"
+#include "cutils/cio/cioenum.h"
+
 #include <iostream>
+#include <ctime>
 
 #if defined(_THALLIUM_VULKAN_INCL)
 #   include "thallium_vulkan.h"
 #endif
+
+static std::string __GetCurrentDateTime(const bool &with_date = false);
+
+static void __DebugCallback(char *msg, TL_DebugSeverityFlags_t sev, TL_DebugSourceFlags_t src, void *ptr);
+
 
 TL_Debugger_t *debugger;
 TL_Context_t *context;
@@ -46,11 +55,11 @@ int main() {
     // Create the debugger
 
     TL_DebuggerDescriptor_t debuggerdesc = {};
-    (int &) debuggerdesc.severities = TL_DEBUG_SEVERITY_WARNING_BIT | TL_DEBUG_SEVERITY_ERROR_BIT | TL_DEBUG_SEVERITY_FATAL_BIT;
+    (int &) debuggerdesc.severities = TL_DEBUG_SEVERITY_ALL_BIT;// TL_DEBUG_SEVERITY_WARNING_BIT | TL_DEBUG_SEVERITY_ERROR_BIT | TL_DEBUG_SEVERITY_FATAL_BIT;
     (int &) debuggerdesc.sources = TL_DEBUG_SOURCE_ALL_BIT;
+    debuggerdesc.callback = __DebugCallback;
 
     debugger = TL_DebuggerCreate(debuggerdesc);
-
     if (!debugger) {
         std::cerr << "Failed to create debugger" << std::endl;
         return 1;
@@ -67,7 +76,6 @@ int main() {
     contextdesc.debug_attachment_descriptor = &debugger_attachment;
 
     context = TL_ContextCreate(contextdesc, debugger);
-
     if (!context) {
         std::cerr << "Failed to create context" << std::endl;
         return 1;
@@ -91,7 +99,6 @@ int main() {
         &rendererdesc,
         &rendererptr,
         debugger);
-
     if (renderersucc < 1) {
         std::cerr << "Failed to create renderer" << std::endl;
         return 1;
@@ -106,7 +113,6 @@ int main() {
     }
 
     window = glfwCreateWindow(640, 480, "Standalone test", nullptr, nullptr);
-
     if (!window) {
         std::cerr << "Failed to create window" << std::endl;
         return 1;
@@ -118,11 +124,11 @@ int main() {
 #   elif defined(GLFW_EXPOSE_NATIVE_X11)
         window_surface = TL_WindowSurfaceCreateXlib(glfwGetX11Display(), glfwGetX11Window(window), debugger);
 #   endif
-
     if (!window_surface) {
         std::cerr << "Failed to create window" << std::endl;
         return 1;
     }
+
 
     // Initially create the swapchain
 
@@ -131,9 +137,20 @@ int main() {
     swapchaindesc.window_surface = window_surface;
 
     swapchain = TL_SwapchainCreate(renderer, swapchaindesc);
-
     if (!swapchain) {
         std::cerr << "Failed to create swapchain" << std::endl;
+        return 1;
+    }
+
+
+    // Create the pipeline
+
+    TL_PipelineDescriptor_t pipelinedesc = {};
+    pipelinedesc.type = TL_PIPELINE_TYPE_GRAPHICS;
+
+    TL_Pipeline_t *pipeline = TL_PipelineCreate(renderer, pipelinedesc);
+    if (!pipeline) {
+        std::cerr << "Failed to create pipeline" << std::endl;
         return 1;
     }
 
@@ -151,13 +168,71 @@ int main() {
 
     // Cleanup
 
+    TL_PipelineDestroy(pipeline);
+
     TL_SwapchainDestroy(swapchain);
 
-    TL_DebuggerDestroy(debugger);
     TL_RendererDestroy(renderer);
     TL_ContextDestroy(context);
+    TL_DebuggerDestroy(debugger);
 
     glfwDestroyWindow(window);
 
     glfwTerminate();
+}
+
+static std::string __GetCurrentDateTime(const bool &with_date) {
+    std::time_t t = std::time(nullptr);
+    std::tm *tm = std::localtime(&t);
+
+    char buf[64];
+
+    if (tm) {
+        if (with_date) {
+            std::strftime(buf, 64, "%Y-%m-%d %X", tm);
+        } else {
+            std::strftime(buf, 64, "%X", tm);
+        }
+
+        return std::string { buf };
+    }
+
+    throw std::runtime_error("Date/time get failed");
+}
+
+static void __DebugCallback(char *msg, TL_DebugSeverityFlags_t sev, TL_DebugSourceFlags_t src, void *ptr) {
+    std::cerr << ciocol(CIOCOL_GREY, 0xff).code << "tl";
+    switch (src) {
+        case TL_DEBUG_SOURCE_VULKAN_BIT:
+            std::cerr << ciocol(CIOCOL_RED, 0xff).code << "VK ";
+            break;
+        default:
+            std::cerr << "   ";
+            break;
+    }
+    std::cerr << ciocol(CIOCOL_GREY, 0xff).code << ": ";
+
+    std::cerr << __GetCurrentDateTime() << " ";
+
+    switch (sev) {
+        case TL_DEBUG_SEVERITY_VERBOSE_BIT:
+            std::cerr << ciocol(CIOCOL_BLUE, 0xff).code << "LOG   ";
+            break;
+        case TL_DEBUG_SEVERITY_NOTIF_BIT:
+            std::cerr << ciocol(CIOCOL_GREEN, 0xff).code << "NOTE  ";
+            break;
+        case TL_DEBUG_SEVERITY_WARNING_BIT:
+            std::cerr << ciocol(CIOCOL_YELLOW, 0xff).code << "WARN  ";
+            break;
+        case TL_DEBUG_SEVERITY_ERROR_BIT:
+            std::cerr << ciocol(CIOCOL_RED, 0xff).code << "ERROR ";
+            break;
+        case TL_DEBUG_SEVERITY_FATAL_BIT:
+            std::cerr << ciocol(CIOCOL_RED, 0xff).code << "FATAL ";
+            break;
+        default:
+            break;
+    }
+
+    std::cerr << ciocoldef().code << msg << std::endl;
 }

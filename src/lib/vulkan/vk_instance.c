@@ -7,14 +7,14 @@
 
 #include "vk_instance.h"
 
-#include "thallium.h"
+#include "thallium/core/renderer.h"
 
 #include "utils/utils.h"
 
+#include <volk/volk.h>
+
 #include <stdlib.h>
 #include <string.h>
-
-#include <volk/volk.h>
 
 #define __DEFINE_REQUIRED_FLAG(flag) ret |= flag
 #define __DEFINE_REQUIRED_LAYER(name) if (out_layer_names) { out_layer_names[count_ret] = name; } count_ret++

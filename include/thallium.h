@@ -18,6 +18,7 @@
 
 #include "thallium/core/context.h"
 #include "thallium/core/debugger.h"
+#include "thallium/core/pipeline.h"
 #include "thallium/core/renderer.h"
 #include "thallium/core/swapchain.h"
 #include "thallium/core/version.h"

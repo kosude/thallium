@@ -5,13 +5,13 @@
  *   See the LICENCE file for more information.
  */
 
-#include "thallium.h"
-#include "api_modules.h"
-
-#include "types/core/renderer.h"
+#include "thallium/core/swapchain.h"
 #include "types/core/swapchain.h"
 
+#include "types/core/renderer.h"
 #include "utils/utils.h"
+
+#include "api_modules.h"
 
 #include <stdlib.h>
 

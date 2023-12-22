@@ -7,12 +7,9 @@
 
 #include "lib/vulkan/vk_context_block.h"
 
-#include "thallium.h"
-
+#include "lib/core/context_block.h"
 #include "types/core/context.h"
 #include "types/core/debugger.h"
-
-#include "lib/core/context_block.h"
 #include "utils/utils.h"
 
 #include "vk_instance.h"

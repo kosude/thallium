@@ -16,6 +16,9 @@
 #include "thallium_decl/fwdvk.h"
 #include "thallium/platform.h"
 
+#define VK_NO_PROTOTYPES
+#include <vulkan/vulkan.h>
+
 typedef struct VkSurfaceKHR_T *VkSurfaceKHR;
 
 /**

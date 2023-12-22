@@ -5,15 +5,15 @@
  *   See the LICENCE file for more information.
  */
 
-#include "thallium.h"
+#include "thallium/core/context.h"
+#include "types/core/context.h"
+
+#include "thallium/core/debugger.h"
 
 #include "lib/core/context_block.h"
 #if defined(_THALLIUM_VULKAN_INCL)
 #   include "lib/vulkan/vk_context_block.h"
 #endif
-
-#include "types/core/context.h"
-
 #include "utils/utils.h"
 
 #include <stdlib.h>

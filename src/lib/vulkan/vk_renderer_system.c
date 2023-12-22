@@ -5,20 +5,19 @@
  *   See the LICENCE file for more information.
  */
 
-#include "thallium_vulkan.h"
-
-#include "utils/io/log.h"
-
+#include "thallium/vulkan/vk_renderer_system.h"
 #include "types/vulkan/vk_renderer_system.h"
+
 #include "types/core/context.h"
 #include "types/core/renderer.h"
+#include "utils/io/log.h"
 
 #include "vk_context_block.h"
 #include "vk_device.h"
 
-#include <stdlib.h>
-
 #include <volk/volk.h>
+
+#include <stdlib.h>
 
 static VkPhysicalDevice __SelectRendererSystemPhysicalDevice(const TLVK_RendererSystem_t *const renderer_system,
     const TLVK_RendererSystemDescriptor_t *const descriptor, carray_t *const out_exts, VkPhysicalDeviceFeatures *const out_feats,

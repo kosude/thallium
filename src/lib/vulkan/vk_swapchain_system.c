@@ -5,19 +5,17 @@
  *   See the LICENCE file for more information.
  */
 
-#include "thallium_vulkan.h"
+#include "thallium/vulkan/vk_swapchain_system.h"
+#include "types/vulkan/vk_swapchain_system.h"
 
 #include "thallium/core/extent.h"
 
-#include "utils/utils.h"
-
+#include "lib/core/wsi/surface_platform_data.h"
+#include "lib/vulkan/vk_context_block.h"
 #include "types/core/renderer.h"
 #include "types/core/wsi/window_surface.h"
 #include "types/vulkan/vk_renderer_system.h"
-#include "types/vulkan/vk_swapchain_system.h"
-
-#include "lib/core/wsi/surface_platform_data.h"
-#include "lib/vulkan/vk_context_block.h"
+#include "utils/utils.h"
 
 #include <volk/volk.h>
 

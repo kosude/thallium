@@ -17,6 +17,9 @@
  *
  * This enumeration contains all graphics APIs for renderers. Not all enumerations will necessarily be accepted by renderers on creation; ensure
  * that the appropriate module or modules were added to the build process when compiling the Thallium library.
+ *
+ * @sa @ref TL_Renderer_t
+ * @sa @ref TL_RendererDescriptor_t
  */
 typedef enum TL_RendererAPIFlags_t {
     /// @brief [Vulkan GPU API](https://www.vulkan.org/)
@@ -33,7 +36,6 @@ typedef enum TL_RendererAPIFlags_t {
  *
  * @sa @ref TL_Debugger_t
  * @sa @ref TL_DebuggerDescriptor_t
- * @sa @ref TL_DebuggerCreate()
  */
 typedef enum TL_DebugSeverityFlags_t {
     /// @brief Log messages
@@ -57,7 +59,7 @@ typedef enum TL_DebugSeverityFlags_t {
  * This enumeration contains message sources to describe debug messages.
  *
  * @sa @ref TL_Debugger_t
- * @sa @ref TL_DebuggerCreate()
+ * @sa @ref TL_DebuggerDescriptor_t
  */
 typedef enum TL_DebugSourceFlags_t {
     /// @brief Messages reported by core Thallium functions
@@ -68,6 +70,23 @@ typedef enum TL_DebugSourceFlags_t {
     /// @brief All message sources
     TL_DEBUG_SOURCE_ALL_BIT =       0x3f,
 } TL_DebugSourceFlags_t;
+
+/**
+ * @brief Enumeration containing types of Thallium pipeline objects.
+ *
+ * This enumeration contains types of Thallium pipeline objects.
+ *
+ * @sa @ref TL_Pipeline_t
+ * @sa @ref TL_PipelineDescriptor_t
+ */
+typedef enum TL_PipelineType_t {
+    /// @brief Represent a graphics pipeline
+    TL_PIPELINE_TYPE_GRAPHICS,
+    /// @brief Represent a compute pipeline (currently unimplemented and reserved for future use)
+    TL_PIPELINE_TYPE_COMPUTE,
+    /// @brief Represent a ray tracing pipeline (currently unimplemented and reserved for future use)
+    TL_PIPELINE_TYPE_RAY_TRACING,
+} TL_PipelineType_t;
 
 #ifdef __cplusplus
     }

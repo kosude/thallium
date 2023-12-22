@@ -8,6 +8,7 @@ set(SOURCES
 
     "context.c"
     "debugger.c"
+    "pipeline.c"
     "renderer.c"
     "swapchain.c"
 )
