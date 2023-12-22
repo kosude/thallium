@@ -9,7 +9,8 @@ Objects and functions defined within the core Thallium library, exposed by ``tha
 
     context
     debuggers
+    pipelines
+    primitive_data
     renderers
     swapchains
-    primitive_data
     wsi
