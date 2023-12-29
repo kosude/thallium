@@ -43,7 +43,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_e889eeb (2023-12-22)
+                v0.0.0dev_7dffc85 (2023-12-29)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -147,6 +147,36 @@
 <dd><p>The type of pipeline object to create. </p>
 </dd></dl>
 
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.primitive_topology">
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1aa85bf54ddd9e68fafbade797e20fed64"></span><span class="n"><span class="pre">TL_PrimitiveTopology_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">primitive_topology</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.primitive_topology" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The topology to assume for assembly of primitives. If NULL, then <code class="docutils literal notranslate"><span class="pre">TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST</span></code> is used by default. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value is ignored in <strong>compute</strong> and <strong>ray tracing</strong> pipelines. </p>
+</div>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.rasterizer">
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1ab727a1962f1e5a09b726853296493cd3"></span><span class="n"><span class="pre">TL_PipelineRasterizerDescriptor_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rasterizer</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.rasterizer" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A descriptor of the rasterization stage of the pipeline. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value is ignored in <strong>compute</strong> and <strong>ray tracing</strong> pipelines. </p>
+</div>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.depth_test">
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1aabf0b2a614abb3439621fe6c2c59def0"></span><span class="n"><span class="pre">TL_PipelineDepthTestDescriptor_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_test</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.depth_test" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A descriptor of the depth-testing stage of the pipeline. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value is ignored in <strong>compute</strong> and <strong>ray tracing</strong> pipelines. </p>
+</div>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -245,7 +275,7 @@
   </div>
 
   
-    v0.0.0dev_e889eeb (2023-12-22) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_7dffc85 (2023-12-29) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>
