@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pipelines - Thallium</title>
+    <title>Pipelines and Pipeline Configuration - Thallium</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
@@ -43,7 +43,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_7dffc85 (2023-12-29)
+                v0.0.0dev_3ef8f89 (2023-12-29)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -61,9 +61,10 @@
 <li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
 <li class="toctree-l3"><a class="reference internal" href="debuggers.html">Debuggers</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Pipelines</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Pipelines and Pipeline Configuration</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pipeline-configuration-options">Pipeline configuration options</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="primitive_data.html">Primitive Data Objects</a></li>
@@ -93,7 +94,7 @@
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../_api.html">API Reference</a></li>
           <li class="breadcrumb-item"><a href="_core.html">Core API</a></li>
-      <li class="breadcrumb-item active">Pipelines</li>
+      <li class="breadcrumb-item active">Pipelines and Pipeline Configuration</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/pages/api/core/pipelines.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,8 +104,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="pipelines">
-<h1>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this heading"></a></h1>
+  <section id="pipelines-and-pipeline-configuration">
+<h1>Pipelines and Pipeline Configuration<a class="headerlink" href="#pipelines-and-pipeline-configuration" title="Permalink to this heading"></a></h1>
 <p>This section describes the use of Thallium’s cross-API <strong>pipeline objects</strong>.</p>
 <hr class="docutils" />
 <section id="types">
@@ -149,32 +150,118 @@
 
 <dl class="c var">
 <dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.primitive_topology">
-<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1aa85bf54ddd9e68fafbade797e20fed64"></span><span class="n"><span class="pre">TL_PrimitiveTopology_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">primitive_topology</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.primitive_topology" title="Permalink to this definition"></a><br /></dt>
-<dd><p>The topology to assume for assembly of primitives. If NULL, then <code class="docutils literal notranslate"><span class="pre">TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST</span></code> is used by default. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This value is ignored in <strong>compute</strong> and <strong>ray tracing</strong> pipelines. </p>
-</div>
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1aa85bf54ddd9e68fafbade797e20fed64"></span><a class="reference internal" href="#c.TL_PrimitiveTopology_t" title="TL_PrimitiveTopology_t"><span class="n"><span class="pre">TL_PrimitiveTopology_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">primitive_topology</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.primitive_topology" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The topology to assume for assembly of primitives. If NULL, then <code class="docutils literal notranslate"><span class="pre">TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST</span></code> is used by default. This value is ignored in compute and ray tracing pipelines. </p>
 </dd></dl>
 
 <dl class="c var">
 <dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.rasterizer">
-<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1ab727a1962f1e5a09b726853296493cd3"></span><span class="n"><span class="pre">TL_PipelineRasterizerDescriptor_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rasterizer</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.rasterizer" title="Permalink to this definition"></a><br /></dt>
-<dd><p>A descriptor of the rasterization stage of the pipeline. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This value is ignored in <strong>compute</strong> and <strong>ray tracing</strong> pipelines. </p>
-</div>
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1ab727a1962f1e5a09b726853296493cd3"></span><a class="reference internal" href="#c.TL_PipelineRasterizerDescriptor_t" title="TL_PipelineRasterizerDescriptor_t"><span class="n"><span class="pre">TL_PipelineRasterizerDescriptor_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rasterizer</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.rasterizer" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A <a class="reference internal" href="#dd/df3/structTL__PipelineRasterizerDescriptor__t"><span class="std std-ref">descriptor</span></a> of the rasterization stage of the pipeline. This value is ignored in compute and ray tracing pipelines. </p>
 </dd></dl>
 
 <dl class="c var">
 <dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.depth_test">
-<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1aabf0b2a614abb3439621fe6c2c59def0"></span><span class="n"><span class="pre">TL_PipelineDepthTestDescriptor_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_test</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.depth_test" title="Permalink to this definition"></a><br /></dt>
-<dd><p>A descriptor of the depth-testing stage of the pipeline. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This value is ignored in <strong>compute</strong> and <strong>ray tracing</strong> pipelines. </p>
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1aabf0b2a614abb3439621fe6c2c59def0"></span><a class="reference internal" href="#c.TL_PipelineDepthTestDescriptor_t" title="TL_PipelineDepthTestDescriptor_t"><span class="n"><span class="pre">TL_PipelineDepthTestDescriptor_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_test</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.depth_test" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A <a class="reference internal" href="#da/d76/structTL__PipelineDepthTestDescriptor__t"><span class="std std-ref">descriptor</span></a> of the depth-testing stage of the pipeline. This value is ignored in compute and ray tracing pipelines. </p>
+</dd></dl>
+
 </div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PipelineRasterizerDescriptor_t</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A descriptor struct for configuration of a graphics pipeline’s rasterization stage (‘rasterizer’). </p>
+<p>This structure describes a pipeline’s rasterization stage (‘rasterizer’). </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.depth_clamp">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1a5a186d90f0466e44afe34ac8d6771741"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_clamp</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.depth_clamp" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true, primitives will practically not be clipped to the near and far planes of the frustum. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.rasterizer_discard">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1a512f8a943d347273749eafd7c2d4f86d"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rasterizer_discard</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.rasterizer_discard" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true, primitives will be discarded immediately before rasterization, ending the pipeline after the vertex processing stage. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.polygon_mode">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1a74da32c94db9af37d9685f93edd5da76"></span><a class="reference internal" href="#c.TL_PolygonMode_t" title="TL_PolygonMode_t"><span class="n"><span class="pre">TL_PolygonMode_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">polygon_mode</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.polygon_mode" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Polygon render mode - <code class="docutils literal notranslate"><span class="pre">TL_POLYGON_MODE_FILL</span></code> is assumed by default. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.cull_modes">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1ab5ce5ad8fb04d1560d70f63978286045"></span><a class="reference internal" href="#c.TL_CullModeFlags_t" title="TL_CullModeFlags_t"><span class="n"><span class="pre">TL_CullModeFlags_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cull_modes</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.cull_modes" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bitmask of modes for polygon discarding a.k.a. culling. By default, no polygons are culled (<code class="docutils literal notranslate"><span class="pre">TL_CULL_MODE_NONE_BIT</span></code>). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.clockwise_front_face">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1af37cef3e55642a2ede7ed1ba4d3296b8"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clockwise_front_face</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.clockwise_front_face" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true, then clockwise-winding polygons will be assumed to be front-facing. Otherwise, counter-clockwise polygons are front-facing. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.depth_bias">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1a8ea6970a3623ff1a9ee11810d7c78c13"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_bias</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.depth_bias" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true, fragment depth values will be biased according to other <code class="docutils literal notranslate"><span class="pre">depth_bias_*</span></code> parameters. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.depth_bias_constant_factor">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1a55f02614cf6614dfeff7bc39639e638f"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_bias_constant_factor</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.depth_bias_constant_factor" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A constant value to be added to the depth of each fragment. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.depth_bias_slope_factor">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1a3418fcaaf73025594f20300d4f67f2fa"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_bias_slope_factor</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.depth_bias_slope_factor" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A factor applied to a fragment’s slope in depth bias calculations. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.depth_bias_clamp">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1a5dcb95f6b5f01401912b25d1c4c1e90f"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_bias_clamp</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.depth_bias_clamp" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The maximum (or minimum) depth bias of a fragment. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineRasterizerDescriptor_t.line_width">
+<span class="target" id="dd/df3/structTL__PipelineRasterizerDescriptor__t_1adcea0ab477a3b68fb94f63384de5fb9b"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">line_width</span></span></span><a class="headerlink" href="#c.TL_PipelineRasterizerDescriptor_t.line_width" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The width of all line primitives. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.TL_PipelineDepthTestDescriptor_t">
+<span class="target" id="da/d76/structTL__PipelineDepthTestDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PipelineDepthTestDescriptor_t</span></span></span><a class="headerlink" href="#c.TL_PipelineDepthTestDescriptor_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A descriptor struct for configuration of a graphics pipeline’s depth testing stage. </p>
+<p>This structure describes a graphics pipeline’s depth testing stage. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDepthTestDescriptor_t.test_enabled">
+<span class="target" id="da/d76/structTL__PipelineDepthTestDescriptor__t_1a190cc49b3e31d20eabed9037ae5e1399"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">test_enabled</span></span></span><a class="headerlink" href="#c.TL_PipelineDepthTestDescriptor_t.test_enabled" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true, the depth test is enabled. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDepthTestDescriptor_t.write_enabled">
+<span class="target" id="da/d76/structTL__PipelineDepthTestDescriptor__t_1a57536efff6e7ded0100ff3ba6de6690a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">write_enabled</span></span></span><a class="headerlink" href="#c.TL_PipelineDepthTestDescriptor_t.write_enabled" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true, then writing to the depth buffer is enabled. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDepthTestDescriptor_t.compare_op">
+<span class="target" id="da/d76/structTL__PipelineDepthTestDescriptor__t_1ab40709225751a30c9fd533a79c4dc292"></span><a class="reference internal" href="#c.TL_CompareOp_t" title="TL_CompareOp_t"><span class="n"><span class="pre">TL_CompareOp_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">compare_op</span></span></span><a class="headerlink" href="#c.TL_PipelineDepthTestDescriptor_t.compare_op" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Depth test comparison function - <code class="docutils literal notranslate"><span class="pre">TL_COMPARE_OP_NEVER</span></code> is the default value. </p>
 </dd></dl>
 
 </div>
@@ -261,6 +348,208 @@
 </dd></dl>
 
 </section>
+<hr class="docutils" />
+<section id="pipeline-configuration-options">
+<h2>Pipeline configuration options<a class="headerlink" href="#pipeline-configuration-options" title="Permalink to this heading"></a></h2>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_CompareOp_t</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enumeration of comparison operators for depth, stencil, and sampler operations. </p>
+<p>Possible values of this enumeration represent comparison operators used in depth, stencil, and sampler operations. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t.TL_COMPARE_OP_NEVER">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982a43d23fffa22d30594f917da84e73f32f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_COMPARE_OP_NEVER</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t.TL_COMPARE_OP_NEVER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Comparison always evaluates false. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t.TL_COMPARE_OP_LESS">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982af45ef98dfe04980cc2bd75ccea56b6bc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_COMPARE_OP_LESS</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t.TL_COMPARE_OP_LESS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Comparison evaluates as <code class="docutils literal notranslate"><span class="pre">reference</span> <span class="pre">&lt;</span> <span class="pre">test</span></code>. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t.TL_COMPARE_OP_EQUAL">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982a1e86db5713f2d33908e87da8ac0fcaf3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_COMPARE_OP_EQUAL</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t.TL_COMPARE_OP_EQUAL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Comparison evaluates as <code class="docutils literal notranslate"><span class="pre">reference</span> <span class="pre">==</span> <span class="pre">test</span></code>. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t.TL_COMPARE_OP_LESS_OR_EQUAL">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982adffce7530aa2a3227c0bf60508700c2e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_COMPARE_OP_LESS_OR_EQUAL</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t.TL_COMPARE_OP_LESS_OR_EQUAL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Comparison evaluates as <code class="docutils literal notranslate"><span class="pre">reference</span> <span class="pre">&lt;=</span> <span class="pre">test</span></code>. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t.TL_COMPARE_OP_GREATER">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982a9843f2b3c0ddf67dbd05de258fc01a61"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_COMPARE_OP_GREATER</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t.TL_COMPARE_OP_GREATER" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Comparison evaluates as <em>reference</em> &gt; <em>test</em>. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t.TL_COMPARE_OP_NOT_EQUAL">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982ab487ab05f2a2d08a0781e94337f3c024"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_COMPARE_OP_NOT_EQUAL</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t.TL_COMPARE_OP_NOT_EQUAL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Comparison evaluates as <em>reference</em> != <em>test</em>. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t.TL_COMPARE_OP_GREATER_OR_EQUAL">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982ac7aa0b1db73919ce27df9e66dff9d0fc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_COMPARE_OP_GREATER_OR_EQUAL</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t.TL_COMPARE_OP_GREATER_OR_EQUAL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Comparison evaluates as <em>reference</em> &gt;= <em>test</em>. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CompareOp_t.TL_COMPARE_OP_ALWAYS">
+<span class="target" id="d0/d0b/enums_8h_1a3dacfe2374e79d666ea45febbc6c8982aeb8aaa4b288aa6ce6b8448436cfd9d11"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_COMPARE_OP_ALWAYS</span></span></span><a class="headerlink" href="#c.TL_CompareOp_t.TL_COMPARE_OP_ALWAYS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Comparison always evaluates true. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.TL_CullModeFlags_t">
+<span class="target" id="d0/d0b/enums_8h_1a05b5913aef056052e6d054beaac5495f"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_CullModeFlags_t</span></span></span><a class="headerlink" href="#c.TL_CullModeFlags_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enumeration of modes for polygon culling (discarding) at rasterization. </p>
+<p>This enumeration contains modes of polygon culling/discarding during the rasterization stage of a graphics pipeline. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CullModeFlags_t.TL_CULL_MODE_NONE_BIT">
+<span class="target" id="d0/d0b/enums_8h_1a05b5913aef056052e6d054beaac5495fa83499823e263d157f407e90a40b38ce4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_CULL_MODE_NONE_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x00</span></span><a class="headerlink" href="#c.TL_CullModeFlags_t.TL_CULL_MODE_NONE_BIT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Do not cull polygons. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CullModeFlags_t.TL_CULL_MODE_FRONT_BIT">
+<span class="target" id="d0/d0b/enums_8h_1a05b5913aef056052e6d054beaac5495fa94125992867936f8b149a2a00e37f627"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_CULL_MODE_FRONT_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x01</span></span><a class="headerlink" href="#c.TL_CullModeFlags_t.TL_CULL_MODE_FRONT_BIT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cull front-facing polygons. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CullModeFlags_t.TL_CULL_MODE_BACK_BIT">
+<span class="target" id="d0/d0b/enums_8h_1a05b5913aef056052e6d054beaac5495facfa0bc1fbbab17c78c8865c0f67ba861"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_CULL_MODE_BACK_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x02</span></span><a class="headerlink" href="#c.TL_CullModeFlags_t.TL_CULL_MODE_BACK_BIT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cull back-facing polygons. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_CullModeFlags_t.TL_CULL_MODE_FRONT_AND_BACK_BIT">
+<span class="target" id="d0/d0b/enums_8h_1a05b5913aef056052e6d054beaac5495fab2b9ec3004527ea84e34e4b7826abee7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_CULL_MODE_FRONT_AND_BACK_BIT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x03</span></span><a class="headerlink" href="#c.TL_CullModeFlags_t.TL_CULL_MODE_FRONT_AND_BACK_BIT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cull all polygons. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PrimitiveTopology_t</span></span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enumeration of primitive rendering topologies. </p>
+<p>This enumeration contains supported primitive graphics topologies.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Strip topology enumerators are indicated with the left-most bit set. When these options are used, a fixed vertex index value is used to restart the assembly of primitives - this value is the maximum value for the type format used by the related index buffer. </p>
+</div>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_POINT_LIST">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24a1abc811eb706c1dbc31dfe540f0ab860"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_POINT_LIST</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x01</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_POINT_LIST" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of separate point primitives. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_LINE_LIST">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24a7ca380ae51b4ed9c1ae86019507016e4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_LINE_LIST</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x02</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_LINE_LIST" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of separate line primitives. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_LINE_STRIP">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24acee646b3771529e9e06a1572e64d85d0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_LINE_STRIP</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x83</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_LINE_STRIP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of connected line primitives, with consecutive lines sharing a vertex. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24aadb4574b9b59d0a6c56c71fee87c7f90"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x04</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of separate triangle primitives. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24a7bb3f20f6fae56ffe6f7ff4d1e03d2f7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x85</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of connected triangle primitives, with consecutive triangles sharing an edge. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24ad404047473af7b1ccf095d4a3cf0ec1a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x06</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of connected triangle primitives, with triangles sharing a common vertex. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_LINE_LIST_ADJACENCY">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24a55023b1857ce292c874e698d256896a5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_LINE_LIST_ADJACENCY</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x07</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_LINE_LIST_ADJACENCY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of separate line primitives with adjacency. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_LINE_STRIP_ADJACENCY">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24a6f472c841ff2bb8a23b8ed62831085d1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_LINE_STRIP_ADJACENCY</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x88</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_LINE_STRIP_ADJACENCY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of connected line primitives with adjacency, with consecutive primitives sharing three vertices. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_ADJACENCY">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24ac67bedcca669a6e409b5de0def3e48e6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_ADJACENCY</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x09</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_ADJACENCY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of separate triangle primitives with adjacency. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_ADJACENCY">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24a268ac7dc3d4baa98d153c02e1b71e104"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_ADJACENCY</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x8A</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_ADJACENCY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A series of connected triangle primitives with adjacency, with consecutive primitives sharing an edge. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_PATCH_LIST">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24ace7835ca191e6d97bd72a5af32565333"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_PATCH_LIST</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x0B</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_PATCH_LIST" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Separate patch primitives. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_NULL">
+<span class="target" id="d0/d0b/enums_8h_1a645bebbcf82334107d78d8aaf0ae0d24ab3f8ca3ac8d2ec0bab1b1d7933c03901"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PRIMITIVE_TOPOLOGY_NULL</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x00</span></span><a class="headerlink" href="#c.TL_PrimitiveTopology_t.TL_PRIMITIVE_TOPOLOGY_NULL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Null primitive topology. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.TL_PolygonMode_t">
+<span class="target" id="d0/d0b/enums_8h_1a49f0b29e89d6f112e2906b54839dc132"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PolygonMode_t</span></span></span><a class="headerlink" href="#c.TL_PolygonMode_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enumeration of polygon rasterization modes. </p>
+<p>This enumeration contains supported modes of polygon filling by the rasterizer. </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PolygonMode_t.TL_POLYGON_MODE_FILL">
+<span class="target" id="d0/d0b/enums_8h_1a49f0b29e89d6f112e2906b54839dc132ab8e10cfdb85a39be963eece850f77ff2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_POLYGON_MODE_FILL</span></span></span><a class="headerlink" href="#c.TL_PolygonMode_t.TL_POLYGON_MODE_FILL" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Draw filled polygons. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PolygonMode_t.TL_POLYGON_MODE_WIREFRAME">
+<span class="target" id="d0/d0b/enums_8h_1a49f0b29e89d6f112e2906b54839dc132a282edc544afba7c258bb34855f426fc5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_POLYGON_MODE_WIREFRAME</span></span></span><a class="headerlink" href="#c.TL_PolygonMode_t.TL_POLYGON_MODE_WIREFRAME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Draw polygon edges (wireframe) only. </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.TL_PolygonMode_t.TL_POLYGON_MODE_POINT">
+<span class="target" id="d0/d0b/enums_8h_1a49f0b29e89d6f112e2906b54839dc132abe077c91b694a821dc3167d99e8b2485"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_POLYGON_MODE_POINT</span></span></span><a class="headerlink" href="#c.TL_PolygonMode_t.TL_POLYGON_MODE_POINT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Draw vertex points only. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -275,7 +564,7 @@
   </div>
 
   
-    v0.0.0dev_7dffc85 (2023-12-29) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_3ef8f89 (2023-12-29) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>
