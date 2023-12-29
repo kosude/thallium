@@ -26,7 +26,7 @@
  *
  * This struct contains info about what swapchains from a certain VkPhysicalDevice can support.
  */
-typedef struct TLVK_SwapchainSupportInfo_t {
+typedef struct __SwapchainSupportInfo_t {
     /// @brief Basic surface capabilities supported - min/max images in swapchain, min/max size of images, etc
     VkSurfaceCapabilitiesKHR caps;
 
@@ -39,12 +39,12 @@ typedef struct TLVK_SwapchainSupportInfo_t {
     VkPresentModeKHR *present_modes;
     /// @brief Amount of elements in array `present_modes`
     uint32_t present_mode_count;
-} TLVK_SwapchainSupportInfo_t;
+} __SwapchainSupportInfo_t;
 
 
 static VkSurfaceKHR __CreateVkSurface(const VkInstance instance, const TL_WindowSurface_t *const tl_surface, const TL_Debugger_t *const debugger);
 
-static TLVK_SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDevice physical_device, const VkSurfaceKHR surface);
+static __SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDevice physical_device, const VkSurfaceKHR surface);
 
 static VkSurfaceFormatKHR __PickSwapSurfaceFormat(const VkSurfaceFormatKHR *const formats, const uint32_t format_count);
 
@@ -108,7 +108,7 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(const TLVK_RendererSystem_t *
 
     swapchain_system->vk_surface = surface;
 
-    TLVK_SwapchainSupportInfo_t support_info = __GetSwapchainSupportInfo(physdev, surface);
+    __SwapchainSupportInfo_t support_info = __GetSwapchainSupportInfo(physdev, surface);
 
     // automatically select surface format if not explicitly chosen
     VkSurfaceFormatKHR surface_format = ((int) descriptor.vk_surface_format.format != -1) ?
@@ -308,8 +308,8 @@ static VkSurfaceKHR __CreateVkSurface(const VkInstance instance, const TL_Window
     return surface;
 }
 
-static TLVK_SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDevice physical_device, const VkSurfaceKHR surface) {
-    TLVK_SwapchainSupportInfo_t details;
+static __SwapchainSupportInfo_t __GetSwapchainSupportInfo(const VkPhysicalDevice physical_device, const VkSurfaceKHR surface) {
+    __SwapchainSupportInfo_t details;
 
     // get surface capabilities
     vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device, surface, &details.caps);

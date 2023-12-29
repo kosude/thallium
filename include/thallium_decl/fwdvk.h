@@ -12,8 +12,13 @@
     extern "C" {
 #endif // __cplusplus
 
+typedef struct TLVK_PipelineSystem_t TLVK_PipelineSystem_t;
+
 typedef struct TLVK_RendererSystem_t TLVK_RendererSystem_t;
 typedef struct TLVK_RendererSystemDescriptor_t TLVK_RendererSystemDescriptor_t;
+
+typedef struct TLVK_SwapchainSystem_t TLVK_SwapchainSystem_t;
+typedef struct TLVK_SwapchainSystemDescriptor_t TLVK_SwapchainSystemDescriptor_t;
 
 #ifdef __cplusplus
     }

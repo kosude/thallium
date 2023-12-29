@@ -4,6 +4,7 @@ set(SOURCES
     "vk_instance.c"
     "vk_loader.c"
 
+    "vk_pipeline_system.c"
     "vk_renderer_system.c"
     "vk_swapchain_system.c"
 )

@@ -23,6 +23,8 @@ typedef struct TL_Extent2D_t TL_Extent2D_t;
 
 typedef struct TL_Pipeline_t TL_Pipeline_t;
 typedef struct TL_PipelineDescriptor_t TL_PipelineDescriptor_t;
+typedef struct TL_PipelineDepthTestDescriptor_t TL_PipelineDepthTestDescriptor_t;
+typedef struct TL_PipelineRasterizerDescriptor_t TL_PipelineRasterizerDescriptor_t;
 
 typedef struct TL_Renderer_t TL_Renderer_t;
 typedef struct TL_RendererDescriptor_t TL_RendererDescriptor_t;

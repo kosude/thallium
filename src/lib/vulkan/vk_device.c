@@ -369,8 +369,6 @@ static TLVK_PhysicalDeviceQueueFamilyIndices_t __GetRequiredQueueFamilies(const 
         __DEFINE_REQUIRED_QUEUE_FAMILY(present);
     }
 
-    __DEFINE_REQUIRED_QUEUE_FAMILY(compute);
-
     return required;
 }
 

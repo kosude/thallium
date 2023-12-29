@@ -6,8 +6,8 @@
  */
 
 #pragma once
-#ifndef __TL__internal__core__context_h__
-#define __TL__internal__core__context_h__
+#ifndef __TL__internal__core__context_t_h__
+#define __TL__internal__core__context_t_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus

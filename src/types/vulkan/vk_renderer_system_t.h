@@ -6,8 +6,8 @@
  */
 
 #pragma once
-#ifndef __TL__internal__vulkan__vk_renderer_system_h__
-#define __TL__internal__vulkan__vk_renderer_system_h__
+#ifndef __TL__internal__vulkan__vk_renderer_system_t_h__
+#define __TL__internal__vulkan__vk_renderer_system_t_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
@@ -16,7 +16,7 @@
 
 #include "thallium/core/renderer.h"
 #include "lib/vulkan/vk_loader.h"
-#include "lib/vulkan/vk_device_queues.h"
+#include "types/vulkan/vk_device_queues_t.h"
 
 #define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>

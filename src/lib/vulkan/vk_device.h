@@ -16,8 +16,8 @@
 #include "thallium_decl/enumsvk.h"
 #include "thallium/platform.h"
 
-#include "lib/vulkan/vk_device_queues.h"
 #include "lib/vulkan/vk_loader.h"
+#include "types/vulkan/vk_device_queues_t.h"
 
 #define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>

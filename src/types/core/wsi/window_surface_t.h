@@ -6,8 +6,8 @@
  */
 
 #pragma once
-#ifndef __TL__internal__wsi__window_surface__
-#define __TL__internal__wsi__window_surface__
+#ifndef __TL__internal__wsi__window_surface_t_h__
+#define __TL__internal__wsi__window_surface_t_h__
 #ifdef __cplusplus
     extern "C" {
 #endif // __cplusplus
