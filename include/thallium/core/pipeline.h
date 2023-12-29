@@ -83,13 +83,13 @@ typedef struct TL_PipelineDescriptor_t {
     TL_PipelineType_t type;
 
     /// @brief The topology to assume for assembly of primitives. If NULL, then `TL_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST` is used by default.
-    /// @note This value is ignored in **compute** and **ray tracing** pipelines.
+    /// This value is ignored in compute and ray tracing pipelines.
     TL_PrimitiveTopology_t primitive_topology;
     /// @brief A [descriptor](@ref TL_PipelineRasterizerDescriptor_t) of the rasterization stage of the pipeline.
-    /// @note This value is ignored in **compute** and **ray tracing** pipelines.
+    /// This value is ignored in compute and ray tracing pipelines.
     TL_PipelineRasterizerDescriptor_t rasterizer;
     /// @brief A [descriptor](@ref TL_PipelineDepthTestDescriptor_t) of the depth-testing stage of the pipeline.
-    /// @note This value is ignored in **compute** and **ray tracing** pipelines.
+    /// This value is ignored in compute and ray tracing pipelines.
     TL_PipelineDepthTestDescriptor_t depth_test;
 } TL_PipelineDescriptor_t;
 

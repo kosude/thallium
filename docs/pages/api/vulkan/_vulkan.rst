@@ -11,5 +11,6 @@ Objects and functions defined within the Thallium Vulkan module (compiled using 
     :caption: Contents
     :maxdepth: 1
 
+    vk_pipeline_system
     vk_renderer_system
     vk_swapchain_system
