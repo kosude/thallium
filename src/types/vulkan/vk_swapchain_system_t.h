@@ -31,11 +31,16 @@ typedef struct TLVK_SwapchainSystem_t {
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html
     VkSurfaceKHR vk_surface;
 
-    /// @brief Array of Vulkan images, retrieved from `vk_swapchain`:
+    /// @brief Array of Vulkan images (colour buffers), retrieved from `vk_swapchain`:
     /// https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImage.html
-    VkImage *vk_images;
+    VkImage *col_images;
     /// @brief Amount of elements in `vk_images`.
-    uint32_t vk_image_count;
+    uint32_t col_image_count;
+
+    /// @brief Format of the swapchain's colour buffers/images
+    VkFormat col_format;
+    /// @brief Swapchain extent (resolution).
+    VkExtent2D extent;
 } TLVK_SwapchainSystem_t;
 
 #ifdef __cplusplus

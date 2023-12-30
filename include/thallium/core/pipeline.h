@@ -91,6 +91,20 @@ typedef struct TL_PipelineDescriptor_t {
     /// @brief A [descriptor](@ref TL_PipelineDepthTestDescriptor_t) of the depth-testing stage of the pipeline.
     /// This value is ignored in compute and ray tracing pipelines.
     TL_PipelineDepthTestDescriptor_t depth_test;
+
+    /// @brief The amount of viewports in the `viewports` array; ignored if `viewports` is NULL.
+    /// This value is ignored in compute and ray tracing pipelines.
+    uint32_t viewport_count;
+    /// @brief NULL or an array of viewports - if NULL, any viewports must be set dynamically instead.
+    /// This value is ignored in compute and ray tracing pipelines.
+    TL_Viewport_t *viewports;
+
+    /// @brief The amount of viewports in the `viewports` array; ignored if `viewports` is NULL.
+    /// This value is ignored in compute and ray tracing pipelines.
+    uint32_t scissor_count;
+    /// @brief NULL or an array of scissor rectangles - if NULL, any scissors must be set dynamically instead.
+    /// This value is ignored in compute and ray tracing pipelines.
+    TL_Rect2D_t *scissors;
 } TL_PipelineDescriptor_t;
 
 /**

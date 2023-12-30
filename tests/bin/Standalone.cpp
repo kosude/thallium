@@ -145,8 +145,18 @@ int main() {
 
     // Create the pipeline
 
+    TL_Viewport_t viewport = {};
+    viewport.x = 0.0f;
+    viewport.y = 0.0f;
+    viewport.width = (float) TL_SwapchainGetExtent(swapchain).width;
+    viewport.height = (float) TL_SwapchainGetExtent(swapchain).height;
+    viewport.min_depth = 0.0f;
+    viewport.max_depth = 1.0f;
+
     TL_PipelineDescriptor_t pipelinedesc = {};
     pipelinedesc.type = TL_PIPELINE_TYPE_GRAPHICS;
+    pipelinedesc.viewport_count = 1;
+    pipelinedesc.viewports = &viewport;
 
     TL_Pipeline_t *pipeline = TL_PipelineCreate(renderer, pipelinedesc);
     if (!pipeline) {

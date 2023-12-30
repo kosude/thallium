@@ -52,8 +52,15 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
 
                 if (descriptor.swapchain_system_descriptor) {
                     ssdescr = *((TLVK_SwapchainSystemDescriptor_t *) descriptor.swapchain_system_descriptor);
+
+                    // fallback to descriptor.resolution
+                    if (ssdescr.resolution.width <= 0 || ssdescr.resolution.height <= 0) {
+                        ssdescr.resolution = descriptor.resolution;
+                    }
                 } else {
                     // default swapchain system descriptor configuration (used if no user-given descriptor was specified)...
+
+                    ssdescr.resolution = descriptor.resolution;
 
                     ssdescr.vk_surface = NULL; // create a surface for descriptor.window_surface (passed to TLVK_SwapchainSystemCreate call).
 
@@ -64,14 +71,14 @@ TL_Swapchain_t *TL_SwapchainCreate(const TL_Renderer_t *const renderer, const TL
 
                 void *renderersys = renderer->renderer_system;
 
-                TLVK_SwapchainSystem_t *swapchainsys = TLVK_SwapchainSystemCreate(renderersys, descriptor.resolution, ssdescr,
-                    descriptor.window_surface);
+                TLVK_SwapchainSystem_t *swapchainsys = TLVK_SwapchainSystemCreate(renderersys, ssdescr, descriptor.window_surface);
                 if (!swapchainsys) {
                     TL_Error(debugger, "Failed to create Vulkan swapchain system for new swapchain at %p", swapchain);
                     return NULL;
                 }
 
                 swapchain->swapchain_system = (void *) swapchainsys;
+                swapchain->extent = TLVK_SwapchainSystemGetExtent(swapchainsys);
 
 #           endif
             break;
@@ -108,4 +115,8 @@ void TL_SwapchainDestroy(TL_Swapchain_t *const swapchain) {
     }
 
     free(swapchain);
+}
+
+TL_Extent2D_t TL_SwapchainGetExtent(TL_Swapchain_t *const swapchain) {
+    return swapchain->extent;
 }

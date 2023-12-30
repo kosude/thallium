@@ -8,9 +8,10 @@ Objects and functions defined within the core Thallium library, exposed by ``tha
     :caption: Contents
 
     context
+    data
     debuggers
     pipelines
-    primitive_data
     renderers
     swapchains
+    viewports
     wsi

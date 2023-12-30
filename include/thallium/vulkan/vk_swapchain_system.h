@@ -12,6 +12,8 @@
     extern "C" {
 #endif // __cplusplus
 
+#include "thallium/core/viewport.h"
+
 #include "thallium_decl/fwd.h"
 #include "thallium_decl/fwdvk.h"
 #include "thallium/platform.h"
@@ -37,6 +39,11 @@ typedef struct TLVK_SwapchainSystem_t TLVK_SwapchainSystem_t;
  * This descriptor structure provides options for the creation of Vulkan swapchains via Thallium Vulkan swapchain systems.
  */
 typedef struct TLVK_SwapchainSystemDescriptor_t {
+    /// @brief Resolution of images in the swapchain. Both values must be above 0 in this struct. If you are specifying this descriptor as an add-on
+    /// to a @ref TL_SwapchainDescriptor_t (i.e. calling @ref TL_SwapchainCreate()), then setting this will override the resolution specified to that
+    /// descriptor - keeping this zero-initialised will use the resolution specified to that descriptor.
+    TL_Extent2D_t resolution;
+
     /// @brief NULL or a Vulkan surface to use in swapchain creation.
     /// If this is NULL, a surface will be created based on the specified Thallium **window surface** (i.e. platform window handles). Otherwise, that
     /// window will be disregarded and this surface will be directly used instead.
@@ -65,7 +72,6 @@ typedef struct TLVK_SwapchainSystemDescriptor_t {
  * parameter **must** be a valid Thallium window surface object, in which case a new Vulkan surface will be created and stored by the swapchain.
  *
  * @param renderer_system a valid Thallium Vulkan renderer system object
- * @param resolution resolution of images in the swapchain
  * @param descriptor a Thallium Vulkan swapchain system descriptor
  * @param window_surface a Thallium window surface object <i>(can conditionally be NULL - see note above)</i>
  * @return The new swapchain system
@@ -76,7 +82,6 @@ typedef struct TLVK_SwapchainSystemDescriptor_t {
  */
 TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(
     const TLVK_RendererSystem_t *const renderer_system,
-    const TL_Extent2D_t resolution,
     const TLVK_SwapchainSystemDescriptor_t descriptor,
     const TL_WindowSurface_t *const window_surface
 );
@@ -92,6 +97,18 @@ TLVK_SwapchainSystem_t *TLVK_SwapchainSystemCreate(
  * @sa @ref TLVK_SwapchainSystemCreate()
  */
 void TLVK_SwapchainSystemDestroy(
+    TLVK_SwapchainSystem_t *const swapchain_system
+);
+
+/**
+ * @brief Retrieve the extent of the given Vulkan swapchain system.
+ *
+ * This function returns the extent of the specified Vulkan swapchain system.
+ *
+ * @param swapchain_system Swapchain system pointer
+ * @return Swapchain system extent
+ */
+TL_Extent2D_t TLVK_SwapchainSystemGetExtent(
     TLVK_SwapchainSystem_t *const swapchain_system
 );
 

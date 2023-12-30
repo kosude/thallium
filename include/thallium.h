@@ -22,6 +22,7 @@
 #include "thallium/core/renderer.h"
 #include "thallium/core/swapchain.h"
 #include "thallium/core/version.h"
+#include "thallium/core/viewport.h"
 
 #include "thallium/core/wsi/window_surface.h"
 #if defined(_THALLIUM_WSI_COCOA)

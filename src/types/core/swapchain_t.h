@@ -18,6 +18,9 @@ typedef struct TL_Swapchain_t {
     /// @brief Internal API-aware swapchain system.
     void *swapchain_system;
 
+    /// @brief Swapchain extent
+    TL_Extent2D_t extent;
+
     /// @brief Pointer to the parent renderer object.
     const TL_Renderer_t *renderer;
 } TL_Swapchain_t;

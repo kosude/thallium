@@ -15,7 +15,7 @@
 #include "thallium_decl/fwd.h"
 #include "thallium/platform.h"
 
-#include "thallium/core/extent.h"
+#include "thallium/core/viewport.h"
 
 /**
  * @brief A structure to represent a graphical swapchain.
@@ -72,6 +72,18 @@ TL_Swapchain_t *TL_SwapchainCreate(
  * @param swapchain Pointer to the swapchain object to free.
  */
 void TL_SwapchainDestroy(
+    TL_Swapchain_t *const swapchain
+);
+
+/**
+ * @brief Retrieve the extent of the given swapchain.
+ *
+ * This function returns the extent of the specified swapchain object.
+ *
+ * @param swapchain Swapchain pointer
+ * @return Swapchain extent
+ */
+TL_Extent2D_t TL_SwapchainGetExtent(
     TL_Swapchain_t *const swapchain
 );
 

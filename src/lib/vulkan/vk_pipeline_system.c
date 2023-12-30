@@ -120,12 +120,21 @@ static __GraphicsPipelineConfig __ConfigureGraphicsPipeline(const TL_PipelineDes
     config.tessellation_info.sType = VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO;
     config.tessellation_info.patchControlPoints = 0;
 
-    // TODO: consider viewports and scissors
     config.viewport_info.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
-    config.viewport_info.viewportCount = 1;
-    config.viewport_info.pViewports = NULL;
-    config.viewport_info.scissorCount = 1;
-    config.viewport_info.pScissors = NULL;
+    if (!descriptor.viewports) {
+        config.viewport_info.viewportCount = 1;
+        config.viewport_info.pViewports = NULL;
+    } else {
+        config.viewport_info.viewportCount = descriptor.viewport_count;
+        config.viewport_info.pViewports = (VkViewport *) descriptor.viewports;
+    }
+    if (!descriptor.scissors) {
+        config.viewport_info.scissorCount = 1;
+        config.viewport_info.pScissors = NULL;
+    } else {
+        config.viewport_info.scissorCount = descriptor.scissor_count;
+        config.viewport_info.pScissors = (VkRect2D *) descriptor.scissors;
+    }
 
     config.rasterizer_info.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
     config.rasterizer_info.depthClampEnable = descriptor.rasterizer.depth_clamp;
@@ -173,10 +182,10 @@ static __GraphicsPipelineConfig __ConfigureGraphicsPipeline(const TL_PipelineDes
 
     config.dynamic_states = calloc(8, sizeof(VkDynamicState)); // 8 is just arbitrary, scale this as necessary when other dynamic states are supported
     uint32_t n = 0;
-    // TODO: add dynamic states as necessary (increment n when each one is added):
-    //      - VK_DYNAMIC_STATE_VIEWPORT, if no viewports are specified in the descriptor
-    //      - VK_DYNAMIC_STATE_SCISSOR, if no scissors are specified in the descriptor
-    //        etc...
+    if (!config.viewport_info.pViewports)
+        config.dynamic_states[n++] = VK_DYNAMIC_STATE_VIEWPORT;
+    if (!config.viewport_info.pScissors)
+        config.dynamic_states[n++] = VK_DYNAMIC_STATE_SCISSOR;
 
     config.dynamic_state_info.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
     config.dynamic_state_info.pDynamicStates = config.dynamic_states;

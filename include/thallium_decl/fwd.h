@@ -12,14 +12,14 @@
     extern "C" {
 #endif // __cplusplus
 
+typedef struct TL_WindowSurface_t TL_WindowSurface_t;
+
 typedef struct TL_Context_t TL_Context_t;
 typedef struct TL_ContextDescriptor_t TL_ContextDescriptor_t;
 
 typedef struct TL_Debugger_t TL_Debugger_t;
 typedef struct TL_DebuggerDescriptor_t TL_DebuggerDescriptor_t;
 typedef struct TL_DebuggerAttachmentDescriptor_t TL_DebuggerAttachmentDescriptor_t;
-
-typedef struct TL_Extent2D_t TL_Extent2D_t;
 
 typedef struct TL_Pipeline_t TL_Pipeline_t;
 typedef struct TL_PipelineDescriptor_t TL_PipelineDescriptor_t;
@@ -35,7 +35,10 @@ typedef struct TL_SwapchainDescriptor_t TL_SwapchainDescriptor_t;
 
 typedef struct TL_Version_t TL_Version_t;
 
-typedef struct TL_WindowSurface_t TL_WindowSurface_t;
+typedef struct TL_Viewport_t TL_Viewport_t;
+typedef struct TL_Extent2D_t TL_Extent2D_t;
+typedef struct TL_Offset2D_t TL_Offset2D_t;
+typedef struct TL_Rect2D_t TL_Rect2D_t;
 
 #ifdef __cplusplus
     }
