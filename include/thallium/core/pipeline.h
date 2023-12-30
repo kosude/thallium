@@ -55,6 +55,7 @@ typedef struct TL_PipelineRasterizerDescriptor_t {
     float depth_bias_clamp;
 
     /// @brief The width of all line primitives.
+    /// This value is **silently ignored** and defaults to 1.0 if the `wide_lines` feature is disabled on the relevant renderer.
     float line_width;
 } TL_PipelineRasterizerDescriptor_t;
 

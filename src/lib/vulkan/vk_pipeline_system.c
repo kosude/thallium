@@ -31,7 +31,7 @@ typedef struct __GraphicsPipelineConfig {
 } __GraphicsPipelineConfig;
 
 
-static __GraphicsPipelineConfig __ConfigureGraphicsPipeline(const TL_PipelineDescriptor_t descriptor);
+static __GraphicsPipelineConfig __ConfigureGraphicsPipeline(const TL_PipelineDescriptor_t descriptor, const TL_RendererFeatures_t *features);
 
 static VkPipeline __CreateGraphicsPipeline(const TLVK_FuncSet_t *devfs, const VkDevice device, const __GraphicsPipelineConfig config);
 
@@ -45,6 +45,7 @@ TLVK_PipelineSystem_t *TLVK_PipelineSystemCreate(const TLVK_RendererSystem_t *co
 
     const TL_Debugger_t *debugger = renderer_system->renderer->debugger;
     const VkDevice device = renderer_system->vk_logical_device;
+    const TL_RendererFeatures_t *rfeatures = &(renderer_system->renderer->features);
 
     TLVK_PipelineSystem_t *pipeline_system = malloc(sizeof(TLVK_PipelineSystem_t));
     if (!pipeline_system) {
@@ -59,7 +60,7 @@ TLVK_PipelineSystem_t *TLVK_PipelineSystemCreate(const TLVK_RendererSystem_t *co
     VkPipeline pso;
     switch (descriptor.type) {
         case TL_PIPELINE_TYPE_GRAPHICS:
-            pso = __CreateGraphicsPipeline(devfs, device, __ConfigureGraphicsPipeline(descriptor));
+            pso = __CreateGraphicsPipeline(devfs, device, __ConfigureGraphicsPipeline(descriptor, rfeatures));
             break;
         default:
             TL_Error(debugger, "When creating Vulkan pipeline system: pipeline descriptor specified invalid pipeline type %d", descriptor.type);
@@ -92,7 +93,7 @@ void TLVK_PipelineSystemDestroy(TLVK_PipelineSystem_t *const pipeline_system) {
 }
 
 
-static __GraphicsPipelineConfig __ConfigureGraphicsPipeline(const TL_PipelineDescriptor_t descriptor) {
+static __GraphicsPipelineConfig __ConfigureGraphicsPipeline(const TL_PipelineDescriptor_t descriptor, const TL_RendererFeatures_t *features) {
     __GraphicsPipelineConfig config = { 0 };
 
     // TODO: shader modules
@@ -146,7 +147,8 @@ static __GraphicsPipelineConfig __ConfigureGraphicsPipeline(const TL_PipelineDes
     config.rasterizer_info.depthBiasConstantFactor = descriptor.rasterizer.depth_bias_constant_factor;
     config.rasterizer_info.depthBiasClamp = descriptor.rasterizer.depth_bias_clamp;
     config.rasterizer_info.depthBiasSlopeFactor = descriptor.rasterizer.depth_bias_slope_factor;
-    config.rasterizer_info.lineWidth = descriptor.rasterizer.line_width;
+    config.rasterizer_info.lineWidth =
+        (features->wide_lines) ? descriptor.rasterizer.line_width : 1.0f;
 
     // TODO: when render passes are implemented, get the sample count from the render pass and use that
     config.multisample_info.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;

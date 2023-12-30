@@ -67,7 +67,8 @@ static carray_t __ValidateExtensions(const VkPhysicalDevice physical_device, con
 static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requirements, uint32_t *const out_extension_count,
     const char **out_extension_names);
 
-static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const features, carray_t extensions, const TL_Debugger_t *const debugger);
+static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const features, carray_t extensions,
+    const VkPhysicalDeviceFeatures *device_feats, const TL_Debugger_t *const debugger);
 
 static VkPhysicalDeviceFeatures __ValidateDeviceFeatures(const VkPhysicalDevice physical_device, VkPhysicalDeviceFeatures features,
     bool *const out_missing_flag, const TL_Debugger_t *const debugger);
@@ -87,7 +88,7 @@ VkDevice TLVK_LogicalDeviceCreate(const VkPhysicalDevice physical_device, const 
         return VK_NULL_HANDLE;
     }
 
-    __UpdateRendererFeaturesWithSupported(out_rfeatures, extensions, debugger);
+    __UpdateRendererFeaturesWithSupported(out_rfeatures, extensions, &features, debugger);
 
     VkDeviceCreateInfo device_create_info;
     device_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
@@ -439,7 +440,9 @@ static void __EnumerateRequiredExtensions(const TL_RendererFeatures_t requiremen
     *out_extension_count = count_ret;
 }
 
-static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const features, carray_t extensions, const TL_Debugger_t *const debugger) {
+static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const features, carray_t extensions,
+    const VkPhysicalDeviceFeatures *device_feats, const TL_Debugger_t *const debugger)
+{
     // presentation feature availability
     {
         bool pa = false;
@@ -457,6 +460,13 @@ static void __UpdateRendererFeaturesWithSupported(TL_RendererFeatures_t *const f
             features->presentation = false;
             TL_Error(debugger,
                 "When creating Vulkan device: RENDERER FEATURE UNAVAILABLE (missing device extensions) - 'presentation' was disabled!");
+        }
+    }
+
+    // wide_lines feature availability
+    {
+        if (!device_feats->wideLines) {
+            features->wide_lines = false;
         }
     }
 }
@@ -539,6 +549,9 @@ static VkPhysicalDeviceFeatures __ValidateDeviceFeatures(const VkPhysicalDevice 
 // Get the device features required to support the given renderer features
 static VkPhysicalDeviceFeatures __EnumerateRequiredDeviceFeatures(const TL_RendererFeatures_t requirements) {
     VkPhysicalDeviceFeatures feat = { 0 };
+
+    if (requirements.wide_lines)
+        feat.wideLines = true;
 
     return feat;
 }

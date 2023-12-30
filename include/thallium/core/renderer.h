@@ -31,6 +31,9 @@
 typedef struct TL_RendererFeatures_t {
     /// @brief The renderer can present images to a swapchain.
     bool presentation;
+
+    /// @brief The renderer can draw line primitives with a variable line width.
+    bool wide_lines;
 } TL_RendererFeatures_t;
 
 /**
