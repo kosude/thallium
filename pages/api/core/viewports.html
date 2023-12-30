@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viewport and Scissor Geometry - Thallium</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/dark.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/see_also_hotfix.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/sd_hotfix.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/sidebar.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="WSI and Window Surfaces" href="wsi.html" />
+    <link rel="prev" title="Swapchains" href="swapchains.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Thallium Documentation
+              <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v0.0.0dev_ef5ec8e (2023-12-30)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html">General Datatypes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debuggers.html">Debuggers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipelines.html">Pipelines and Pipeline Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html">Renderers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="swapchains.html">Swapchains</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Viewport and Scissor Geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="wsi.html">WSI and Window Surfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vulkan/_vulkan.html">Vulkan Module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Thallium Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../_api.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="_core.html">Core API</a></li>
+      <li class="breadcrumb-item active">Viewport and Scissor Geometry</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pages/api/core/viewports.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="viewport-and-scissor-geometry">
+<h1>Viewport and Scissor Geometry<a class="headerlink" href="#viewport-and-scissor-geometry" title="Permalink to this heading"></a></h1>
+<p>This section specifies primitive struct definitions to represent viewport and scissor properties.</p>
+<hr class="docutils" />
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
+<section id="structs">
+<h3>Structs<a class="headerlink" href="#structs" title="Permalink to this heading"></a></h3>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.TL_Viewport_t">
+<span class="target" id="da/d40/structTL__Viewport__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Viewport_t</span></span></span><a class="headerlink" href="#c.TL_Viewport_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A structure defining a viewport. </p>
+<p>This structure contains floating-point data for viewport position (of the top-left corner), size, and depth range. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Viewport_t.x">
+<span class="target" id="da/d40/structTL__Viewport__t_1af5aa789179efbaf9d2807376213cccd7"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">x</span></span></span><a class="headerlink" href="#c.TL_Viewport_t.x" title="Permalink to this definition"></a><br /></dt>
+<dd><p>X position of the viewport’s top-left corner. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Viewport_t.y">
+<span class="target" id="da/d40/structTL__Viewport__t_1a7ca55a71353746777c84173091fa2a73"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">y</span></span></span><a class="headerlink" href="#c.TL_Viewport_t.y" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Y position of the viewport’s top-left corner. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Viewport_t.width">
+<span class="target" id="da/d40/structTL__Viewport__t_1a89c901a0cd36793553453a5549adcd8a"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">width</span></span></span><a class="headerlink" href="#c.TL_Viewport_t.width" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Width of the viewport. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Viewport_t.height">
+<span class="target" id="da/d40/structTL__Viewport__t_1a1e2935816a735823044dec2aa00a2ab2"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">height</span></span></span><a class="headerlink" href="#c.TL_Viewport_t.height" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Height of the viewport. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Viewport_t.min_depth">
+<span class="target" id="da/d40/structTL__Viewport__t_1afbdaa80f61a426d4405053166205b461"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">min_depth</span></span></span><a class="headerlink" href="#c.TL_Viewport_t.min_depth" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Minimum depth of the viewport. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Viewport_t.max_depth">
+<span class="target" id="da/d40/structTL__Viewport__t_1a942a207bdb5644ec422e5962f0db212c"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_depth</span></span></span><a class="headerlink" href="#c.TL_Viewport_t.max_depth" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maximum depth of the viewport. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.TL_Extent2D_t">
+<span class="target" id="d6/d7c/structTL__Extent2D__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Extent2D_t</span></span></span><a class="headerlink" href="#c.TL_Extent2D_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>2-dimensional extent structure </p>
+<p>This 2-dimensional extent struct is used for unsigned integral 2D extents. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Extent2D_t.width">
+<span class="target" id="d6/d7c/structTL__Extent2D__t_1a90ca554516d4e78c578d868fbde34a77"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">width</span></span></span><a class="headerlink" href="#c.TL_Extent2D_t.width" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Extent width. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Extent2D_t.height">
+<span class="target" id="d6/d7c/structTL__Extent2D__t_1ae7bc43d254e295fe2d8e75b1c668a384"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">height</span></span></span><a class="headerlink" href="#c.TL_Extent2D_t.height" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Extent height. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.TL_Offset2D_t">
+<span class="target" id="da/dd3/structTL__Offset2D__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Offset2D_t</span></span></span><a class="headerlink" href="#c.TL_Offset2D_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>2-dimensional offset (position) structure </p>
+<p>This 2-dimensional offset struct contains signed integral 2D position values. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Offset2D_t.x">
+<span class="target" id="da/dd3/structTL__Offset2D__t_1aeee832c29e5db532909a973e72de6032"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">x</span></span></span><a class="headerlink" href="#c.TL_Offset2D_t.x" title="Permalink to this definition"></a><br /></dt>
+<dd><p>X offset. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Offset2D_t.y">
+<span class="target" id="da/dd3/structTL__Offset2D__t_1a2dc2d91dd2399b20dbda1aeec0baf90c"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">y</span></span></span><a class="headerlink" href="#c.TL_Offset2D_t.y" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Y offset. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.TL_Rect2D_t">
+<span class="target" id="dc/de1/structTL__Rect2D__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_Rect2D_t</span></span></span><a class="headerlink" href="#c.TL_Rect2D_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>2-dimensional structure with unsigned extent and signed offset data. </p>
+<p>This 2-dimensional struct contains an unsigned extent and a signed offset. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Rect2D_t.offset">
+<span class="target" id="dc/de1/structTL__Rect2D__t_1a2ace3ecf517fac29c368ed5558cd08ec"></span><a class="reference internal" href="#c.TL_Offset2D_t" title="TL_Offset2D_t"><span class="n"><span class="pre">TL_Offset2D_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">offset</span></span></span><a class="headerlink" href="#c.TL_Rect2D_t.offset" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Offset (position) </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_Rect2D_t.extent">
+<span class="target" id="dc/de1/structTL__Rect2D__t_1aa1dfb83efe39fa3f8456e96ff9a48346"></span><a class="reference internal" href="#c.TL_Extent2D_t" title="TL_Extent2D_t"><span class="n"><span class="pre">TL_Extent2D_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">extent</span></span></span><a class="headerlink" href="#c.TL_Rect2D_t.extent" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Extent (size) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jack Bennett.</p>
+  </div>
+
+  
+    v0.0.0dev_ef5ec8e (2023-12-30) » <a href="https://github.com/kosude/thallium">upstream url</a>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

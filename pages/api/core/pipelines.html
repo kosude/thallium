@@ -26,7 +26,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Primitive Data Objects" href="primitive_data.html" />
+    <link rel="next" title="Renderers" href="renderers.html" />
     <link rel="prev" title="Debuggers" href="debuggers.html" /> 
 </head>
 
@@ -43,7 +43,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_3ef8f89 (2023-12-29)
+                v0.0.0dev_ef5ec8e (2023-12-30)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -60,6 +60,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../_api.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="_core.html">Core API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="context.html">Context Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html">General Datatypes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="debuggers.html">Debuggers</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Pipelines and Pipeline Configuration</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
@@ -67,9 +68,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#pipeline-configuration-options">Pipeline configuration options</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="primitive_data.html">Primitive Data Objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="renderers.html">Renderers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="swapchains.html">Swapchains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewports.html">Viewport and Scissor Geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="wsi.html">WSI and Window Surfaces</a></li>
 </ul>
 </li>
@@ -164,6 +165,30 @@
 <dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.depth_test">
 <span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1aabf0b2a614abb3439621fe6c2c59def0"></span><a class="reference internal" href="#c.TL_PipelineDepthTestDescriptor_t" title="TL_PipelineDepthTestDescriptor_t"><span class="n"><span class="pre">TL_PipelineDepthTestDescriptor_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_test</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.depth_test" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A <a class="reference internal" href="#da/d76/structTL__PipelineDepthTestDescriptor__t"><span class="std std-ref">descriptor</span></a> of the depth-testing stage of the pipeline. This value is ignored in compute and ray tracing pipelines. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.viewport_count">
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1ad4b74daf4e38349702bd04cef4f79f79"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">viewport_count</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.viewport_count" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The amount of viewports in the <code class="docutils literal notranslate"><span class="pre">viewports</span></code> array; ignored if <code class="docutils literal notranslate"><span class="pre">viewports</span></code> is NULL. This value is ignored in compute and ray tracing pipelines. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.viewports">
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1a35839f0028076c821b4a5c7eccc9fb89"></span><a class="reference internal" href="viewports.html#c.TL_Viewport_t" title="TL_Viewport_t"><span class="n"><span class="pre">TL_Viewport_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">viewports</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.viewports" title="Permalink to this definition"></a><br /></dt>
+<dd><p>NULL or an array of viewports - if NULL, any viewports must be set dynamically instead. This value is ignored in compute and ray tracing pipelines. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.scissor_count">
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1a527a8a543adbf43962247e29d2232d8a"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scissor_count</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.scissor_count" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The amount of viewports in the <code class="docutils literal notranslate"><span class="pre">viewports</span></code> array; ignored if <code class="docutils literal notranslate"><span class="pre">viewports</span></code> is NULL. This value is ignored in compute and ray tracing pipelines. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t.scissors">
+<span class="target" id="d5/d0c/structTL__PipelineDescriptor__t_1a3eb48f38751bc5e1d9463e12c3127633"></span><a class="reference internal" href="viewports.html#c.TL_Rect2D_t" title="TL_Rect2D_t"><span class="n"><span class="pre">TL_Rect2D_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">scissors</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t.scissors" title="Permalink to this definition"></a><br /></dt>
+<dd><p>NULL or an array of scissor rectangles - if NULL, any scissors must be set dynamically instead. This value is ignored in compute and ray tracing pipelines. </p>
 </dd></dl>
 
 </div>
@@ -564,7 +589,7 @@
   </div>
 
   
-    v0.0.0dev_3ef8f89 (2023-12-29) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_ef5ec8e (2023-12-30) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>
