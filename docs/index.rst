@@ -18,7 +18,7 @@ Cross-platform APIs (i.e. Vulkan and OpenGL) will be prioritised, but I plan to 
 far future.
 
 .. note::
-    The contents of this page can also be seen in the project's `README <https://github.com/kosude/thallium/blob/master/README.md/>`_.
+    The contents of this page can also be seen in the project's `README <https://gitlab.com/kosude/thallium/blob/master/README.md/>`_.
 
 For comprehensive function and struct documentation, see the :doc:`API reference <pages/api/_api>`.
 
@@ -75,6 +75,6 @@ Document **all** new public functions or types with `Doxygen <https://www.doxyge
 output.
 
 I keep an upstream TO-DO list on `Trello <https://trello.com/b/ZHYGTiZr/thallium-development-tracking>`_. Submit issues and pull requests to the
-`GitHub repo <https://github.com/kosude/thallium>`_.
+`GitLab repo <https://gitlab.com/kosude/thallium>`_.
 
 See more information on the :doc:`contributing <pages/contributing>` page.

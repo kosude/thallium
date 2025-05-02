@@ -153,5 +153,5 @@ endif()
 
 message("")
 
-message(STATUS "See the online documentation at https://kosude.github.io/thallium")
-message(STATUS "Or contribute to the upstream repository at https://github.com/kosude/thallium")
+message(STATUS "See the online documentation at https://kosude.gitlab.io/thallium")
+message(STATUS "Or contribute to the upstream repository at https://gitlab.com/kosude/thallium")

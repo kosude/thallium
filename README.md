@@ -5,20 +5,17 @@
 
 # Thallium Graphics Library
 
-[![GitHub](https://img.shields.io/github/license/kosude/thallium)](LICENCE)
-![Lines of code](https://www.aschey.tech/tokei/github.com/kosude/thallium)
-
 The Thallium Project is a library for C/C++ applications that will provide the ability to write cross-renderer applications with the same interface.
 Cross-platform APIs (i.e. Vulkan and OpenGL) will be prioritised, but I plan to also implement dumber APIs such as Metal, DX11, and DX12 in the
 far future.
 
-As a side-note, I track TO-DO items on [Trello](https://trello.com/b/ZHYGTiZr/thallium-development-tracking). GitHub issues on this repository are
+As a side-note, I track TO-DO items on [Trello](https://trello.com/b/ZHYGTiZr/thallium-development-tracking). GitLab issues on this repository are
 also used to track bugs or requests.
 
 
 ## Documentation
 
-For the Thallium API documentation, see the GitHub Pages instance at https://kosude.github.io/thallium/.
+For the Thallium API documentation, see the GitLab Pages instance at https://kosude.gitlab.io/thallium/.
 
 Local HTML documentation can be generated at compilation with the `-DTHALLIUM_BUILD_DOCS=ON` flag, as above. This is not default behaviour and is not
 recommended, as it can lengthen build time, and requires Doxygen to be installed as well as several Python modules (listed in the
