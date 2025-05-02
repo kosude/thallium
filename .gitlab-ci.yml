@@ -1,0 +1,38 @@
+stages:
+  - build
+  - deploy
+
+default:
+  image: python:3.10-alpine
+
+workflow:
+  rules:
+    - if: $CI_COMMENT_TAG
+      when: never
+    - if: $CI_COMMIT_BRANCH == "master"
+
+build_docs:
+  stage: build
+  before_script:
+    - apk update
+    - apk add make gcc g++
+    - apk add cmake
+    - apk add doxygen
+    - apk add git
+    - pip install -r docs/requirements.txt
+    - git fetch --prune --unshallow --tags # tags needed to generate version displayed in the website
+  script:
+    - cmake . -B build -DCMAKE_BUILD_TYPE=Release -DTHALLIUM_BUILD_DOCS=ON -DTHALLIUM_BUILD_LIB=OFF
+    - cmake --build build
+  artifacts:
+    paths:
+      - build/docs/html
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - mv build/docs/html/* public
+  artifacts:
+    paths:
+      - public
