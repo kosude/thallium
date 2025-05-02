@@ -43,7 +43,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_d8e6b63 (2024-01-22)
+                v0.0.0dev_102292c (2023-12-30)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -119,7 +119,7 @@
 <p>This opaque structure provides a representation of a swapchain object.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#d4/d63/swapchain_8h_1a3ab6bfbe506b0f6909a4dc2b1baeb427"><span class="std std-ref">TL_SwapchainCreate()</span></a></p>
+<p><a class="reference internal" href="#d4/d63/swapchain_8h_1abb881647bb909f3c4357bb9ccc1f295e"><span class="std std-ref">TL_SwapchainCreate()</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -139,7 +139,7 @@
 <dt class="sig sig-object c" id="c.TL_SwapchainDescriptor_t">
 <span class="target" id="d8/d91/structTL__SwapchainDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_SwapchainDescriptor_t</span></span></span><a class="headerlink" href="#c.TL_SwapchainDescriptor_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A structure describing a swapchain object to be created. </p>
-<p>This structure describes a swapchain object to be created. </p>
+<p>This structure describes a <a class="reference internal" href="#d4/d63/swapchain_8h_1a5726513d2603e37cb88c8fb9c9cf1b1c"><span class="std std-ref">swapchain object</span></a> to be created. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="c var">
@@ -151,7 +151,7 @@
 <dl class="c var">
 <dt class="sig sig-object c" id="c.TL_SwapchainDescriptor_t.window_surface">
 <span class="target" id="d8/d91/structTL__SwapchainDescriptor__t_1a541d7430a58d823afb497c9612260c20"></span><a class="reference internal" href="wsi.html#c.TL_WindowSurface_t" title="TL_WindowSurface_t"><span class="n"><span class="pre">TL_WindowSurface_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">window_surface</span></span></span><a class="headerlink" href="#c.TL_SwapchainDescriptor_t.window_surface" title="Permalink to this definition"></a><br /></dt>
-<dd><p>A Thallium window surface object. </p>
+<dd><p>A Thallium <a class="reference internal" href="wsi.html#db/d25/window__surface_8h_1aa990e83efcd8d08b05782e49667068b4"><span class="std std-ref">window surface object</span></a>. </p>
 </dd></dl>
 
 <dl class="c var">
@@ -170,13 +170,13 @@
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.TL_SwapchainCreate">
-<span class="target" id="d4/d63/swapchain_8h_1a3ab6bfbe506b0f6909a4dc2b1baeb427"></span><a class="reference internal" href="#c.TL_Swapchain_t" title="TL_Swapchain_t"><span class="n"><span class="pre">TL_Swapchain_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_SwapchainCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="renderers.html#c.TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">renderer</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_SwapchainDescriptor_t" title="TL_SwapchainDescriptor_t"><span class="n"><span class="pre">TL_SwapchainDescriptor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_SwapchainCreate" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="d4/d63/swapchain_8h_1abb881647bb909f3c4357bb9ccc1f295e"></span><a class="reference internal" href="#c.TL_Swapchain_t" title="TL_Swapchain_t"><span class="n"><span class="pre">TL_Swapchain_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_SwapchainCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="renderers.html#c.TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">renderer</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_SwapchainDescriptor_t" title="TL_SwapchainDescriptor_t"><span class="n"><span class="pre">TL_SwapchainDescriptor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_SwapchainCreate" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Create and return a new Thallium swapchain object for use with the given renderer. </p>
 <p>This function creates and returns a new Thallium swapchain object for use with the given Thallium renderer object <code class="docutils literal notranslate"><span class="pre">renderer</span></code>.</p>
 <p>Using the resultant swapchain with a different renderer will likely result in errors. Also note that swapchain objects are mostly <strong>immutable</strong>. You cannot modify a swapchain for use with a different renderer, you must create a new one instead.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>TL_Swapchain_t</p>
+<p><a class="reference internal" href="#d4/d63/swapchain_8h_1a5726513d2603e37cb88c8fb9c9cf1b1c"><span class="std std-ref">TL_Swapchain_t</span></a></p>
 </div>
 </p>
 <dl class="field-list simple">
@@ -221,7 +221,7 @@
   </div>
 
   
-    v0.0.0dev_d8e6b63 (2024-01-22) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_102292c (2023-12-30) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>

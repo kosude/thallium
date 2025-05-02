@@ -43,7 +43,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_d8e6b63 (2024-01-22)
+                v0.0.0dev_102292c (2023-12-30)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -144,7 +144,7 @@
 <dt class="sig sig-object c" id="c.TL_RendererDescriptor_t">
 <span class="target" id="d7/d78/structTL__RendererDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RendererDescriptor_t</span></span></span><a class="headerlink" href="#c.TL_RendererDescriptor_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A structure describing a renderer object to be created. </p>
-<p>This structure describes a renderer object to be created. </p>
+<p>This structure describes a <a class="reference internal" href="#d6/d85/renderer_8h_1a8f1a2ceb78e42cf1c107bc29d9ca36f4"><span class="std std-ref">renderer object</span></a> to be created. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="c var">
@@ -184,7 +184,7 @@
 <p>This enumeration contains all graphics APIs for renderers. Not all enumerations will necessarily be accepted by renderers on creation; ensure that the appropriate module or modules were added to the build process when compiling the Thallium library.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>TL_Renderer_t</p>
+<p><a class="reference internal" href="#d6/d85/renderer_8h_1a8f1a2ceb78e42cf1c107bc29d9ca36f4"><span class="std std-ref">TL_Renderer_t</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -215,7 +215,7 @@
 <dt class="sig sig-object c" id="c.TL_RendererCreate">
 <span class="target" id="d6/d85/renderer_8h_1a86078c761a54ef4920c1eb6df6b1beba"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RendererCreate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="context.html#c.TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">context</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">count</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_RendererDescriptor_t" title="TL_RendererDescriptor_t"><span class="n"><span class="pre">TL_RendererDescriptor_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">descriptors</span></span>, <a class="reference internal" href="#c.TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">renderers</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#c.TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_RendererCreate" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Create <code class="docutils literal notranslate"><span class="pre">count</span></code> renderer(s) in the given Thallium context. </p>
-<p>This function creates <code class="docutils literal notranslate"><span class="pre">count</span></code> renderers into the context object <code class="docutils literal notranslate"><span class="pre">context</span></code>. These renderers are configured using the array of <a class="reference internal" href="#d7/d78/structTL__RendererDescriptor__t"><span class="std std-ref">descriptors</span></a> given in <code class="docutils literal notranslate"><span class="pre">descriptors</span></code> (the length of which is also assumed to be <code class="docutils literal notranslate"><span class="pre">count</span></code>).</p>
+<p>This function creates <code class="docutils literal notranslate"><span class="pre">count</span></code> renderers into the <a class="reference internal" href="context.html#dc/d1e/context_8h_1a2ab90da406d417dffba83a7e2a45666c"><span class="std std-ref">context object</span></a> <code class="docutils literal notranslate"><span class="pre">context</span></code>. These renderers are configured using the array of <a class="reference internal" href="#d7/d78/structTL__RendererDescriptor__t"><span class="std std-ref">descriptors</span></a> given in <code class="docutils literal notranslate"><span class="pre">descriptors</span></code> (the length of which is also assumed to be <code class="docutils literal notranslate"><span class="pre">count</span></code>).</p>
 <p>The resultant array of renderers are allocated and output into <code class="docutils literal notranslate"><span class="pre">renderers</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">count</span></code> parameter must be 1 or greater. Ensure that both arrays are the same length. The index of each descriptor in the <code class="docutils literal notranslate"><span class="pre">descriptors</span></code> array corresponds to the index of each renderer pointer in the <code class="docutils literal notranslate"><span class="pre">renderers</span></code> array.</p>
 <p>Neither <code class="docutils literal notranslate"><span class="pre">descriptors</span></code> or <code class="docutils literal notranslate"><span class="pre">renderers</span></code> can be NULL!</p>
@@ -264,12 +264,12 @@
 <dl class="c struct">
 <dt class="sig sig-object c" id="c.TL_RendererFeatures_t">
 <span class="target" id="d1/d8e/structTL__RendererFeatures__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_RendererFeatures_t</span></span></span><a class="headerlink" href="#c.TL_RendererFeatures_t" title="Permalink to this definition"></a><br /></dt>
-<dd><p>A structure to hold flags for the features of a renderer object. </p>
+<dd><p>A structure to hold flags for the features of a <a class="reference internal" href="#d6/d85/renderer_8h_1a8f1a2ceb78e42cf1c107bc29d9ca36f4"><span class="std std-ref">renderer</span></a> object. </p>
 <p>This structure allows the user to, for example, require desired Thallium-supported features from a renderer.</p>
 <p>Requiring the features that will be used throughout the program at renderer creation is required to access those features, as renderers are immutable for the most part.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>TL_Renderer_t</p>
+<p><a class="reference internal" href="#d6/d85/renderer_8h_1a8f1a2ceb78e42cf1c107bc29d9ca36f4"><span class="std std-ref">TL_Renderer_t</span></a></p>
 </div>
 </p>
 <div class="breathe-sectiondef docutils container">
@@ -304,7 +304,7 @@
   </div>
 
   
-    v0.0.0dev_d8e6b63 (2024-01-22) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_102292c (2023-12-30) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>

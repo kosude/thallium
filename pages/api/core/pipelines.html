@@ -43,7 +43,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_d8e6b63 (2024-01-22)
+                v0.0.0dev_102292c (2023-12-30)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -120,7 +120,7 @@
 <p>This opaque structure represents a graphics, compute, or ray tracing pipeline object.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#df/d7a/pipeline_8h_1a3a9406cb361616aacedd051349824ed1"><span class="std std-ref">TL_PipelineCreate()</span></a></p>
+<p><a class="reference internal" href="#df/d7a/pipeline_8h_1a607d30aac2a659c8c376395cf9f9a81a"><span class="std std-ref">TL_PipelineCreate()</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -140,7 +140,7 @@
 <dt class="sig sig-object c" id="c.TL_PipelineDescriptor_t">
 <span class="target" id="d5/d0c/structTL__PipelineDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_PipelineDescriptor_t</span></span></span><a class="headerlink" href="#c.TL_PipelineDescriptor_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A structure describing a pipeline object to be created. </p>
-<p>This structure describes a pipeline object to be created. </p>
+<p>This structure describes a <a class="reference internal" href="#df/d7a/pipeline_8h_1ad30d8cdb7eb29113bb2274069fff386d"><span class="std std-ref">pipeline object</span></a> to be created. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="c var">
@@ -302,7 +302,7 @@
 <p>This enumeration contains types of Thallium pipeline objects.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>TL_Pipeline_t</p>
+<p><a class="reference internal" href="#df/d7a/pipeline_8h_1ad30d8cdb7eb29113bb2274069fff386d"><span class="std std-ref">TL_Pipeline_t</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -337,12 +337,12 @@
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.TL_PipelineCreate">
-<span class="target" id="df/d7a/pipeline_8h_1a3a9406cb361616aacedd051349824ed1"></span><a class="reference internal" href="#c.TL_Pipeline_t" title="TL_Pipeline_t"><span class="n"><span class="pre">TL_Pipeline_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_PipelineCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="renderers.html#c.TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">renderer</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_PipelineDescriptor_t" title="TL_PipelineDescriptor_t"><span class="n"><span class="pre">TL_PipelineDescriptor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_PipelineCreate" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="df/d7a/pipeline_8h_1a607d30aac2a659c8c376395cf9f9a81a"></span><a class="reference internal" href="#c.TL_Pipeline_t" title="TL_Pipeline_t"><span class="n"><span class="pre">TL_Pipeline_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_PipelineCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="renderers.html#c.TL_Renderer_t" title="TL_Renderer_t"><span class="n"><span class="pre">TL_Renderer_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">renderer</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_PipelineDescriptor_t" title="TL_PipelineDescriptor_t"><span class="n"><span class="pre">TL_PipelineDescriptor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_PipelineCreate" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Create and return a handle to a new Thallium pipeline object under the given renderer. </p>
 <p>This function creates and returns a new Thallium pipeline object for use with the specified renderer.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>TL_Pipeline_t</p>
+<p><a class="reference internal" href="#df/d7a/pipeline_8h_1ad30d8cdb7eb29113bb2274069fff386d"><span class="std std-ref">TL_Pipeline_t</span></a></p>
 </div>
 </p>
 <dl class="field-list simple">
@@ -589,7 +589,7 @@
   </div>
 
   
-    v0.0.0dev_d8e6b63 (2024-01-22) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_102292c (2023-12-30) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>

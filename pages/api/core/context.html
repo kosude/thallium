@@ -43,7 +43,7 @@
               <img src="../../../_static/logo_wtext.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                v0.0.0dev_d8e6b63 (2024-01-22)
+                v0.0.0dev_102292c (2023-12-30)
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -120,7 +120,7 @@
 <p>‘Context state’ refers to any single API-specific objects, such as Vulkan instances. As having multiple of these objects in an application is messy, it is avoided by restricting the creation of a Thallium context to only one.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"><span class="std std-ref">TL_ContextCreate()</span></a></p>
+<p><a class="reference internal" href="#dc/d1e/context_8h_1ae0b9b11f207d78a86d449c517cca2870"><span class="std std-ref">TL_ContextCreate()</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -139,15 +139,15 @@
 <dl class="c struct">
 <dt class="sig sig-object c" id="c.TL_ContextDescriptor_t">
 <span class="target" id="d6/de3/structTL__ContextDescriptor__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextDescriptor_t</span></span></span><a class="headerlink" href="#c.TL_ContextDescriptor_t" title="Permalink to this definition"></a><br /></dt>
-<dd><p>A structure describing a Thallium context object to be created with <a class="reference internal" href="#dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"><span class="std std-ref">TL_ContextCreate()</span></a>. </p>
-<p>This structure describes a context object to be created.</p>
+<dd><p>A structure describing a Thallium context object to be created with <a class="reference internal" href="#dc/d1e/context_8h_1ae0b9b11f207d78a86d449c517cca2870"><span class="std std-ref">TL_ContextCreate()</span></a>. </p>
+<p>This structure describes a <a class="reference internal" href="#dc/d1e/context_8h_1a2ab90da406d417dffba83a7e2a45666c"><span class="std std-ref">context object</span></a> to be created.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>TL_Context_t</p>
+<p><a class="reference internal" href="#dc/d1e/context_8h_1a2ab90da406d417dffba83a7e2a45666c"><span class="std std-ref">TL_Context_t</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"><span class="std std-ref">TL_ContextCreate()</span></a></p>
+<p><a class="reference internal" href="#dc/d1e/context_8h_1ae0b9b11f207d78a86d449c517cca2870"><span class="std std-ref">TL_ContextCreate()</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -172,12 +172,12 @@
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.TL_ContextCreate">
-<span class="target" id="dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"></span><a class="reference internal" href="#c.TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_ContextDescriptor_t" title="TL_ContextDescriptor_t"><span class="n"><span class="pre">TL_ContextDescriptor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">context_descriptor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#c.TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_ContextCreate" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="dc/d1e/context_8h_1ae0b9b11f207d78a86d449c517cca2870"></span><a class="reference internal" href="#c.TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextCreate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.TL_ContextDescriptor_t" title="TL_ContextDescriptor_t"><span class="n"><span class="pre">TL_ContextDescriptor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">context_descriptor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="debuggers.html#c.TL_Debugger_t" title="TL_Debugger_t"><span class="n"><span class="pre">TL_Debugger_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">debugger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_ContextCreate" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Allocate space for and create a Thallium context object. </p>
 <p>This function creates a heap-allocated opaque Thallium context object and returns its handle.</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>TL_Context_t</p>
+<p><a class="reference internal" href="#dc/d1e/context_8h_1a2ab90da406d417dffba83a7e2a45666c"><span class="std std-ref">TL_Context_t</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -201,14 +201,14 @@
 <dt class="sig sig-object c" id="c.TL_ContextDestroy">
 <span class="target" id="dc/d1e/context_8h_1a433fdbcc3cea0e8430beebd3c17deeca"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TL_ContextDestroy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.TL_Context_t" title="TL_Context_t"><span class="n"><span class="pre">TL_Context_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">context</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.TL_ContextDestroy" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Free space allocated for the given Thallium context object. </p>
-<p>This function frees the space allocated for the given Thallium context object with <a class="reference internal" href="#dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"><span class="std std-ref">TL_ContextCreate</span></a>,</p>
+<p>This function frees the space allocated for the given Thallium <a class="reference internal" href="#dc/d1e/context_8h_1a2ab90da406d417dffba83a7e2a45666c"><span class="std std-ref">context object</span></a> with <a class="reference internal" href="#dc/d1e/context_8h_1ae0b9b11f207d78a86d449c517cca2870"><span class="std std-ref">TL_ContextCreate</span></a>,</p>
 <p><div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>TL_Context_t</p>
+<p><a class="reference internal" href="#dc/d1e/context_8h_1a2ab90da406d417dffba83a7e2a45666c"><span class="std std-ref">TL_Context_t</span></a></p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#dc/d1e/context_8h_1a9fafd1d7d06ea3c1f48e6d710cb4604c"><span class="std std-ref">TL_ContextCreate()</span></a></p>
+<p><a class="reference internal" href="#dc/d1e/context_8h_1ae0b9b11f207d78a86d449c517cca2870"><span class="std std-ref">TL_ContextCreate()</span></a></p>
 </div>
 </p>
 <dl class="field-list simple">
@@ -235,7 +235,7 @@
   </div>
 
   
-    v0.0.0dev_d8e6b63 (2024-01-22) » <a href="https://github.com/kosude/thallium">upstream url</a>
+    v0.0.0dev_102292c (2023-12-30) » <a href="https://github.com/kosude/thallium">upstream url</a>
 
 </footer>
         </div>
