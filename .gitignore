@@ -1,5 +1,6 @@
 # IDE config files
 **/.vscode/
+**/.cache/
 
 # build output
 **/build/
